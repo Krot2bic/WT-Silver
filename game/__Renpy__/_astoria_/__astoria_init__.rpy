@@ -163,57 +163,59 @@ label astoria_init:
 
 
 label astoria_progress_init:
+    
+    python:
+        # New init format that allows for dynamic addition of new vars
+        silver_init_object(
+            astoria_spells = [0,0,0,0,0,0],
+            astoria_spell_progress = 0,
+            astoria_affection = 0,
+            astoria_points = 0,
 
-    if not hasattr(renpy.store,'astoria_name') or reset_persistants:
+            ##Flags
+            astoria_busy = False,
+            astoria_unlocked = False,
+            astoria_wardrobe_unlocked = False,
+            chitchated_with_astoria = False,
+            
+            days_since_astoria = 0,
+            astoria_arrival_day = 30,
+            astoria_arrvial_whoring = 9,
+            
+            ##Events
+            ministry_letter          = False,
+            ministry_letter_received = False,
+            hermione_on_the_lookout  = False,
+            hermione_finds_astoria   = False,
+            snape_on_the_lookout     = False,
+            tonks_intro_happened     = False,
+            spells_unlocked          = False,
+            snape_gave_spellbook     = False,
+            third_curse_got_cast     = False,
+            astoria_book_intro_happened = False,
+            astoria_intro_completed  = False,
+            
+            ##Tonks events
+            spells_locked = False,
+            astoria_tonks_event_in_progress = False,
+            astoria_tonks_1_completed = False,
+            astoria_tonks_2_completed = False,
+            astoria_tonks_3_completed = False,
+            astoria_tonks_4_completed = False,
+            astoria_tonks_5_completed = False,
+            astoria_tonks_6_completed = False,
 
-        ##Favour stuff
+            ##Names
+            astoria_name = "Miss Greengrass",
+            ast_genie_name = "Dumby",
+            ast_susan_name = "Cow",
+            ast_tonks_name = "Old Hag",
 
-        ##Stats
-        $ astoria_spells = [0,0,0,0,0,0]
-        $ astoria_spell_progress = 0
-        $ astoria_affection = 0
-        $ astoria_points = 0
+            # Example Variable
+            ast_new_var = "new_string"
+        ).init(reset_persistants)
 
-        ##Flags
-        $ astoria_busy = False
-        $ astoria_unlocked = False
-        $ astoria_wardrobe_unlocked = False
-        $ chitchated_with_astoria = False
-        
-        $ days_since_astoria = 0
-        $ astoria_arrival_day = 30
-        $ astoria_arrvial_whoring = 9
-        
-        ##Events
-        $ ministry_letter          = False
-        $ ministry_letter_received = False
-        $ hermione_on_the_lookout  = False
-        $ hermione_finds_astoria   = False
-        $ snape_on_the_lookout     = False
-        $ tonks_intro_happened     = False
-        $ spells_unlocked          = False
-        $ snape_gave_spellbook     = False
-        $ third_curse_got_cast     = False
-        $ astoria_book_intro_happened = False
-        $ astoria_intro_completed  = False
-        
-        ##Tonks events
-        $ spells_locked = False
-        $ astoria_tonks_event_in_progress = False
-        $ astoria_tonks_1_completed = False
-        $ astoria_tonks_2_completed = False
-        $ astoria_tonks_3_completed = False
-        $ astoria_tonks_4_completed = False
-        $ astoria_tonks_5_completed = False
-        $ astoria_tonks_6_completed = False
-
-        ##Names
-        $ astoria_name = "Miss Greengrass"
-        $ ast_genie_name = "Dumby"
-        $ ast_susan_name = "Cow"
-        $ ast_tonks_name = "Old Hag"
-        
-
-    #if not hasattr(renpy.store,'ADD') or reset_persistants:
+        # deletes the unneeded example variable that was initialized
+        del ast_new_var
     
     return

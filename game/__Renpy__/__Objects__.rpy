@@ -20,6 +20,27 @@ init python:
         renpy.pause(speed)
         renpy.hide_screen("universal_walk")
     
+    class silver_init_object(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(**kwargs)
+
+        # inits object params as new global vars if they dont already exist 
+        def init(self, force=False):
+            dic = {}
+            if force:
+                variables_to_set = self.__dict__.keys()
+            else:
+                variables_to_set = [ att for att in self.__dict__.keys() if att not in globals() ]
+
+            for var_name in variables_to_set:
+                var_value = self.__dict__[var_name]
+                if isinstance(var_value, unicode):
+                    dic[var_name] = str(var_value)
+                else:
+                    dic[var_name] = var_value
+            globals().update(dic)
+            return dic
+    
     class silver_scroll(object):
         id = 0
         name = ""

@@ -53,12 +53,12 @@ label maid_responses:
                 $ gryffindor+= 10
                 $ gold += payment
             elif day_random >= 6 and day_random <= 8:
-                if whoring >= 15:
+                if 15 <= whoring:
                     her " "
                 else:
                     "bla bla bla"
             elif day_random >=9:
-                if whoring >= 15:
+                if 15 <= whoring:
                     "bla bla bla"
                 else:
                     her "I think you need to start enforcing harsher punishment for sexual harrasment."

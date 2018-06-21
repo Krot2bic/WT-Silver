@@ -13,7 +13,7 @@ label cheats:
                     jump cheats_hermione
                     
                 "-Increase Whoring-":
-                    if whoring >= 24:
+                    if 24 <= whoring:
                         ">Hermione's whoring is at the max level and can't be increased any further!"
                     else:
                         $ whoring += 1

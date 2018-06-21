@@ -110,7 +110,7 @@ label equip_her_top:
             #Uniform Top Tie only #Done
             elif top_choice == "uni_top_2":
                 m "Would you wear your uniform top for me? But leave the vest off." 
-                if whoring >= 2:
+                if 2 <= whoring:
                     if whoring < 5:
                         call her_main("OK, [genie_name].","base","glance") 
                         call her_main("While I find it inappropriate for a Hogwarts student to not wear their proper school attire at all times,...","open","closed") 
@@ -149,7 +149,7 @@ label equip_her_top:
             #Uniform Top No Tie #Done
             elif top_choice == "uni_top_3":
                 m "Would you wear your uniform top for me? But remove the tie and the vest." 
-                if whoring >= 5: #Gets removed at level 11.
+                if 5 <= whoring: #Gets removed at level 11.
                     call her_main("You better appreciate this, [genie_name].","annoyed","annoyed") 
                     call her_main("Can't believe I'm willing to remove my precious Grffindor tie for you...","angry","angry") 
                     m "It's only a tie, girl!"
@@ -186,7 +186,7 @@ label equip_her_top:
             elif top_choice == "uni_top_4":
                 m "Would you wear your uniform top for me? Just the shirt..." 
                 g9 "And unbutton some of those buttons! I want you to show some cleavage!" 
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 11:
                         call her_main("(Lets just hope nobody stares at them too much.)","annoyed","down") 
                         call her_main("Fine, [genie_name]. {w=0.9}Let me go change.","open","suspicious") 
@@ -235,7 +235,7 @@ label equip_her_top:
             #Uniform Crop-Top #Done
             elif top_choice == "uni_top_5":
                 m "I want you to pull up the two ends of your school top and tie them together around your chest." 
-                if whoring >= 11:
+                if 11 <= whoring:
                     if whoring < 14:
                         call her_main("I really don't know if that's such a good idea, [genie_name]...","open","closed") 
                         call her_main("Everybody is going to look at my breasts...","annoyed","down") 
@@ -269,7 +269,7 @@ label equip_her_top:
             #Uniform Top Vest with Cleavage #Done
             elif top_choice == "uni_top_6":
                 m "Would you wear your vest for me? Just the vest. Maybe your shirt beneath it. But don't think about closing any of those buttons!"
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 11:
                         call her_main("Sure, why not.","soft","baseL") 
                         call her_main("Let me just change it.","base","base") 
@@ -303,7 +303,7 @@ label equip_her_top:
             elif top_choice == "uni_top_cheer" or top_choice == "uni_top_cheer_skimpy":
                 if top_color_choice == "green" or top_color_choice == "blue" or top_color_choice == "yellow":
                     m "Would you wear this cheerleader skirt for me?" 
-                    if whoring >= 11:
+                    if 11 <= whoring:
                         if whoring < 14:
                             if top_color_choice == "green":
                                 call her_main("But [genie_name], that's for Slytherins!","angry","wink") 
@@ -377,7 +377,7 @@ label equip_her_top:
                     if top_choice == "uni_top_cheer":
 
                         m "Could you wear your cheerleader attire for me? Just the top."
-                        if whoring >= 5:
+                        if 5 <= whoring:
                             if whoring < 11:
                                 call her_main("Of course, [genie_name]!","soft","baseL",cheeks="blush") 
                                 call her_main("Let me go change.","base","base") 
@@ -410,7 +410,7 @@ label equip_her_top:
 
                     if top_choice == "uni_top_cheer_skimpy":
                         m "Could you wear the top from your cheerleader attire for me?"
-                        if whoring >= 8: 
+                        if 8 <= whoring: 
                             g9 "The skimpy one!" 
                             if whoring < 14:
                                 call her_main("Sure, [genie_name]!","soft","baseL",cheeks="blush") 
@@ -462,7 +462,7 @@ label equip_her_top:
             #Muggle Pullover #Done
             elif top_choice == "normal_pullover":
                 m "Could you wear this top I bought you?" 
-                if whoring >= 0:
+                if 0 <= whoring:
                     if whoring < 5:
                         call her_main("[genie_name], that's a pullover!","angry","wink") 
                         m "... So what?"
@@ -487,7 +487,7 @@ label equip_her_top:
             #Muggle Pullover #Done
             elif top_choice == "normal_pullover_sexy":
                 m "Could you wear this pullover I bought you?" 
-                if whoring >= 2:
+                if 2 <= whoring:
                     if whoring < 11:
                         call her_main("Very well, [genie_name]. Just let me---","soft","baseL") 
                         m "One second,... I'm almost done..."
@@ -523,7 +523,7 @@ label equip_her_top:
             #Muggle Sweater #Done
             elif top_choice == "normal_sweater":
                 m "Could you wear this top I bought you?" 
-                if whoring >= 2:
+                if 2 <= whoring:
                     if whoring < 5:
                         call her_main("[genie_name], that's a sweater!","angry","wink") 
                         m "... So what?"
@@ -552,7 +552,7 @@ label equip_her_top:
             #Muggle Waitress Top #Kinda done
             elif top_choice == "normal_waitress_top":
                 m "Would you wear this top I bought you." 
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 11:
                         call her_main("Fine, [genie_name].","open","closed") 
                         call her_main("Let me put it on before I change my mind...","annoyed","annoyed") 
@@ -579,7 +579,7 @@ label equip_her_top:
             elif top_choice == "wicked_leather_jacket_short_sleeves" or top_choice == "wicked_leather_jacket_sleeveless" or top_choice == "wicked_leather_jacket_sleeves":
                 m "Could you wear this leather Jacket for me?"
 
-                if whoring >= 17: 
+                if 17 <= whoring: 
                     if whoring < 20:
                         call her_main("You should know, [genie_name].","open","closed") 
                         call her_main("I don't mind wearing this in your office.","open","worriedL") 
@@ -623,10 +623,10 @@ label equip_her_top:
             elif top_choice == "wicked_leather_jacket_short_sleeves_open" or top_choice == "wicked_leather_jacket_sleeveless_open" or top_choice == "wicked_leather_jacket_sleeves_open": 
                 m "Could you wear this leather Jacket for me?"
                 g9 "But leave the front open!"
-                if whoring >= 11: 
+                if 11 <= whoring: 
                     g9 "Those puppies need to breath!"
 
-                if whoring >= 17: 
+                if 17 <= whoring: 
                     if whoring < 20:
                         call her_main("You should know, [genie_name].","open","closed") 
                         call her_main("I don't mind wearing this in your office.","open","worriedL") 
@@ -681,7 +681,7 @@ label equip_her_top:
                 else: 
                     m "Could you wear this top for me?"
 
-                if whoring >= 20: 
+                if 20 <= whoring: 
                     if whoring < 23: 
                         call her_main("Sure, why not.","open","closed") 
                         m "really?"
@@ -729,7 +729,7 @@ label equip_her_top:
             
             #Misc #Doesn't have texts yet.
             elif top_choice == "top_banner" and top_color_choice != "green" and top_color_choice != "dark_green":
-                if whoring >= 11:
+                if 11 <= whoring:
                     pass
                 else:
                     ">She won't wear that top just yet."
@@ -737,7 +737,7 @@ label equip_her_top:
                         ">Try again at whoring level 11."
                     jump return_to_wardrobe
             elif top_choice == "top_ripped_tie_striped":
-                if whoring >= 11:
+                if 11 <= whoring:
                     pass
                 else:
                     ">She won't wear that top just yet."
@@ -745,7 +745,7 @@ label equip_her_top:
                         ">Try again at whoring level 11."
                     jump return_to_wardrobe
             elif top_choice == "top_tie_striped":
-                if whoring >= 11:
+                if 11 <= whoring:
                     pass
                 else:
                     ">She won't wear that top just yet."
@@ -753,7 +753,7 @@ label equip_her_top:
                         ">Try again at whoring level 11."
                     jump return_to_wardrobe
             elif top_choice == "top_banner" and (top_color_choice == "green" or top_color_choice == "dark_green"):
-                if whoring >= 17:
+                if 17 <= whoring:
                     pass
                 else:
                     ">She won't wear that top just yet."
@@ -761,7 +761,7 @@ label equip_her_top:
                         ">Try again at whoring level 17."
                     jump return_to_wardrobe
             elif top_choice == "top_fishnets":
-                if whoring >= 20:
+                if 20 <= whoring:
                     pass
                 else:
                     ">She won't wear that top just yet."

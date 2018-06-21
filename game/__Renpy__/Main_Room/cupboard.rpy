@@ -238,7 +238,7 @@ label cupboard:
         "-Cheats-" if cheats_active:
             jump cheats
             
-        "-Send Ministry letter again-" if day >= 25 and whoring >= 9 and not ministry_letter_received:
+        "-Send Ministry letter again-" if day >= 25 and 9 <= whoring and not ministry_letter_received:
             $ ministry_letter = True
             $ letters += 1 #Displays Owl
             ">You received a new letter."
@@ -420,7 +420,7 @@ label rum_rewards:
         
         
         ### EVENT LEVEL 04 ###  ### ###  ### ###  ###  ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ### ###  ###
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             if one_of_tw == 20:
                 call rum_block(SpeedStick2000) 
             elif one_of_tw >= 1 and one_of_tw <= 4:

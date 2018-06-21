@@ -47,7 +47,7 @@ label hg_pr_KissAGirl: #LV.5 (Whoring = 12 - 14)
         m "[hermione_name], forty five house points are up for grabs today!"
         m "Are you interested?"
 
-        if whoring >= 12 and whoring < 15: # LEVEL 05 FIRST EVENT.
+        if 12 <= whoring < 15: # LEVEL 05 FIRST EVENT.
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             call her_main("It depends...","normal","base",xpos="right",ypos="base") 
             her "Will I have to do something depraved again?"
@@ -63,7 +63,7 @@ label hg_pr_KissAGirl: #LV.5 (Whoring = 12 - 14)
             m "Great. See you after your classes then."
             call her_main("................","annoyed","annoyed") 
         
-        elif whoring >= 15 and whoring < 18: # LEVEL 06. Event level 02.
+        elif 15 <= whoring < 18: # LEVEL 06. Event level 02.
             call her_main("I suppose...","annoyed","ahegao",xpos="right",ypos="base") 
             m "Great. All you need to do is make out with another girl."
             call her_main("I see...","annoyed","down") 
@@ -71,7 +71,7 @@ label hg_pr_KissAGirl: #LV.5 (Whoring = 12 - 14)
             call her_main("I suppose...","annoyed","worriedL") 
             m "Great. See you after your classes then."
         
-        elif whoring >= 18: # LEVEL 07+ Event level 03.
+        elif 18 <= whoring:
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             call her_main("Sure, why not?","base","base",xpos="right",ypos="base") 
             m "Great."
@@ -93,7 +93,7 @@ label hg_pr_KissAGirl_complete:
     
 
     #First time event.
-    if whoring >= 12 and whoring < 15: # LEVEL 05  
+    if 12 <= whoring < 15: # LEVEL 05  
 
         #Event A
         if one_out_of_three == 1:
@@ -309,7 +309,7 @@ label hg_pr_KissAGirl_complete:
             m "Nicely done."
             call her_main("","base","base") 
     
-    elif whoring >= 18: # LEVEL 07+  
+    elif 18 <= whoring:
         
         #Event A                    
         if one_out_of_three == 1: #Snowballing

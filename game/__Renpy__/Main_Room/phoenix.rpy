@@ -292,7 +292,7 @@ label talkingfawkes:
         faw "Can I help you?"
         m "Wanna turn into a hot girl and have sex?"
         faw "Maybe if you get that witch from earlier horny I can take over her again."
-    elif genie_speaks == 3 and whoring >= 10:
+    elif genie_speaks == 3 and 10 <= whoring:
         faw "I'm conflicted."
         m "Why is that?"
         faw "Part of me is extremely horny and wants to jump your bones right now."
@@ -306,7 +306,7 @@ label talkingfawkes:
         faw "Make her morals a little looser and I might actually be able to fuck you."
         m "..."
         g9 "I'm on it."
-    elif genie_speaks == 3 and whoring >= 5:
+    elif genie_speaks == 3 and 5 <= whoring:
         faw "I think I'm feeling something!"
         m "Really?"
         g9 "{size=-4}(I'm finally gonna get lucky again!){/size}"
@@ -321,7 +321,7 @@ label talkingfawkes:
             g11 "{size=+3}All over me?!{/size}"
             faw "No God bless you?"
             g4 "{size=-4}Fucking bird...{/size}"
-        elif faw_sneeze4 == 2 and whoring >= 3:
+        elif faw_sneeze4 == 2 and 3 <= whoring:
             $ renpy.play('sounds/door3.mp3')
             g4 "What do you want? I'm busy!"
             her "{size=-2}Are you sure you want me to leave?{/size}"

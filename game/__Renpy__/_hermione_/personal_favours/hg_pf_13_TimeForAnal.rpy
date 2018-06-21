@@ -22,7 +22,7 @@ label hg_pf_TimeForAnal: #LV.8 (Whoring = 21 - 23)
                 m "[hermione_name], before I request a favor, I'd like you to dress up."
                 call her_main("In what?","open","worriedL") 
                 m "Your ball dress."
-                if whoring >= 22:
+                if 22 <= whoring:
                     call her_main("What?","scream","wide") 
                     her "You got me a new ball dress?"
                     m "Indeed I did, but you'll have to earn it."

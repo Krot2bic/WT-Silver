@@ -379,7 +379,7 @@ label chit_chat:
     
    
     ### WHORING LEVEL 08+ ###
-    if whoring >= 21:
+    if 21 <= whoring:
         if one_of_ten == 1:
             call her_main("Do You have any adult magazines you don't need, sir?","open","baseL",cheeks="blush") 
             call her_main("","base","baseL",cheeks="blush") 

@@ -37,10 +37,10 @@ label equip_her_misc_item:
                     "-A little bit-":
                         $ transparency_amount = 0.8
                         call her_main("(at least This shouldn't be too noticable.","normal","worriedCl") 
-                    "-A fair bit-" if whoring >= 20:
+                    "-A fair bit-" if 20 <= whoring:
                         $ transparency_amount = 0.5
                         call her_main("(Hopefully it's not too bad","annoyed","worriedL") 
-                    "-A lot-" if whoring >= 23:
+                    "-A lot-" if 23 <= whoring:
                         $ transparency_amount = 0.3
                         call her_main("(...)","base","down") 
                     "-All of it-" if whoring == 24:

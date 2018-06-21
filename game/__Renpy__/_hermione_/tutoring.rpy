@@ -1,43 +1,43 @@
 label l_tutoring_check:
     if v_tutoring == 0:
         jump l_tutoring
-    elif v_tutoring == 1 and whoring >= 1:
+    elif v_tutoring == 1 and 1 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 2 and whoring >= 2:
+    elif v_tutoring == 2 and 2 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 3 and whoring >= 3:
+    elif v_tutoring == 3 and 3 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 4 and whoring >= 5:
+    elif v_tutoring == 4 and 5 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 5 and whoring >= 8:
+    elif v_tutoring == 5 and 8 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 6 and whoring >= 11:
+    elif v_tutoring == 6 and 11 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 7 and whoring >= 14:
+    elif v_tutoring == 7 and 14 <= whoring:
         if gift_item_inv[6] >= 1:# Adult magazines
             jump l_tutoring
         else:
             m "I need to buy adult magazines for this lesson."
-    elif v_tutoring == 8 and whoring >= 17:
+    elif v_tutoring == 8 and 17 <= whoring:
         if gift_item_inv[7] >= 1:# Porn magazines
             jump l_tutoring
         else:
             m "I need to buy porn magazines for this lesson."
-    elif v_tutoring == 9 and whoring >= 20:
+    elif v_tutoring == 9 and 20 <= whoring:
         if gift_item_inv[11] >= 1:# Vibrator
             jump l_tutoring
         else:
             m "I need to buy a vibrator for this lesson."
-    elif v_tutoring == 10 and whoring >= 23:
+    elif v_tutoring == 10 and 23 <= whoring:
         if gift_item_inv[14] >= 1:# Anal plugs
             jump l_tutoring
         else:
             m "I need to buy anal plugs for this lesson."
-    elif v_tutoring == 11 and whoring >= 23:
+    elif v_tutoring == 11 and 23 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 12 and whoring >= 23:
+    elif v_tutoring == 12 and 23 <= whoring:
         jump l_tutoring
-    elif v_tutoring == 13 and whoring >= 23:
+    elif v_tutoring == 13 and 23 <= whoring:
         jump l_tutoring
     else:
         m "Not the right time. Soon..."

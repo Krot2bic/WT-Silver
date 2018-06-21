@@ -356,7 +356,7 @@ label potion_scene_2_2: #ass expansion
             $ h_action_show_skirt = True
             call her_main("...","open","down") 
             
-        "-Hot dog her-" if whoring >= 17:
+        "-Hot dog her-" if 17 <= whoring:
             m "Bend over [hermione_name]."
             call nar(">Before she even has a chance to react you push her forward over your desk.") 
             hide screen groping_02
@@ -462,4 +462,4 @@ label potion_scene_2_2: #ass expansion
 
     jump day_main_menu
         #will add this later
-        #"-Fuck her ass-" if whoring >= 22: 
+        #"-Fuck her ass-" if 22 <= whoring: 

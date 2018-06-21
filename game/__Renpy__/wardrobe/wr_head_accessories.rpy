@@ -84,7 +84,7 @@ label equip_her_makeup:
             #Freckles
             if makeup_choice == "freckles":
                 m "Would you apply some makeup for me? I think freckles would look cute on you."
-                if whoring >= 14:
+                if 14 <= whoring:
                     call her_main("Sure, [genie_name].","soft","base") 
                     call her_main("Let me just put on a few dots on...","base","glance") 
                 else:
@@ -95,7 +95,7 @@ label equip_her_makeup:
             if makeup_choice == "fake_cum":
                 m "Would you cover yourself with this? It's fake--uuuh... fake cum..."
 
-                if whoring >= 20:
+                if 20 <= whoring:
                     if whoring < 24:
                         call her_main("Fake cum...?","soft","base") 
                         call her_main("...","annoyed","suspicious") 
@@ -253,7 +253,7 @@ label equip_her_head_accessory:
             if head_accessory_choice == "cat_ears":
                 m "Could you wear these cat-ears for me?"
 
-                if whoring >= 11:
+                if 11 <= whoring:
                     if whoring < 17:
                         call her_main("Cat-ears, [genie_name]?","open","worried") 
                         call her_main("(They do look cute...)","base","glance") 
@@ -280,7 +280,7 @@ label equip_her_head_accessory:
             if head_accessory_choice == "elf_ears":
                 m "Could you wear these elf-ears for me?"
 
-                if whoring >= 11:
+                if 11 <= whoring:
                     if h_hair_style != "B":
                         call her_main("Elf-ears...?","soft","base") 
                         call her_main("You wouldn't even be able to see them beneath all my hair...","open","closed") 
@@ -338,7 +338,7 @@ label equip_her_head_accessory:
             if head_accessory_choice == "reading_glasses" or head_accessory_choice == "vintage_glasses":
                 call set_h_glasses(head_accessory_choice, glasses_color_choice) 
             if head_accessory_choice == "cat_ears" or head_accessory_choice == "elf_ears":
-                if whoring >= 11:
+                if 11 <= whoring:
                     call set_h_ears(head_accessory_choice) 
                 else:
                     ">She won't wear those ears just yet."

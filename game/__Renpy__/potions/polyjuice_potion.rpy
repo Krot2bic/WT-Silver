@@ -104,7 +104,7 @@ label potion_scene_1_1_2: #Scene where Hermione comes back after classes angry a
             $ hermione_sleeping = True
             jump night_main_menu
             
-        "-Make her suck you off-" if whoring >= 17:
+        "-Make her suck you off-" if 17 <= whoring:
             pass
             
     m "Wait [hermione_name], how would you like to earn 75 additional points?"

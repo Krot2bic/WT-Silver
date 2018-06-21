@@ -65,7 +65,7 @@ label hg_pr_FlashClassmate: #LV.4 (Whoring = 9 - 11)
     
     #Second time event.
     else:
-        if whoring >= 9 and whoring < 12: # LEVEL 04 FIRST EVENT.
+        if 9 <= whoring <= 11:
             m "I think you need to show off your tits some more, [hermione_name]."
             call her_main("You mean to you, [genie_name]?","upset","wink",xpos="right",ypos="base") 
             m "No, to your classmates..."
@@ -77,7 +77,7 @@ label hg_pr_FlashClassmate: #LV.4 (Whoring = 9 - 11)
             call her_main(".................","annoyed","angryL") 
             call her_main("Well alright... I will see what I can do, [genie_name]...","disgust","glance") 
         
-        elif whoring >= 12 and whoring < 15: # LEVEL 05
+        elif 12 <= whoring <= 14:
             m "[hermione_name]. I have a question for you."
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             m "Why do you think women have breasts?"
@@ -100,7 +100,7 @@ label hg_pr_FlashClassmate: #LV.4 (Whoring = 9 - 11)
             m "Thirty five house points will be waiting for you here upon your return, [hermione_name]."
             call her_main("..............","annoyed","annoyed") 
         
-        elif whoring >= 15: # LEVEL 06+
+        elif 15 <= whoring:
             m "[hermione_name] I need you to go out there and flash your tits to one of your classmates."
             call her_main("I will do my best [genie_name].","open","closed",xpos="right",ypos="base") 
             m "Really? Just like that? No complaints or anything?"
@@ -127,7 +127,7 @@ label hg_pr_FlashClassmate_complete:
     
 
     #First time event.
-    if whoring >= 9 and whoring < 12:  
+    if 9 <= whoring <= 11:
 
         #Event A
         if one_out_of_three == 1:
@@ -219,7 +219,7 @@ label hg_pr_FlashClassmate_complete:
             call her_main(xpos="right",ypos="base",trans="fade") 
     
     #Second level event.
-    elif whoring >= 12 and whoring < 15:
+    elif 12 <= whoring <= 14:
 
         #Event A
         if one_out_of_three == 1:
@@ -328,7 +328,7 @@ label hg_pr_FlashClassmate_complete:
             m "Well, alright... I think this counts..."
     
     #Third level event.
-    elif whoring >= 15:
+    elif 15 <= whoring:
 
         #Event A
         if one_out_of_three == 1:
@@ -477,7 +477,7 @@ label hg_pr_FlashClassmate_complete:
         call her_head("(We must get the cup this year, no matter the cost...)") 
         call her_head("(........)","angry","down_raised") 
 
-    if whoring >= 15 and one_out_of_three == 1:
+    if one_out_of_three == 1 and 15 <= whoring:
         call her_head(".........................","grin","dead",xpos="base",ypos="base") 
     
     call hide_blktone 

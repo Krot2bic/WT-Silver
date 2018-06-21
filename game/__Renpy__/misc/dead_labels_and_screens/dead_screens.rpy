@@ -217,7 +217,7 @@ screen hermione_main_old: #Screen that shows a full sprite of HERMIONE.
                     add im.Alpha("characters/hermione/face/shirts/shirt_03.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
                 else:  
                     add "characters/hermione/face/shirts/fingering_04.png" xpos h_xpos ypos h_ypos
-            elif whoring >= 21:
+            elif 21 <= whoring:
                 if day_random <= 4:
                     if not fingering:
                         add im.Alpha("characters/hermione/face/shirts/shirt_04.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
@@ -279,7 +279,7 @@ screen hermione_main_old: #Screen that shows a full sprite of HERMIONE.
     if badges and not robeon and custom_outfit_old == 0 and wear_shirts:
         if ba_01 and whoring <= 12:
             add "characters/hermione/face/badge.png" xpos h_xpos ypos h_ypos #The Robe.
-        elif ba_01 and whoring >= 13:
+        elif ba_01 and 13 <= whoring:
             add "images/25_mo/cum_badge.png" xpos h_xpos ypos h_ypos
     if robeon:
         add "characters/hermione/face/robe.png" xpos h_xpos ypos h_ypos #The Robe.
@@ -540,7 +540,7 @@ screen hermione_main2:
                     add im.Alpha("characters/hermione/face/shirts/shirt_03.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
                 else:  
                     add "characters/hermione/face/shirts/fingering_04.png" xpos h_xpos ypos h_ypos
-            elif whoring >= 21:
+            elif 21 <= whoring:
                 if day_random <= 4:
                     if not fingering:
                         add im.Alpha("characters/hermione/face/shirts/shirt_04.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
@@ -602,7 +602,7 @@ screen hermione_main2:
     if badges and not robeon and custom_outfit_old == 0 and wear_shirts:
         if ba_01 and whoring <= 12:
             add "characters/hermione/face/badge.png" xpos h_xpos ypos h_ypos #The Robe.
-        elif ba_01 and whoring >= 13:
+        elif ba_01 and 13 <= whoring:
             add "images/25_mo/cum_badge.png" xpos h_xpos ypos h_ypos
     if robeon:
         add "characters/hermione/face/robe.png" xpos h_xpos ypos h_ypos #The Robe.
@@ -766,7 +766,7 @@ screen h_head: #Screen that shows a full sprite of HERMIONE.
                     add im.Alpha("characters/hermione/face/shirts/shirt_03.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
                 else:  
                     add "characters/hermione/face/shirts/fingering_04.png" xpos h_xpos ypos h_ypos
-            elif whoring >= 21:
+            elif 21 <= whoring:
                 if day_random <= 4:
                     if not fingering:
                         add im.Alpha("characters/hermione/face/shirts/shirt_04.png", transparency) xpos h_xpos ypos h_ypos #The shirts.
@@ -807,7 +807,7 @@ screen h_head: #Screen that shows a full sprite of HERMIONE.
     if badges:
         if ba_01 and whoring <= 12:
             add "characters/hermione/face/badge.png" xpos h_xpos ypos h_ypos #The Robe.
-        elif ba_01 and whoring >= 13:
+        elif ba_01 and 13 <= whoring:
             add "images/25_mo/cum_badge.png" xpos h_xpos ypos h_ypos
 
     if custom_outfit_old == 7 or custom_outfit_old == 7.2:
@@ -947,7 +947,7 @@ screen h_head2: #Screen that shows Hermione's head.
                 add im.Alpha("characters/hermione/face/legs/legs_02.png", transparency) xpos her_head_xpos ypos her_head_ypos
             if 12 <= whoring <= 19: #Micro skirt.
                 add im.Alpha("characters/hermione/face/legs/legs_03.png", transparency) xpos her_head_xpos ypos her_head_ypos
-            if whoring >= 20: #Mini Micro skirt.
+            if 20 <= whoring: #Mini Micro skirt.
                 add im.Alpha("characters/hermione/face/legs/legs_04.png", transparency) xpos her_head_xpos ypos her_head_ypos
     if autograph:
         add "characters/hermione/face/auto.png" xpos her_head_xpos ypos her_head_ypos #Displays an autograph on her leg.
@@ -1029,7 +1029,7 @@ screen h_head2: #Screen that shows Hermione's head.
                     add im.Alpha("characters/hermione/face/shirts/shirt_03.png", transparency) xpos her_head_xpos ypos her_head_ypos #The shirts.
                 else:  
                     add "characters/hermione/face/shirts/fingering_04.png" xpos her_head_xpos ypos her_head_ypos
-            elif whoring >= 21:
+            elif 21 <= whoring:
                 if day_random <= 4:
                     if not fingering:
                         add im.Alpha("characters/hermione/face/shirts/shirt_04.png", transparency) xpos her_head_xpos ypos her_head_ypos #The shirts.
@@ -1088,7 +1088,7 @@ screen h_head2: #Screen that shows Hermione's head.
     if badges and not robeon and custom_outfit_old == 0:
         if ba_01 and whoring <= 12:
             add "characters/hermione/face/badge.png" xpos her_head_xpos ypos her_head_ypos #The Robe.
-        elif ba_01 and whoring >= 13:
+        elif ba_01 and 13 <= whoring:
             add "images/25_mo/cum_badge.png" xpos her_head_xpos ypos her_head_ypos
     if robeon:
         add "characters/hermione/face/robe.png" xpos her_head_xpos ypos her_head_ypos #The Robe.

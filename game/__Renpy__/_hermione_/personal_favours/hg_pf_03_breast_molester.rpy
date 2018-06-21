@@ -29,7 +29,7 @@ label hg_pf_BreastMolester:
                 m "[hermione_name], before I request a favor, I'd like you to dress up."
                 call her_main("As what?","open","worriedL") 
                 m "Ms Marvel."
-                if whoring >= 7:
+                if 7 <= whoring:
                     m "It's not that bad. It's empowering."
                     call her_main("...","angry","worriedCl",emote="05") 
                     call her_main("Fine, let me go change.","normal","worriedCl") 

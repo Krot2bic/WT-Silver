@@ -326,7 +326,7 @@ label give_her_gift(gift_id):
             call her_main("Ehm... Sure, thanks...","open","suspicious") 
             call happy(5) 
             $ h_body = "body_06"
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("A lollipop?","base","base") 
             call her_main("Clever girls use candy like this as a \"weapon\".","smile","baseL") 
             call give_gift(">You give the candy to Hermione...",gift_id) 
@@ -353,7 +353,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the chocolate to Hermione...", gift_id) 
             call her_main("Ehm... Sure, thanks...","base","base") 
             call happy(10) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("A chocolate bar?","base","base") 
             call her_main("You spoil me, [genie_name].","smile","angry") 
             call give_gift(">You give the chocolate to Hermione...", gift_id) 
@@ -379,7 +379,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the owl to Hermione...",gift_id) 
             call her_main("Thank you, [genie_name].","base","base") 
             call happy(15) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("This is one of those adult toys isn't it?","disgust","glance") 
             call her_main("There's got to be a switch or a button somewhere...","open","down") 
             call her_main("So... Does it vibrate or something?","base","down") 
@@ -411,7 +411,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the bottle to Hermione...",gift_id) 
             call her_main("I shall drink this with the girls later.","base","base") 
             call happy(15) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("Butterbeer...?","base","base") 
             call her_main("Thank you, [genie_name].","base","base") 
             call give_gift(">You give the bottle to Hermione...",gift_id) 
@@ -439,7 +439,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give an assortment of educational magazines to Hermione...",gift_id) 
             call her_main("Thank you, [genie_name]!","base","base") 
             call happy(3) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("Ehm...","open","worriedL") 
             call her_main("To be honest, magazines like that lost their appeal to me completely lately...","open","suspicious") 
             call her_main("But I don't mind taking them off you hands anyway, [genie_name].","open","worried") 
@@ -468,7 +468,7 @@ label give_her_gift(gift_id):
             call her_main("Thank you, [genie_name].","open","suspicious") 
             call happy(15) 
             $ h_body = "body_06"
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("The Latest edition of \"Girlz\"?!","angry","wide") 
             call her_main("I can't have enough of that brilliant magazine!","grin","worriedCl",emote="05") 
             call give_gift(">You give an assortment of rather girly magazines to Hermione...",gift_id) 
@@ -496,7 +496,7 @@ label give_her_gift(gift_id):
             call her_main("I shall throw these away myself...","annoyed","annoyed") 
             call happy(8) 
             $ h_body = "body_120"
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("The New edition of \"L.o.v.e.\"!!!","smile","happyCl") 
             call her_main("Err.. I mean, adult magazines?","angry","wink") 
             call her_main("This is a little inappropriate...") 
@@ -526,7 +526,7 @@ label give_her_gift(gift_id):
             call her_main("And I shall throw them in the trash, where they and... girls who like these things belong...","annoyed","annoyed") 
             call no_change 
             $ h_body = "body_120"
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("Pornography?","shock","wide") 
             call her_main("................","angry","down_raised") 
             call her_main("How can women even agree to do things like that, [genie_name]?","angry","base") 
@@ -556,7 +556,7 @@ label give_her_gift(gift_id):
             call her_main("I can see why the girls find the brutish physique of some players appealing...","open","down") 
             call give_gift(">You give the poster to Hermione...",gift_id) 
             call happy(15) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("A Viktor Krum poster?!","scream","wide_stare") 
             call her_main("Thank you, [genie_name]!","grin","worriedCl",emote="05") 
             call give_gift(">You give the poster to Hermione...",gift_id) 
@@ -579,7 +579,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the lingerie to Hermione...",gift_id) 
             call her_main("Thank you, [genie_name].","base","baseL",cheeks="blush") 
             call happy(7) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("sexy lingerie?","base","down") 
             call her_main("Do You think it will make me look like one of the witches in those adult magazines, [genie_name]?","grin","dead") 
             call her_main("Oh... I mean, thank you, [genie_name].","angry","wink") 
@@ -603,7 +603,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give a pack of condoms to Hermione...", gift_id) 
             call happy(3) 
             $ h_body = "body_29"
-        if whoring >= 18: # Lv 7+
+        if 18 <= whoring: # Lv 7+
             call her_main("A pack of condoms?","open","suspicious") 
             call her_main("I appreciate your concern, [genie_name]. Thank you.","base","glance") 
             call give_gift(">You give a pack of condoms to Hermione...", gift_id) 
@@ -633,7 +633,7 @@ label give_her_gift(gift_id):
             call her_main("But I shall take it nonetheless...","annoyed","worriedL") 
             call give_gift(">You give the vibrator to Hermione...",gift_id) 
             call no_change 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("This vibrator...","open","worried") 
             call her_main("It's... calling out for me...","open","worriedL") 
             call her_main("But not in a dirty way, [genie_name].","disgust","glance") 
@@ -662,7 +662,7 @@ label give_her_gift(gift_id):
             call her_main("Still, I think you should not give presents like this to your pupils, [genie_name].","open","annoyed",cheeks="blush") 
             call no_change 
             $ h_body = "body_79"
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("Anal lubricant, [genie_name]?","base","down") 
             call her_main("I know a couple of girls who would do anything for a commodity like that.","open","annoyed",cheeks="blush") 
             call her_main("Thank for looking out for us, [genie_name].","base","glance") 
@@ -692,7 +692,7 @@ label give_her_gift(gift_id):
             call her_main("Yes, I shall take these to her...","base","baseL",cheeks="blush") 
             call give_gift(">You give the ball gag and cuffs to Hermione...",gift_id) 
             call happy(9) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("A ball gag and handcuffs?","open","squint",cheeks="blush") 
             call her_main("This is completely inappropriate, [genie_name].","angry","wink") # :)
             call her_main("But a gift is a gift, right?","base","suspicious") 
@@ -717,7 +717,7 @@ label give_her_gift(gift_id):
             call her_main("But not me, [genie_name].") 
             call her_main("No, thank you.","upset","closed") 
             call no_change 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("Anal plugs?","angry","down_raised") 
             call her_main("I have no use for things like that, [genie_name]...","angry","base") 
             call her_main("They are so pretty though...","angry","wink") 
@@ -757,7 +757,7 @@ label give_her_gift(gift_id):
             call her_main("I will take it...","normal","worriedCl") 
             call give_gift(">You give the strap-on to Hermione...",gift_id) 
             call happy(10) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("It's... It's magnificent, [genie_name]...","shock","wide") 
             call her_main("Is it really modeled after a thestral?","open","baseL",cheeks="blush") 
             call her_main("But the creatures are invisible...","open","squint",cheeks="blush") 
@@ -795,7 +795,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the broom to Hermione...",gift_id) 
             call her_main("Thank you, [genie_name].","upset","closed") 
             call happy(30) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("A broom...","base","down") 
             call her_main("Hm...") 
             call her_main("That saddle, [genie_name]...","open","baseL",cheeks="blush") 
@@ -823,7 +823,7 @@ label give_her_gift(gift_id):
             call give_gift(">You give the blow-up doll to Hermione...",gift_id) 
             call her_main("Thank you, [genie_name].","base","down") 
             call happy(10) 
-        if whoring >= 18: # Lv 7+  
+        if 18 <= whoring: # Lv 7+  
             call her_main("the Joanne sex doll?","annoyed","down") 
             call her_main("I Can't say that I approve of this...","open","baseL",cheeks="blush") 
             call her_main("But I know Harry would love to have a go at it...","base","down") 
@@ -1034,7 +1034,7 @@ label mini_on:
 
 
     
-    if whoring >= 18: # Lv 7+
+    if 18 <= whoring: # Lv 7+
         call her_main("Of course, [genie_name]...","angry","down_raised") 
         hide screen hermione_main                                                                                                                                                                                   #HERMIONE
         with d3                                                                                                                                                                                                                        #HERMIONE
@@ -1070,7 +1070,7 @@ label mini_off:
     if 12 <= whoring <= 17: # Lv 5-6.
         call her_main("Alright...","soft","baseL") 
     
-    if whoring >= 18: # Lv 7+
+    if 18 <= whoring: # Lv 7+
         call her_main("That boring thing again?","angry","worried") 
     
     
@@ -1165,7 +1165,7 @@ label tiny_on:
 
 
     
-    if whoring >= 18: # Lv 7+
+    if 18 <= whoring: # Lv 7+
         call her_main("Of course, [genie_name]...","angry","down_raised") 
         hide screen hermione_main                                                                                                                                                                                   #HERMIONE
         with d3                                                                                                                                                                                                                        #HERMIONE
@@ -1769,7 +1769,7 @@ label nets_put:
         with d3            
         jump day_time_requests
     
-    if whoring >= 18: # Lv 7+
+    if 18 <= whoring: # Lv 7+
         call her_main("If you insist, [genie_name]...","angry","down_raised") 
         hide screen hermione_main                                                                                                                                                                                   #HERMIONE
         with d3                                                                                                                                                                                                                        #HERMIONE
@@ -1807,7 +1807,7 @@ label nets_take:
     if 12 <= whoring <= 17: # Lv 5-6.
         call her_main("As you wish, [genie_name].","annoyed","angryL") 
     
-    if whoring >= 18: # Lv 7+
+    if 18 <= whoring: # Lv 7+
         call her_main("Really? Aw...","angry","worried") 
     
     

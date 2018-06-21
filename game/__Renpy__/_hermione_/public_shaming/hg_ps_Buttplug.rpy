@@ -190,7 +190,7 @@ label hg_ps_Buttplug:
             m "See you tonight [hermione_name]."
             call her_main("{size=-5}({image=textheart}it feels so good{image=textheart}){/size}","grin","ahegao") 
         
-        elif whoring >= 21 and buttplug_size == 1: # LEVEL 08+
+        elif 21 <= whoring and buttplug_size == 1: # LEVEL 08+
             $ buttplug_1_worn = True
             
             call play_music("chipper_doodle") # HERMIONE'S THEME.
@@ -274,7 +274,7 @@ label hg_ps_Buttplug:
                 m "See you tonight [hermione_name]."
                 call her_main("{size=-5}({image=textheart}it's... so... good...{image=textheart}){/size}","grin","ahegao") 
             
-        elif whoring >= 24 and buttplug_size == 2: # LEVEL 08+
+        elif 24 <= whoring and buttplug_size == 2: # LEVEL 08+
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             m "[hermione_name]..."
             m "What do you think about wearing a buttpl-?"
@@ -581,7 +581,7 @@ label hg_ps_Buttplug_complete:
             call her_main("...","annoyed","baseL",xpos="right",ypos="base",trans="fade") 
             
     
-    elif whoring >= 21 and buttplug_size == 1: # LEVEL 08+                    
+    elif 21 <= whoring and buttplug_size == 1: # LEVEL 08+                    
         if one_out_of_three == 1: ### EVENT (A)
             m "[hermione_name], did you complete your task?"
             show screen blktone
@@ -827,7 +827,7 @@ label hg_ps_Buttplug_complete:
             m "Well I suppose it's for the best."
             
     
-    elif whoring >= 24 and buttplug_size == 2: # LEVEL 08+                    
+    elif 24 <= whoring and buttplug_size == 2: # LEVEL 08+                    
         if one_out_of_three == 1: ### EVENT (A) groped by first years
             if not buttplug_magic_known:
                 jump buttplug_magic_show

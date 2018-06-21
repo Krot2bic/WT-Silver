@@ -123,7 +123,7 @@ label change_her_hair:
             #Blonde #Done
             elif hair_color_choice == "2":
                 m "Would you dye your hair blonde for me?" 
-                if whoring >= 5:
+                if 5 <= whoring:
                     if whoring < 11:
                         call her_main("Blonde?...","upset","wink") 
                         call her_main("(It looks decent enough... {w=0.9}maybe I should try something new once in a while...)","annoyed","down") 
@@ -148,7 +148,7 @@ label change_her_hair:
             #Red #Done
             elif hair_color_choice == "3":
                 m "Would you dye your hair red for me?" 
-                if whoring >= 5:
+                if 5 <= whoring:
                     if whoring < 11:
                         
                         call her_main("Red, [genie_name]?","open","base") 
@@ -192,7 +192,7 @@ label change_her_hair:
             #Crimson #Done
             elif hair_color_choice == "4":
                 m "Would you dye your hair crimson for me?" 
-                if whoring >= 8:
+                if 8 <= whoring:
                     call her_main("It is a really nice colour, [genie_name].","soft","base") 
                     call her_main("Let me go change it real quick.","base","base") 
                 else:
@@ -206,7 +206,7 @@ label change_her_hair:
             #Black #Done
             elif hair_color_choice == "5":
                 m "Would you dye your hair black for me?" 
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 17:
                         call her_main("Black, [genie_name]?","annoyed","down") 
                         call her_main("(It does look nice.)","annoyed","baseL") 
@@ -229,7 +229,7 @@ label change_her_hair:
                 m "Would you dye your hair for me again?"
                 call her_main("Of course, [genie_name]. In which colour?","open","base") 
                 g9 "Slytherin Green!"
-                if whoring >= 11:
+                if 11 <= whoring:
                     if whoring < 17:
                         call her_main("Sure, why not.","soft","baseL") #soft, baseL
                         call her_main("Green is just a colour, [genie_name]!","open","base") 
@@ -258,7 +258,7 @@ label change_her_hair:
             #Blue #Done
             elif hair_color_choice == "7":
                 m "Would you dye your hair blue for me?" 
-                if whoring >= 11:
+                if 11 <= whoring:
                     call her_main("Sure, [genie_name].","soft","baseL") 
                     call her_main("Let me go change.","base","glance") 
                 else:
@@ -279,7 +279,7 @@ label change_her_hair:
             #Purple #Done
             elif hair_color_choice == "8":
                 m "Would you dye your hair purple for me?" 
-                if whoring >= 11:
+                if 11 <= whoring:
                     call her_main("Sure, [genie_name].","soft","baseL") 
                     call her_main("Let me go change.","base","glance") 
                 else:
@@ -294,7 +294,7 @@ label change_her_hair:
             #Pink #Done
             elif hair_color_choice == "9":
                 m "Would you dye your hair pink for me?" 
-                if whoring >= 14:
+                if 14 <= whoring:
                     call her_main("Of course, [genie_name]!","smile","glance") 
                     call her_main("I love pink!!!","soft","baseL") 
                     call her_main("Hi-hi--","smile","happyCl") 
@@ -313,7 +313,7 @@ label change_her_hair:
             #White #Done
             elif hair_color_choice == "10":
                 m "Dye your hair white for me." 
-                if whoring >= 17:
+                if 17 <= whoring:
                     call her_main("Alright, [genie_name].","smile","baseL") 
                     call her_main("Let me go change.","base","glance") 
                 else:

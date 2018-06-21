@@ -121,7 +121,7 @@ label equip_her_body_accessory:
             #S.P.E.W Badge
             if body_accessory_choice == "badge_SPEW":
                 m "Would you wear this badge for me?"
-                if whoring >= 0:
+                if 0 <= whoring:
                     call her_main("A S.P.E.W. badge?","base","base") 
                     call her_main("I'll wear this with pride [genie_name].","open","closed") 
 
@@ -129,7 +129,7 @@ label equip_her_body_accessory:
             if body_accessory_choice == "badge_I_love_cum":
                 m "Would you wear this badge for me?"
 
-                if whoring >= 20:
+                if 20 <= whoring:
                     if whoring < 24:
                         call her_main("Hm...?","soft","base") 
                         call her_main("An \"I love cum\" badge?","annoyed","suspicious") 

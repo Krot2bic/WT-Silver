@@ -71,7 +71,7 @@ label hg_pr_HandjobClassmate: #LV.6 (Whoring = 15 - 17)
     else:
 
         #First level.
-        if whoring >= 15 and whoring < 18:
+        if 15 <= whoring < 18:
             m "Today's favour shall be..."
             call her_main(".........","angry","base",xpos="right",ypos="base") 
             m "A Handjob to the boy of your choosing!"
@@ -84,7 +84,7 @@ label hg_pr_HandjobClassmate: #LV.6 (Whoring = 15 - 17)
             m "Splendid!"
         
         #Second level.
-        elif whoring >= 18 and whoring < 21:
+        elif 18 <= whoring < 21:
             m "Ready to go have sex with one of your classmates yet?"
             stop music fadeout 1.0
             call her_main("What?","scream","wide_stare",xpos="right",ypos="base") 
@@ -98,7 +98,7 @@ label hg_pr_HandjobClassmate: #LV.6 (Whoring = 15 - 17)
             call her_main("Well, alright... I'll see what I can do...","angry","down_raised") 
         
         #Third level.
-        elif whoring >= 21:
+        elif 21 <= whoring:
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             m "[hermione_name]..."
             m "What do you think about giving one of your classmates another handjob?"
@@ -122,7 +122,7 @@ label hg_pr_HandjobClassmate_complete:
     
 
     #First level.
-    if whoring >= 15 and whoring < 18:
+    if 15 <= whoring < 18:
 
         #Event A
         if one_out_of_three == 1:
@@ -243,7 +243,7 @@ label hg_pr_HandjobClassmate_complete:
             m "Well, I'd say a job well done."
     
     #Second level.
-    elif whoring >= 18 and whoring < 21:
+    elif 18 <= whoring < 21:
 
         #Event A
         if one_out_of_three == 1:
@@ -418,7 +418,7 @@ label hg_pr_HandjobClassmate_complete:
                     $ mad += 11
     
     #Third level.
-    elif whoring >= 21:
+    elif 21 <= whoring:
 
         #Event A
         if one_out_of_three == 1:

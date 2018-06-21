@@ -8,7 +8,7 @@ label tonks_chit_chat:
     $ random_number = renpy.random.randint(1, 31)
     
     ### Susan Spell level 1 ###
-    if whoring >= 0: #PLACEHOLDER FOR SUSANS LEVEL #JUST FOR TESTING
+    if 0 <= whoring: #PLACEHOLDER FOR SUSANS LEVEL #JUST FOR TESTING
         if random_number == 1:
             call ton_main("Susan is such a lovely girl...","open","base","base","mid") 
             call ton_main("But she really isn't very confident in her body...","open","base","raised","R") 

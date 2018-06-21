@@ -63,7 +63,7 @@ hide screen blktone
 hide screen blkfade
 
 
-if whoring >= 12 and not touched_by_boy and not force_unlock_pub_favors: #Turns true if sent Hermione to get touched by a boy at least once.
+if 12 <= whoring and not touched_by_boy and not force_unlock_pub_favors: #Turns true if sent Hermione to get touched by a boy at least once.
     $ lock_public_favors = True #Turns True if reached whoring level 05 while public event "Touched by boy" never attempted. Locks public events.
 else:
     $ lock_public_favors = False
@@ -234,7 +234,7 @@ if days_since_cho == 4 and not cho_met:
 
 
 #EVENTS
-if day >= 25 and whoring >= 9: 
+if day >= 25 and 9 <= whoring: 
     jump astoria_intro_branches #This jumps to day_resume if nothing happens!
     
 label day_resume:
@@ -258,20 +258,20 @@ if whoring == 11 and not touched_by_boy:
         "-Don't tell me what to do!-":
             pass
 
-if whoring >= 15 and not event_chairman_happened: #Turns True after an event where Hermione comes and says that she wants to be in the Autumn Ball committee.
+if 15 <= whoring and not event_chairman_happened: #Turns True after an event where Hermione comes and says that she wants to be in the Autumn Ball committee.
     call want_to_rule #Returns
 
-if whoring >= 15 and event_chairman_happened and days_without_an_event >= 2 and not snape_against_chairman_hap: # Turns TRUE after Snape comes and complains that appointing Hermione in the Autumn Ball committee was a mistake.
+if 15 <= whoring and event_chairman_happened and days_without_an_event >= 2 and not snape_against_chairman_hap: # Turns TRUE after Snape comes and complains that appointing Hermione in the Autumn Ball committee was a mistake.
     jump against_the_rule #No return.
 
-if whoring >= 18 and days_without_an_event >= 5 and snape_against_chairman_hap and not have_no_dress_hap: #Turns TRUE after Hermione comes and cries about having no proper dress for the Ball.
+if 18 <= whoring and days_without_an_event >= 5 and snape_against_chairman_hap and not have_no_dress_hap: #Turns TRUE after Hermione comes and cries about having no proper dress for the Ball.
     call crying_about_dress #Returns
 
-if whoring >= 18 and have_no_dress_hap and not sorry_for_hesterics and days_without_an_event >= 1: # Turns TRUE after Hermione comes and apologizes for the day (event) before.
+if 18 <= whoring and have_no_dress_hap and not sorry_for_hesterics and days_without_an_event >= 1: # Turns TRUE after Hermione comes and apologizes for the day (event) before.
     call sorry_about_hesterics #Returns
 
 #HAT EVENT
-if whoring >= 21 and not hat_known:
+if 21 <= whoring and not hat_known:
     call hat_intro #Returns
 
 #Luna event's

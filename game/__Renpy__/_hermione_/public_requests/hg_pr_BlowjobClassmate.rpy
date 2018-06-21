@@ -72,14 +72,14 @@ label hg_pr_BlowjobClassmate: #LV.7 (Whoring = 18 - 20)
     else:
 
         #First time event.
-        if whoring >= 18 and whoring < 21:
+        if 18 <= whoring <= 20:
             m "Go give some lucky boy another blowjob, [hermione_name]."
             call her_main("......Again?","disgust","glance",xpos="right",ypos="base") 
             m "Yes, again."
             call her_main("..........","annoyed","annoyed") 
 
         #Second time event.
-        elif whoring >= 21:
+        elif 21 <= whoring:
             call play_music("chipper_doodle") # HERMIONE'S THEME.
             m "[hermione_name]..."
             m "Do you believe in horoscopes?"
@@ -107,7 +107,7 @@ label hg_pr_BlowjobClassmate_complete:
     
 
     #First time event.
-    if whoring >= 18 and whoring < 21: 
+    if 18 <= whoring <= 20: 
 
         #Event A
         if one_out_of_three == 1: ### EVENT (A)
@@ -183,7 +183,7 @@ label hg_pr_BlowjobClassmate_complete:
             m "Well, in that case."
             
     #Second Event.
-    if whoring >= 21: # LEVEL 08 =+               
+    if 21 <= whoring:
         if one_out_of_three == 1: ### EVENT (A)
             stop music fadeout 1.0
             # HERMIONE ALL MESSED UP, WITH RUNNING MASCARA.

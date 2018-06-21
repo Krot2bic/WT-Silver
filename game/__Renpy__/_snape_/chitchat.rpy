@@ -396,7 +396,7 @@ label snape_chitchat:
         
         
     ### WHORING LEVEL 08+ ###
-    if whoring >= 21:
+    if 21 <= whoring:
         if one_of_ten == 1:
             call sna_main("Do you know what a \"bukkake\" is?","snape_24") 
             sna "What about \"deepthroating\"?"

@@ -72,7 +72,7 @@ label hg_pr_FlirtTeacher_complete:
             with d3
     
             #First level.
-            if  whoring >= 3 and whoring < 6:
+            if  3 <= whoring <= 5:
 
                 #Event A
                 if one_out_of_three == 1: ### Flitwick
@@ -181,7 +181,7 @@ label hg_pr_FlirtTeacher_complete:
                     m "What did I say?"
             
             #Second Level.
-            elif whoring >= 6 and whoring < 9:
+            elif 6 <= whoring <= 8:
 
                 #Event A
                 if one_out_of_three == 1: ### Slughorn
@@ -309,7 +309,7 @@ label hg_pr_FlirtTeacher_complete:
                             jump could_not_flirt
             
             #Third level.
-            elif whoring >= 9:
+            elif 9 <= whoring:
 
                 #Event A
                 if one_out_of_three == 1: ### Filch
@@ -464,9 +464,9 @@ label hg_pr_FlirtTeacher_complete:
     $ hg_pr_FlirtTeacher_OBJ.points += 1
     $ hg_pr_FlirtTeacher_OBJ.inProgress = False
     
-    if whoring <= 5:  # (if whoring >= 3 and whoring <= 5) - LEVEL 02
+    if whoring <= 5:  # (if 3 <= whoring <= 5) - LEVEL 02
         $ whoring +=1
-    if whoring >= 5 and hg_pr_FlirtTeacher_OBJ.points >= 2:
+    if hg_pr_FlirtTeacher_OBJ.points >= 2 and 5 <= whoring:
         $ hg_pr_FlirtTeacher_OBJ.complete = True
     
     jump hg_pr_transition_block #hides labels. Shows walkout. Jumps to next day.

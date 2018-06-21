@@ -95,7 +95,7 @@ label hg_pf_TalkToMe:
         call her_main("...................","annoyed","angryL") 
 
     #Event 1 and 2
-    if whoring >= 0 and  whoring <= 5:
+    if 0 <= whoring <= 5:
         if 3 <= whoring <= 5:
             $ hg_pf_TalkToMe_OBJ.hearts_level = 2 #Event hearts level (0-3)
 
@@ -168,7 +168,7 @@ label hg_pf_TalkToMe:
         call her_main("..........................","normal","frown") 
 
     #Event 3
-    elif whoring >= 6:
+    elif 6 <= whoring:
         $ hg_pf_TalkToMe_OBJ.hearts_level = 3 #Event hearts level (0-3)
 
         call her_main("My life has been quite uneventful lately, to be honest...","annoyed","angryL") 
@@ -289,7 +289,7 @@ label hg_pf_TalkToMe:
             
     stop music fadeout 2.0
     
-    if whoring >= 11:
+    if 11 <= whoring:
         m "Five points to \"Gryffindor\", [hermione_name]. Well done." 
         her "Oh, don't worry about the points, [genie_name]. We were just having a nice talk."
         m "Really? What about \"Gryffindor\" winning the cup?"

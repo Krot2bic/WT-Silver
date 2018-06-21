@@ -585,63 +585,63 @@ label tutoring:
     
     #"You spend the evening tutoring Hermione. Hermione become a bit smarter."
     
-#    if knowledge >= 5 and tutoring_events == 0 and whoring >= 1:
+#    if knowledge >= 5 and tutoring_events == 0 and 1 <= whoring:
 #        $ tutoring_events += 1
 #        "Event 01"
         
-#    if knowledge >= 10 and tutoring_events == 1 and whoring >= 2: #LEVEL 02
+#    if knowledge >= 10 and tutoring_events == 1 and 2 <= whoring: #LEVEL 02
 #        $ tutoring_events += 1
 #        "Event 02"
         
-#    if knowledge >= 15 and tutoring_events == 2 and whoring >= 3: #LEVEL 03
+#    if knowledge >= 15 and tutoring_events == 2 and 3 <= whoring: #LEVEL 03
 #        $ tutoring_events += 1
 #        "Event 03"
         
-#    if knowledge >= 20 and tutoring_events == 3 and whoring >= 4: #LEVEL 04
+#    if knowledge >= 20 and tutoring_events == 3 and 4 <= whoring: #LEVEL 04
 #        $ tutoring_events += 1
 #        "Event 04"
         
-#    if knowledge >= 25 and tutoring_events == 4 and whoring >= 5: #LEVEL 05
+#    if knowledge >= 25 and tutoring_events == 4 and 5 <= whoring: #LEVEL 05
 #        $ tutoring_events += 1
 #        "Event 05"
         
-#    if knowledge >= 30 and tutoring_events == 5 and whoring >= 7: #LEVEL 06
+#    if knowledge >= 30 and tutoring_events == 5 and 7 <= whoring: #LEVEL 06
 #        $ tutoring_events += 1
 #        "Event 06"
         
-#    if knowledge >= 35 and tutoring_events == 6 and whoring >= 8: #LEVEL 07
+#    if knowledge >= 35 and tutoring_events == 6 and 8 <= whoring: #LEVEL 07
 #        $ tutoring_events += 1
 #        "Event 07"
          
-#    if knowledge >= 40 and tutoring_events == 7 and whoring >= 9: #LEVEL 08
+#    if knowledge >= 40 and tutoring_events == 7 and 9 <= whoring: #LEVEL 08
 #        $ tutoring_events += 1
 #        "Event 08"
         
-#    if knowledge >= 45 and tutoring_events == 8 and whoring >= 11: #LEVEL 09
+#    if knowledge >= 45 and tutoring_events == 8 and 11 <= whoring: #LEVEL 09
 #        $ tutoring_events += 1
 #        "Event 09"
         
-#    if knowledge >= 50 and tutoring_events == 9 and whoring >= 13: #EVENT 10
+#    if knowledge >= 50 and tutoring_events == 9 and 13 <= whoring: #EVENT 10
 #        $ tutoring_events += 1
 #        "Event 10"
         
-#    if knowledge >= 55 and tutoring_events == 10 and whoring >= 14: #EVENT 10
+#    if knowledge >= 55 and tutoring_events == 10 and 14 <= whoring: #EVENT 10
 #        $ tutoring_events += 1
 #        "Event 11"
         
-#    if knowledge >= 60 and tutoring_events == 11 and whoring >= 16: #EVENT 11
+#    if knowledge >= 60 and tutoring_events == 11 and 16 <= whoring: #EVENT 11
 #        $ tutoring_events += 1
 #        "Event 12"
          
-#    if knowledge >= 65 and tutoring_events == 12 and whoring >= 18: #EVENT 12
+#    if knowledge >= 65 and tutoring_events == 12 and 18 <= whoring: #EVENT 12
 #        $ tutoring_events += 1
 #        "Event 13"
         
-#    if knowledge >= 70 and tutoring_events == 13 and whoring >= 20: #EVENT 13
+#    if knowledge >= 70 and tutoring_events == 13 and 20 <= whoring: #EVENT 13
 #        $ tutoring_events += 1
 #        "Event 14"
         
-#    if knowledge >= 75 and tutoring_events == 14 and whoring >= 21: #EVENT 14
+#    if knowledge >= 75 and tutoring_events == 14 and 21 <= whoring: #EVENT 14
 #        $ tutoring_events += 1
 #        "Event 15"
         

@@ -355,7 +355,7 @@ label hg_pf_LetsHaveSex: #LV.7 (Whoring = 18 - 20)
         m "[hermione_name]..."
         m "Last night I had a dream..."
         g9 "You were lying on my desk and I was fucking your tight pussy like a madman..."
-        if whoring >= 24:
+        if 24 <= whoring:
             call her_main("In that dream, [genie_name]...","soft","ahegao",xpos="right",ypos="base") 
         else:
             call her_main("In that dream, [genie_name]...","upset","closed",xpos="right",ypos="base") 

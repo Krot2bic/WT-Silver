@@ -53,8 +53,7 @@ label hg_pr_FlirtClassmate:
         
     #Second time event.
     else:
-
-        if whoring < 3:
+        if whoring <= 2:
             m "I need you to go make some new friends at \"Slytherin\" house."
             her "You mean you need me to flirt with the \"Slytherin\" boys again [genie_name]?"
             m "That's exactly what I need you to do today, [hermione_name]."
@@ -67,7 +66,7 @@ label hg_pr_FlirtClassmate:
             call her_main("You don't need to remind me of that, [genie_name]...","angry","angry") 
             call her_main("Alright if I must... [genie_name]...","normal","frown") 
             
-        else: #if whoring >= 3 and whoring >= 6: ### LEVEL 02 and higher ##
+        else: #if 3 <= whoring <= 6:
             m "I need you to flirt with some boys from \"Slytherin\" today."
             her "I'll see what I can do, [genie_name]."
             m "Great. I'll be expecting your report today after classes."
@@ -103,7 +102,7 @@ label hg_pr_FlirtClassmate_complete:
             call blktone 
 
             #First Level.
-            if whoring >= 0 and whoring < 3:
+            if 0 <= whoring <= 2:
 
                 #Event A
                 if one_out_of_three == 1:
@@ -207,7 +206,7 @@ label hg_pr_FlirtClassmate_complete:
                             jump could_not_flirt
             
             #Second Level.
-            elif whoring >= 3 and whoring < 6:
+            elif 3 <= whoring <= 5:
 
                 #Event A
                 if one_out_of_three == 1:
@@ -299,7 +298,7 @@ label hg_pr_FlirtClassmate_complete:
                     call her_main("","base","happyCl") 
 
             #Third Level.
-            elif whoring >= 6:
+            elif 6 <= whoring:
 
                 #Event A
                 if one_out_of_three == 1:
@@ -402,7 +401,7 @@ label hg_pr_FlirtClassmate_complete:
     
     if whoring <= 2:
         $ whoring +=1
-    if whoring >= 2 and hg_pr_FlirtClassmate_OBJ.points >= 2:
+    if hg_pr_FlirtClassmate_OBJ.points >= 2 and 2 <= whoring:
         $ hg_pr_FlirtClassmate_OBJ.complete = True
        
     jump hg_pr_transition_block #hides labels. Shows walkout. Jumps to next day.

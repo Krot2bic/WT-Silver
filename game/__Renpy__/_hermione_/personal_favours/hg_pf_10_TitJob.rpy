@@ -26,7 +26,7 @@ label hg_pf_TitJob: #LV.6 (Whoring = 15 - 17)
                 m "[hermione_name], before I request a favor, I'd like you to dress up."
                 call her_main("As what?","open","worriedL") 
                 m "Power Girl."
-                if whoring >= 18:
+                if 18 <= whoring:
                     call her_main("A super hero?","annoyed","annoyed") 
                     m "Do you have a problem with that?"
                     call her_main("...","upset","wink") 

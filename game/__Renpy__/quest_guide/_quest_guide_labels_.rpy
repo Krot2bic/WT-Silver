@@ -74,69 +74,69 @@ label update_hints:
         $ hg_pf_NicePanties_OBJ.progress_hint = False
 
     #Favour 3
-    if whoring >= 3 and whoring < 6:
+    if 3 <= whoring < 6:
         $ hg_pf_BreastMolester_OBJ.progress_hint = True
     else:
         $ hg_pf_BreastMolester_OBJ.progress_hint = False
 
     #Favour 4
-    if whoring >= 3 and whoring < 6:
+    if 3 <= whoring < 6:
         $ hg_pf_ButtMolester_OBJ.progress_hint = True
-    elif whoring >= 9 and not cho_known:
+    elif 9 <= whoring and not cho_known:
         $ hg_pf_ButtMolester_OBJ.progress_hint = True
     else:
         $ hg_pf_ButtMolester_OBJ.progress_hint = False
 
     #Favour 5
-    if whoring >= 6 and whoring < 9:
+    if 6 <= whoring < 9:
         $ hg_pf_ShowThemToMe_OBJ.progress_hint = True
     else:
         $ hg_pf_ShowThemToMe_OBJ.progress_hint = False
 
     #Favour 6
-    if whoring >= 9 and whoring < 12:
+    if 9 <= whoring < 12:
         $ hg_pf_DanceForMe_OBJ.progress_hint = True
     else:
         $ hg_pf_DanceForMe_OBJ.progress_hint = False
 
     #Favour 7
-    if whoring >= 9 and whoring < 12:
+    if 9 <= whoring < 12:
         $ hg_pf_ShowMeYourAss_OBJ.progress_hint = True
     else:
         $ hg_pf_ShowMeYourAss_OBJ.progress_hint = False
 
     #Favour 8
-    if whoring >= 9 and whoring < 12:
+    if 9 <= whoring < 12:
         $ hg_pf_LetMeTouchThem_OBJ.progress_hint = True
     else:
         $ hg_pf_LetMeTouchThem_OBJ.progress_hint = False
 
     #Favour 9
-    if whoring >= 12 and whoring < 15:
+    if 12 <= whoring < 15:
         $ hg_pf_TouchMe_OBJ.progress_hint = True
     else:
         $ hg_pf_TouchMe_OBJ.progress_hint = False
 
     #Favour 10
-    if whoring >= 15 and whoring < 18:
+    if 15 <= whoring < 18:
         $ hg_pf_TitJob_OBJ.progress_hint = True
     else:
         $ hg_pf_TitJob_OBJ.progress_hint = False
 
     #Favour 11
-    if whoring >= 15 and whoring < 18:
+    if 15 <= whoring < 18:
         $ hg_pf_SuckIt_OBJ.progress_hint = True
     else:
         $ hg_pf_SuckIt_OBJ.progress_hint = False
 
     #Favour 12
-    if whoring >= 18 and whoring < 21:
+    if 18 <= whoring < 21:
         $ hg_pf_LetsHaveSex_OBJ.progress_hint = True
     else:
         $ hg_pf_LetsHaveSex_OBJ.progress_hint = False
 
     #Favour 13
-    if whoring >= 21 and whoring < 24:
+    if 21 <= whoring < 24:
         $ hg_pf_TimeForAnal_OBJ.progress_hint = True
     else:
         $ hg_pf_TimeForAnal_OBJ.progress_hint = False

@@ -469,7 +469,7 @@ label hg_pf_ShowThemToMe: #LV.3 (Whoring = 6 - 8)
             ">You take a long look at Hermione's naked tits..."
 
             #First time event.
-            if 6 <= whoring >= 8:
+            if 6 <= whoring <= 8:
                 call ctc 
 
                 menu:

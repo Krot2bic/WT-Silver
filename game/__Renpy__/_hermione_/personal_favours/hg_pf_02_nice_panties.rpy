@@ -259,7 +259,7 @@ label hg_pf_NicePanties:
     hide screen blktone
     call her_main("Will this be all then?","open","base",trans="fade",xpos="base",ypos="base") 
 
-    if whoring >= 13:
+    if 13 <= whoring:
         menu:
             "-Let her go-":
                 m "Yes, you can go now."

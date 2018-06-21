@@ -148,7 +148,7 @@ label wr_her_clothing_reset:
     else: #Underwear page Qol
         $ hermione_use_action = False #Hide Action so Underwear can be turned on.
         $ hermione_wear_robe = False
-        if whoring >= 12:
+        if 12 <= whoring:
             $ hermione_wear_top = False
             $ hermione_wear_bottom = False
 
@@ -294,9 +294,9 @@ label her_bra_toggle:
         $ hermione_wear_bra = False
         call update_her_uniform 
 
-        if whoring >= 11 and whoring < 15:
+        if 11 <= whoring < 15:
             call her_main_rndm_annoyed_wBlush 
-        elif whoring >= 15 and whoring < 21:
+        elif 15 <= whoring < 21:
             call her_main_rndm_naughty_wBlush 
         else: #21+
             call her_main_rndm_naughty 
@@ -306,9 +306,9 @@ label her_bra_toggle:
         $ hermione_wear_bra = True
         call update_her_uniform 
 
-        if whoring >= 11 and whoring < 15:
+        if 11 <= whoring < 15:
             call her_main_rndm_annoyed 
-        elif whoring >= 15 and whoring < 21:
+        elif 15 <= whoring < 21:
             call her_main_rndm_neutral 
         else: #21+
             call her_main_rndm_happy 
@@ -354,9 +354,9 @@ label her_panties_toggle:
         $ hermione_wear_panties = False
         call update_her_uniform 
 
-        if whoring >= 11 and whoring < 15:
+        if 11 <= whoring < 15:
             call her_main_rndm_annoyed_wBlush 
-        elif whoring >= 15 and whoring < 21:
+        elif 15 <= whoring < 21:
             call her_main_rndm_naughty_wBlush 
         else: #21+
             call her_main_rndm_naughty 
@@ -366,9 +366,9 @@ label her_panties_toggle:
         $ hermione_wear_panties = True
         call update_her_uniform 
 
-        if whoring >= 11 and whoring < 15:
+        if 11 <= whoring < 15:
             call her_main_rndm_annoyed 
-        elif whoring >= 15 and whoring < 21:
+        elif 15 <= whoring < 21:
             call her_main_rndm_neutral 
         else: #21+
             call her_main_rndm_happy 

@@ -82,7 +82,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Long #Done
             elif skirt_choice == "uni_skirt_2":
                 m "Would you wear your school skirt for me? But make it a bit shorter would you." 
-                if whoring >= 5:
+                if 5 <= whoring:
                     if whoring < 8:
                         call her_main("...","annoyed","annoyed") 
                         call her_main("Fine.","open","closed") 
@@ -110,7 +110,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Medium Length #Done
             elif skirt_choice == "uni_skirt_3":
                 m "Would you wear your school skirt for me? But make it a bit shorter would you." 
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 11:
                         call her_main("Alright... sure, why not.","base","down") 
                         call her_main("Let me go and change real quick.","base","base") 
@@ -137,7 +137,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Short #Done
             elif skirt_choice == "uni_skirt_4":
                 m "Would you wear your school skirt for me? But make it a bit shorter would you."
-                if whoring >= 14:
+                if 14 <= whoring:
                     if whoring < 20:
                         call her_main("Sure, why not.","soft","baseL") 
                         call her_main("Let me change it real quick.","base","glance") 
@@ -161,7 +161,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Shortest #Done
             elif skirt_choice == "uni_skirt_5":
                 m "Would you wear your school skirt for me? The shortest one you have."  
-                if whoring >= 17:
+                if 17 <= whoring:
                     if whoring < 23:
                         call her_main("Of course, [genie_name].","soft","baseL") 
                         call her_main("Let me just change real quick.","base","glance") 
@@ -188,7 +188,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Cheerleader Gryffindor #Done
             elif skirt_choice == "uni_skirt_cheer_gryff":
                 m "Could you wear your cheerleader skirt for me?"
-                if whoring >= 5:
+                if 5 <= whoring:
                     if whoring < 11:
                         call her_main("Of course, [genie_name]!","soft","baseL",cheeks="blush") 
                         call her_main("Let me go change.","base","base") 
@@ -209,7 +209,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             elif skirt_choice == "uni_skirt_cheer" or skirt_choice == "uni_skirt_cheer_skimpy":
                 if bottom_color_choice == "green" or bottom_color_choice == "blue" or bottom_color_choice == "yellow":
                     m "Would you wear this cheerleader skirt for me?" 
-                    if whoring >= 11:
+                    if 11 <= whoring:
                         if whoring < 14:
                             if bottom_color_choice == "green":
                                 call her_main("But [genie_name], that's for Slytherins!","angry","wink") 
@@ -281,7 +281,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 
                 else: #Gryffindor #Base color and red color.
                     m "Could you wear your cheerleader skirt for me?"
-                    if whoring >= 5:
+                    if 5 <= whoring:
                         if whoring < 11:
                             call her_main("Of course, [genie_name]!","soft","baseL",cheeks="blush") 
                             call her_main("Let me go change.","base","base") 
@@ -304,7 +304,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Low Very Long #Done
             elif skirt_choice == "uni_skirt_1_low":
                 m "Would you wear your school skirt for me? The very long one. But pull it down a bit." 
-                if whoring >= 8:
+                if 8 <= whoring:
                     if whoring < 11:
                         call her_main("Alright... sure, why not.","base","down") 
                         call her_main("Let me go and change real quick.","base","base") 
@@ -340,7 +340,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Low Medium Length #Done
             elif skirt_choice == "uni_skirt_2_low":
                 m "Would you wear your school skirt for me? But make it a bit shorter would you. And pull it down a bit."
-                if whoring >= 11:
+                if 11 <= whoring:
                     if whoring < 14:
                         call her_main("Alright... sure, why not.","base","down") 
                         call her_main("Let me go and change real quick.","base","base") 
@@ -372,7 +372,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Uniform Skirt Low Short #Done
             elif skirt_choice == "uni_skirt_3_low":
                 m "Would you wear your school skirt for me? But make it a bit shorter would you. And pull it down a bit."
-                if whoring >= 17: 
+                if 17 <= whoring: 
                     if whoring < 20:
                         call her_main("Of course, [genie_name].","soft","baseL") 
                         call her_main("Let me go and change real quick.","base","glance") 
@@ -402,7 +402,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             elif skirt_choice == "uni_skirt_4_low":
                 m "Could you wear this school skirt for me?" 
                 ">You hand her the micro skirt." 
-                if whoring >= 20:
+                if 20 <= whoring:
                    call her_main("","base","base") 
                 else:
                     call her_main("","base","base") 
@@ -416,7 +416,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Belted Mini Skirt #Done
             elif skirt_choice == "skirt_belted_mini":
                 m "Could you wear this skirt I bought you?" 
-                if whoring >= 8: 
+                if 8 <= whoring: 
                     if whoring < 14:
                         call her_main("(It's so short!)","disgust","down_raised") 
                         call her_main("(...)","annoyed","angryL") 
@@ -448,7 +448,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Belted Micro Skirt #Done
             elif skirt_choice == "skirt_belted_micro":
                 m "Could you wear this skirt I bought you?"
-                if whoring >= 17: 
+                if 17 <= whoring: 
                     if whoring < 23: 
                         call her_main("(Oh wow, it's so short!)","disgust","down_raised") 
                         call her_main("(Everyone will be able to see my ass in this...)","soft","ahegao") 
@@ -484,7 +484,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Pants Jeans Long #Done
             elif skirt_choice == "pants_jeans_long":
                 m "Could you wear these pants for me?" 
-                if whoring >= 2: 
+                if 2 <= whoring: 
                     if whoring < 5:
                         call her_main("[genie_name], those are jeans!","angry","wink") 
                         m "... yes?"
@@ -521,7 +521,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Pants Jeans Short #Done
             elif skirt_choice == "pants_jeans_short":
                 m "Could you wear those pants for me?" 
-                if whoring >= 11:
+                if 11 <= whoring:
                     if whoring < 20:
                         call her_main("Sure, [genie_name].","soft","baseL") 
                         call her_main("Let me go change.","base","base") 
@@ -558,7 +558,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Pants Retro Shorts #Done
             elif skirt_choice == "pants_retro_shorts":
                 m "I want you to wear these pants for me." 
-                if whoring >= 17: 
+                if 17 <= whoring: 
                     if whoring < 20:
                         call her_main("(These pants look so short...)","disgust","down_raised") 
                         call her_main("(My ass is gonna be on display the whole time in those...)","open_tongue","ahegao_raised",cheeks="blush") 
@@ -592,7 +592,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
             #Pants Rocker Shorts #Done
             elif skirt_choice == "pants_rocker":
                 m "I want you to wear these pants for me." 
-                if whoring >= 20: 
+                if 20 <= whoring: 
                     if whoring < 23:
                         call her_main("(These pants are so short...)","disgust","down_raised") 
                         call her_main("(I'm such a pervert!)","open_tongue","ahegao_raised",cheeks="blush") 

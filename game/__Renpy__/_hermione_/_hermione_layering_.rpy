@@ -560,7 +560,7 @@ label update_her_action:
             $ h_action_top       = "lift_top/"
 
         else:
-            if whoring >= 12:
+            if 12 <= whoring:
                 $ h_right_arm        = "00_blank"
                 if hermione_perm_expand or hermione_perm_expand_breasts or hermione_expand_breasts:
                     $ h_left_arm         = "lift_breasts_large"

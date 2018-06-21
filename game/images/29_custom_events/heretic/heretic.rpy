@@ -128,7 +128,7 @@ label heretic:
         menu:
             "\"(That gives me an idea.)\"":
                 g4 "No, you leave that where it is."
-                if whoring >= 16:
+                if 16 <= whoring:
                     call ce_her_head("But sir, I have class.","c") from _call_ce_her_head_31
                     g9 "I know."
                     call ce_her_head("You mean...") from _call_ce_her_head_32
@@ -327,7 +327,7 @@ label heretic_night:
                 m "Fifty points to Gryffindor."
                 $ gryffindor +=50
                 call ce_her_head("Thank you sir,{p}now if you'll excuse me I need to lay down.") from _call_ce_her_head_83
-                if whoring >= 18:
+                if 18 <= whoring:
                     m "Where are you going?"
                     call ce_her_head("Sir?","q") from _call_ce_her_head_84
                     g4 "The dildo, girl."

@@ -379,7 +379,7 @@ label app:
                     hide screen gift
                     with d3
                     jump app
-        "-School Miniskirt- (---)" if not bought_skirt_already and not gave_miniskirt and whoring >= 3:
+        "-School Miniskirt- (---)" if not bought_skirt_already and not gave_miniskirt and 3 <= whoring:
             $ the_gift = "images/store/07.png" # MINISKIRT
             show screen gift
             with d3

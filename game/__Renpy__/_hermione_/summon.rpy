@@ -349,7 +349,7 @@ label genie_change_fail:
     jump hermione_talk
     
 label hermione_change:
-    if whoring >= 20:
+    if 20 <= whoring:
         call her_main("You can call me whatever you want, [genie_name]!","base","glance") 
     else:
         call her_main("Sure, [genie_name]. I like that name.","base","base") 

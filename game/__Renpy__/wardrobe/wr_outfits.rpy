@@ -1,6 +1,6 @@
 #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/b} \"text\" \n
 
-### Equip Bra ###
+### Equip Outfit ###
 label equip_outfit:
 
     #Hermione

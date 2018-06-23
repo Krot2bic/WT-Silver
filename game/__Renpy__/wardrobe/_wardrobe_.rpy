@@ -1246,7 +1246,7 @@ screen wardrobe():
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/costumes.png" xpos 75+90 ypos 116 zoom 0.18
                 text "Costumes" xpos 76+90 ypos 140+75 size 10
             #One-Pieces
-            if active_girl in ["hermione"]:
+            if active_girl in []:
                 hotspot (75+180, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",2),Show("wardrobe")]
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/onepieces.png" xpos 75+180 ypos 116 zoom 0.18
                 text "One-Pieces" xpos 76+180 ypos 140+75 size 10

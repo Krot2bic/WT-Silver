@@ -6,30 +6,61 @@ label __init_variables:
     if not hasattr(renpy.store,'hg_gryffCheer_OBJ'):
         $ hg_gryffCheer_OBJ = hermione_outfit()
     $ hg_gryffCheer_OBJ.name = "Griffindor Cheerleader"
-    $ hg_gryffCheer_OBJ.cost = 200
-    $ hg_gryffCheer_OBJ.wait_time = 3
+    $ hg_gryffCheer_OBJ.cost = 80
+    $ hg_gryffCheer_OBJ.wait_time = 2
     $ hg_gryffCheer_OBJ.store_image = "cheer_gryff.png"
+    if not hasattr(renpy.store,'hg_gryffCheerSkimpy_OBJ'):
+        $ hg_gryffCheerSkimpy_OBJ = hermione_outfit()
+    $ hg_gryffCheerSkimpy_OBJ.name = "Sexy Griffindor Cheerleader"
+    $ hg_gryffCheerSkimpy_OBJ.cost = 140
+    $ hg_gryffCheerSkimpy_OBJ.wait_time = 3
+    $ hg_gryffCheerSkimpy_OBJ.store_image = "cheer_gryff_skimpy.png"
 
     if not hasattr(renpy.store,'hg_slythCheer_OBJ'):
         $ hg_slythCheer_OBJ = hermione_outfit()
     $ hg_slythCheer_OBJ.name = "Slythrin Cheerleader"
-    $ hg_slythCheer_OBJ.cost = 200
-    $ hg_slythCheer_OBJ.wait_time = 3
+    $ hg_slythCheer_OBJ.cost = 80
+    $ hg_slythCheer_OBJ.wait_time = 2
     $ hg_slythCheer_OBJ.store_image = "cheer_slyth.png"
+    if not hasattr(renpy.store,'hg_slythCheerSkimpy_OBJ'):
+        $ hg_slythCheerSkimpy_OBJ = hermione_outfit()
+    $ hg_slythCheerSkimpy_OBJ.name = "Sexy Slythrin Cheerleader"
+    $ hg_slythCheerSkimpy_OBJ.cost = 140
+    $ hg_slythCheerSkimpy_OBJ.wait_time = 3
+    $ hg_slythCheerSkimpy_OBJ.store_image = "cheer_slyth_skimpy.png"
 
     if not hasattr(renpy.store,'hg_ravenCheer_OBJ'):
         $ hg_ravenCheer_OBJ = hermione_outfit()
-    $ hg_slythCheer_OBJ.name = "Ravenclaw Cheerleader"
-    $ hg_slythCheer_OBJ.cost = 200
-    $ hg_slythCheer_OBJ.wait_time = 3
-    $ hg_slythCheer_OBJ.store_image = "cheer_raven.png"
+    $ hg_ravenCheer_OBJ.name = "Ravenclaw Cheerleader"
+    $ hg_ravenCheer_OBJ.cost = 80
+    $ hg_ravenCheer_OBJ.wait_time = 2
+    $ hg_ravenCheer_OBJ.store_image = "cheer_raven.png"
+    if not hasattr(renpy.store,'hg_ravenCheerSkimpy_OBJ'):
+        $ hg_ravenCheerSkimpy_OBJ = hermione_outfit()
+    $ hg_ravenCheerSkimpy_OBJ.name = "Sexy Ravenclaw Cheerleader"
+    $ hg_ravenCheerSkimpy_OBJ.cost = 140
+    $ hg_ravenCheerSkimpy_OBJ.wait_time = 3
+    $ hg_ravenCheerSkimpy_OBJ.store_image = "cheer_raven_skimpy.png"
 
     if not hasattr(renpy.store,'hg_hufflCheer_OBJ'):
         $ hg_hufflCheer_OBJ = hermione_outfit()
-    $ hg_slythCheer_OBJ.name = "Hufflepuff Cheerleader"
-    $ hg_slythCheer_OBJ.cost = 200
-    $ hg_slythCheer_OBJ.wait_time = 3
-    $ hg_slythCheer_OBJ.store_image = "cheer_huffl.png"
+    $ hg_hufflCheer_OBJ.name = "Hufflepuff Cheerleader"
+    $ hg_hufflCheer_OBJ.cost = 80
+    $ hg_hufflCheer_OBJ.wait_time = 2
+    $ hg_hufflCheer_OBJ.store_image = "cheer_huffl.png"
+    if not hasattr(renpy.store,'hg_hufflCheerSkimpy_OBJ'):
+        $ hg_hufflCheerSkimpy_OBJ = hermione_outfit()
+    $ hg_hufflCheerSkimpy_OBJ.name = "Sexy Hufflepuff Cheerleader"
+    $ hg_hufflCheerSkimpy_OBJ.cost = 140
+    $ hg_hufflCheerSkimpy_OBJ.wait_time = 3
+    $ hg_hufflCheerSkimpy_OBJ.store_image = "cheer_huffl_skimpy.png"
+
+    if not hasattr(renpy.store,'hg_MaidLingerie_OBJ'):
+        $ hg_MaidLingerie_OBJ = hermione_outfit()
+    $ hg_silkNightgown_OBJ.name = "Maid Lingerie"
+    $ hg_silkNightgown_OBJ.cost = 160
+    $ hg_silkNightgown_OBJ.wait_time = 2
+    $ hg_silkNightgown_OBJ.store_image = "maid_lingerie.png"
 
     if not hasattr(renpy.store,'hg_silkNightgown_OBJ'):
         $ hg_silkNightgown_OBJ = hermione_outfit()
@@ -41,16 +72,21 @@ label __init_variables:
     if not hasattr(renpy.store,'hg_rocker_OBJ'):
         $ hg_rocker_OBJ = hermione_outfit()
     $ hg_rocker_OBJ.name = "Rocker"
-    $ hg_rocker_OBJ.cost = 85
-    $ hg_rocker_OBJ.wait_time = 1
+    $ hg_rocker_OBJ.cost = 180
+    $ hg_rocker_OBJ.wait_time = 2
     $ hg_rocker_OBJ.store_image = "rocker.png"
 
 
     $ hermione_clothing_set_list = []
     $ hermione_clothing_set_list.append(hg_gryffCheer_OBJ)
+    $ hermione_clothing_set_list.append(hg_gryffCheerSkimpy_OBJ)
     $ hermione_clothing_set_list.append(hg_slythCheer_OBJ)
+    $ hermione_clothing_set_list.append(hg_slythCheerSkimpy_OBJ)
     $ hermione_clothing_set_list.append(hg_ravenCheer_OBJ)
+    $ hermione_clothing_set_list.append(hg_ravenCheerSkimpy_OBJ)
     $ hermione_clothing_set_list.append(hg_hufflCheer_OBJ)
+    $ hermione_clothing_set_list.append(hg_hufflCheerSkimpy_OBJ)
+    $ hermione_clothing_set_list.append(hg_MaidLingerie_OBJ)
     $ hermione_clothing_set_list.append(hg_silkNightgown_OBJ)
     $ hermione_clothing_set_list.append(hg_rocker_OBJ)
 
@@ -60,7 +96,7 @@ label __init_variables:
     if not hasattr(renpy.store,'hg_maid_OBJ'): #important!
         $ hg_maid_OBJ = hermione_outfit()
     $ hg_maid_OBJ.name = "Maid"
-    $ hg_maid_OBJ.cost = 100
+    $ hg_maid_OBJ.cost = 250
     $ hg_maid_OBJ.wait_time = 2
     $ hg_maid_OBJ.store_image = "maid.png"
     $ hg_maid_OBJ.outfit_layers = []
@@ -187,8 +223,8 @@ label __init_variables:
     if not hasattr(renpy.store,'hg_witch_OBJ'):
         $ hg_witch_OBJ = hermione_outfit()
     $ hg_witch_OBJ.name = "Witch outfit"
-    $ hg_witch_OBJ.cost = 175
-    $ hg_witch_OBJ.wait_time = 2
+    $ hg_witch_OBJ.cost = 250
+    $ hg_witch_OBJ.wait_time = 3
     $ hg_witch_OBJ.store_image = "witch.png"
     $ hg_witch_OBJ.outfit_layers = []
     $ hg_witch_OBJ.outfit_layers.extend(("witch_stockings.png","witch_top.png","witch_cloak.png","witch_hat.png"))
@@ -197,17 +233,17 @@ label __init_variables:
     if not hasattr(renpy.store,'hg_bio_OBJ'):
         $ hg_bio_OBJ = hermione_outfit()
     $ hg_bio_OBJ.name = "Bioshock outfit"
-    $ hg_bio_OBJ.cost = 200
-    $ hg_bio_OBJ.wait_time = 2
+    $ hg_bio_OBJ.cost = 400
+    $ hg_bio_OBJ.wait_time = 3
     $ hg_bio_OBJ.store_image = "bio.png"
     $ hg_bio_OBJ.outfit_layers = []
-    $ hg_bio_OBJ.outfit_layers.extend(("bio_skirt.png","bio_chocker.png","bio_jacket.png","bio_corset.png"))
+    $ hg_bio_OBJ.outfit_layers.extend(("bio_skirt.png","bio_chocker.png","bio_corset.png","bio_jacket.png"))
     $ hg_bio_OBJ.breast_layer = "breasts_normal_pressed"
 
     if not hasattr(renpy.store,'hg_yenn_OBJ'):
         $ hg_yenn_OBJ = hermione_outfit()
     $ hg_yenn_OBJ.name = "Yennefer's costume"
-    $ hg_yenn_OBJ.cost = 275
+    $ hg_yenn_OBJ.cost = 500
     $ hg_yenn_OBJ.wait_time = 4
     $ hg_yenn_OBJ.store_image = "yenn.png"
     $ hg_yenn_OBJ.outfit_layers = []
@@ -324,4 +360,4 @@ init python:
         def getActionImage(self, action):
             return self.action_images[self.actions.index(action)]
         def getStoreImage(self):
-           return "images/store/cs_gui/"+self.store_image
+           return self.store_image

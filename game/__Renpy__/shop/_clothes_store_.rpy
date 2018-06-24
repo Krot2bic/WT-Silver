@@ -947,9 +947,9 @@ screen cs_gui:
 
     imagemap:
         cache False
-        ground "images/store/cs_gui/c_s_ground.png"
-        idle "images/store/cs_gui/c_s_idle.png"
-        hover "images/store/cs_gui/c_s_hover.png"
+        ground "interface/store/"+str(interface_color)+"/ground.png"
+        idle "interface/store/"+str(interface_color)+"/idle.png"
+        hover "interface/store/"+str(interface_color)+"/hover.png"
 
         $ page_list = cs_gui_OBJ.getListOfItems()
 
@@ -958,7 +958,7 @@ screen cs_gui:
             for j in range(0,4):
                 if index < len(page_list):
                     hotspot((213+(175*j)),(78+(255*i)),125,190) clicked [SetVariable("clothes_store_selection",page_list[index]),Jump("cs_select")]
-                    add page_list[index].getStoreImage() xpos 166+(175*j) ypos (31+(254*i)) zoom 0.40
+                    add "interface/store/icons/hermione/"+str(page_list[index]) xpos 166+(175*j) ypos (31+(254*i)) zoom 0.40/scaleratio
                     $ index = index+1
 
         if cs_gui_OBJ.current_page > 0:

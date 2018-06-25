@@ -360,4 +360,4 @@ init python:
         def getActionImage(self, action):
             return self.action_images[self.actions.index(action)]
         def getStoreImage(self):
-           return self.store_image
+           return "interface/store/icons/hermione/"+self.store_image

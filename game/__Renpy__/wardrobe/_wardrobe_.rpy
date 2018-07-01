@@ -1328,22 +1328,22 @@ screen wardrobe():
             #            add "images/store/cs_gui/"+wr_swimsuits[i]+".png" xpos 75+(90*col) ypos 116+92+(92*row) zoom 0.18
             #            $ index = index+1
 
-            #One-Pieces
+            #Custom Saves
             if wardrobe_outfits_category == 4:
                 hotspot (75+360, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",0),Show("wardrobe")]
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/ball_dress.png" xpos 77+360 ypos 139 zoom 0.31/scaleratio
                 text "Custom" xpos 76+360 ypos 140+75 size 10
                 $ index = 0
-                for i in range(0,len(wr_outfits_onepieces)):
+                for i in range(0,len(hermione_custom_outfits_list)):
                     $ row = i // 5
                     $ col = i % 5
 
-                    if index < len(hg_purchased_onepieces):
+                    if index < len(hermione_custom_outfits_list):
 
-                        hotspot ((75+(90*col)), (230+(92*row)), 83, 85) clicked [SetVariable("outfit_choice",hg_purchased_onepieces[index]), Jump("equip_custom_outfit")]
-                        use image_layer_A xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
+                        hotspot ((75+(90*col)), (230+(92*row)), 83, 85) clicked [SetVariable("outfit_choice",hermione_custom_outfits_list[index]), Jump("equip_custom_outfit")]
+                        #use image_layer_A xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
                         add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/mannequin.png" xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
-                        use image_layer_B xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
+                        #use image_layer_B xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
                         $ index = index+1
 
 

@@ -49,8 +49,12 @@ screen wardrobe():
             hover "interface/wardrobe/"+str(interface_color)+"/hover_full_"+str(wardrobe_color)+".png"
         elif wardrobe_page == 7: #outfits
             add "interface/wardrobe/"+str(interface_color)+"/icons_"+str(active_girl)+"_outfits.png" zoom 0.5
-            ground "interface/wardrobe/"+str(interface_color)+"/ground_full_"+str(wardrobe_color)+".png"
-            hover "interface/wardrobe/"+str(interface_color)+"/hover_full_"+str(wardrobe_color)+".png"
+            if wardrobe_outfits_category in [3,4]:
+                ground "interface/wardrobe/"+str(interface_color)+"/ground_full_outfits_"+str(wardrobe_color)+".png"
+                hover "interface/wardrobe/"+str(interface_color)+"/hover_full_outfits_"+str(wardrobe_color)+".png"
+            else: #0,1,2
+                ground "interface/wardrobe/"+str(interface_color)+"/ground_full_"+str(wardrobe_color)+".png"
+                hover "interface/wardrobe/"+str(interface_color)+"/hover_full_"+str(wardrobe_color)+".png"
         elif wardrobe_page == 8: #gifts
             add "interface/wardrobe/"+str(interface_color)+"/icons_"+str(active_girl)+"_gifts.png" zoom 0.5
             ground "interface/wardrobe/"+str(interface_color)+"/ground_full_"+str(wardrobe_color)+".png"
@@ -1334,7 +1338,7 @@ screen wardrobe():
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/ball_dress.png" xpos 77+360 ypos 139 zoom 0.31/scaleratio
                 text "Custom" xpos 76+360 ypos 140+75 size 10
                 $ index = 0
-                for i in range(0,len(hermione_custom_outfits_list)):
+                for i in range(0,len(wr_swimsuits)):
                     $ row = i // 5
                     $ col = i % 5
 

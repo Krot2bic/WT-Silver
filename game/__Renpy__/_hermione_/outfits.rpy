@@ -1,42 +1,28 @@
 label __init_variables:
 
+    if not hasattr(renpy.store,'hg_clothing_saves'):
+        $ hg_clothing_saves  = {}
+        # this stores the state of the custom_outfit_objs for whenever .save() is called 
+        # b/c this is a basic dictionary it will also persist through reloads 
+
 
     if not hasattr(renpy.store,'hg_clothing'):
-        $ hg_clothing = custom_outfit()
-        $ hg_clothing.id = 0 #0 is the what's currently equipped. Not a save!
+        $ hg_clothing = custom_outfit_obj()
+        # this is whats currently equipped to change to a diffrent outfit simply .load() it
 
-        $ hg_clothing_save_01 = custom_outfit()
-        $ hg_clothing_save_01.id = 1
-        $ hg_clothing_save_02 = custom_outfit()
-        $ hg_clothing_save_02.id = 2
-        $ hg_clothing_save_03 = custom_outfit()
-        $ hg_clothing_save_03.id = 3
-        $ hg_clothing_save_04 = custom_outfit()
-        $ hg_clothing_save_04.id = 4
-        $ hg_clothing_save_05 = custom_outfit()
-        $ hg_clothing_save_05.id = 5
-        $ hg_clothing_save_06 = custom_outfit()
-        $ hg_clothing_save_06.id = 6
-        $ hg_clothing_save_07 = custom_outfit()
-        $ hg_clothing_save_07.id = 7
-        $ hg_clothing_save_08 = custom_outfit()
-        $ hg_clothing_save_08.id = 8
-        $ hg_clothing_save_09 = custom_outfit()
-        $ hg_clothing_save_09.id = 9
-        $ hg_clothing_save_10 = custom_outfit()
-        $ hg_clothing_save_10.id = 10
 
-    $ hermione_custom_outfits_list = []
-    $ hermione_custom_outfits_list.append(hg_clothing_save_01)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_02)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_03)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_04)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_05)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_06)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_07)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_08)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_09)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_10)
+    python:
+        # this is an example of a devloper assigned static save
+        hg_clothing_saves['example_static_save'] = {
+            'name'          :'name_of_outfit/save',
+            'top'           :'example_value_for_top',
+            'top_color'     :'example_color',
+            'panties'       :'example_value_for_panties',
+            'wear_panties'  : False
+        }
+
+        # to load this save we would simply call hg_clothing.load('example_static_save')
+
 
 
     # Clothing Sets
@@ -400,8 +386,10 @@ init python:
            return "interface/store/icons/hermione/"+self.store_image
 
 
-    class custom_outfit(object):
-        id = 0 #ID 0 is the default. Outfits you saved (with ID 1,2,...) override 0 when equipped.
+    class custom_outfit_obj(object):
+        # id = 0 #ID 0 is the default. Outfits you saved (with ID 1,2,...) override 0 when equipped.
+        name = "defult" # replace id with unique name that could be taken as input, eaiser to track
+
 
         hair = "A"
         hair_color = "base"
@@ -515,3 +503,18 @@ init python:
         always_wear_tattoos = False
 
         transparency = 1
+
+        
+        # saves and loads the state of this object to the dictionary 'hg_clothing_saves'
+
+        def save(self, name):
+            global hg_clothing_saves
+            hg_clothing_saves[name] = self.__dict__
+        def load(self, name):
+            global hg_clothing_saves
+            self.__dict__.update( hg_clothing_saves[name] )
+
+
+
+
+

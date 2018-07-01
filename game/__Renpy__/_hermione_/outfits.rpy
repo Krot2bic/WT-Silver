@@ -25,26 +25,6 @@ label __init_variables:
         $ hg_clothing_save_09.id = 9
         $ hg_clothing_save_10 = custom_outfit()
         $ hg_clothing_save_10.id = 10
-        $ hg_clothing_save_11 = custom_outfit()
-        $ hg_clothing_save_11.id = 11
-        $ hg_clothing_save_12 = custom_outfit()
-        $ hg_clothing_save_12.id = 12
-        $ hg_clothing_save_13 = custom_outfit()
-        $ hg_clothing_save_13.id = 13
-        $ hg_clothing_save_14 = custom_outfit()
-        $ hg_clothing_save_14.id = 14
-        $ hg_clothing_save_15 = custom_outfit()
-        $ hg_clothing_save_15.id = 15
-        $ hg_clothing_save_16 = custom_outfit()
-        $ hg_clothing_save_16.id = 16
-        $ hg_clothing_save_17 = custom_outfit()
-        $ hg_clothing_save_17.id = 17
-        $ hg_clothing_save_18 = custom_outfit()
-        $ hg_clothing_save_18.id = 18
-        $ hg_clothing_save_19 = custom_outfit()
-        $ hg_clothing_save_19.id = 19
-        $ hg_clothing_save_20 = custom_outfit()
-        $ hg_clothing_save_20.id = 20
 
     $ hermione_custom_outfits_list = []
     $ hermione_custom_outfits_list.append(hg_clothing_save_01)
@@ -57,16 +37,6 @@ label __init_variables:
     $ hermione_custom_outfits_list.append(hg_clothing_save_08)
     $ hermione_custom_outfits_list.append(hg_clothing_save_09)
     $ hermione_custom_outfits_list.append(hg_clothing_save_10)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_11)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_12)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_13)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_14)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_15)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_16)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_17)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_18)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_19)
-    $ hermione_custom_outfits_list.append(hg_clothing_save_20)
 
 
     # Clothing Sets
@@ -430,121 +400,118 @@ init python:
            return "interface/store/icons/hermione/"+self.store_image
 
 
-    class outfit_save_list(list):
-        list = []
-
     class custom_outfit(object):
         id = 0 #ID 0 is the default. Outfits you saved (with ID 1,2,...) override 0 when equipped.
 
         hair = "A"
-        hair.color = "base"
+        hair_color = "base"
 
         top = "top_1" #the name of the item.
-        top.color = "base" #which color folder the item is in.
-        top.wear = True #if the item is currently worn.
-        top.always_wear = True #if the item is worn on resetting the outfit.
+        top_color = "base" #which color folder the item is in.
+        wear_top = True #if the item is currently worn.
+        always_wear_top = True #if the item is worn on resetting the outfit.
 
         onepiece = "blank"
-        onepiece.color = "base"
-        onepiece.wear = False
-        onepiece.always_wear = False
+        onepiece_color = "base"
+        wear_onepiece = False
+        always_wear_onepiece = False
 
         bottom = "skirt_1"
-        bottom.color = "base"
-        bottom.wear = True
-        bottom.always_wear = True
+        bottom_color = "base"
+        wear_bottom = True
+        always_wear_bottom = True
 
         bra = "bra_base"
-        bra.color = "base"
-        bra.wear = True
-        bra.always_wear = True
+        bra_color = "base"
+        wear_bra = True
+        always_wear_bra = True
 
         panties = "panties_base"
-        panties.color = "base"
-        panties.wear = True
-        panties.always_wear = True
+        panties_color = "base"
+        wear_panties = True
+        always_wear_panties = True
 
         graterbelt = "blank"
-        garterbelt.color = "base"
-        garterbelt.wear = False
-        garterbelt.always_wear = False
+        garterbelt_color = "base"
+        wear_garterbelt = False
+        always_wear_garterbelt = False
 
         neckwear = "blank"
-        neckwear.color = "base"
-        neckwear.wear = False
-        neckwear.always_wear = False
+        neckwear_color = "base"
+        wear_neckwear = False
+        always_wear_neckwear = False
 
         gloves = "blank"
-        gloves.color = "base"
-        gloves.wear  = False
-        gloves.always_wear  = False
+        gloves_color = "base"
+        wear_gloves  = False
+        always_wear_gloves  = False
 
         stockings = "blank"
-        stockings.color = "base"
-        stockings.wear  = False
-        stockings.always_wear  = False
+        stockings_color = "base"
+        wear_stockings  = False
+        always_wear_stockings  = False
 
         robe = "robe_1"
-        robe.color = "base"
-        robe.wear = False
-        robe.always_wear = False
+        robe_color = "base"
+        wear_robe = False
+        always_wear_robe = False
 
         hat = "blank"
-        hat.color = "base"
-        hat.wear = False
-        hat.always_wear = False
+        hat_color = "base"
+        wear_hat = False
+        always_wear_hat = False
 
         glasses = "blank"
-        glasses.color = "base"
-        glasses.wear = False
-        glasses.always_wear = False
+        glasses_color = "base"
+        wear_glasses = False
+        always_wear_glasses = False
 
         ears = "blank"
-        ears.wear = True
-        ears.always_wear = True
+        wear_ears = True
+        always_wear_ears = True
 
-        makeup = "nude"
-        makeup.list = []
-        makeup.wear = False
-        makeup.always_wear = False
+        makeup_lipstick = "nude"
+        makeup_list = []
+        wear_makeup = False
+        always_wear_makeup = False
 
         accs = []
-        accs.wear = False
-        accs.always_wear = False
+        wear_accs = False
+        always_wear_accs = False
 
         buttplug = "blank"
-        buttplug.color = "base"
-        buttplug.wear  = False
-        buttplug.always_wear  = False
+        buttplug_color = "base"
+        wear_buttplug  = False
+        always_wear_buttplug  = False
 
-        piercings.ears = "blank"
-        piercings.ears.color = "base"
-        piercings.nipples = "blank"
-        piercings.nipples.color = "base"
-        piercings.belly = "blank"
-        piercings.belly.color = "base"
-        piercings.genitals = "blank"
-        piercings.genitals.color = "base"
-        piercings.wear = False
-        piercings.always_wear = False
+        piercings_ears = "blank"
+        piercings_ears_color = "base"
+        piercings_nipples = "blank"
+        piercings_nipples_color = "base"
+        piercings_belly = "blank"
+        piercings_belly_color = "base"
+        piercings_genitals = "blank"
+        piercings_genitals_color = "base"
+        wear_piercings = False
+        always_wear_piercings = False
 
-        tattoos.forehead = "blank"
-        tattoos.forehead.color = "base"
-        tattoos.arm_left = "blank"
-        tattoos.arm_left.color = "base"
-        tattoos.arm_right = "blank"
-        tattoos.arm_right.color = "base"
-        tattoos.breasts = "blank"
-        tattoos.breasts.color = "base"
-        tattoos.waist = "blank"
-        tattoos.waist.color = "base"
-        tattoos.abdomen = "blank"
-        tattoos.abdomen.color = "base"
-        tattoos.leg_left = "blank"
-        tattoos.leg_left.color = "base"
-        tattoos.leg_right = "blank"
-        tattoos.leg_right.color = "base"
-        tattoos.wear = False
-        tattoos.always_wear = False
+        tattoos_forehead = "blank"
+        tattoos_forehead_color = "base"
+        tattoos_arm_left = "blank"
+        tattoos_arm_left_color = "base"
+        tattoos_arm_right = "blank"
+        tattoos_arm_right_color = "base"
+        tattoos_breasts = "blank"
+        tattoos_breasts_color = "base"
+        tattoos_waist = "blank"
+        tattoos_waist_color = "base"
+        tattoos_abdomen = "blank"
+        tattoos_abdomen_color = "base"
+        tattoos_leg_left = "blank"
+        tattoos_leg_left_color = "base"
+        tattoos_leg_right = "blank"
+        tattoos_leg_right_color = "base"
+        wear_tattoos = False
+        always_wear_tattoos = False
 
         transparency = 1

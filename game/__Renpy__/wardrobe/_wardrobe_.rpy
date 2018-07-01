@@ -1247,21 +1247,21 @@ screen wardrobe():
                 text "Costumes" xpos 76+90 ypos 140+75 size 10
             #Dresses
             if active_girl in ["hermione"]:
-                hotspot (75+180, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",3),Show("wardrobe")]
+                hotspot (75+180, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",2),Show("wardrobe")]
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/ball_dress.png" xpos 77+180 ypos 139 zoom 0.31/scaleratio
                 text "Dresses" xpos 76+180 ypos 140+75 size 10
 
             #
-            #if active_girl in []:
-                #hotspot (75+270, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",4),Show("wardrobe")]
+            #if active_girl in [""]:
+                #hotspot (75+270, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",3),Show("wardrobe")]
                 #add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/mannequin.png" xpos 75+270 ypos 116 zoom 0.18
                 #text "" xpos 76+270 ypos 140+75 size 10
 
-            #One-Pieces
-            if active_girl in []:
-                hotspot (75+360, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",5),Show("wardrobe")]
+            #Save/Load Custom Outfit
+            if active_girl in ["hermione"]:
+                hotspot (75+360, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",4),Show("wardrobe")]
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/maid.png" xpos 77+360 ypos 139 zoom 0.31/scaleratio
-                text "One-Pieces" xpos 76+360 ypos 140+75 size 10
+                text "Custom" xpos 76+360 ypos 140+75 size 10
 
 
             #Outfits
@@ -1332,7 +1332,7 @@ screen wardrobe():
             if wardrobe_outfits_category == 4:
                 hotspot (75+360, 140, 83, 85) clicked [SetVariable("wardrobe_outfits_category",0),Show("wardrobe")]
                 add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/ball_dress.png" xpos 77+360 ypos 139 zoom 0.31/scaleratio
-                text "One-Pieces" xpos 76+360 ypos 140+75 size 10
+                text "Custom" xpos 76+360 ypos 140+75 size 10
                 $ index = 0
                 for i in range(0,len(wr_outfits_onepieces)):
                     $ row = i // 5
@@ -1340,8 +1340,10 @@ screen wardrobe():
 
                     if index < len(hg_purchased_onepieces):
 
-                        hotspot ((75+(90*col)), (230+(92*row)), 83, 85) clicked [SetVariable("outfit_choice",hg_purchased_onepieces[index]), Jump("equip_outfit")]
-                        add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/"+wr_onepieces[i]+".png" xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
+                        hotspot ((75+(90*col)), (230+(92*row)), 83, 85) clicked [SetVariable("outfit_choice",hg_purchased_onepieces[index]), Jump("equip_custom_outfit")]
+                        use image_layer_A xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
+                        add "interface/wardrobe/icons/"+str(active_girl)+"/outfits/mannequin.png" xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
+                        use image_layer_B xpos 77+(90*col) ypos 139+92+(92*row) zoom 0.18/scaleratio
                         $ index = index+1
 
 

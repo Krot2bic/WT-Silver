@@ -1,6 +1,73 @@
 label __init_variables:
 
 
+    if not hasattr(renpy.store,'hg_clothing'):
+        $ hg_clothing = custom_outfit()
+        $ hg_clothing.id = 0 #0 is the what's currently equipped. Not a save!
+
+        $ hg_clothing_save_01 = custom_outfit()
+        $ hg_clothing_save_01.id = 1
+        $ hg_clothing_save_02 = custom_outfit()
+        $ hg_clothing_save_02.id = 2
+        $ hg_clothing_save_03 = custom_outfit()
+        $ hg_clothing_save_03.id = 3
+        $ hg_clothing_save_04 = custom_outfit()
+        $ hg_clothing_save_04.id = 4
+        $ hg_clothing_save_05 = custom_outfit()
+        $ hg_clothing_save_05.id = 5
+        $ hg_clothing_save_06 = custom_outfit()
+        $ hg_clothing_save_06.id = 6
+        $ hg_clothing_save_07 = custom_outfit()
+        $ hg_clothing_save_07.id = 7
+        $ hg_clothing_save_08 = custom_outfit()
+        $ hg_clothing_save_08.id = 8
+        $ hg_clothing_save_09 = custom_outfit()
+        $ hg_clothing_save_09.id = 9
+        $ hg_clothing_save_10 = custom_outfit()
+        $ hg_clothing_save_10.id = 10
+        $ hg_clothing_save_11 = custom_outfit()
+        $ hg_clothing_save_11.id = 11
+        $ hg_clothing_save_12 = custom_outfit()
+        $ hg_clothing_save_12.id = 12
+        $ hg_clothing_save_13 = custom_outfit()
+        $ hg_clothing_save_13.id = 13
+        $ hg_clothing_save_14 = custom_outfit()
+        $ hg_clothing_save_14.id = 14
+        $ hg_clothing_save_15 = custom_outfit()
+        $ hg_clothing_save_15.id = 15
+        $ hg_clothing_save_16 = custom_outfit()
+        $ hg_clothing_save_16.id = 16
+        $ hg_clothing_save_17 = custom_outfit()
+        $ hg_clothing_save_17.id = 17
+        $ hg_clothing_save_18 = custom_outfit()
+        $ hg_clothing_save_18.id = 18
+        $ hg_clothing_save_19 = custom_outfit()
+        $ hg_clothing_save_19.id = 19
+        $ hg_clothing_save_20 = custom_outfit()
+        $ hg_clothing_save_20.id = 20
+
+    $ hermione_custom_outfits_list = []
+    $ hermione_custom_outfits_list.append(hg_clothing_save_01)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_02)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_03)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_04)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_05)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_06)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_07)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_08)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_09)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_10)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_11)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_12)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_13)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_14)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_15)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_16)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_17)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_18)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_19)
+    $ hermione_custom_outfits_list.append(hg_clothing_save_20)
+
 
     # Clothing Sets
     if not hasattr(renpy.store,'hg_gryffCheer_OBJ'):
@@ -361,3 +428,123 @@ init python:
             return self.action_images[self.actions.index(action)]
         def getStoreImage(self):
            return "interface/store/icons/hermione/"+self.store_image
+
+
+    class outfit_save_list(list):
+        list = []
+
+    class custom_outfit(object):
+        id = 0 #ID 0 is the default. Outfits you saved (with ID 1,2,...) override 0 when equipped.
+
+        hair = "A"
+        hair.color = "base"
+
+        top = "top_1" #the name of the item.
+        top.color = "base" #which color folder the item is in.
+        top.wear = True #if the item is currently worn.
+        top.always_wear = True #if the item is worn on resetting the outfit.
+
+        onepiece = "blank"
+        onepiece.color = "base"
+        onepiece.wear = False
+        onepiece.always_wear = False
+
+        bottom = "skirt_1"
+        bottom.color = "base"
+        bottom.wear = True
+        bottom.always_wear = True
+
+        bra = "bra_base"
+        bra.color = "base"
+        bra.wear = True
+        bra.always_wear = True
+
+        panties = "panties_base"
+        panties.color = "base"
+        panties.wear = True
+        panties.always_wear = True
+
+        graterbelt = "blank"
+        garterbelt.color = "base"
+        garterbelt.wear = False
+        garterbelt.always_wear = False
+
+        neckwear = "blank"
+        neckwear.color = "base"
+        neckwear.wear = False
+        neckwear.always_wear = False
+
+        gloves = "blank"
+        gloves.color = "base"
+        gloves.wear  = False
+        gloves.always_wear  = False
+
+        stockings = "blank"
+        stockings.color = "base"
+        stockings.wear  = False
+        stockings.always_wear  = False
+
+        robe = "robe_1"
+        robe.color = "base"
+        robe.wear = False
+        robe.always_wear = False
+
+        hat = "blank"
+        hat.color = "base"
+        hat.wear = False
+        hat.always_wear = False
+
+        glasses = "blank"
+        glasses.color = "base"
+        glasses.wear = False
+        glasses.always_wear = False
+
+        ears = "blank"
+        ears.wear = True
+        ears.always_wear = True
+
+        makeup = "nude"
+        makeup.list = []
+        makeup.wear = False
+        makeup.always_wear = False
+
+        accs = []
+        accs.wear = False
+        accs.always_wear = False
+
+        buttplug = "blank"
+        buttplug.color = "base"
+        buttplug.wear  = False
+        buttplug.always_wear  = False
+
+        piercings.ears = "blank"
+        piercings.ears.color = "base"
+        piercings.nipples = "blank"
+        piercings.nipples.color = "base"
+        piercings.belly = "blank"
+        piercings.belly.color = "base"
+        piercings.genitals = "blank"
+        piercings.genitals.color = "base"
+        piercings.wear = False
+        piercings.always_wear = False
+
+        tattoos.forehead = "blank"
+        tattoos.forehead.color = "base"
+        tattoos.arm_left = "blank"
+        tattoos.arm_left.color = "base"
+        tattoos.arm_right = "blank"
+        tattoos.arm_right.color = "base"
+        tattoos.breasts = "blank"
+        tattoos.breasts.color = "base"
+        tattoos.waist = "blank"
+        tattoos.waist.color = "base"
+        tattoos.abdomen = "blank"
+        tattoos.abdomen.color = "base"
+        tattoos.leg_left = "blank"
+        tattoos.leg_left.color = "base"
+        tattoos.leg_right = "blank"
+        tattoos.leg_right.color = "base"
+        tattoos.wear = False
+        tattoos.always_wear = False
+
+        transparency = 1

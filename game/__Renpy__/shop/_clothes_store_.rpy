@@ -1,39 +1,4 @@
-label __init_variables:
-    if not hasattr(renpy.store,'clothes_intro_done'): #important!
-        $ clothes_intro_done = False
-    if not hasattr(renpy.store,'outfit_order_placed'): #important!
-        $ outfit_order_placed = False
-    if not hasattr(renpy.store,'outfit_ready'): #important!
-        $ outfit_ready = False
-    if not hasattr(renpy.store,'outfit_wait_time'): #important!
-        $ outfit_wait_time = 0
-    if not hasattr(renpy.store,'outfit_order'): #important!
-        $ outfit_order = None
 
-    $ clothes_store_order_choice = None
-    $ clothes_store_selection = None
-
-    if not hasattr(renpy.store,'cs_stock_inventory'): #important!
-        $ cs_stock_inventory = []
-    if not hasattr(renpy.store,'micro_skirt'): #important!
-        $ micro_skirt = False
-    if not hasattr(renpy.store,'glasses'): #important!
-        $ glasses = False
-    if not hasattr(renpy.store,'wear_shirts'): #important!
-        $ wear_shirts = True
-    if not hasattr(renpy.store,'wear_skirts'): #important!
-        $ wear_skirts = True
-    if not hasattr(renpy.store,'gave_tinyminiskirt'): #important!
-        $ gave_tinyminiskirt = False
-    if not hasattr(renpy.store,'cs_accessories'): #important!
-        $ cs_accessories = [False,False,False]
-    if not hasattr(renpy.store,'cs_existing_stock'): #important!
-        $ cs_existing_stock = [False,False,False,False,False]
-    if not hasattr(renpy.store,'cs_existing_stock_gifted'): #important!
-        $ cs_existing_stock_gifted = []
-
-
-    return
 
 label clothes_store:
     if outfit_ready:
@@ -940,26 +905,35 @@ label cs_select:
     $ clothes_store_order_choice = clothes_store_selection
     return
 
-screen cs_gui:
+
+label close_clothes_store:
+    $ renpy.play('sounds/door2.mp3') #closing wardrobe page
+
+    jump clothes_menu
+
+
+screen cs_gui():
 
     tag clothes_menu
     zorder hermione_main_zorder-1
 
     imagemap:
         cache False
+        add "interface/store/icons/hermione/"+str(mannequin_preview)+"" xpos 600 ypos 0 zoom 1.0/scaleratio
         ground "interface/store/"+str(interface_color)+"/ground.png"
         idle "interface/store/"+str(interface_color)+"/idle.png"
         hover "interface/store/"+str(interface_color)+"/hover.png"
 
+        hotspot (745+280,10,45,45) clicked Jump("close_clothes_store")
+
         $ page_list = cs_gui_OBJ.getListOfItems()
 
         $ index = 0
-        for i in range(0,2):
-            for j in range(0,4):
-                if index < len(page_list):
-                    hotspot((213+(175*j)),(78+(255*i)),125,190) clicked [SetVariable("clothes_store_selection",page_list[index]),Jump("cs_select")]
-                    add page_list[index].getStoreImage() xpos 166+(175*j) ypos (31+(254*i)) zoom 0.40/scaleratio
-                    $ index = index+1
+        for i in range(0,3):
+            if index < len(page_list):
+                hotspot(70+(227*i),(107),175,284) clicked [SetVariable("clothes_store_selection",page_list[index]),Jump("cs_select")]
+                add page_list[index].getStoreImage() xpos (-7+(227*i)) ypos 30 zoom 0.6/scaleratio
+                $ index = index+1
 
         if cs_gui_OBJ.current_page > 0:
             hotspot (156, 552, 34, 34) clicked Jump("cs_gui_index_down")
@@ -979,7 +953,7 @@ init python:
         current_page = 0
 
         def getListOfItems(self):
-            return hermione_clothing_set_list[(self.current_page*8):min((self.current_page*8)+8, len(hermione_clothing_set_list))]
+            return hermione_clothing_set_list[(self.current_page*8):min((self.current_page*8)+3, len(hermione_clothing_set_list))]
         def getNamesOfItems(self):
             return [i.name for i in self.getListOfItems()]
         def getTotalPages(self):

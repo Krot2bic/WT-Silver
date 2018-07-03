@@ -1,6 +1,6 @@
 init python:
     def notNull(object):
-        if object == None or object == "":
+        if object == None or object == "" or object == []:
             return False
         else:
             return True

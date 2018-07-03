@@ -10,7 +10,7 @@ label __init_variables:
 
 
     if not hasattr(renpy.store,'hg_clothing'):
-        $ hg_clothing = custom_outfit_obj()
+        $ hg_clothing = custom_outfit_obj('hg_clothing','hermione default clothing','hermione')
         # this is whats currently equipped to change to a diffrent outfit simply .load() it
 
 
@@ -637,14 +637,28 @@ init python:
 
 
     class custom_outfit_obj(object):
-        # id = 0 #ID 0 is the default. Outfits you saved (with ID 1,2,...) override 0 when equipped.
-        name = "defult" # replace id with unique name that could be taken as input, eaiser to track
+        id = "default"  # unique string for internal use
+        name = ""       # name to display to user
+        root = ""       # the root folder for the character
 
+        body_base = ""
+        body_legs = ""
+        body_breasts = ""
+        body_right_arm = ""
+        body_left_arm = ""
+        body_pubic_hair = ""
+
+        face_cheeks = ""
+        face_eyes = ""
+        face_eye_color = ""
+        face_tears = ""
+        face_mouth = ""
 
         hair = "A"
         hair_color = "base"
 
         top = "top_1" #the name of the item.
+        top_version = "" #the varient of the top (_1, _skimpy, _sexy, _sleeves)
         top_color = "base" #which color folder the item is in.
         wear_top = True #if the item is currently worn.
         always_wear_top = True #if the item is worn on resetting the outfit.
@@ -655,7 +669,8 @@ init python:
         always_wear_onepiece = False
 
         bottom = "skirt_1"
-        bottom_color = "base"
+        bottom_version = ""
+        bottom_color = "_base"
         wear_bottom = True
         always_wear_bottom = True
 
@@ -722,6 +737,9 @@ init python:
         wear_buttplug  = False
         always_wear_buttplug  = False
 
+        tatoos = []
+        piercings = []
+
         piercings_ears = "blank"
         piercings_ears_color = "base"
         piercings_nipples = "blank"
@@ -754,15 +772,157 @@ init python:
 
         transparency = 1
 
-        
+
+        def get_layers(self):
+
+            layers = []
+
+            ### BEHIND BODY ###
+            if self.buttplug.notNull():
+                layers.append( self.root + "accessories/plugs/" + self.buttplug ".png" )
+            if self.ears.notNull() and self.hair_color.notNull():
+                layers.append( self.root + "accessories/ears/" + self.ears + "_tail_" + self.hair_color + ".png" )
+
+            ### BODY LAYERS ###
+
+
+            #Body & Legs
+            if self.body_base.notNull():
+                layers.add( self.root + "body/base/" + self.body_base + ".png" )
+            if self.body_legs.notNull():
+                layers.add( self.root + "body/legs/" + self.body_legs + ".png" )
+
+
+
+                layers.add( self.root + "/" + self. + ".png" )
+
+            #Hair
+            if self.hair.notNull() and self.hair_color.notNull():
+                layers.add( self.root + "body/head/" + self.hair + "_" + self.hair_color + ".png" )
+
+            #Right Arm
+            if self.body_right_arm.notNull():
+                layers.add( self.root + "body/arms/right/" + self.body_right_arm + ".png" )
+
+            #Breasts
+            if self.body_breasts.notNull():
+                layers.add( self.root + "body/breasts/" + self.body_breasts + ".png" )
+
+            #Left Arm
+            if self.body_left_arm.notNull():
+                layers.add( self.root + "body/arms/left/" + self.body_left_arm + ".png" )
+
+            #Pubic Hair
+            if self.body_pubic_hair.notNull():
+                layers.add( self.root + "body/pubic_hair/" + self.body_pubic_hair + ".png" )
+
+
+            #Face
+            if self.face_cheeks.notNull():
+                layers.add( self.root + "face/pubic_hair/" + self.face_cheeks + ".png" )
+            if self.face_eyes.notNull() and self.face_eye_color.notNull():
+                layers.add( self.root + "face/eyes/" + self.face_eye_color + "/" + self.face_eyes + ".png" )
+            if self.face_tears.notNull():
+                layers.add( self.root + "face/tears/" + self.face_tears + ".png" )
+            if self.face_mouth.notNull() and self.makeup_lipstick.notNull():
+                layers.add( self.root + "face/mouth/" + self.makeup_lipstick + "/" + self.face_mouth + ".png" )
+
+
+            #Tattoos
+            if self.tatoos.notNull():
+                layers.extend( [ self.root+"body/tatoos/"+tatoo+".png" for tatoo in self.tatoos ] )
+
+            # #Body Fluids
+            # if self.dribble:
+            #     layers.add( self.root + "body/legs/dripping.png" )
+            # if self.squirt:
+            #     layers.add( self.root + "body/legs/squirting.png" )
+
+            # #Penis
+            # if self.futa and not self.wear_bottom and self.wear_panties:
+            #     layers.add( self.root + "body/legs/dick.png" )
+
+            #Piercings
+            if self.piercings.notNull():
+                layers.extend( [ self.root+"accessories/piercings/base/"+piercing+".png" for piercing in self.piercings ] )
+
+
+
+            #########################################################
+            #### REFRENCE FROM hermione_main for building layers ####
+            #########################################################
+
+            # ### CLOTHING LAYERS ###
+
+            # #Uniform
+            # if not hermione_costume:
+            #     use hermione_uniform
+
+            # #Costume
+            # if hermione_costume:
+            #     if hermione_wear_top:
+            #         use hermione_costume
+            #     else:
+            #         use hermione_uniform
+
+            # ### ACCESORIES LAYERS ###
+
+            # #Glasses
+            # if hermione_wear_glasses:
+            #     add hermione_glasses xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+            # add hermione_hair_b xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+            # #Hat
+            # if hermione_wear_hat:
+            #     add hermione_hat xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+            # #Ears
+            # if hermione_wear_ears:
+            #     if h_ears == "elf_ears" and h_hair_style == "A": #Doesn't get added to normal hair
+            #         pass
+            #     else:
+            #         add hermione_ears xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+            # #Makeup
+            # if hermione_wear_makeup:
+            #     use hermione_makeup
+
+
+            # ### SPERM LAYERS ###
+
+            # if uni_sperm:
+            #     add u_sperm xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            # if sperm_on_tits: #Sperm on tits when Hermione pulls her shirt up.
+            #     add "characters/hermione/face/auto_02.png" xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            # elif aftersperm: #Shows cum stains on Hermione's uniform.
+            #     add "characters/hermione/face/auto_03.png" xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+
+            # ### EMOTES ###
+            # add hermione_emote xpos hermione_xpos ypos hermione_ypos
+
+
+        def __init__(self, id, name, character_name):
+            self.id = id
+            self.name = name
+            self.root = "characters/" + character_name + "/"
+
+
         # saves and loads the state of this object to the dictionary 'hg_clothing_saves'
 
-        def save(self, name):
+        def save(self, id=None):
             global hg_clothing_saves
-            hg_clothing_saves[name] = self.__dict__
-        def load(self, name):
+            if id == None:
+                hg_clothing_saves[self.id] = self.__dict__
+            else:
+                hg_clothing_saves[id] = self.__dict__
+        def load(self, id=None):
             global hg_clothing_saves
-            self.__dict__.update( hg_clothing_saves[name] )
+            if id == None:
+                self.__dict__.update( hg_clothing_saves[self.id] )
+            else:
+                self.__dict__.update( hg_clothing_saves[id] )
 
 
 

@@ -3,6 +3,8 @@ init python:
         if len(args) > 1:
             return all( [ notNull(arg) for arg in args ] )
         else:
+            if isinstance(args[0], outfit_item):
+                return args[0].__bool__()
             if args[0] == None or args[0] == "" or args[0] == []:
                 return False
             else:

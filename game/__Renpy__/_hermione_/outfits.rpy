@@ -5,12 +5,12 @@ label __init_variables:
         $ clothing_purchases = {}
     if not hasattr(renpy.store,'hg_clothing_saves'):
         $ hg_clothing_saves  = {}
-        # this stores the state of the custom_outfit_objs for whenever .save() is called 
+        # this stores the state of the custom outfit for whenever .save() is called 
         # b/c this is a basic dictionary it will also persist through reloads 
 
 
     if not hasattr(renpy.store,'hg_clothing'):
-        $ hg_clothing = custom_outfit_obj('hg_clothing','hermione default clothing')
+        $ hg_clothing = hg_custom_outfit('hg_clothing','hermione default clothing')
         # this is whats currently equipped to change to a diffrent outfit simply .load() it
 
 
@@ -645,11 +645,25 @@ init python:
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
 
+        def __bool__(self):
+            return notNull(self.name)
+        __nonzero__ = __bool__
+
+
+        def __str__(self):
+            if notNull(self.name, self.color, self.version):
+                return '/'+str(self.name)+'/'+str(self.color)+'_'+str(self.version)
+            if notNull(self.name, self.version):
+                return '/'+str(self.name)+'_'+str(self.version)
+            if notNull(self.name):
+                return '/'+str(self.name)
+            return ""
+
         def get_file(self):
             if self.color != None:
-                return '/'+self.name+'/'+self.color+'_'+self.version+'.png'
+                return '/'+str(self.name)+'/'+str(self.color)+'_'+str(self.version)
             else:
-                return '/'+self.name+'_'+self.version+'.png'
+                return '/'+str(self.name)+'_'+str(self.version)
 
         def save(self):
             dic = {}
@@ -660,12 +674,12 @@ init python:
         def load(self, dic):
             self.__dict__.update( dic )
 
-    class custom_outfit_obj(object):
+    class hg_custom_outfit(object):
         id   = "default" # unique string for internal use
         name = ""        # name to display to user
 
         hair        = "A"
-        hair_color  = "base"
+        hair_color  = "1"
 
         top = outfit_item(
             name        = "top_1", # the name of the item.
@@ -716,33 +730,11 @@ init python:
         wear_accs = False
         always_wear_accs = False
 
-        piercings_ears = "blank"
-        piercings_ears_color = "base"
-        piercings_nipples = "blank"
-        piercings_nipples_color = "base"
-        piercings_belly = "blank"
-        piercings_belly_color = "base"
-        piercings_genitals = "blank"
-        piercings_genitals_color = "base"
+        piercings = []
         wear_piercings = False
         always_wear_piercings = False
 
-        tattoos_forehead = "blank"
-        tattoos_forehead_color = "base"
-        tattoos_arm_left = "blank"
-        tattoos_arm_left_color = "base"
-        tattoos_arm_right = "blank"
-        tattoos_arm_right_color = "base"
-        tattoos_breasts = "blank"
-        tattoos_breasts_color = "base"
-        tattoos_waist = "blank"
-        tattoos_waist_color = "base"
-        tattoos_abdomen = "blank"
-        tattoos_abdomen_color = "base"
-        tattoos_leg_left = "blank"
-        tattoos_leg_left_color = "base"
-        tattoos_leg_right = "blank"
-        tattoos_leg_right_color = "base"
+        tattoos = []
         wear_tattoos = False
         always_wear_tattoos = False
 
@@ -753,6 +745,9 @@ init python:
             self.id = id
             self.name = name
 
+        def get_layers(self):
+            layers = []
+            return layers
 
         # saves and loads the state of this object to the dictionary 'hg_clothing_saves'
 

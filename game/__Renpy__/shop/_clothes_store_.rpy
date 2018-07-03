@@ -310,7 +310,7 @@ return
 label pickup_outfit:
 
     if outfit_order_placed: # OUTFIT
-        $ outfit_order.purchased = True
+        $ outfit_order.purchase()
         #$ outfit_inventory.append(outfit_order)
         call display_package(">A "+outfit_order.name+R" outfit has been added to your possessions.")
         call receive_package
@@ -963,8 +963,10 @@ init python:
         current_page = 0
 
         def getListOfItems(self):
-            return hermione_outfits_list[(self.current_page*8):min((self.current_page*8)+8, len(hermione_outfits_list))]
+            all_outfits = hg_outfits.all()
+            return all_outfits[(self.current_page*8):min((self.current_page*8)+8, len(all_outfits))]
         def getNamesOfItems(self):
             return [i.name for i in self.getListOfItems()]
         def getTotalPages(self):
-            return len(hermione_outfits_list)/8
+            all_outfits = hg_outfits.all()
+            return len(all_outfits)/8

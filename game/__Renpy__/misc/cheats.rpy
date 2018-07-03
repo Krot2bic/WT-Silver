@@ -36,8 +36,8 @@ label cheats:
 
                 "-Add all costumes-":
                     python:
-                        for i in hermione_outfits_list:
-                            i.purchased = True
+                        for outfit in hg_outfits.get_all():
+                            outfit.purchase()
                     ">All of Hermione's costumes have been unlocked"
                     jump cheats
 
@@ -119,4 +119,7 @@ label cheats:
             jump cheats
 
         "-Never mind-":
-            jump day_main_menu
+            if daytime:
+                jump day_main_menu
+            else:
+                jump night_main_menu

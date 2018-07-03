@@ -20,47 +20,47 @@ label hg_pf_TalkToMe:
             "\"(Not right now.)\"":
                 jump silver_requests
 
-    if hg_maid_OBJ.purchased or hg_gryffCheer_OBJ.purchased or hg_slythCheer_OBJ.purchased or hg_msMarvel_OBJ.purchased or hg_heartDancer_OBJ.purchased or hg_powerGirl_OBJ.purchased or hg_harleyQuinn_OBJ.purchased:
+    if hg_outfits.any_purchased('hg_maid', 'hg_gryffCheer', 'hg_slythCheer', 'hg_msMarvel', 'hg_heartDancer', 'hg_powerGirl', 'hg_harleyQuinn'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
                 m "[hermione_name], before I request a favor, I'd like you to dress up."
                 call her_main("As what?","open","worriedL") 
                 menu:
-                    "-A maid-" if hg_maid_OBJ.purchased:
+                    "-A maid-" if hg_outfits.purchased('hg_maid'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_maid_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_maid']) 
                         pass
-                    "-A Cheerleader-" if hg_gryffCheer_OBJ.purchased:
+                    "-A Cheerleader-" if hg_outfits.purchased('hg_gryffCheer'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_gryffCheer_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_gryffCheer']) 
                         pass
-                    "-A Slytherin Cheerleader-" if hg_slythCheer_OBJ.purchased:
+                    "-A Slytherin Cheerleader-" if hg_outfits.purchased('hg_slythCheer'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_slythCheer_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_slythCheer']) 
                         pass
-                    "-Ms Marvel-" if hg_msMarvel_OBJ.purchased:
+                    "-Ms Marvel-" if hg_outfits.purchased('hg_msMarvel'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_msMarvel_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_msMarvel']) 
                         pass
-                    "-A heart dancer-" if hg_heartDancer_OBJ.purchased:
+                    "-A heart dancer-" if hg_outfits.purchased('hg_heartDancer'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_heartDancer_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_heartDancer']) 
                         pass
-                    "-power girl-" if hg_powerGirl_OBJ.purchased:
+                    "-power girl-" if hg_outfits.purchased('hg_powerGirl'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_powerGirl_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_powerGirl']) 
                         pass  
-                    "-Harley Quinn-" if hg_harleyQuinn_OBJ.purchased:
+                    "-Harley Quinn-" if hg_outfits.purchased('hg_harleyQuinn'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_harleyQuinn_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_harleyQuinn']) 
                         pass
             "\"(Not right now.)\"":
                 pass

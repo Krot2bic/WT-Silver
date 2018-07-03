@@ -20,7 +20,7 @@ label hg_pf_BreastMolester:
             "\"(Not right now.)\"":
                 jump silver_requests
 
-    if hg_msMarvel_OBJ.purchased:
+    if hg_outfits.purchased('hg_msMarvel'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -32,7 +32,7 @@ label hg_pf_BreastMolester:
                     call her_main("...","angry","worriedCl",emote="05") 
                     call her_main("Fine, let me go change.","normal","worriedCl") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_msMarvel_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_msMarvel']) 
                     pass
                 else:
                     jump too_much

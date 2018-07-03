@@ -173,10 +173,10 @@ label hermione_talk:
         "-Working-":
             label working_menu:
             menu:
-                "-Work as a maid-" if daytime and hg_maid_OBJ.purchased:
+                "-Work as a maid-" if daytime and hg_outfits.purchased('hg_maid'):
                     jump job_1
 
-                "-Work as a maid-" if daytime and not hg_maid_OBJ.purchased:
+                "-Work as a maid-" if daytime and not hg_outfits.purchased('hg_maid'):
                     m "(I'll need an outfit for hermione if I want her to work.)"
                     jump working_menu
                                         
@@ -184,10 +184,10 @@ label hermione_talk:
                     "This job is only available during the day."
                     jump working_menu
                                     
-                "-Work as a cheerleader for Gryffindor-" if daytime and hg_gryffCheer_OBJ.purchased:
+                "-Work as a cheerleader for Gryffindor-" if daytime and hg_outfits.purchased('hg_gryffCheer'):
                      jump job_3
 
-                "-Work as a cheerleader for Gryffindor-" if daytime and not hg_gryffCheer_OBJ.purchased:
+                "-Work as a cheerleader for Gryffindor-" if daytime and not hg_outfits.purchased('hg_gryffCheer'):
                     m "(I'll need an outfit for hermione if I want her to work.)"
                     jump working_menu
                                     
@@ -195,10 +195,10 @@ label hermione_talk:
                     "This job is only available during the day."
                     jump working_menu
                                     
-                "-Work as a cheerleader for Slytherin-" if daytime and hg_slythCheer_OBJ.purchased:
+                "-Work as a cheerleader for Slytherin-" if daytime and hg_outfits.purchased('hg_slythCheer'):
                     jump job_4
 
-                "-Work as a cheerleader for Slytherin-" if daytime and not hg_slythCheer_OBJ.purchased:
+                "-Work as a cheerleader for Slytherin-" if daytime and not hg_outfits.purchased('hg_slythCheer'):
                     m "(I'll need an outfit for hermione if I want her to work.)"
                     jump working_menu
                                     

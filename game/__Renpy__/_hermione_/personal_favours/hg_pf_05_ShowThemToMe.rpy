@@ -26,7 +26,7 @@ label hg_pf_ShowThemToMe: #LV.3 (Whoring = 6 - 8)
     if whoring < 6:
         jump too_much
         
-    if hg_gryffCheer_OBJ.purchased or hg_slythCheer_OBJ.purchased or hg_powerGirl_OBJ.purchased:
+    if hg_outfits.any_purchased('hg_gryffCheer', 'hg_slythCheer', 'hg_powerGirl'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -35,23 +35,23 @@ label hg_pf_ShowThemToMe: #LV.3 (Whoring = 6 - 8)
                     jump too_much
                 call her_main("As what?","open","worriedL") 
                 menu:
-                    "-A Cheerleader-" if hg_gryffCheer_OBJ.purchased:
+                    "-A Cheerleader-" if hg_outfits.purchased('hg_gryffCheer'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_gryffCheer_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_gryffCheer']) 
                         pass
-                    "-A Slytherin Cheerleader-" if hg_slythCheer_OBJ.purchased:
+                    "-A Slytherin Cheerleader-" if hg_outfits.purchased('hg_slythCheer'):
                         her "Fine, let me go change."
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_slythCheer_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_slythCheer']) 
                         pass
-                    "-Power girl-" if hg_powerGirl_OBJ.purchased:
+                    "-Power girl-" if hg_outfits.purchased('hg_powerGirl'):
                         call her_main("In that ridiculous costume?","scream","angryCl") 
                         m "It's not that bad. It has a nice cape."
                         call her_main("...","angry","worriedCl",emote="05") 
                         call her_main("Fine, let me go change.","normal","worriedCl") 
                         call play_sound("door") #Sound of a door opening.
-                        call set_hermione_outfit(hg_powerGirl_OBJ) 
+                        call set_hermione_outfit(hg_outfits['hg_powerGirl']) 
                         pass
                 call her_main("","","",xpos="mid") 
                 call ctc 

@@ -20,7 +20,7 @@ label hg_pf_ButtMolester:
             "\"(Not right now.)\"":
                 jump silver_requests
 
-    if hg_maid_OBJ.purchased:
+    if hg_outfits.purchased('hg_maid'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -33,7 +33,7 @@ label hg_pf_ButtMolester:
                     call her_main("...","base","baseL") 
                     call her_main("Well, if you insist...","normal","worriedCl") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_maid_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_maid']) 
                     pass
                 else:
                     jump too_much

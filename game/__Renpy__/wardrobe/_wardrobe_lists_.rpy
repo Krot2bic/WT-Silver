@@ -117,7 +117,7 @@ label update_wr_head_list:
         #Hair Style
         $ wr_hair.append("A")
         $ wr_hair.append("B")
-        if hg_bio_OBJ.purchased: #Add Elizabeth Outfit.
+        if hg_outfits.purchased('hg_bio'): #Add Elizabeth Outfit.
             $ wr_hair.append("E")
 
         #Makeup
@@ -140,7 +140,7 @@ label update_wr_head_list:
             $ wr_ears.append("elf_ears")
 
         #Hats
-        if hg_ballDress_OBJ.purchased:
+        if hg_outfits.purchased('hg_ballDress'):
             $ wr_hats.append("tiara")
 
     #if active_girl == "luna":
@@ -178,7 +178,7 @@ label update_wr_tops_list:
             $ wr_tops_uniform.append("uni_top_5")
         $ wr_tops_uniform.append("uni_top_6")
 
-        if hg_gryffCheer_OBJ.purchased or hg_slythCheer_OBJ.purchased:
+        if hg_outfits.any_purchased('hg_gryffCheer', 'hg_slythCheer'):
             $ wr_tops_uniform.append("uni_top_cheer")
             $ wr_tops_uniform.append("uni_top_cheer_skimpy")
 
@@ -202,7 +202,7 @@ label update_wr_tops_list:
             $ wr_tops_wicked.append("wicked_leather_jacket_sleeves")
             $ wr_tops_wicked.append("wicked_leather_jacket_sleeves_open")
 
-        if hg_rocker_OBJ.purchased:
+        if hg_outfits.purchased('hg_rocker'):
             $ wr_tops_wicked.append("wicked_rocker_top")
         if whoring >= 19 and "top_fishnets" in cs_existing_stock:
             $ wr_tops_wicked.append("top_fishnets")
@@ -248,7 +248,7 @@ label update_wr_bottoms_list:
         $ wr_bottoms_uniform.append("uni_skirt_4")
         $ wr_bottoms_uniform.append("uni_skirt_5")
 
-        if hg_gryffCheer_OBJ.purchased or hg_slythCheer_OBJ.purchased:
+        if hg_outfits.any_purchased('hg_gryffCheer', 'hg_slythCheer'):
             $ wr_bottoms_uniform.append("uni_skirt_cheer")
             $ wr_bottoms_uniform.append("uni_skirt_cheer_skimpy")
 
@@ -272,7 +272,7 @@ label update_wr_bottoms_list:
             $ wr_bottoms_pants.append("pants_jeans_short")
         #if "pants_retro_shorts" in cs_existing_stock:
         #    $ wr_bottoms_pants.append("pants_retro_shorts")
-        if hg_rocker_OBJ.purchased:
+        if hg_outfits.purchased('hg_rocker'):
             $ wr_bottoms_pants.append("pants_rocker")
 
     #if active_girl == "luna":
@@ -313,14 +313,14 @@ label update_wr_other_clothings_list:
         if whoring >= 17:
             $ wr_neckwears.append("neck_bondage_collar")
 
-        if whoring >= 7 and hg_rocker_OBJ.purchased:
+        if whoring >= 7 and hg_outfits.purchased('hg_rocker'):
             $ wr_neckwears.append("neck_lace_choker")
-        if whoring >= 7 and hg_ballDress_OBJ.purchased:
+        if whoring >= 7 and hg_outfits.purchased('hg_ballDress'):
             $ wr_neckwears.append("neck_pearl_necklace")
-        if whoring >= 16 and hg_christmas_OBJ.purchased:
+        if whoring >= 16 and hg_outfits.purchased('hg_christmas'):
             $ wr_neckwears.append("neck_xmas")
 
-        if whoring >= 20 and hg_ballDress_OBJ.purchased:
+        if whoring >= 20 and hg_outfits.purchased('hg_ballDress'):
             $ wr_neckwears.append("neck_miss_hogwarts")
         #$ wr_neckwears.append("neck_goggles") #sQuest reward
         if collar == 1:
@@ -346,13 +346,13 @@ label update_wr_other_clothings_list:
         if whoring >= 19:
             $ wr_gloves.append("gloves_latex")
 
-        if whoring >= 13 and hg_maid_OBJ.purchased:
+        if whoring >= 13 and hg_outfits.purchased('hg_maid'):
             $ wr_gloves.append("gloves_french_maid")
-        if whoring >= 13 and hg_laraCroft_OBJ.purchased:
+        if whoring >= 13 and hg_outfits.purchased('hg_laraCroft'):
             $ wr_gloves.append("gloves_leather_short")
-        #if whoring >= 19 and hg_powerGirl_OBJ.purchased:
+        #if whoring >= 19 and hg_outfits.purchased('hg_powerGirl'):
         #    $ wr_gloves.append("gloves_latex_hero_blue")
-        if whoring >= 22 and hg_harleyQuinn_OBJ.purchased:
+        if whoring >= 22 and hg_outfits.purchased('hg_harleyQuinn'):
             $ wr_gloves.append("gloves_leather")
         #$ wr_gloves.append("gloves_egyptian") #ADD Egypt Outfit
 
@@ -361,7 +361,7 @@ label update_wr_other_clothings_list:
             $ wr_stockings.append("stockings_striped")
             #if whoring  >= 22 and "vibrators" in cs_existing_stock:
             #    $ wr_stockings.append("stockings_striped_vibe") #Will be in accessories instead
-        if whoring >= 8 and (hg_gryffCheer_OBJ.purchased or hg_slythCheer_OBJ.purchased):
+        if whoring >= 8 and hg_outfits.any_purchased('hg_gryffCheer', 'hg_slythCheer'):
             $ wr_stockings.append("stockings_cheer")
             $ wr_stockings.append("stockings_cheer_short")
             #if whoring  >= 22 and "vibrators" in cs_existing_stock:
@@ -524,52 +524,52 @@ label update_wr_outfits_list:
 
         #Outfits
         $ hg_purchased_outfits = []
-        if hg_maid_OBJ.purchased:
+        if hg_outfits.purchased('hg_maid'):
             $ wr_outfits.append("maid")
             $ hg_purchased_outfits.append(hg_maid_OBJ)
-        if hg_christmas_OBJ.purchased:
+        if hg_outfits.purchased('hg_christmas'):
             $ wr_outfits.append("christmas")
             $ hg_purchased_outfits.append(hg_christmas_OBJ)
-        if hg_present_OBJ.purchased:
+        if hg_outfits.purchased('hg_present'):
             $ wr_outfits.append("present")
             $ hg_purchased_outfits.append(hg_present_OBJ)
-        if hg_japan_OBJ.purchased:
+        if hg_outfits.purchased('hg_japan'):
             $ wr_outfits.append("japan")
             $ hg_purchased_outfits.append(hg_japan_OBJ)
 
         #Costumes
         $ hg_purchased_costumes = []
-        if hg_pirate_OBJ.purchased:
+        if hg_outfits.purchased('hg_pirate'):
             $ wr_costumes.append("pirate")
             $ hg_purchased_costumes.append(hg_pirate_OBJ)
-        if hg_powerGirl_OBJ.purchased:
+        if hg_outfits.purchased('hg_powerGirl'):
             $ wr_costumes.append("power")
             $ hg_purchased_costumes.append(hg_powerGirl_OBJ)
-        if whoring >= 7 and hg_msMarvel_OBJ.purchased:
+        if whoring >= 7 and hg_outfits.purchased('hg_msMarvel'):
             $ wr_costumes.append("marvel")
             $ hg_purchased_costumes.append(hg_msMarvel_OBJ)
-        if hg_harleyQuinn_OBJ.purchased:
+        if hg_outfits.purchased('hg_harleyQuinn'):
             $ wr_costumes.append("harley")
             $ hg_purchased_costumes.append(hg_harleyQuinn_OBJ)
-        if hg_laraCroft_OBJ.purchased:
+        if hg_outfits.purchased('hg_laraCroft'):
             $ wr_costumes.append("lara")
             $ hg_purchased_costumes.append(hg_laraCroft_OBJ)
-        if hg_tifa_OBJ.purchased:
+        if hg_outfits.purchased('hg_tifa'):
             $ wr_costumes.append("tifa")
             $ hg_purchased_costumes.append(hg_tifa_OBJ)
-        if hg_witch_OBJ.purchased:
+        if hg_outfits.purchased('hg_witch'):
             $ wr_costumes.append("witch")
             $ hg_purchased_costumes.append(hg_witch_OBJ)
-        if hg_bio_OBJ.purchased:
+        if hg_outfits.purchased('hg_bio'):
             $ wr_costumes.append("bio")
             $ hg_purchased_costumes.append(hg_bio_OBJ)
-        if hg_yenn_OBJ.purchased:
+        if hg_outfits.purchased('hg_yenn'):
             $ wr_costumes.append("yenn")
             $ hg_purchased_costumes.append(hg_yenn_OBJ)
 
         #One-Pieces
         #$ hg_purchased_onepieces = []
-        #if hg_silkNightgown_OBJ.purchased:
+        #if hg_outfits.purchased('hg_silkNightgown'):
         #    $ wr_outfits_onepieces.append("nightgown")
         #    $ hg_purchased_onepieces.append(hg_silkNightgown_OBJ)
 
@@ -581,10 +581,10 @@ label update_wr_outfits_list:
 
         #Dresses
         $ hg_purchased_dresses = []
-        if hg_heartDancer_OBJ.purchased:
+        if hg_outfits.purchased('hg_heartDancer'):
             $ wr_dresses.append("heart")
             $ hg_purchased_dresses.append(hg_heartDancer_OBJ)
-        if hg_ballDress_OBJ.purchased:
+        if hg_outfits.purchased('hg_ballDress'):
             $ wr_dresses.append("ball_dress")
             $ hg_purchased_dresses.append(hg_ballDress_OBJ)
 

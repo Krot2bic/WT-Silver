@@ -19,7 +19,7 @@ label hg_pf_DanceForMe:
             "\"(Not right now.)\"":
                 jump silver_requests
 
-    if hg_heartDancer_OBJ.purchased:
+    if hg_outfits.purchased('hg_heartDancer'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -32,7 +32,7 @@ label hg_pf_DanceForMe:
                     call her_main("...","angry","worriedCl",emote="05") 
                     call her_main("Fine, let me go change.","normal","worriedCl") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_heartDancer_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_heartDancer']) 
                     pass
                 else:
                     jump too_much

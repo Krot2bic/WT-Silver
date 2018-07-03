@@ -15,7 +15,7 @@ label hg_pf_LetsHaveSex: #LV.7 (Whoring = 18 - 20)
             "\"(Not right now.)\"":
                 jump silver_requests
     
-    if hg_laraCroft_OBJ.purchased and hg_pf_SuckIt_OBJ.points >= 1:
+    if hg_outfits.purchased('hg_laraCroft') and hg_pf_SuckIt_OBJ.points >= 1:
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -28,7 +28,7 @@ label hg_pf_LetsHaveSex: #LV.7 (Whoring = 18 - 20)
                     call her_main("...","annoyed","down") 
                     call her_main("Whatever, let me go change.","annoyed","base") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_laraCroft_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_laraCroft']) 
                     pass
                 else:
                     jump too_much

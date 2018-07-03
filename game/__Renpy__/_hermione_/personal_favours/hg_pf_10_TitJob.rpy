@@ -19,7 +19,7 @@ label hg_pf_TitJob: #LV.6 (Whoring = 15 - 17)
             "\"(Not right now.)\"":
                 jump silver_requests
     
-    if hg_powerGirl_OBJ.purchased:
+    if hg_outfits.purchased('hg_powerGirl'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -32,7 +32,7 @@ label hg_pf_TitJob: #LV.6 (Whoring = 15 - 17)
                     call her_main("...","upset","wink") 
                     call her_main("I suppose not, I mean if it keeps my uniform clean...","annoyed","worriedL") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_powerGirl_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_powerGirl']) 
                     pass
                 else:
                     jump too_much

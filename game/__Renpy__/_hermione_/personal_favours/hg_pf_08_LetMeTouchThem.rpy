@@ -19,7 +19,7 @@ label hg_pf_LetMeTouchThem: #LV.4 (Whoring = 9 - 11)
             "\"(Not right now.)\"":
                 jump silver_requests
     
-    if hg_christmas_OBJ.purchased:
+    if hg_outfits.purchased('hg_christmas'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -32,7 +32,7 @@ label hg_pf_LetMeTouchThem: #LV.4 (Whoring = 9 - 11)
                     call her_main("...","base","glance") 
                     call her_main("Fine, let me go wrap myself.","base","down") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_christmas_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_christmas']) 
                     pass
                 else:
                     jump too_much

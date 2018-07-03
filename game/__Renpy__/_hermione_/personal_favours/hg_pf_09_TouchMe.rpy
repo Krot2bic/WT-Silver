@@ -19,7 +19,7 @@ label hg_pf_TouchMe: #LV.5 (Whoring = 12 - 14)
             "\"(Not right now.)\"":
                 jump silver_requests
     
-    if hg_gryffCheer_OBJ.purchased:
+    if hg_outfits.purchased('hg_gryffCheer'):
         m "\"(Should I ask her to dress up?)\""
         menu:
             "\"(Yes, let's do it!)\"":
@@ -32,7 +32,7 @@ label hg_pf_TouchMe: #LV.5 (Whoring = 12 - 14)
                     call her_main("...","upset","wink") 
                     call her_main("Fine, at least it's gryffindor.","annoyed","worriedL") 
                     call play_sound("door") #Sound of a door opening.
-                    call set_hermione_outfit(hg_gryffCheer_OBJ) 
+                    call set_hermione_outfit(hg_outfits['hg_gryffCheer']) 
                     pass
                 else:
                     jump too_much

@@ -2,6 +2,9 @@
 
 label cupboard:
     menu:
+        "-DEBUG MENU-" if DEBUG:
+            jump debug_menu
+
         "-Examine the cupboard-" if not cupboard_examined:
             $ cupboard_examined = True
             show screen chair_left #Empty chair near the desk.
@@ -27,9 +30,7 @@ label cupboard:
             jump cupboard
         
         "-Your possessions-" if not day == 1:
-            label possessions:
-                
-            menu:
+            menu possessions:
                 "-Gift Items-" if cataloug_found:
                     label possessions_gift_items:
                         $ choices = []
@@ -160,6 +161,9 @@ label cupboard:
         
         "-Options-":
             menu:
+                "-Cheats-" if cheats_active:
+                    jump cheats
+
                 "-Change Save Name-":
                     jump custom_save
         
@@ -222,36 +226,38 @@ label cupboard:
                         #        ">Rewards are now active."
                         #        $ hardcore_difficulty_active = True
                         #        jump day_main_menu
+
                         "-Back-":
-                            jump day_main_menu
+                            jump cupboard
+
+
                 "-Replace Chibis with Sprites-" if not use_cgs:
                     ">The last two personal favours will use sprites now."
                     $ use_cgs = True
                     jump cupboard
+                
                 "-Replace Sprites with Chibis-" if use_cgs:
                     ">The last two personal favours will use chibi animations again."
                     $ use_cgs = False
                     jump cupboard
-                "-Back-":
+                
+                "-Reset ALL Luna content-":
+                    $ reset_luna_content = True
+                    call luna_init 
+                    call luna_progress_init 
+                    $ reset_luna_content = False
+                    ">Luna content reset!"
                     jump cupboard
 
-        "-Cheats-" if cheats_active:
-            jump cheats
+                "-Send Ministry letter again-" if day >= 25 and whoring >= 9 and not ministry_letter_received:
+                    $ ministry_letter = True
+                    $ letters += 1 #Displays Owl
+                    ">You received a new letter."
+                    jump cupboard
+                
+                "-Back-":
+                    jump cupboard
             
-        "-Send Ministry letter again-" if day >= 25 and whoring >= 9 and not ministry_letter_received:
-            $ ministry_letter = True
-            $ letters += 1 #Displays Owl
-            ">You received a new letter."
-            jump cupboard
-
-        "-Reset ALL Luna content-":
-            $ reset_luna_content = True
-            call luna_init 
-            call luna_progress_init 
-            $ reset_luna_content = False
-            ">Luna content reset!"
-            jump cupboard
-
         "-Never mind-":
             jump day_main_menu
 

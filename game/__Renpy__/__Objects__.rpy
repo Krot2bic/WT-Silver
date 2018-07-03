@@ -1,9 +1,12 @@
 init python:
-    def notNull(object):
-        if object == None or object == "" or object == []:
-            return False
+    def notNull(*args):
+        if len(args) > 1:
+            return all( [ notNull(arg) for arg in args ] )
         else:
-            return True
+            if args[0] == None or args[0] == "" or args[0] == []:
+                return False
+            else:
+                return True
             
     def chibiWalk(image, x, x2, speed, y=250):
         global universal_walk_image

@@ -316,8 +316,8 @@ label her_init:
 
         $ hermione_action_bra       = "characters/hermione/clothes/underwear/base/bra_base.png"
         $ hermione_action_panties   = "characters/hermione/clothes/underwear/base/panties_base.png"
-        $ hermione_action_top       = "characters/hermione/clothes/tops/base/uni_top_1.png"
-        $ hermione_action_skirt     = "characters/hermione/clothes/bottoms/base/uni_skirt_1.png"
+        $ hermione_action_top       = "characters/hermione/clothes/tops/uni_top_1.png"
+        $ hermione_action_skirt     = "characters/hermione/clothes/bottoms/uni_skirt/_base_1.png"
 
         $ custom_outfit             = 0
         $ hermione_costume          = False
@@ -382,14 +382,14 @@ label her_clothing_init:
         $ h_request_wear_tattoos          = False
 
         #Top
-        $ hermione_top              = "characters/hermione/clothes/tops/base/uni_top_1.png"
+        $ hermione_top              = "characters/hermione/clothes/tops/uni_top_1.png"
         $ h_top                     = "uni_top_1"
         $ h_top_color               = "base"
 
 
         #Bottom
-        $ hermione_skirt            = "characters/hermione/clothes/bottoms/base/uni_skirt_1.png"
-        $ h_skirt                   = "uni_skirt_1"
+        $ hermione_skirt            = "characters/hermione/clothes/bottoms/uni_skirt/_base_1.png"
+        $ h_skirt                   = "_base_1"
         $ h_skirt_color             = "base"
 
 

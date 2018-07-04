@@ -659,11 +659,15 @@ init python:
                 return '/'+str(self.name)
             return ""
 
-        def get_file(self):
-            if self.color != None:
-                return '/'+str(self.name)+'/'+str(self.color)+'_'+str(self.version)
-            else:
-                return '/'+str(self.name)+'_'+str(self.version)
+        def get_file(self, root):
+            if notNull( self.name, self.color, self.version ):
+                return ( root + str(self.name) + "/" + str(self.color) + "_" + str(self.version) + ".png" )
+            elif notNull( self.name, self.version ):
+                return ( root + str(self.name) + "/" + str(self.version) +".png" )
+            elif notNull( self.name, self.color ):
+                return ( root + str(self.name) + "/" + str(self.color) +".png" )
+            elif notNull( self.name ):
+                return ( root + str(self.name) + ".png" )
 
         def save(self):
             dic = {}
@@ -682,27 +686,32 @@ init python:
         hair_color  = "1"
 
         top = outfit_item(
-            name        = "top_1", # the name of the item.
-            version     = None,    # the varient of the top (_1, _skimpy, _sexy, _sleeves)
-            color       = None,    # which color folder the item is in.
-            wear        = True,    # if the item is currently worn.
-            always_wear = True     # if the item is worn on resetting the outfit.
+            name        = "uni_top", # the name of the item.
+            version     = "1",       # the varient of the top (_1, _skimpy, _sexy, _sleeves)
+            color       = None,      # which color folder the item is in.
+            wear        = True,      # if the item is currently worn.
+            always_wear = True       # if the item is worn on resetting the outfit.
         )
 
         bottom = outfit_item(
-            name        = "skirt_1",
+            name        = "uni_skirt",
+            version     = "1",
+            color       = "base",
             wear        = True,
             always_wear = True
         )
 
         bra = outfit_item(
-            name        = "bra_base",
+            name        = "base",
+            color       = "base",
             wear        = True,
             always_wear = True
         )
 
         panties = outfit_item(
-            name        = "panties_base",
+            name        = "base",
+            color       = "base",
+            overlay     = False,
             wear        = True,
             always_wear = True
         )
@@ -739,18 +748,116 @@ init python:
         always_wear_tattoos = False
 
         transparency = 1
-
+                
 
         def __init__(self, id, name):
             self.id = id
             self.name = name
 
         def get_layers(self):
+            global hermione_action
+
             layers = []
+            
+            #Panties
+            if self.panties.wear and notNull( self.panties.name, self.panties.color ):
+                layers.append( "clothes/underwear/panties/" + str(self.panties.name) + "/" + str(self.panties.color) + ".png" )
+            if self.panties.overlay:
+                layers.append( "clothes/underwear/pantystain.png" )
+
+            #Garterbelt
+            if self.garterbelt.wear and notNull( self.garterbelt.color ):
+                layers.append( "clothes/underwear/garterbelt_lace/" + str(self.garterbelt.color) + ".png" )
+
+
+            #####################
+            ## Fix files first ##
+            #####################
+
+            # if self.stockings.wear and notNull( self.stockings.name, self.stockings.color ):
+            #     layers.append( "clothes/underwear/stockings/" + str(self.stockings.name) + "/" + str(self.stockings.color) + ".png" )
+
+
+            #Bottom
+            if self.bottom.wear:
+
+                # not dealing with this now
+                # if hermione_wear_onepiece and (h_onepiece in h_onepieces_list): #Skirt or Pants gets added later
+                #     pass
+                # else:
+
+                if (hermione_action in ['none', 'hold_book']) or ( hermione_action != "lift_top" or  h_top not in h_lift_top_list ) and notNull( self.bottom.name, self.bottom.color ):
+                    if notNull( self.bottom.version ):
+                        layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + "_" + str(self.bottom.version) +".png" )
+                    else:
+                        layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + ".png" )
+
+            # #Action/Pose Fix A (layer above skirt)
+            # add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+
+            #Bra
+            if self.bra.wear and notNull( self.bra.name, self.bra.color ):
+                layers.append( "clothes/underwear/bra/" + str(self.bra.name) + "/" + str(self.bra.color) + ".png" )
+
+            # #One-Piece
+            # if hermione_wear_onepiece:
+            #     if not h_onepiece in h_onepieces_nighties_list:
+            #         add hermione_onepiece xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            #     else: #Nighties
+            #         if hermione_wear_top or hermione_wear_bottom:
+            #             pass
+            #         else:
+            #             add hermione_onepiece xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            #     if hermione_wear_bottom and h_onepiece in h_onepieces_list:
+            #         add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+
+            # #Gloves
+            # if hermione_wear_gloves:
+            #     add hermione_gloves xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            
+            # #Top
+            if self.top.wear:
+                layers.append( top.get_file( "clothes/tops/" ) )
+            elif self.bra.wear:
+                layers.append( bra.get_file( "clothes/underwear/bra/" ) )
+
+            #Bottom #on top of top layer. #Most skirts get added here!
+            # if hermione_wear_bottom:
+            #     if hermione_action != "none" and hermione_action != "hold_book" and hermione_action != "lift_top":
+            #         add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            #     elif hermione_action == "lift_top":
+            #         if h_top in h_lift_top_list:
+            #             add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            #     else:
+            #         pass
+
+            #Badges & Belts
+            if notNull( self.accs ):
+                layers.extend( [ "accessories/body_accs/"+str(acc)+".png" for acc in self.accs ] )
+
+            # #Action/Pose Fix B (layer above top)
+            # #add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            # add hermione_action_b xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            
+            #Robe
+            if self.robe.wear and notNull( self.robe.name ):
+                layers.append( "clothes/robe/" + str(self.robe.name) + ".png" )
+
+
+            #####################
+            ## Fix files first ##
+            #####################
+
+            # #Neckwear
+            # if self.neckwear.wear and notNull( self.neckwear.name ):
+            #     layers.append( neckwear.get_file( "clothes/neckwear/" ) )
+
             return layers
 
-        # saves and loads the state of this object to the dictionary 'hg_clothing_saves'
 
+
+
+        # saves and loads the state of this object to the dictionary 'hg_clothing_saves'
         def save(self, id=None):
             global hg_clothing_saves
             dic = {}

@@ -1,30 +1,55 @@
 label __init_variables:
     
-    # outfit purchases are the only dynamic value we care about so they have been separated into their own dict
-    if not hasattr(renpy.store,'clothing_purchases'):
-        $ clothing_purchases = {}
-    if not hasattr(renpy.store,'hg_clothing_saves'):
-        $ hg_clothing_saves  = {}
-        # this stores the state of the custom outfit for whenever .save() is called 
-        # b/c this is a basic dictionary it will also persist through reloads 
-
-
     if not hasattr(renpy.store,'hg_clothing'):
         $ hg_clothing = hg_custom_outfit('hg_clothing','hermione default clothing')
         # this is whats currently equipped to change to a diffrent outfit simply .load() it
 
+    # this is an example of a devloper assigned static save
+    # to load this save we would simply call hg_clothing.load('hg_g_cheer')
+    $ hg_custom_outfit( id="default" ).save()
+    $ hg_custom_outfit(
+        id   = "hg_g_cheer",
+        name = "Gryffindor Cheerleader",
 
-    python:
-        # this is an example of a devloper assigned static save
-        hg_clothing_saves['example_static_save'] = {
-            'name'          :'name_of_outfit/save',
-            'top'           :'example_value_for_top',
-            'top_color'     :'example_color',
-            'panties'       :'example_value_for_panties',
-            'wear_panties'  : False
-        }
+        breasts = "breasts_normal_pressed",
 
-        # to load this save we would simply call hg_clothing.load('example_static_save')
+        top = outfit_item(
+            name        = "cheer_top",
+            color       = "g",
+            wear        = True,
+            always_wear = True
+        ),
+
+        bottom = outfit_item(
+            name        = "cheer_skirt",
+            color       = "g",
+            wear        = True,
+            always_wear = True
+        )
+    ).save()
+    $ hg_custom_outfit(
+        id   = "hg_g_cheer_skimp",
+        name = "Skimpy Gryffindor Cheerleader",
+
+        breasts = "breasts_normal_pressed",
+
+        top = outfit_item(
+            name        = "cheer_top",
+            color       = "g",
+            version     = "skimpy",
+            wear        = True,
+            always_wear = True
+        ),
+
+        bottom = outfit_item(
+            name        = "cheer_skirt",
+            color       = "g",
+            version     = "skimpy",
+            wear        = True,
+            always_wear = True
+        )
+    ).save()
+
 
 
     # Clothing Sets
@@ -577,6 +602,15 @@ label set_defined_menu_vars:
 
 
 init python:
+    
+    # outfit purchases are the only dynamic value we care about so they have been separated into their own dict
+    if not hasattr(renpy.store,'clothing_purchases'):
+        clothing_purchases = {}
+    if not hasattr(renpy.store,'hg_clothing_saves'):
+        hg_clothing_saves  = {}
+        # this stores the state of the custom outfit for whenever .save() is called 
+        # b/c this is a basic dictionary it will also persist through reloads 
+
     class outfit_container(dict):
             
         def __init__(self, *args):
@@ -601,7 +635,7 @@ init python:
         
 
     class hermione_outfit(object):
-        id = 'default'
+        id = ''
         name = ''
         cost = 0
         wait_time = 0 #the ammount of time to wait until compleded from clothes store
@@ -668,11 +702,20 @@ init python:
                 return ( root + str(self.name) + "/" + str(self.color) +".png" )
             elif notNull( self.name ):
                 return ( root + str(self.name) + ".png" )
+        
+        def notNull(self, *atts):
+            li = []
+            for att in atts:
+                if not hasattr(self, att) or getattr(self, att) == None or getattr(self, att) == "" or getattr(self, att) == []:
+                    li.append(False)
+                else:
+                    li.append(True)
+            return all(li)
 
         def save(self):
             dic = {}
             for att, value in self.__dict__.items():
-                if value != getattr(outfit_item, att):
+                if value != getattr(outfit_item, att, "ATT_DNE"):
                     dic[att] = value
             return dic
         def load(self, dic):
@@ -685,7 +728,7 @@ init python:
         hair        = "A"
         hair_color  = "1"
 
-        breasts = "breasts_normal_pressed"
+        breasts = "breasts_nipfix"
 
         top = outfit_item(
             name        = "uni_top", # the name of the item.
@@ -752,9 +795,8 @@ init python:
         transparency = 1
                 
 
-        def __init__(self, id, name):
-            self.id = id
-            self.name = name
+        def __init__(self, **kwargs):
+            self.__dict__.update(**kwargs)
 
         def get_layers(self):
             global hermione_action
@@ -791,16 +833,12 @@ init python:
                         layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + ".png" )
             elif self.panties.wear:
                 layers.append( self.panties.get_file("clothes/underwear/panties/") )
-                if self.panties.overlay:
+                if self.panties.notNull('overlay') and self.panties.overlay:
                     layers.append( "clothes/underwear/pantystain.png" )
 
 
             # #Action/Pose Fix A (layer above skirt)
             # add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
-
-            #Bra
-            # if self.bra.wear and notNull( self.bra.name, self.bra.color ):
-            #     layers.append( "clothes/underwear/bra/" + str(self.bra.name) + "/" + str(self.bra.color) + ".png" )
 
             # #One-Piece
             # if hermione_wear_onepiece:
@@ -894,3 +932,6 @@ init python:
                 else:
                     dic[name] = value
             self.__dict__.update( dic )
+
+
+    

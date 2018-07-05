@@ -685,6 +685,8 @@ init python:
         hair        = "A"
         hair_color  = "1"
 
+        breasts = "breasts_normal_pressed"
+
         top = outfit_item(
             name        = "uni_top", # the name of the item.
             version     = "1",       # the varient of the top (_1, _skimpy, _sexy, _sleeves)
@@ -760,10 +762,6 @@ init python:
             layers = []
             
             #Panties
-            if self.panties.wear and notNull( self.panties.name, self.panties.color ):
-                layers.append( "clothes/underwear/panties/" + str(self.panties.name) + "/" + str(self.panties.color) + ".png" )
-            if self.panties.overlay:
-                layers.append( "clothes/underwear/pantystain.png" )
 
             #Garterbelt
             if self.garterbelt.wear and notNull( self.garterbelt.color ):
@@ -791,13 +789,18 @@ init python:
                         layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + "_" + str(self.bottom.version) +".png" )
                     else:
                         layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + ".png" )
+            elif self.panties.wear:
+                layers.append( self.panties.get_file("clothes/underwear/panties/") )
+                if self.panties.overlay:
+                    layers.append( "clothes/underwear/pantystain.png" )
+
 
             # #Action/Pose Fix A (layer above skirt)
             # add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
 
             #Bra
-            if self.bra.wear and notNull( self.bra.name, self.bra.color ):
-                layers.append( "clothes/underwear/bra/" + str(self.bra.name) + "/" + str(self.bra.color) + ".png" )
+            # if self.bra.wear and notNull( self.bra.name, self.bra.color ):
+            #     layers.append( "clothes/underwear/bra/" + str(self.bra.name) + "/" + str(self.bra.color) + ".png" )
 
             # #One-Piece
             # if hermione_wear_onepiece:
@@ -815,11 +818,12 @@ init python:
             # if hermione_wear_gloves:
             #     add hermione_gloves xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
             
-            # #Top
+            #Top
             if self.top.wear:
-                layers.append( top.get_file( "clothes/tops/" ) )
+                layers.append( self.top.get_file( "clothes/tops/" ) )
+            #Bra
             elif self.bra.wear:
-                layers.append( bra.get_file( "clothes/underwear/bra/" ) )
+                layers.append( self.bra.get_file( "clothes/underwear/bra/" ) )
 
             #Bottom #on top of top layer. #Most skirts get added here!
             # if hermione_wear_bottom:
@@ -850,7 +854,7 @@ init python:
 
             # #Neckwear
             # if self.neckwear.wear and notNull( self.neckwear.name ):
-            #     layers.append( neckwear.get_file( "clothes/neckwear/" ) )
+            #     layers.append( self.neckwear.get_file( "clothes/neckwear/" ) )
 
             return layers
 

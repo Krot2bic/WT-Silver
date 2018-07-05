@@ -67,7 +67,9 @@ init python:
             layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
 
         #Breasts
-        if notNull( body.breasts ):
+        if notNull( outfit.breasts ) and (outfit.bra.wear or outfit.top.wear):
+            layers.append( "body/breasts/" + str(outfit.breasts) + ".png" )
+        elif notNull( body.breasts ):
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )
 
         #Left Arm
@@ -163,7 +165,7 @@ label __init_variables:
     $ hg_body = hg_body_obj(
         base        = "hermione_base",
         legs        = "legs_1",
-        breasts     = "breasts_nipfix",
+        breasts     = "breasts_normal",
         right_arm   = "right_1",
         left_arm    = "left_1"
     )

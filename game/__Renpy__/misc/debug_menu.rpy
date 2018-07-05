@@ -29,8 +29,8 @@ label debug_menu:
             show screen hg_main_sc
             python:
                 o_menu = []
-                for key in hg_clothing_saves.keys():
-                    o_menu.append(("-"+key+"-",key))
+                for key, value in hg_dev_clothing_saves.items():
+                    o_menu.append(("-"+value['name']+"-",key))
                 o_menu.append(("-Never mind-", "nvm"))
                 selection = renpy.display_menu(o_menu)
             if selection == "nvm":

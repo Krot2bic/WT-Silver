@@ -4,12 +4,15 @@ label __init_variables:
         $ hg_clothing = hg_custom_outfit('hg_clothing','hermione default clothing')
         # this is whats currently equipped to change to a diffrent outfit simply .load() it
 
+    $ hg_dev_clothing_saves = {}
+
     # this is an example of a devloper assigned static save
     # to load this save we would simply call hg_clothing.load('hg_g_cheer')
-    $ hg_custom_outfit( id="default" ).save()
+    $ hg_custom_outfit( id="default", name="default", static=True ).save()
     $ hg_custom_outfit(
         id   = "hg_g_cheer",
         name = "Gryffindor Cheerleader",
+        static = True,
 
         breasts = "breasts_normal_pressed",
 
@@ -29,7 +32,8 @@ label __init_variables:
     ).save()
     $ hg_custom_outfit(
         id   = "hg_g_cheer_skimp",
-        name = "Skimpy Gryffindor Cheerleader",
+        name = "Sexy Gryffindor Cheerleader",
+        static = True,
 
         breasts = "breasts_normal_pressed",
 
@@ -49,8 +53,186 @@ label __init_variables:
             always_wear = True
         )
     ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_s_cheer",
+    #     name = "Slythrin Cheerleader",
+    #     static = True,
 
+    #     breasts = "breasts_normal_pressed",
 
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "s",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "s",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_s_cheer_skimp",
+    #     name = "Sexy Slythrin Cheerleader",
+    #     static = True,
+
+    #     breasts = "breasts_normal_pressed",
+
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "s",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "s",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_r_cheer",
+    #     name = "Ravenclaw Cheerleader",
+    #     static = True,
+
+    #     breasts = "breasts_normal_pressed",
+
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "r",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "r",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_r_cheer_skimp",
+    #     name = "Sexy Ravenclaw Cheerleader",
+    #     static = True,
+
+    #     breasts = "breasts_normal_pressed",
+
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "r",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "r",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_h_cheer",
+    #     name = "Hufflepuff Cheerleader",
+    #     static = True,
+
+    #     breasts = "breasts_normal_pressed",
+
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "h",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "h",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    # $ hg_custom_outfit(
+    #     id   = "hg_h_cheer_skimp",
+    #     name = "Sexy Hufflepuff Cheerleader",
+    #     static = True,
+
+    #     breasts = "breasts_normal_pressed",
+
+    #     top = outfit_item(
+    #         name        = "cheer_top",
+    #         color       = "h",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     ),
+
+    #     bottom = outfit_item(
+    #         name        = "cheer_skirt",
+    #         color       = "h",
+    #         version     = "skimpy",
+    #         wear        = True,
+    #         always_wear = True
+    #     )
+    # ).save()
+    $ hg_custom_outfit(
+        id   = "hg_rocker",
+        name = "Punk Rocker",
+        static = True,
+
+        breasts = "breasts_normal_pressed",
+
+        top = outfit_item(
+            name        = "wicked_leather_jacket",
+            version     = "sleeves",
+            wear        = True
+        ),
+
+        bottom = outfit_item(
+            name        = "pants_jeans",
+            color       = "base",
+            version     = "long",
+            wear        = True
+        ), 
+
+        gloves = outfit_item(
+            name        = "leather_short",
+            wear        = True
+        )
+    ).save()
+    $ hg_custom_outfit(
+        id   = "hg_wicked",
+        name = "Wicked Rocker",
+        static = True,
+
+        breasts = "breasts_normal_pressed",
+
+        top = outfit_item(
+            name        = "wicked_rocker_top",
+            wear        = True
+        ),
+
+        bottom = outfit_item(
+            name        = "pants_rocker",
+            color       = "base",
+            wear        = True
+        ), 
+
+        gloves = outfit_item(
+            name        = "rocker_band",
+            wear        = True
+        )
+    ).save()
 
     # Clothing Sets
     # 99% of the data in theese objects is static so the dynamic data has been moved and these will serve as static refrences only
@@ -274,272 +456,9 @@ label __init_variables:
         )
     )
         
-
-    # # Clothing Sets
-    # if not hasattr(renpy.store,'hg_gryffCheer_OBJ'):
-    #     $ hg_gryffCheer_OBJ = hermione_outfit()
-    # $ hg_gryffCheer_OBJ.name = "Griffindor Cheerleader"
-    # $ hg_gryffCheer_OBJ.cost = 80
-    # $ hg_gryffCheer_OBJ.wait_time = 2
-    # $ hg_gryffCheer_OBJ.store_image = "cheer_gryff.png"
-    # if not hasattr(renpy.store,'hg_gryffCheerSkimpy_OBJ'):
-    #     $ hg_gryffCheerSkimpy_OBJ = hermione_outfit()
-    # $ hg_gryffCheerSkimpy_OBJ.name = "Sexy Griffindor Cheerleader"
-    # $ hg_gryffCheerSkimpy_OBJ.cost = 140
-    # $ hg_gryffCheerSkimpy_OBJ.wait_time = 3
-    # $ hg_gryffCheerSkimpy_OBJ.store_image = "cheer_gryff_skimpy.png"
-
-    # if not hasattr(renpy.store,'hg_slythCheer_OBJ'):
-    #     $ hg_slythCheer_OBJ = hermione_outfit()
-    # $ hg_slythCheer_OBJ.name = "Slythrin Cheerleader"
-    # $ hg_slythCheer_OBJ.cost = 80
-    # $ hg_slythCheer_OBJ.wait_time = 2
-    # $ hg_slythCheer_OBJ.store_image = "cheer_slyth.png"
-    # if not hasattr(renpy.store,'hg_slythCheerSkimpy_OBJ'):
-    #     $ hg_slythCheerSkimpy_OBJ = hermione_outfit()
-    # $ hg_slythCheerSkimpy_OBJ.name = "Sexy Slythrin Cheerleader"
-    # $ hg_slythCheerSkimpy_OBJ.cost = 140
-    # $ hg_slythCheerSkimpy_OBJ.wait_time = 3
-    # $ hg_slythCheerSkimpy_OBJ.store_image = "cheer_slyth_skimpy.png"
-
-    # if not hasattr(renpy.store,'hg_ravenCheer_OBJ'):
-    #     $ hg_ravenCheer_OBJ = hermione_outfit()
-    # $ hg_ravenCheer_OBJ.name = "Ravenclaw Cheerleader"
-    # $ hg_ravenCheer_OBJ.cost = 80
-    # $ hg_ravenCheer_OBJ.wait_time = 2
-    # $ hg_ravenCheer_OBJ.store_image = "cheer_raven.png"
-    # if not hasattr(renpy.store,'hg_ravenCheerSkimpy_OBJ'):
-    #     $ hg_ravenCheerSkimpy_OBJ = hermione_outfit()
-    # $ hg_ravenCheerSkimpy_OBJ.name = "Sexy Ravenclaw Cheerleader"
-    # $ hg_ravenCheerSkimpy_OBJ.cost = 140
-    # $ hg_ravenCheerSkimpy_OBJ.wait_time = 3
-    # $ hg_ravenCheerSkimpy_OBJ.store_image = "cheer_raven_skimpy.png"
-
-    # if not hasattr(renpy.store,'hg_hufflCheer_OBJ'):
-    #     $ hg_hufflCheer_OBJ = hermione_outfit()
-    # $ hg_hufflCheer_OBJ.name = "Hufflepuff Cheerleader"
-    # $ hg_hufflCheer_OBJ.cost = 80
-    # $ hg_hufflCheer_OBJ.wait_time = 2
-    # $ hg_hufflCheer_OBJ.store_image = "cheer_huffl.png"
-    # if not hasattr(renpy.store,'hg_hufflCheerSkimpy_OBJ'):
-    #     $ hg_hufflCheerSkimpy_OBJ = hermione_outfit()
-    # $ hg_hufflCheerSkimpy_OBJ.name = "Sexy Hufflepuff Cheerleader"
-    # $ hg_hufflCheerSkimpy_OBJ.cost = 140
-    # $ hg_hufflCheerSkimpy_OBJ.wait_time = 3
-    # $ hg_hufflCheerSkimpy_OBJ.store_image = "cheer_huffl_skimpy.png"
-
-    # if not hasattr(renpy.store,'hg_MaidLingerie_OBJ'):
-    #     $ hg_MaidLingerie_OBJ = hermione_outfit()
-    # $ hg_silkNightgown_OBJ.name = "Maid Lingerie"
-    # $ hg_silkNightgown_OBJ.cost = 160
-    # $ hg_silkNightgown_OBJ.wait_time = 2
-    # $ hg_silkNightgown_OBJ.store_image = "maid_lingerie.png"
-
-    # if not hasattr(renpy.store,'hg_silkNightgown_OBJ'):
-    #     $ hg_silkNightgown_OBJ = hermione_outfit()
-    # $ hg_silkNightgown_OBJ.name = "Silk Nightgown"
-    # $ hg_silkNightgown_OBJ.cost = 140
-    # $ hg_silkNightgown_OBJ.wait_time = 2
-    # $ hg_silkNightgown_OBJ.store_image = "nightgown.png"
-
-    # if not hasattr(renpy.store,'hg_rocker_OBJ'):
-    #     $ hg_rocker_OBJ = hermione_outfit()
-    # $ hg_rocker_OBJ.name = "Rocker"
-    # $ hg_rocker_OBJ.cost = 180
-    # $ hg_rocker_OBJ.wait_time = 2
-    # $ hg_rocker_OBJ.store_image = "rocker.png"
-
-
-    # $ hermione_clothing_set_list = []
-    # $ hermione_clothing_set_list.append(hg_gryffCheer_OBJ)
-    # $ hermione_clothing_set_list.append(hg_gryffCheerSkimpy_OBJ)
-    # $ hermione_clothing_set_list.append(hg_slythCheer_OBJ)
-    # $ hermione_clothing_set_list.append(hg_slythCheerSkimpy_OBJ)
-    # $ hermione_clothing_set_list.append(hg_ravenCheer_OBJ)
-    # $ hermione_clothing_set_list.append(hg_ravenCheerSkimpy_OBJ)
-    # $ hermione_clothing_set_list.append(hg_hufflCheer_OBJ)
-    # $ hermione_clothing_set_list.append(hg_hufflCheerSkimpy_OBJ)
-    # $ hermione_clothing_set_list.append(hg_MaidLingerie_OBJ)
-    # $ hermione_clothing_set_list.append(hg_silkNightgown_OBJ)
-    # $ hermione_clothing_set_list.append(hg_rocker_OBJ)
-
-
-
-    # # Outfits
-    # if not hasattr(renpy.store,'hg_maid_OBJ'): #important!
-    #     $ hg_maid_OBJ = hermione_outfit()
-    # $ hg_maid_OBJ.name = "Maid"
-    # $ hg_maid_OBJ.cost = 250
-    # $ hg_maid_OBJ.wait_time = 2
-    # $ hg_maid_OBJ.store_image = "maid.png"
-    # $ hg_maid_OBJ.outfit_layers = []
-    # $ hg_maid_OBJ.outfit_layers.extend(("maid_stockings.png","maid_skirt.png","maid_top.png","maid_gloves.png"))
-    # $ hg_maid_OBJ.breast_layer = "breasts_normal_pressed"
-    # $ hg_maid_OBJ.top_layers = []
-    # $ hg_maid_OBJ.top_layers.append("maid_hat.png")
-
-    # if not hasattr(renpy.store,'hg_heartDancer_OBJ'):
-    #     $ hg_heartDancer_OBJ = hermione_outfit()
-    # $ hg_heartDancer_OBJ.name = "Heart Dancer"
-    # $ hg_heartDancer_OBJ.cost = 300
-    # $ hg_heartDancer_OBJ.wait_time = 4
-    # $ hg_heartDancer_OBJ.store_image = "heart.png"
-    # $ hg_heartDancer_OBJ.outfit_layers = []
-    # $ hg_heartDancer_OBJ.outfit_layers.extend(("heart_legs.png","heart_top.png","heart_collar.png"))
-    # $ hg_heartDancer_OBJ.breast_layer = "breasts_normal"
-
-    # if not hasattr(renpy.store,'hg_pirate_OBJ'):
-    #     $ hg_pirate_OBJ = hermione_outfit()
-    # $ hg_pirate_OBJ.name = "Pirate"
-    # $ hg_pirate_OBJ.cost = 75
-    # $ hg_pirate_OBJ.wait_time = 2
-    # $ hg_pirate_OBJ.store_image = "pirate.png"
-    # $ hg_pirate_OBJ.outfit_layers = []
-    # $ hg_pirate_OBJ.outfit_layers.extend(("pirate_legs.png","pirate_pants.png","pirate_top.png"))
-    # $ hg_pirate_OBJ.breast_layer = "breasts_nipfix"
-
-    # if not hasattr(renpy.store,'hg_powerGirl_OBJ'):
-    #     $ hg_powerGirl_OBJ = hermione_outfit()
-    # $ hg_powerGirl_OBJ.name = "Power Girl"
-    # $ hg_powerGirl_OBJ.cost = 350
-    # $ hg_powerGirl_OBJ.wait_time = 3
-    # $ hg_powerGirl_OBJ.store_image = "power.png"
-    # $ hg_powerGirl_OBJ.outfit_layers = []
-    # $ hg_powerGirl_OBJ.outfit_layers.extend(("power_cape.png","power_top.png","power_gloves.png","power_belt.png"))
-    # $ hg_powerGirl_OBJ.breast_layer = "breasts_normal"
-    # $ hg_powerGirl_OBJ.hair_layer = "power_hair"
-
-    # if not hasattr(renpy.store,'hg_msMarvel_OBJ'):
-    #     $ hg_msMarvel_OBJ = hermione_outfit()
-    # $ hg_msMarvel_OBJ.name = "Mrs Marvel"
-    # $ hg_msMarvel_OBJ.cost = 250
-    # $ hg_msMarvel_OBJ.wait_time = 5
-    # $ hg_msMarvel_OBJ.store_image = "marvel.png"
-    # $ hg_msMarvel_OBJ.outfit_layers = []
-    # $ hg_msMarvel_OBJ.outfit_layers.extend(("marvel_pants.png","marvel_top.png","marvel_sash.png","marvel_gloves.png"))
-    # $ hg_msMarvel_OBJ.breast_layer = "breasts_normal"
-
-    # if not hasattr(renpy.store,'hg_harleyQuinn_OBJ'):
-    #     $ hg_harleyQuinn_OBJ = hermione_outfit()
-    # $ hg_harleyQuinn_OBJ.name = "Harley Quinn"
-    # $ hg_harleyQuinn_OBJ.cost = 300
-    # $ hg_harleyQuinn_OBJ.wait_time = 4
-    # $ hg_harleyQuinn_OBJ.store_image = "harley.png"
-    # $ hg_harleyQuinn_OBJ.outfit_layers = []
-    # $ hg_harleyQuinn_OBJ.outfit_layers.extend(("harley_pants.png","harley_top.png","harley_gloves.png","harley_collar.png"))
-    # $ hg_harleyQuinn_OBJ.breast_layer = "breasts_normal"
-    # $ hg_harleyQuinn_OBJ.hair_layer = "harley_hair"
-
-    # if not hasattr(renpy.store,'hg_ballDress_OBJ'):
-    #     $ hg_ballDress_OBJ = hermione_outfit()
-    # $ hg_ballDress_OBJ.name = "Ball Dress"
-    # $ hg_ballDress_OBJ.cost = 1500
-    # $ hg_ballDress_OBJ.wait_time = 7
-    # $ hg_ballDress_OBJ.store_image = "ball_dress.png"
-    # $ hg_ballDress_OBJ.outfit_layers = []
-    # $ hg_ballDress_OBJ.outfit_layers.extend(("ball_dress_skirt.png","ball_dress_top.png"))
-    # $ hg_ballDress_OBJ.breast_layer = "breasts_nipfix"
-
-    # if not hasattr(renpy.store,'hg_christmas_OBJ'):
-    #     $ hg_christmas_OBJ = hermione_outfit()
-    # $ hg_christmas_OBJ.name = "Christmas Girl"
-    # $ hg_christmas_OBJ.cost = 50
-    # $ hg_christmas_OBJ.wait_time = 2
-    # $ hg_christmas_OBJ.store_image = "christmas.png"
-    # $ hg_christmas_OBJ.outfit_layers = []
-    # $ hg_christmas_OBJ.outfit_layers.extend(("christmas_pants.png","christmas_top.png","christmas_gloves.png","christmas_collar.png"))
-    # $ hg_christmas_OBJ.top_layers = []
-    # $ hg_christmas_OBJ.top_layers.append("christmas_antlers.png")
-    # $ hg_christmas_OBJ.breast_layer = "breasts_normal_pressed"
-
-    # if not hasattr(renpy.store,'hg_laraCroft_OBJ'):
-    #     $ hg_laraCroft_OBJ = hermione_outfit()
-    # $ hg_laraCroft_OBJ.name = "Lara Croft"
-    # $ hg_laraCroft_OBJ.cost = 270
-    # $ hg_laraCroft_OBJ.wait_time = 2
-    # $ hg_laraCroft_OBJ.store_image = "lara.png"
-    # $ hg_laraCroft_OBJ.outfit_layers = []
-    # $ hg_laraCroft_OBJ.outfit_layers.extend(("lara_pants.png","lara_top.png","lara_gloves.png"))
-    # $ hg_laraCroft_OBJ.breast_layer = "breasts_normal"
-
-    # if not hasattr(renpy.store,'hg_tifa_OBJ'):
-    #     $ hg_tifa_OBJ = hermione_outfit()
-    # $ hg_tifa_OBJ.name = "Tifa"
-    # $ hg_tifa_OBJ.cost = 220
-    # $ hg_tifa_OBJ.wait_time = 2
-    # $ hg_tifa_OBJ.store_image = "tifa.png"
-    # $ hg_tifa_OBJ.outfit_layers = []
-    # $ hg_tifa_OBJ.outfit_layers.extend(("tifa_pants.png","tifa_top.png","tifa_gloves.png","tifa_ear.png"))
-    # $ hg_tifa_OBJ.breast_layer = "breasts_normal"
-    # $ hg_tifa_OBJ.hair_layer = "tifa_hair"
-
-    # if not hasattr(renpy.store,'hg_present_OBJ'):
-    #     $ hg_present_OBJ = hermione_outfit()
-    # $ hg_present_OBJ.name = "Present"
-    # $ hg_present_OBJ.cost = 35
-    # $ hg_present_OBJ.wait_time = 1
-    # $ hg_present_OBJ.store_image = "present.png"
-    # $ hg_present_OBJ.outfit_layers = []
-    # $ hg_present_OBJ.outfit_layers.extend(("present_pant.png","present_top.png"))
-    # $ hg_present_OBJ.breast_layer = "breasts_nipfix"
-
-    # if not hasattr(renpy.store,'hg_japan_OBJ'):
-    #     $ hg_japan_OBJ = hermione_outfit()
-    # $ hg_japan_OBJ.name = "Japanese Schoolgirl"
-    # $ hg_japan_OBJ.cost = 125
-    # $ hg_japan_OBJ.wait_time = 2
-    # $ hg_japan_OBJ.store_image = "japan.png"
-    # $ hg_japan_OBJ.outfit_layers = []
-    # $ hg_japan_OBJ.outfit_layers.extend(("japan_pant.png","japan_top.png"))
-    # $ hg_japan_OBJ.breast_layer = "breasts_normal_pressed"
-
-    # if not hasattr(renpy.store,'hg_witch_OBJ'):
-    #     $ hg_witch_OBJ = hermione_outfit()
-    # $ hg_witch_OBJ.name = "Witch outfit"
-    # $ hg_witch_OBJ.cost = 250
-    # $ hg_witch_OBJ.wait_time = 3
-    # $ hg_witch_OBJ.store_image = "witch.png"
-    # $ hg_witch_OBJ.outfit_layers = []
-    # $ hg_witch_OBJ.outfit_layers.extend(("witch_stockings.png","witch_top.png","witch_cloak.png","witch_hat.png"))
-    # $ hg_witch_OBJ.breast_layer = "breasts_normal_pressed"
-
-    # if not hasattr(renpy.store,'hg_bio_OBJ'):
-    #     $ hg_bio_OBJ = hermione_outfit()
-    # $ hg_bio_OBJ.name = "Bioshock outfit"
-    # $ hg_bio_OBJ.cost = 400
-    # $ hg_bio_OBJ.wait_time = 3
-    # $ hg_bio_OBJ.store_image = "bio.png"
-    # $ hg_bio_OBJ.outfit_layers = []
-    # $ hg_bio_OBJ.outfit_layers.extend(("bio_skirt.png","bio_chocker.png","bio_corset.png","bio_jacket.png"))
-    # $ hg_bio_OBJ.breast_layer = "breasts_normal_pressed"
-
-    # if not hasattr(renpy.store,'hg_yenn_OBJ'):
-    #     $ hg_yenn_OBJ = hermione_outfit()
-    # $ hg_yenn_OBJ.name = "Yennefer's costume"
-    # $ hg_yenn_OBJ.cost = 500
-    # $ hg_yenn_OBJ.wait_time = 4
-    # $ hg_yenn_OBJ.store_image = "yenn.png"
-    # $ hg_yenn_OBJ.outfit_layers = []
-    # $ hg_yenn_OBJ.outfit_layers.extend(("yenn_stockings.png","yenn_pant.png","yenn_skirt.png","yenn_top.png","yenn_gloves.png","yenn_chocker.png","yenn_scarf.png","yenn_belt.png"))
-    # $ hg_yenn_OBJ.breast_layer = "breasts_normal"
-
-
+    
+    $ hermione_clothing_set_list = []
     $ hermione_outfits_list = []
-    # $ hermione_outfits_list.append(hg_maid_OBJ)
-    # $ hermione_outfits_list.append(hg_heartDancer_OBJ)
-    # $ hermione_outfits_list.append(hg_pirate_OBJ)
-    # $ hermione_outfits_list.append(hg_powerGirl_OBJ)
-    # $ hermione_outfits_list.append(hg_msMarvel_OBJ)
-    # $ hermione_outfits_list.append(hg_harleyQuinn_OBJ)
-    # $ hermione_outfits_list.append(hg_ballDress_OBJ)
-    # $ hermione_outfits_list.append(hg_christmas_OBJ)
-    # $ hermione_outfits_list.append(hg_laraCroft_OBJ)
-    # $ hermione_outfits_list.append(hg_tifa_OBJ)
-    # $ hermione_outfits_list.append(hg_present_OBJ)
-    # $ hermione_outfits_list.append(hg_japan_OBJ)
-    # $ hermione_outfits_list.append(hg_witch_OBJ)
-    # $ hermione_outfits_list.append(hg_bio_OBJ)
-    # $ hermione_outfits_list.append(hg_yenn_OBJ)
 
     return
 
@@ -633,7 +552,6 @@ init python:
             if isinstance(to_check,list):
                 return any( [ clothing_purchases.get(item, False) for item in to_check ] )
         
-
     class hermione_outfit(object):
         id = ''
         name = ''
@@ -724,10 +642,13 @@ init python:
     class hg_custom_outfit(object):
         id   = "default" # unique string for internal use
         name = ""        # name to display to user
+        static = False
 
         hair        = "A"
         hair_color  = "1"
 
+        action = None
+        actions = {}
         breasts = "breasts_nipfix"
 
         top = outfit_item(
@@ -735,7 +656,8 @@ init python:
             version     = "1",       # the varient of the top (_1, _skimpy, _sexy, _sleeves)
             color       = None,      # which color folder the item is in.
             wear        = True,      # if the item is currently worn.
-            always_wear = True       # if the item is worn on resetting the outfit.
+            always_wear = True,      # if the item is worn on resetting the outfit.
+            can_lift    = False      # if the item has a action vairent
         )
 
         bottom = outfit_item(
@@ -803,43 +725,30 @@ init python:
 
             layers = []
             
-            #Panties
-
             #Garterbelt
-            if self.garterbelt.wear and notNull( self.garterbelt.color ):
-                layers.append( "clothes/underwear/garterbelt_lace/" + str(self.garterbelt.color) + ".png" )
+            if self.garterbelt.wear:
+                layers.append( self.garterbelt.get_file( "clothes/underwear/garterbelts/" ) )
 
-
-            #####################
-            ## Fix files first ##
-            #####################
-
-            # if self.stockings.wear and notNull( self.stockings.name, self.stockings.color ):
-            #     layers.append( "clothes/underwear/stockings/" + str(self.stockings.name) + "/" + str(self.stockings.color) + ".png" )
-
+            #Stockings
+            if self.stockings.wear:
+                layers.append( self.stockings.get_file( "clothes/underwear/stockings/" ) )
 
             #Bottom
             if self.bottom.wear:
-
-                # not dealing with this now
-                # if hermione_wear_onepiece and (h_onepiece in h_onepieces_list): #Skirt or Pants gets added later
-                #     pass
-                # else:
-
-                if (hermione_action in ['none', 'hold_book']) or ( hermione_action != "lift_top" or  h_top not in h_lift_top_list ) and notNull( self.bottom.name, self.bottom.color ):
-                    if notNull( self.bottom.version ):
-                        layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + "_" + str(self.bottom.version) +".png" )
-                    else:
-                        layers.append( "clothes/bottoms/" + str(self.bottom.name) + "/" + str(self.bottom.color) + ".png" )
+                if self.action in [None, 'hold_book'] and not ( self.onepiece.wear or (hasattr(self.top,'can_lift') and self.top.can_lift) ):
+                    layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
+            #Panties
             elif self.panties.wear:
                 layers.append( self.panties.get_file("clothes/underwear/panties/") )
-                if self.panties.notNull('overlay') and self.panties.overlay:
+                if hasattr(self.panties, 'overlay') and self.panties.overlay:
                     layers.append( "clothes/underwear/pantystain.png" )
 
 
             # #Action/Pose Fix A (layer above skirt)
-            # add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            if 'a' in self.actions:
+                layers.append( self.actions['a'] )
 
+            # not dealing with this now
             # #One-Piece
             # if hermione_wear_onepiece:
             #     if not h_onepiece in h_onepieces_nighties_list:
@@ -852,9 +761,9 @@ init python:
             #     if hermione_wear_bottom and h_onepiece in h_onepieces_list:
             #         add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
 
-            # #Gloves
-            # if hermione_wear_gloves:
-            #     add hermione_gloves xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+            #Gloves
+            if self.gloves.wear:
+                layers.append( self.gloves.get_file( "clothes/gloves/" ) )
             
             #Top
             if self.top.wear:
@@ -863,36 +772,26 @@ init python:
             elif self.bra.wear:
                 layers.append( self.bra.get_file( "clothes/underwear/bra/" ) )
 
-            #Bottom #on top of top layer. #Most skirts get added here!
-            # if hermione_wear_bottom:
-            #     if hermione_action != "none" and hermione_action != "hold_book" and hermione_action != "lift_top":
-            #         add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
-            #     elif hermione_action == "lift_top":
-            #         if h_top in h_lift_top_list:
-            #             add hermione_skirt xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
-            #     else:
-            #         pass
+            #Bottom above top layer
+            if self.bottom.wear:
+                if self.action not in [None, 'hold_book'] or ( self.top.can_lift and self.action == 'lift_top' ):
+                    layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
 
             #Badges & Belts
             if notNull( self.accs ):
                 layers.extend( [ "accessories/body_accs/"+str(acc)+".png" for acc in self.accs ] )
 
-            # #Action/Pose Fix B (layer above top)
-            # #add hermione_action_a xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
-            # add hermione_action_b xpos hermione_xpos ypos hermione_ypos zoom (1.0/scaleratio)
+            #Action/Pose Fix B (layer above top)
+            if 'b' in self.actions:
+                layers.append( self.actions['b'] )
             
             #Robe
-            if self.robe.wear and notNull( self.robe.name ):
-                layers.append( "clothes/robe/" + str(self.robe.name) + ".png" )
+            if self.robe.wear:
+                layers.append( self.robe.get_file( "clothes/robe/" ) )
 
-
-            #####################
-            ## Fix files first ##
-            #####################
-
-            # #Neckwear
-            # if self.neckwear.wear and notNull( self.neckwear.name ):
-            #     layers.append( self.neckwear.get_file( "clothes/neckwear/" ) )
+            #Neckwear
+            if self.neckwear.wear:
+                layers.append( self.neckwear.get_file( "clothes/neckwear/" ) )
 
             return layers
 
@@ -910,14 +809,22 @@ init python:
                     if issubclass(value.__class__, object) and value.save():
                         dic[name] = { value.__class__.__name__ :  value.save() }
             dic.update(self.__dict__)
-            if id == None:
+            if self.static:
+                hg_dev_clothing_saves[self.id] = dic
+            elif id == None:
                 hg_clothing_saves[self.id] = dic
             else:
                 hg_clothing_saves[id] = dic
-        def load(self, id=None):
+        def load(self, id):
+
+            # sets all atts back to default, prevents items from persisting across loads()
+            for att in dir(hg_custom_outfit):
+                if att not in ['get_layers', 'save', 'load'] and not att.startswith('_'):
+                    setattr(self, att, getattr(hg_custom_outfit, att)) 
+
             global hg_clothing_saves
-            if id == None:
-                load_dic = hg_clothing_saves[self.id]
+            if id in hg_dev_clothing_saves:
+                load_dic = hg_dev_clothing_saves[id]
             else:
                 load_dic = hg_clothing_saves[id]
 
@@ -925,8 +832,8 @@ init python:
             for name, value in load_dic.items():
                 if isinstance(value, dict):
                     for class_name in value:
-                        constructor = globals()[class_name]
-                        class_instance = constructor()
+                        class_ = globals()[class_name]
+                        class_instance = class_()
                         class_instance.__dict__.update(value[class_name])
                         setattr(self, name, class_instance )
                 else:
@@ -934,4 +841,3 @@ init python:
             self.__dict__.update( dic )
 
 
-    

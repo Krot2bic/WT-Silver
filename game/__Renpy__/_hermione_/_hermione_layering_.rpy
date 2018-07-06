@@ -37,6 +37,8 @@ init python:
 
         layers = []
 
+        body.action_layers = {}
+
         ###################
         ### BEHIND BODY ###
         ###################
@@ -63,7 +65,7 @@ init python:
             layers.append( "body/head/" + str(outfit.hair) + "_" + str(outfit.hair_color) + ".png" )
 
         #Right Arm
-        if notNull( body.right_arm ):
+        if notNull( body.right_arm ) and body.action not in ['lift_skirt', 'lift_top']:
             layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
 
         #Breasts
@@ -73,7 +75,7 @@ init python:
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )
 
         #Left Arm
-        if notNull( body.left_arm ):
+        if notNull( body.left_arm ) and body.action not in ['lift_skirt', 'lift_top', 'pants_down']:
             layers.append( "body/arms/left/" + str(body.left_arm) + ".png" )
 
         #Pubic Hair
@@ -114,7 +116,7 @@ init python:
         ### CLOTHING LAYERS ###
         #######################
 
-        layers.extend( outfit.get_layers() )
+        layers.extend( outfit.get_layers( body ) )
 
         #########################
         ### ACCESORIES LAYERS ###
@@ -167,7 +169,9 @@ label __init_variables:
         legs        = "legs_1",
         breasts     = "breasts_normal",
         right_arm   = "right_1",
-        left_arm    = "left_1"
+        left_arm    = "left_1",
+        action      = None,
+        action_layers = {}
     )
     $ hg_face = hg_face_obj(
         eyes        = "base",

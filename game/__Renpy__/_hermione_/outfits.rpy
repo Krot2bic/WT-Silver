@@ -593,6 +593,7 @@ init python:
         color       = None
         wear        = False
         always_wear = False
+        actions     = []
 
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
@@ -647,17 +648,15 @@ init python:
         hair        = "A"
         hair_color  = "1"
 
-        action = None
-        actions = {}
         breasts = "breasts_nipfix"
 
         top = outfit_item(
-            name        = "uni_top", # the name of the item.
-            version     = "1",       # the varient of the top (_1, _skimpy, _sexy, _sleeves)
-            color       = None,      # which color folder the item is in.
-            wear        = True,      # if the item is currently worn.
-            always_wear = True,      # if the item is worn on resetting the outfit.
-            can_lift    = False      # if the item has a action vairent
+            name        = "uni_top",    # the name of the item.
+            version     = "1",          # the varient of the top (_1, _skimpy, _sexy, _sleeves)
+            color       = None,         # which color folder the item is in.
+            wear        = True,         # if the item is currently worn.
+            always_wear = True,         # if the item is worn on resetting the outfit.
+            actions     = ['lift_top']  # the actions that this item has
         )
 
         bottom = outfit_item(
@@ -720,7 +719,7 @@ init python:
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
 
-        def get_layers(self):
+        def get_layers(self, body):
             global hermione_action
 
             layers = []
@@ -734,8 +733,8 @@ init python:
                 layers.append( self.stockings.get_file( "clothes/underwear/stockings/" ) )
 
             #Bottom
-            if self.bottom.wear:
-                if self.action in [None, 'hold_book'] and not ( self.onepiece.wear or (hasattr(self.top,'can_lift') and self.top.can_lift) ):
+            bot_actions = ['lift_skirt']#, 'pants_down']
+            if self.bottom.wear and body.action not in bot_actions:
                     layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
             #Panties
             elif self.panties.wear:
@@ -745,8 +744,8 @@ init python:
 
 
             # #Action/Pose Fix A (layer above skirt)
-            if 'a' in self.actions:
-                layers.append( self.actions['a'] )
+            if 'a' in body.action_layers:
+                layers.append( body.action_layers['a'] )
 
             # not dealing with this now
             # #One-Piece
@@ -765,25 +764,43 @@ init python:
             if self.gloves.wear:
                 layers.append( self.gloves.get_file( "clothes/gloves/" ) )
             
-            #Top
-            if self.top.wear:
-                layers.append( self.top.get_file( "clothes/tops/" ) )
-            #Bra
-            elif self.bra.wear:
-                layers.append( self.bra.get_file( "clothes/underwear/bra/" ) )
 
-            #Bottom above top layer
-            if self.bottom.wear:
-                if self.action not in [None, 'hold_book'] or ( self.top.can_lift and self.action == 'lift_top' ):
-                    layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
+
+            # #Bottom
+            # if self.bottom.wear and body.action == None:
+            #         layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
+            # #Panties
+            # elif self.panties.wear:
+            #     layers.append( self.panties.get_file("clothes/underwear/panties/") )
+
+            #Top
+            top_actions = ['lift_top', 'lift_skirt', 'hold_book', 'pants_down']
+            if self.top.wear and body.action not in top_actions:
+                layers.append( self.top.get_file( "clothes/tops/" ) )
+            else:
+                #Bra
+                if self.bra.wear:
+                    layers.append( self.bra.get_file( "clothes/underwear/bra/" ) )
+                if body.action in top_actions:
+                    layers.append( self.top.get_file( "clothes/tops/_"+body.action+"_/" ) )
+
+            # #Bottom above top layer
+            # if self.bottom.wear and body.action not in bot_actions:
+            #     if body.action not in [None, 'hold_book', 'lift_skirt'] or ( body.action == 'lift_top' ):
+            #         layers.append( self.bottom.get_file( "clothes/bottoms/" ) )
+            
+            #lifted skirt
+            if body.action in bot_actions:
+                layers.append( self.bottom.get_file( "clothes/bottoms/_"+body.action+"_/" ) )
+
 
             #Badges & Belts
             if notNull( self.accs ):
                 layers.extend( [ "accessories/body_accs/"+str(acc)+".png" for acc in self.accs ] )
 
             #Action/Pose Fix B (layer above top)
-            if 'b' in self.actions:
-                layers.append( self.actions['b'] )
+            if 'b' in body.action_layers:
+                layers.append( body.action_layers['b'] )
             
             #Robe
             if self.robe.wear:

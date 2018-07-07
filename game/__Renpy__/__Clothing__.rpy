@@ -55,6 +55,7 @@ init -2 python:
         
 
     class clothing_item(object):
+        type          = None
         name          = None
         version       = None
         color         = None

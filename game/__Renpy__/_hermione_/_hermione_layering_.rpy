@@ -9,7 +9,8 @@ init python:
         pubic_hair = ""
 
         emote = ""
-
+        
+        large_breasts = False
         dribble = False
         squirt = False
         futa = False
@@ -65,7 +66,7 @@ init python:
             layers.append( "body/head/" + str(outfit.hair) + "_" + str(outfit.hair_color) + ".png" )
 
         #Right Arm
-        if notNull( body.right_arm ) and body.action not in ['lift_skirt', 'lift_top']:
+        if notNull( body.right_arm ) and body.action not in ['lift_skirt', 'lift_top', 'hold_book']:
             layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
 
         #Breasts
@@ -75,7 +76,7 @@ init python:
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )
 
         #Left Arm
-        if notNull( body.left_arm ) and body.action not in ['lift_skirt', 'lift_top', 'pants_down']:
+        if notNull( body.left_arm ) and body.action not in ['lift_skirt', 'lift_top', 'hold_book',  'pants_down']:
             layers.append( "body/arms/left/" + str(body.left_arm) + ".png" )
 
         #Pubic Hair
@@ -164,20 +165,25 @@ init python:
         return layers
 
 label __init_variables:
-    $ hg_body = hg_body_obj(
-        base        = "hermione_base",
-        legs        = "legs_1",
-        breasts     = "breasts_normal",
-        right_arm   = "right_1",
-        left_arm    = "left_1",
-        action      = None,
-        action_layers = {}
-    )
-    $ hg_face = hg_face_obj(
-        eyes        = "base",
-        eye_color   = "brown",
-        mouth       = "base"
-    )
+
+    if not hasattr(renpy.store,'hg_body') or True:
+        $ hg_body = hg_body_obj(
+            base        = "hermione_base",
+            legs        = "legs_1",
+            breasts     = "breasts_normal",
+            right_arm   = "right_1",
+            left_arm    = "left_1",
+            action      = None,
+            action_layers = {}
+        )
+
+    if not hasattr(renpy.store,'hg_face') or True:
+        $ hg_face = hg_face_obj(
+            eyes        = "base",
+            eye_color   = "brown",
+            mouth       = "base"
+        )
+
 return
 
 screen hg_main_sc:
@@ -189,6 +195,44 @@ screen hg_head_sc:
     for layer in hg_screen_builder( body=hg_body, face=hg_face, outfit=hg_clothing ):
         add layer xpos hermione_head_xpos ypos hermione_head_ypos alpha transparency zoom (1.0/scaleratio)   
     zorder hermione_head_zorder #Should be 8.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -57,7 +57,7 @@ label buy_clothing_sets:
     $ store_items = "clothing_sets"
     call clothes_store_gui(store_items)
 
-    if isinstance(clothes_store_order_choice,hermione_outfit):
+    if isinstance(clothes_store_order_choice,hg_outfit):
         if clothes_store_order_choice.purchased:
             call cust_excuse("You already own this set.")
             jump buy_outfits
@@ -121,7 +121,7 @@ label buy_outfits:
     $ store_items = "outfits"
     call clothes_store_gui(store_items)
 
-    if isinstance(clothes_store_order_choice,hermione_outfit):
+    if isinstance(clothes_store_order_choice,hg_outfit):
         if clothes_store_order_choice.purchased:
             call cust_excuse("You already own this outfit.")
             jump buy_outfits

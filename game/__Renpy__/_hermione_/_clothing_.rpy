@@ -16,44 +16,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top = clothing_item(
-            name        = "cheer_top",
-            color       = "g",
-            wear        = True,
-            always_wear = True,
-            versions    = ['', 'skimpy'],
-            colors      = ['g','h','r','s']
-        ),
-
-        bottom = clothing_item(
-            name        = "cheer_skirt",
-            color       = "g",
-            wear        = True,
-            always_wear = True,
-            versions    = ['', 'skimpy'],
-            colors      = ['g','h','r','s']
-        )
-    ).save()
-    $ hg_custom_clothing(
-        id   = "hg_g_cheer",
-        name = "Gryffindor Cheerleader",
-        static = True,
-
-        breasts = "breasts_normal_pressed",
-
-        top = clothing_item(
-            name        = "cheer_top",
-            color       = "g",
-            wear        = True,
-            always_wear = True
-        ),
-
-        bottom = clothing_item(
-            name        = "cheer_skirt",
-            color       = "g",
-            wear        = True,
-            always_wear = True
-        )
+        top     = hg_clothing_items.get('cheer_top'),
+        bottom  = hg_clothing_items.get('cheer_skirt')
     ).save()
     $ hg_custom_clothing(
         id   = "hg_rocker",
@@ -62,18 +26,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top = clothing_item(
-            name        = "wicked_leather_jacket",
-            version     = "sleeves",
-            wear        = True
-        ),
-
-        bottom = clothing_item(
-            name        = "pants_jeans",
-            color       = "base",
-            version     = "long",
-            wear        = True
-        ), 
+        top     = hg_clothing_items.get('wicked_leather_jacket'),
+        bottom  = hg_clothing_items.get('pants_jeans'),
 
         gloves = clothing_item(
             name        = "leather_short",
@@ -87,16 +41,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top = clothing_item(
-            name        = "wicked_rocker_top",
-            wear        = True
-        ),
-
-        bottom = clothing_item(
-            name        = "pants_rocker",
-            color       = "base",
-            wear        = True
-        ), 
+        top     = hg_clothing_items.get('wicked_rocker_top'),
+        bottom  = hg_clothing_items.get('pants_rocker'),
 
         gloves = clothing_item(
             name        = "rocker_band",
@@ -107,62 +53,6 @@ label __init_variables:
     # Clothing Sets
     # 99% of the data in theese objects is static so the dynamic data has been moved and these will serve as static refrences only
     $ hg_outfits = outfit_container(
-        # hg_outfit(
-        #     id = 'hg_gryffCheer',
-        #     name = "Griffindor Cheerleader",
-        #     cost = 80,
-        #     wait_time = 2,
-        #     store_image = "cheer_gryff.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_gryffCheerSkimpy',
-        #     name = "Sexy Griffindor Cheerleader",
-        #     cost = 140,
-        #     wait_time = 3,
-        #     store_image = "cheer_gryff_skimpy.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_slythCheer',
-        #     name = "Slythrin Cheerleader",
-        #     cost = 80,
-        #     wait_time = 2,
-        #     store_image = "cheer_slyth.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_slythCheerSkimpy',
-        #     name = "Sexy Slythrin Cheerleader",
-        #     cost = 140,
-        #     wait_time = 3,
-        #     store_image = "cheer_slyth_skimpy.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_ravenCheer',
-        #     name = "Ravenclaw Cheerleader",
-        #     cost = 80,
-        #     wait_time = 2,
-        #     store_image = "cheer_raven.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_ravenCheerSkimpy',
-        #     name = "Sexy Ravenclaw Cheerleader",
-        #     cost = 140,
-        #     wait_time = 3,
-        #     store_image = "cheer_raven_skimpy.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_hufflCheer',
-        #     name = "Hufflepuff Cheerleader",
-        #     cost = 80,
-        #     wait_time = 2,
-        #     store_image = "cheer_huffl.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_hufflCheerSkimpy',
-        #     name = "Sexy Hufflepuff Cheerleader",
-        #     cost = 140,
-        #     wait_time = 3,
-        #     store_image = "cheer_huffl_skimpy.png"
-        # ),
         # hg_outfit(
         #     id = 'hg_MaidLingerie',
         #     name = "Maid Lingerie",
@@ -176,13 +66,6 @@ label __init_variables:
         #     cost = 140,
         #     wait_time = 2,
         #     store_image = "nightgown.png"
-        # ),
-        # hg_outfit(
-        #     id = 'hg_rocker',
-        #     name = "Rocker",
-        #     cost = 180,
-        #     wait_time = 2,
-        #     store_image = "rocker.png"
         # ),
         hg_outfit(
             id = 'hg_maid',
@@ -378,26 +261,8 @@ init python:
 
         breasts = "breasts_nipfix"
 
-        top = clothing_item(
-            name        = "uni_top",                # the name of the item.
-            version     = "1",                      # the CURRENT varient of the top (1, skimpy, sexy, sleeves)
-            color       = None,                     # which color folder the item is in.
-            wear        = True,                     # if the item is currently worn.
-            always_wear = True,                     # if the item is worn on resetting the outfit.
-            actions     = ['lift_top'],             # the actions that this item has
-            versions    = ['1','2','3','4','5','6'] # the POSSIBLE varients of the top (1,2,3,...) or ( '' , skimpy )
-        )
-
-        bottom = clothing_item(
-            name        = "uni_skirt",
-            version     = "1",
-            color       = "base",
-            wear        = True,
-            always_wear = True,
-            actions     = ['lift_skirt'],
-            versions    = ['1','2','3','4','5','6'],
-            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
-        )
+        top     = hg_clothing_items.get('uni_top')
+        bottom  = hg_clothing_items.get('uni_skirt')
 
         bra = clothing_item(
             name        = "base",

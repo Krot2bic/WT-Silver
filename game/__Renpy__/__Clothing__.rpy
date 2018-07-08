@@ -50,6 +50,9 @@ init -2 python:
                 if hasattr(arg, 'name'):
                     self[arg.name] = arg
 
+        def get(self, item_name):
+            return deepcopy(self[item_name])
+
         def all(self):
             return self.values()
         

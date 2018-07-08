@@ -37,8 +37,8 @@ init -1 python:
         clothing_item(
             type        = "top",
             name        = "wicked_leather_jacket",
+            version     = "sleeves",
             wear        = True,
-            always_wear = True,
             actions     = ['hold_book','lift_skirt','lift_top','pants_down'],
             versions    = ['sleeves', 'short_sleeves', 'sleeveless']
         ),
@@ -180,5 +180,137 @@ init -1 python:
             name        = "striped_vibe",
             wear        = True
         ),
+
+
+
+        ################################
+        ###                          ###
+        ###    HERMIONE UNDERWEAR    ###
+        ###                          ###
+        ################################
+
+
+        #####################
+        ### HERMIONE BRAS ###
+        #####################
+
+        clothing_item(
+            type        = "bra",
+            name        = "base",
+            color       = "base",
+            wear        = True,
+            always_wear = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "bikini_string",
+            color       = "base",
+            wear        = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "lace",
+            color       = "base",
+            wear        = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "bikini",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "fishnets",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "french_maid",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "latex",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "silk",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "bra",
+            name        = "tape",
+            wear        = True,
+        ),
+
+
+        ########################
+        ### HERMIONE PANTIES ###
+        ########################
+
+        clothing_item(
+            type        = "panties",
+            name        = "base",
+            color       = "base",
+            wear        = True,
+            always_wear = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "bikini_string",
+            color       = "base",
+            wear        = True,
+            always_wear = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "lace",
+            color       = "base",
+            wear        = True,
+            always_wear = True,
+            colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "bikini",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "fishnet",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "fishnet_string",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "french_maid",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "latex",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "silk",
+            wear        = True,
+        ),
+        clothing_item(
+            type        = "panties",
+            name        = "silk_low",
+            wear        = True,
+        )
+
 
     )

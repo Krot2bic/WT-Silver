@@ -1,4 +1,45 @@
 init -1 python:
+    # This file is essentally a refrence for any item/item-variant that a user may want to equip so that a menu/gui can be built off of this 
+    # information and be able to correctly build a path to the corrassponding files
+
+    hg_tattoos = [
+        "head/cumslut",
+        "head/cunt",
+        "head/heart_cheek",
+        "head/mudblood",
+        "head/whore",
+        "pubic/10g",
+        "pubic/10g_raised",
+        "pubic/cock_hole",
+        "pubic/cum_here",
+        "pubic/cumslut",
+        "pubic/cunt",
+        "pubic/deatheater",
+        "pubic/deposit",
+        "pubic/fuck_me",
+        "pubic/impregnation",
+        "pubic/inheat",
+        "pubic/mudblood",
+        "pubic/nocondoms",
+        "pubic/paw",
+        "pubic/punk_mudblood",
+        "pubic/whore",
+        "thigh/free",
+        "thigh/signature",
+        "thigh/tribal",
+        "torso/cum_here",
+        "torso/twist"
+    ]
+
+    hg_piercings = [
+        "belly_pearls",
+        "ears_hearts",
+        "ears_hearts_large",
+        "ears_pearls",
+        "ears_straight",
+        "nipples_pearls"
+    ]
+
     hg_clothing_items = clothing_item_container(
         
         #####################

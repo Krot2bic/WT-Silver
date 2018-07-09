@@ -33,7 +33,76 @@ init python:
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
 
-    def hg_screen_builder(body, face, outfit):
+    def hg_build_outfit_sc(body, face, outfit):
+        root = "characters/hermione/" # the root folder for the character
+
+        layers = []
+
+        body.action_layers = {}
+
+        #Body & Legs
+        if notNull( body.base ):
+            layers.append( "body/base/" + str(body.base) + ".png" )
+        if notNull( body.legs ):
+            layers.append( "body/legs/" + str(body.legs) + ".png" )
+
+        #Hair
+        if notNull( outfit.hair_layer ):
+            layers.append( "clothes/custom/" + str(outfit.id) + "/" + str(outfit.hair_layer) + ".png" )
+        elif notNull( body.hair, body.hair_color ):
+            layers.append( "body/head/" + str(body.hair) + "_" + str(body.hair_color) + ".png" )
+
+        #Right Arm
+        if notNull( body.right_arm ) and body.action not in ['lift_skirt', 'lift_top', 'hold_book']:
+            layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
+
+        #Breasts
+        if notNull( outfit.breast_layer ):
+            layers.append( "body/breasts/" + str(outfit.breast_layer) + ".png" )
+
+        #Left Arm
+        if notNull( body.left_arm ) and body.action not in ['lift_skirt', 'lift_top', 'hold_book',  'pants_down']:
+            layers.append( "body/arms/left/" + str(body.left_arm) + ".png" )
+
+        #Pubic Hair
+        if notNull( body.pubic_hair ):
+            layers.append( "body/pubic_hair/" + str(body.pubic_hair) + ".png" )
+
+
+        #Face
+        if notNull( face.cheeks ):
+            layers.append( "face/pubic_hair/" + str(face.cheeks) + ".png" )
+        if notNull( face.eyes, face.eye_color ):
+            layers.append( "face/eyes/" + str(face.eye_color) + "/" + str(face.eyes) + ".png" )
+        if notNull( face.tears ):
+            layers.append( "face/tears/" + str(face.tears) + ".png" )
+        if notNull( face.mouth ):
+            layers.append( "face/mouth/nude/" + str(face.mouth) + ".png" )
+
+        #Outfit Layers
+        if notNull( outfit.outfit_layers ):
+            layers.extend( [ "clothes/custom/" + str(outfit.id) + "/"+str(layer) for layer in outfit.outfit_layers ] )
+
+        #Hair Top Layer
+        if notNull( outfit.hair_layer ):
+            layers.append( "clothes/custom/" + str(outfit.id) + "/" + str(outfit.hair_layer) + "_2.png" )
+        elif notNull( body.hair, body.hair_color ):
+            layers.append( "body/head/" + str(body.hair) + "_" + str(body.hair_color) + "_2.png" )
+
+
+        if notNull( outfit.top_layers ):
+            layers.extend( [ "clothes/custom/" + str(outfit.id) + "/"+str(layer) for layer in outfit.top_layers ] )
+
+        layers = [ root + layer for layer in layers ]
+
+        ### EMOTES ###
+        if notNull( body.emote ):
+            layers.append( "characters/emotes/" + str(body.emote) + ".png" )
+
+        return layers
+
+
+    def hg_build_clothing_sc(body, face, clothing):
         root = "characters/hermione/" # the root folder for the character
 
         layers = []
@@ -45,11 +114,11 @@ init python:
         ###################
 
         #Plug
-        if notNull( outfit.buttplug ):
-            layers.append( "accessories/plugs/" + str(outfit.buttplug) + ".png" )
+        if notNull( clothing.buttplug ):
+            layers.append( "accessories/plugs/" + str(clothing.buttplug) + ".png" )
         #Tail
-        if notNull( outfit.ears, outfit.hair_color ):
-            layers.append( "accessories/ears/tails/" + str(outfit.ears) + "_" + str(outfit.hair_color) + ".png" )
+        if notNull( clothing.ears, body.hair_color ):
+            layers.append( "accessories/ears/tails/" + str(clothing.ears) + "_" + str(body.hair_color) + ".png" )
 
         ###################
         ### BODY LAYERS ###
@@ -62,16 +131,16 @@ init python:
             layers.append( "body/legs/" + str(body.legs) + ".png" )
 
         #Hair
-        if notNull( outfit.hair, outfit.hair_color ):
-            layers.append( "body/head/" + str(outfit.hair) + "_" + str(outfit.hair_color) + ".png" )
+        if notNull( body.hair, body.hair_color ):
+            layers.append( "body/head/" + str(body.hair) + "_" + str(body.hair_color) + ".png" )
 
         #Right Arm
         if notNull( body.right_arm ) and body.action not in ['lift_skirt', 'lift_top', 'hold_book']:
             layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
 
         #Breasts
-        if notNull( outfit.breasts ) and (outfit.bra.wear or outfit.top.wear):
-            layers.append( "body/breasts/" + str(outfit.breasts) + ".png" )
+        if notNull( clothing.breasts ) and (clothing.bra.wear or clothing.top.wear):
+            layers.append( "body/breasts/" + str(clothing.breasts) + ".png" )
         elif notNull( body.breasts ):
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )
 
@@ -91,8 +160,8 @@ init python:
             layers.append( "face/eyes/" + str(face.eye_color) + "/" + str(face.eyes) + ".png" )
         if notNull( face.tears ):
             layers.append( "face/tears/" + str(face.tears) + ".png" )
-        if notNull( face.mouth, outfit.makeup_lipstick ):
-            layers.append( "face/mouth/" + str(outfit.makeup_lipstick) + "/" + str(face.mouth) + ".png" )
+        if notNull( face.mouth, clothing.makeup_lipstick ):
+            layers.append( "face/mouth/" + str(clothing.makeup_lipstick) + "/" + str(face.mouth) + ".png" )
 
 
         #Tattoos
@@ -106,7 +175,7 @@ init python:
             layers.append( "body/legs/squirting.png" )
 
         #Penis
-        if body.futa and not outfit.bottom.wear and outfit.panties.wear:
+        if body.futa and not clothing.bottom.wear and clothing.panties.wear:
             layers.append( "body/legs/dick.png" )
 
         #Piercings
@@ -117,39 +186,39 @@ init python:
         ### CLOTHING LAYERS ###
         #######################
 
-        layers.extend( outfit.get_layers( body ) )
+        layers.extend( clothing.get_layers( body ) )
 
         #########################
         ### ACCESORIES LAYERS ###
         #########################
 
         #Glasses
-        if notNull( outfit.glasses.color, outfit.glasses.name ):
-            layers.append( "accessories/glasses/" + str(outfit.glasses.color) + "/" + str(outfit.glasses.name) + ".png" )
+        if notNull( clothing.glasses.color, clothing.glasses.name ):
+            layers.append( "accessories/glasses/" + str(clothing.glasses.color) + "/" + str(clothing.glasses.name) + ".png" )
 
         #Hair Top Layer
-        if notNull( outfit.hair, outfit.hair_color ):
-            layers.append( "body/head/" + str(outfit.hair) + "_" + str(outfit.hair_color) + "_2.png" )
+        if notNull( body.hair, body.hair_color ):
+            layers.append( "body/head/" + str(body.hair) + "_" + str(body.hair_color) + "_2.png" )
 
         #Hat
-        if notNull( outfit.hat ):
-            layers.append( "accessories/hats/" + str(outfit.hat) + ".png" )
+        if notNull( clothing.hat ):
+            layers.append( "accessories/hats/" + str(clothing.hat) + ".png" )
 
         #Ears
-        if notNull( outfit.ears, outfit.hair, outfit.hair_color ):
-            if outfit.ears == "elf_ears":
-                if outfit.hair != "A":
-                    layers.append( "accessories/ears/" + str(outfit.ears) + ".png" )   
+        if notNull( clothing.ears, body.hair, body.hair_color ):
+            if clothing.ears == "elf_ears":
+                if body.hair != "A":
+                    layers.append( "accessories/ears/" + str(clothing.ears) + ".png" )   
             else:
-                layers.append( "accessories/ears/hair_" + str(outfit.hair) + "/" + str(outfit.ears) + "_" + str(outfit.hair_color) + ".png" )
+                layers.append( "accessories/ears/hair_" + str(body.hair) + "/" + str(clothing.ears) + "_" + str(body.hair_color) + ".png" )
 
         #########################################################
         #### REFRENCE FROM hermione_main for building layers ####
         #########################################################
         
         #Makeup
-        if notNull( outfit.makeup_list ):
-            layers.extend( [ "accessories/piercings/base/"+str(makup)+".png" for makup in outfit.makeup_list ] )
+        if notNull( clothing.makeup_list ):
+            layers.extend( [ "accessories/piercings/base/"+str(makup)+".png" for makup in clothing.makeup_list ] )
 
         ### SPERM LAYERS ###
 
@@ -164,6 +233,7 @@ init python:
 
         return layers
 
+
 label __init_variables:
 
     if not hasattr(renpy.store,'hg_body') or True:
@@ -173,6 +243,8 @@ label __init_variables:
             breasts     = "breasts_normal",
             right_arm   = "right_1",
             left_arm    = "left_1",
+            hair        = "A",
+            hair_color  = "1",
             action      = None,
             action_layers = {}
         )
@@ -187,12 +259,16 @@ label __init_variables:
 return
 
 screen hg_main_sc:
-    for layer in hg_screen_builder( body=hg_body, face=hg_face, outfit=hg_clothing ):
-        add layer xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+    if hg_outfit != None:
+        for layer in hg_build_outfit_sc( body=hg_body, face=hg_face, outfit=hg_outfit ):
+            add layer xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
+    else:
+        for layer in hg_build_clothing_sc( body=hg_body, face=hg_face, clothing=hg_clothing ):
+            add layer xpos hermione_xpos ypos hermione_ypos alpha transparency zoom (1.0/scaleratio)
     zorder hermione_zorder
 
 screen hg_head_sc:
-    for layer in hg_screen_builder( body=hg_body, face=hg_face, outfit=hg_clothing ):
+    for layer in hg_build_clothing_sc( body=hg_body, face=hg_face, clothing=hg_clothing ):
         add layer xpos hermione_head_xpos ypos hermione_head_ypos alpha transparency zoom (1.0/scaleratio)   
     zorder hermione_head_zorder #Should be 8.
 

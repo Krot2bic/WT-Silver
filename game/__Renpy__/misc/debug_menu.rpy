@@ -8,7 +8,7 @@ label debug_menu:
     menu:
         "-Set Herm Clothes-":
             label debug_herm_clothes:
-            show screen hermione_main
+            show screen hg_main_sc
             python:
                 o_menu = []
                 for outfit in hg_outfits:
@@ -16,11 +16,11 @@ label debug_menu:
                 o_menu.append(("-Never mind-", "nvm"))
                 selection = renpy.display_menu(o_menu)
             if selection == "nvm":
-                call h_outfit_OBJ(None)
-                hide screen hermione_main
+                $ hg_outfit = None
+                hide screen hg_main_sc
                 jump debug_menu
             else:
-                call h_outfit_OBJ(hg_outfits[selection]) 
+                $ hg_outfit = hg_outfits[selection]
                 jump debug_herm_clothes
 
         "-Load Clothes Saves-":

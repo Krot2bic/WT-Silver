@@ -53,21 +53,21 @@ label __init_variables:
     # Clothing Sets
     # 99% of the data in theese objects is static so the dynamic data has been moved and these will serve as static refrences only
     $ hg_outfits = outfit_container(
-        # hg_outfit(
+        # hg_custom_outfit(
         #     id = 'hg_MaidLingerie',
         #     name = "Maid Lingerie",
         #     cost = 160,
         #     wait_time = 2,
         #     store_image = "maid_lingerie.png"
         # ),
-        # hg_outfit(
+        # hg_custom_outfit(
         #     id = 'hg_silkNightgown',
         #     name = "Silk Nightgown",
         #     cost = 140,
         #     wait_time = 2,
         #     store_image = "nightgown.png"
         # ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_maid',
             name = 'Maid',
             cost = 250,
@@ -77,7 +77,7 @@ label __init_variables:
             breast_layer = 'breasts_normal_pressed',
             top_layers = ['maid_hat.png']
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_heartDancer',
             name = 'Heart Dancer',
             cost = 300,
@@ -86,7 +86,7 @@ label __init_variables:
             outfit_layers = ['heart_legs.png','heart_top.png','heart_collar.png'],
             breast_layer = 'breasts_normal'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_pirate',
             name = 'Pirate',
             cost = 75,
@@ -95,7 +95,7 @@ label __init_variables:
             outfit_layers = ['pirate_legs.png','pirate_pants.png','pirate_top.png'],
             breast_layer = 'breasts_nipfix'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_powerGirl',
             name = 'Power Girl',
             cost = 350,
@@ -105,7 +105,7 @@ label __init_variables:
             breast_layer = 'breasts_normal',
             hair_layer = 'power_hair'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_msMarvel',
             name = 'Mrs Marvel',
             cost = 250,
@@ -114,7 +114,7 @@ label __init_variables:
             outfit_layers = ['marvel_pants.png','marvel_top.png','marvel_sash.png','marvel_gloves.png'],
             breast_layer = 'breasts_normal'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_harleyQuinn',
             name = 'Harley Quinn',
             cost = 300,
@@ -124,7 +124,7 @@ label __init_variables:
             breast_layer = 'breasts_normal',
             hair_layer = 'harley_hair'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_ballDress',
             name = 'Ball Dress',
             cost = 1500,
@@ -133,7 +133,7 @@ label __init_variables:
             outfit_layers = ['ball_dress_skirt.png','ball_dress_top.png'],
             breast_layer = 'breasts_nipfix'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_christmas',
             name = 'Christmas Girl',
             cost = 50,
@@ -143,7 +143,7 @@ label __init_variables:
             top_layers = ['christmas_antlers.png'],
             breast_layer = 'breasts_normal_pressed'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_laraCroft',
             name = 'Lara Croft',
             cost = 270,
@@ -152,7 +152,7 @@ label __init_variables:
             outfit_layers = ['lara_pants.png','lara_top.png','lara_gloves.png'],
             breast_layer = 'breasts_normal'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_tifa',
             name = 'Tifa',
             cost = 220,
@@ -162,7 +162,7 @@ label __init_variables:
             breast_layer = 'breasts_normal',
             hair_layer = 'tifa_hair'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_present',
             name = 'Present',
             cost = 35,
@@ -171,7 +171,7 @@ label __init_variables:
             outfit_layers = ['present_pant.png','present_top.png'],
             breast_layer = 'breasts_nipfix'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_japan',
             name = 'Japanese Schoolgirl',
             cost = 125,
@@ -180,7 +180,7 @@ label __init_variables:
             outfit_layers = ['japan_pant.png','japan_top.png'],
             breast_layer = 'breasts_normal_pressed'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_witch',
             name = 'Witch outfit',
             cost = 250,
@@ -189,7 +189,7 @@ label __init_variables:
             outfit_layers = ['witch_stockings.png','witch_top.png','witch_cloak.png','witch_hat.png'],
             breast_layer = 'breasts_normal_pressed'
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_bio',
             name = 'Bioshock outfit',
             cost = 400,
@@ -198,7 +198,7 @@ label __init_variables:
             outfit_layers = ['bio_skirt.png','bio_chocker.png','bio_corset.png','bio_jacket.png'],
             breast_layer = 'breasts_normal_pressed',
         ),
-        hg_outfit(
+        hg_custom_outfit(
             id = 'hg_yenn',
             name = 'Yennefer\'s costume',
             cost = 500,
@@ -208,7 +208,8 @@ label __init_variables:
             breast_layer = 'breasts_normal'
         )
     )
-        
+     
+    $ hg_outfit = None
     
     $ hermione_clothing_set_list = []
     $ hermione_outfits_list = []
@@ -224,7 +225,7 @@ init python:
         # b/c this is a basic dictionary it will also persist through reloads 
 
 
-    class hg_outfit(character_outfit):
+    class hg_custom_outfit(character_outfit):
         id = ''
         name = ''
         cost = 0

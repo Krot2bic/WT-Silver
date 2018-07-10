@@ -67,7 +67,14 @@ screen wardrobe_grid:
     $ war_grid_dic = wardrobe_grid_info[wardrobe_grid_char]
     $ war_grid_txt = war_grid_dic['tabs_txt']
 
-    add "interface/wardrobe_grid/background/yellow_full.png"
+
+    if daytime:
+        $ root = "interface/wardrobe_grid/gold/"
+    else:
+        $ root = "interface/wardrobe_grid/gray/"
+
+
+    # add root+"background/gray_full.png"
 
     # Grid of scrollable items
     hbox:
@@ -88,12 +95,12 @@ screen wardrobe_grid:
 
                 imagebutton:
                     xalign 0.5 yalign 0.5 xysize (83, 85)
-                    idle Composite(  (83,85), (0,0), "interface/wardrobe_grid/grid_background.png", (0,0), item_image )
-                    hover Composite( (83,85), (0,0), "interface/wardrobe_grid/grid_hover.png",      (0,0), item_image )
+                    idle Composite(  (83,85), (0,0), root+"grid_background.png", (0,0), item_image )
+                    hover Composite( (83,85), (0,0), root+"grid_hover.png",      (0,0), item_image )
                     clicked [ SetVariable("wardrobe_test_grid", item), Jump("wardrobe_grid_return") ]
 
 
-    add "interface/wardrobe_grid/scroll_grid.png"
+    add root+"/scroll_grid.png"
 
     # Exit and Tabs on Right
     imagemap:
@@ -101,11 +108,11 @@ screen wardrobe_grid:
 
         ground Composite( 
             (1080,600),
-            (0,0), im.Scale("interface/wardrobe_grid/tabs/"+str(wardrobe_grid_char)+"/"+str(wardrobe_grid_tab)+".png", 1080, 600),
-            (0,0), "interface/wardrobe_grid/right_box.png" 
+            (0,0), im.Scale(root+"tabs/"+str(wardrobe_grid_char)+"/"+str(wardrobe_grid_tab)+".png", 1080, 600),
+            (0,0), root+"right_box.png" 
         )
 
-        hover im.Scale("interface/wardrobe_grid/tabs/hover.png", 1080, 600)
+        hover im.Scale(root+"tabs/hover.png", 1080, 600)
 
         hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",0),Jump("wardrobe_grid_return")]
 

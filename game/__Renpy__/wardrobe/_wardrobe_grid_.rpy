@@ -67,12 +67,10 @@ screen wardrobe_grid:
     $ war_grid_dic = wardrobe_grid_info[wardrobe_grid_char]
     $ war_grid_txt = war_grid_dic['tabs_txt']
 
-
     if daytime:
         $ root = "interface/wardrobe_grid/gold/"
     else:
         $ root = "interface/wardrobe_grid/gray/"
-
 
     # add root+"background/gray_full.png"
 
@@ -160,21 +158,20 @@ screen wardrobe_grid:
 
     zorder 5
 
-label wardrobe_grid_return:
-    if wardrobe_test_grid == 0:
-        hide screen wardrobe_grid
-    else:
-        $ renpy.say( None, str(wardrobe_test_grid) )
+label wardrobe_grid_update:
+
+    call screen wardrobe_grid
 
     if daytime:
         jump day_main_menu
     else:
         jump night_main_menu
 
-
-label wardrobe_grid_update:
-
-    call screen wardrobe_grid
+label wardrobe_grid_return:
+    if wardrobe_test_grid == 0:
+        hide screen wardrobe_grid
+    else:
+        $ renpy.say( None, str(wardrobe_test_grid) )
 
     if daytime:
         jump day_main_menu

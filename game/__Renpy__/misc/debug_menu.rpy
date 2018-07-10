@@ -6,6 +6,8 @@ return
 label debug_menu:
     
     menu:
+        "-Test Wardrobe Grid-":
+            call screen wardrobe_grid
         "-Set Herm Clothes-":
             label debug_herm_clothes:
             show screen hg_main_sc

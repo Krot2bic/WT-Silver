@@ -10,16 +10,17 @@ init python:
             'stockings': "clothes/stockings/"
         }
 
+        clothing = None
         text = []
         grid_list = []
 
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
 
-        def tab_files(self, tab_number):
+        def tab_items(self, tab_number):
             li = []
             for item in self.grid_list[tab_number]:
-                li.append(item.get_file( self.root + self.type_path[item.type] ))
+                li.append( (item.get_file( self.root + self.type_path[item.type] ), item ) )
             return li
 
         def selected_versions(self, selected_item):
@@ -35,11 +36,13 @@ label __init_variables:
         mock_list_of_items = range(1,14)
         wardrobe_grid_tab = 0
         wardrobe_grid_page = 0
+        wardrobe_grid_color = 'yellow'
         wardrobe_grid_char = 'hermione'
 
         war_grid_info = {
             'hermione': wardrobe_grid_tabs(
                 root = "characters/hermione/",
+                clothing = hg_clothing,
                 text = [
                     '',
                     'Hair-Style & Head Accs.',
@@ -75,37 +78,43 @@ screen wardrobe_grid:
 
     $ grid_tabs = war_grid_info[wardrobe_grid_char]
 
-    $ mock_list_of_items = grid_tabs.tab_files(wardrobe_grid_tab)
+    $ grid_list = grid_tabs.tab_items(wardrobe_grid_tab)
+
+    $ root = "interface/wardrobe_grid/"
+
+    # add root+"background/"+str(wardrobe_grid_color)+"_full.png"
+
+    $ hermione_xpos = 550
+    use hg_main_sc
 
     if daytime:
-        $ root = "interface/wardrobe_grid/gold/"
+        $ root += "gold/"
     else:
-        $ root = "interface/wardrobe_grid/gray/"
-
-    # add root+"background/gray_full.png"
+        $ root += "gray/"
 
     # Grid of scrollable items
-    hbox:
-        xpos 75 ypos 235 xysize (453, 355)
-        vpgrid:
-            cols 5
-            spacing 5
-            draggable True
-            mousewheel True
+    if len(grid_list) > 0:
+        hbox:
+            xpos 75 ypos 235 xysize (453, 355)
+            vpgrid:
+                cols 5
+                spacing 5
+                draggable True
+                mousewheel True
 
-            scrollbars "vertical"
+                scrollbars "vertical"
 
-            side_xalign 0.5
+                side_xalign 0.5
 
-            for item in mock_list_of_items:
+                for file, item in grid_list:
 
-                $ item_image = im.Scale(item, 83, 85)
+                    $ item_image = im.Scale(file, 83, 85)
 
-                imagebutton:
-                    xalign 0.5 yalign 0.5 xysize (83, 85)
-                    idle LiveComposite(  (83,85), (0,0), root+"grid_background.png", (0,0), item_image )
-                    hover LiveComposite( (83,85), (0,0), root+"grid_hover.png",      (0,0), item_image )
-                    clicked [ SetVariable("wardrobe_test_grid", "item"), Jump("wardrobe_grid_return") ]
+                    imagebutton:
+                        xalign 0.5 yalign 0.5 xysize (83, 85)
+                        idle LiveComposite(  (83,85), (0,0), root+"grid_background.png", (0,0), item_image )
+                        hover LiveComposite( (83,85), (0,0), root+"grid_hover.png",      (0,0), item_image )
+                        clicked [ SetVariable("wardrobe_grid_selection", item), Jump("wardrobe_grid_return") ]
 
 
     add root+"/scroll_grid.png"
@@ -122,7 +131,7 @@ screen wardrobe_grid:
 
         hover im.Scale(root+"tabs/hover.png", 1080, 600)
 
-        hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",0),Jump("wardrobe_grid_return")]
+        hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",0),Jump("wardrobe_grid_update")]
 
         if wardrobe_grid_tab == 1:
             hotspot (561, 122, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")] #return to default
@@ -166,11 +175,24 @@ screen wardrobe_grid:
 
         text grid_tabs.text[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
 
+
+        #Wardrobe background color
+        $ wardrobe_grid_colors = ['yellow','blue','gray','green','red']
+        for i in range(len(wardrobe_grid_colors)):
+            $ col = i % 5
+
+            hotspot (667+(20*col), 559, 20, 20) clicked [SetVariable("wardrobe_grid_color",wardrobe_grid_colors[i]), Jump("wardrobe_grid_update")]
+            add "interface/wardrobe/icons/colors/"+wardrobe_grid_colors[i]+".png" xpos 668+(20*col) ypos 560
+
+
     zorder 5
 
 label wardrobe_grid_update:
-
-    call screen wardrobe_grid
+    
+    if wardrobe_test_grid == 0:
+        hide screen wardrobe_grid
+    else:
+        call screen wardrobe_grid
 
     if daytime:
         jump day_main_menu
@@ -178,12 +200,15 @@ label wardrobe_grid_update:
         jump night_main_menu
 
 label wardrobe_grid_return:
-    if wardrobe_test_grid == 0:
-        hide screen wardrobe_grid
-    else:
-        $ renpy.say( None, str(wardrobe_test_grid) )
 
-    if daytime:
-        jump day_main_menu
-    else:
-        jump night_main_menu
+    $ grid_tabs = war_grid_info[wardrobe_grid_char]
+
+    $ setattr(grid_tabs.clothing, wardrobe_grid_selection.type, wardrobe_grid_selection)
+
+    call screen wardrobe_grid
+
+
+if daytime:
+    jump day_main_menu
+else:
+    jump night_main_menu

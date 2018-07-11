@@ -91,11 +91,13 @@ init -1 python:
         clothing_item(
             type        = "top",
             name        = "normal_waitress_top",
+            breasts     = "breasts_nonips",
             wear        = True
         ),
         clothing_item(
             type        = "top",
             name        = "top_fishnets",
+            breasts     = "breasts_normal",
             wear        = True
         ),
         clothing_item(

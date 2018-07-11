@@ -139,7 +139,10 @@ init python:
             layers.append( "body/arms/right/" + str(body.right_arm) + ".png" )
 
         #Breasts
-        if notNull( clothing.breasts ) and (clothing.bra.wear or clothing.top.wear):
+
+        if hasattr(clothing.top, 'breasts'):
+            layers.append( "body/breasts/" + str(clothing.top.breasts) + ".png" )
+        elif notNull( clothing.breasts ):
             layers.append( "body/breasts/" + str(clothing.breasts) + ".png" )
         elif notNull( body.breasts ):
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )

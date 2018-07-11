@@ -1,19 +1,46 @@
+init python:
+    class wardrobe_grid_tabs(object):
+
+        root = ""
+        type_path = {
+            'top': "clothes/tops/",
+            'bottom': "clothes/bottoms/",
+            'bra': "clothes/underwear/bra/",
+            'panties': "clothes/underwear/panties/",
+            'stockings': "clothes/stockings/"
+        }
+
+        text = []
+        grid_list = []
+
+        def __init__(self, **kwargs):
+            self.__dict__.update(**kwargs)
+
+        def tab_files(self, tab_number):
+            li = []
+            for item in self.grid_list[tab_number]:
+                li.append(item.get_file( self.root + self.type_path[item.type] ))
+            return li
+
+        def selected_versions(self, selected_item):
+            return None
+
+        def selected_colors(self, selected_item):
+            return None
+
+    
 
 label __init_variables:
     python:
         mock_list_of_items = range(1,14)
         wardrobe_grid_tab = 0
+        wardrobe_grid_page = 0
         wardrobe_grid_char = 'hermione'
 
-        hg_tops_tab = hg_clothing_items.all_type('top', 'characters/hermione/clothes/tops/')
-        hg_bots_tab = hg_clothing_items.all_type('bottom', 'characters/hermione/clothes/bottoms/')
-        hg_undr_tab = []
-        hg_undr_tab.extend( hg_clothing_items.all_type('bra', 'characters/hermione/clothes/underwear/bra/') )
-        hg_undr_tab.extend( hg_clothing_items.all_type('panties', 'characters/hermione/clothes/underwear/panties/') )
-
-        wardrobe_grid_info = {
-            'hermione': {
-                'tabs_txt': [
+        war_grid_info = {
+            'hermione': wardrobe_grid_tabs(
+                root = "characters/hermione/",
+                text = [
                     '',
                     'Hair-Style & Head Accs.',
                     'Top Clothings',
@@ -22,68 +49,21 @@ label __init_variables:
                     'Miscellaneous',
                     'Underwear',
                     'Costumes & Outfits',
-                    'Gifts & Quest Items',
+                    'Gifts & Quest Items'
                 ],
-                'tabs_lst': [
+                grid_list = [
                     [],
                     [],
-                    hg_tops_tab,
-                    hg_bots_tab,
+                    hg_clothing_items.all_type('top'),
+                    hg_clothing_items.all_type('bottom'),
+                    hg_clothing_items.all_type('stockings'),
                     [],
-                    hg_undr_tab,
+                    hg_clothing_items.all_type('bra', 'panties'),
                     [],
                     []
                 ]
-            },
-            'astoria': {
-                'tabs_txt': [
-                    '',
-                    'Hair-Style & Head Accs.',
-                    'Top Clothings',
-                    'Bottom Clothings',
-                    'Other Clothings',
-                    'Miscellaneous',
-                    'Underwear',
-                    'Costumes & Outfits',
-                    'Gifts & Quest Items',
-                ],
-                'tabs_lst': [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    []
-                ]
-            },
-            'susan': {
-                'tabs_txt': [
-                    '',
-                    'Hair-Style & Head Accs.',
-                    'Top Clothings',
-                    'Bottom Clothings',
-                    'Other Clothings',
-                    'Miscellaneous',
-                    'Underwear',
-                    'Costumes & Outfits',
-                    'Gifts & Quest Items',
-                ],
-                'tabs_lst': [
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    [],
-                    []
-                ]
-            }
-
+            )
         }
-
 return
 
 
@@ -93,11 +73,9 @@ return
 # framework for an eaiser to manage grid of items
 screen wardrobe_grid:
 
-    $ war_grid_dic = wardrobe_grid_info[wardrobe_grid_char]
-    $ war_grid_txt = war_grid_dic['tabs_txt']
-    $ war_grid_lst = war_grid_dic['tabs_lst']
+    $ grid_tabs = war_grid_info[wardrobe_grid_char]
 
-    $ mock_list_of_items = war_grid_lst[wardrobe_grid_tab]
+    $ mock_list_of_items = grid_tabs.tab_files(wardrobe_grid_tab)
 
     if daytime:
         $ root = "interface/wardrobe_grid/gold/"
@@ -186,7 +164,7 @@ screen wardrobe_grid:
         else:
             hotspot (987, 452, 40, 93) clicked [SetVariable("wardrobe_grid_tab",8), Jump("wardrobe_grid_update")]
 
-        text war_grid_txt[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
+        text grid_tabs.text[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
 
     zorder 5
 

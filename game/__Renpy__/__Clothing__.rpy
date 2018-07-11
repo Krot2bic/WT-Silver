@@ -44,7 +44,7 @@ init -2 python:
 
 
     class clothing_item_container(dict):
-
+        
         def __init__(self, *args):
             for arg in args:
                 if hasattr(arg, 'name'):
@@ -53,11 +53,12 @@ init -2 python:
         def get(self, item_name):
             return deepcopy(self[item_name])
 
-        def all_type(self, type, root):
+        def all_type(self, *types):
             li = []
-            for item_name, value in self.items():
-                if str(type) in str(value.type):
-                    li.extend(value.get_possible(root))
+            for type in types:
+                for item in self.values():
+                    if str(type) in str(item.type):
+                        li.append( item )
             return li
 
         def all(self):

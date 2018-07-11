@@ -40,6 +40,37 @@ init -1 python:
         "nipples_pearls"
     ]
 
+
+    hg_body_options = {
+        'hair': [
+            character_body_option(
+                type = "hair",
+                option = "A",
+                color = "1",
+                colors = range(1,12)
+            ),
+            character_body_option(
+                type = "hair",
+                option = "B",
+                color = "1",
+                colors = range(1,11)
+            ),
+            character_body_option(
+                type = "hair",
+                option = "C",
+                color = "1",
+                colors = range(1,7)
+            ),
+            character_body_option(
+                type = "hair",
+                option = "E",
+                color = "1",
+                colors = range(1,11)
+            )
+        ]
+    }
+
+
     hg_clothing_items = clothing_item_container(
         
         #####################

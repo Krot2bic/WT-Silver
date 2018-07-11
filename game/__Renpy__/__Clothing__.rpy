@@ -5,6 +5,12 @@ init -2 python:
     if not hasattr(renpy.store,'clothing_purchases'):
         clothing_purchases = {}      
 
+    class character_body_option(object):
+
+        def __init__(self, **kwargs):
+            self.__dict__.update(**kwargs)
+
+
     class outfit_container(dict):
             
         def __init__(self, *args):
@@ -93,32 +99,6 @@ init -2 python:
                 return ( root + str(self.name) + "/" + str(self.color) +".png" )
             elif notNull( self.name ):
                 return ( root + str(self.name) + ".png" )
-
-        def get_possible(self, root):
-            li = []
-            if len(self.versions) > 0 and len(self.colors) > 0:
-                for version in self.versions:
-                    for color in self.colors:
-                        if notNull(version, color):
-                            li.append( root + str(self.name) + "/" + str(color) + "_" + str(version) + ".png" )
-                        elif notNull(version):
-                            li.append( root + str(self.name) + "/" + str(version) + ".png" )
-                        elif notNull(color):
-                            li.append( root + str(self.name) + "/" + str(color) + ".png" )
-                        else:
-                            li.append( root + str(self.name) + ".png" )
-            elif len(self.versions) > 0:
-                for version in self.versions:
-                    if notNull(version):
-                        li.append( root + str(self.name) + "/" + str(version) +".png" )
-            elif len(self.colors) > 0:
-                for color in self.colors:
-                    if notNull(color):
-                        li.append( root + str(self.name) + "/" + str(color) +".png" )
-            else:
-                li.append( root + str(self.name) + ".png" )
-            return li
-
 
         def notNull(self, *atts):
             li = []

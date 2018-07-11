@@ -7,7 +7,8 @@ init python:
             'bottom': "clothes/bottoms/",
             'bra': "clothes/underwear/bra/",
             'panties': "clothes/underwear/panties/",
-            'stockings': "clothes/stockings/"
+            'stockings': "clothes/stockings/",
+            'hair': "body/head/"
         }
 
         clothing = None
@@ -19,9 +20,17 @@ init python:
 
         def tab_items(self, tab_number):
             li = []
-            for item in self.grid_list[tab_number]:
-                li.append( (item.get_file( self.root + self.type_path[item.type] ), item ) )
+            if tab_number in [1]:
+                for b_opt in self.grid_list[tab_number]:
+                    for color in b_opt.colors:
+                        file = self.root + self.type_path[b_opt.type] + b_opt.option + "_" + str(color) + ".png"
+                        obj = character_body_option(type='hair', option=b_opt.option, color=color)
+                        li.append((  file , obj ))
+            elif tab_number in [2,3,4,6]:
+                for item in self.grid_list[tab_number]:
+                    li.append( (item.get_file( self.root + self.type_path[item.type] ), item ) )
             return li
+
 
         def selected_versions(self, selected_item):
             return None
@@ -42,6 +51,7 @@ label __init_variables:
         war_grid_info = {
             'hermione': wardrobe_grid_tabs(
                 root = "characters/hermione/",
+                body = hg_body,
                 clothing = hg_clothing,
                 text = [
                     '',
@@ -56,7 +66,7 @@ label __init_variables:
                 ],
                 grid_list = [
                     [],
-                    [],
+                    hg_body_options['hair'],
                     hg_clothing_items.all_type('top'),
                     hg_clothing_items.all_type('bottom'),
                     hg_clothing_items.all_type('stockings'),
@@ -205,11 +215,16 @@ label wardrobe_grid_return:
 
     python:
         grid_tabs = war_grid_info[wardrobe_grid_char]
-        if getattr(grid_tabs.clothing, wardrobe_grid_selection.type) != wardrobe_grid_selection:
-            setattr(grid_tabs.clothing, wardrobe_grid_selection.type, wardrobe_grid_selection)
-        else:
-            item = getattr(grid_tabs.clothing, wardrobe_grid_selection.type)
-            item.wear = not item.wear
+        if isinstance( wardrobe_grid_selection, character_body_option ):
+            if wardrobe_grid_selection.type == 'hair':
+                grid_tabs.body.hair = wardrobe_grid_selection.option
+                grid_tabs.body.hair_color = wardrobe_grid_selection.color
+        if isinstance( wardrobe_grid_selection, clothing_item ):
+            if getattr(grid_tabs.clothing, wardrobe_grid_selection.type) != wardrobe_grid_selection:
+                setattr(grid_tabs.clothing, wardrobe_grid_selection.type, wardrobe_grid_selection)
+            else:
+                item = getattr(grid_tabs.clothing, wardrobe_grid_selection.type)
+                item.wear = not item.wear
 
 
     call screen wardrobe_grid

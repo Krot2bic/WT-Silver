@@ -75,6 +75,8 @@ return
 
 # framework for an eaiser to manage grid of items
 screen wardrobe_grid:
+    
+    $ wardrobe_test_grid = 0
 
     $ grid_tabs = war_grid_info[wardrobe_grid_char]
 
@@ -131,7 +133,7 @@ screen wardrobe_grid:
 
         hover im.Scale(root+"tabs/hover.png", 1080, 600)
 
-        hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",0),Jump("wardrobe_grid_update")]
+        hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",None),Jump("wardrobe_grid_update")]
 
         if wardrobe_grid_tab == 1:
             hotspot (561, 122, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")] #return to default
@@ -189,7 +191,7 @@ screen wardrobe_grid:
 
 label wardrobe_grid_update:
     
-    if wardrobe_test_grid == 0:
+    if wardrobe_test_grid == None:
         hide screen wardrobe_grid
     else:
         call screen wardrobe_grid
@@ -201,9 +203,14 @@ label wardrobe_grid_update:
 
 label wardrobe_grid_return:
 
-    $ grid_tabs = war_grid_info[wardrobe_grid_char]
+    python:
+        grid_tabs = war_grid_info[wardrobe_grid_char]
+        if getattr(grid_tabs.clothing, wardrobe_grid_selection.type) != wardrobe_grid_selection:
+            setattr(grid_tabs.clothing, wardrobe_grid_selection.type, wardrobe_grid_selection)
+        else:
+            item = getattr(grid_tabs.clothing, wardrobe_grid_selection.type)
+            item.wear = not item.wear
 
-    $ setattr(grid_tabs.clothing, wardrobe_grid_selection.type, wardrobe_grid_selection)
 
     call screen wardrobe_grid
 

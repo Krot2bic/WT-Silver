@@ -16,8 +16,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top     = hg_clothing_items.get('cheer_top'),
-        bottom  = hg_clothing_items.get('cheer_skirt')
+        top     = hg_clothing_items.get('top','cheer_top'),
+        bottom  = hg_clothing_items.get('bottom','cheer_skirt')
     ).save()
     $ hg_custom_clothing(
         id   = "hg_rocker",
@@ -26,8 +26,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top     = hg_clothing_items.get('wicked_leather_jacket'),
-        bottom  = hg_clothing_items.get('pants_jeans'),
+        top     = hg_clothing_items.get('top','wicked_leather_jacket'),
+        bottom  = hg_clothing_items.get('bottom','pants_jeans'),
 
         gloves = clothing_item(
             name        = "leather_short",
@@ -41,8 +41,8 @@ label __init_variables:
 
         breasts = "breasts_normal_pressed",
 
-        top     = hg_clothing_items.get('wicked_rocker_top'),
-        bottom  = hg_clothing_items.get('pants_rocker'),
+        top     = hg_clothing_items.get('top','wicked_rocker_top'),
+        bottom  = hg_clothing_items.get('bottom','pants_rocker'),
 
         gloves = clothing_item(
             name        = "rocker_band",
@@ -262,8 +262,8 @@ init python:
 
         breasts = "breasts_nipfix"
 
-        top     = hg_clothing_items.get('uni_top')
-        bottom  = hg_clothing_items.get('uni_skirt')
+        top     = hg_clothing_items.get('top','uni_top')
+        bottom  = hg_clothing_items.get('bottom','uni_skirt')
 
         bra = clothing_item(
             name        = "base",
@@ -324,7 +324,7 @@ init python:
 
             #Stockings
             if self.stockings.wear:
-                layers.append( self.stockings.get_file( "clothes/underwear/stockings/" ) )
+                layers.append( self.stockings.get_file( "clothes/stockings/" ) )
 
             #Bottom
             bot_actions = ['lift_skirt']#, 'pants_down']

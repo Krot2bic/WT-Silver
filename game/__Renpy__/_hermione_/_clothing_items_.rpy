@@ -250,6 +250,7 @@ init -1 python:
             name        = "bikini_string",
             color       = "base",
             wear        = True,
+            breasts     = "breasts_normal",
             colors      = ['base','black','blue','brown','crimson','dark_blue','dark_green','gray','green','orange','pink','purple','red','white','yellow']
         ),
         clothing_item(
@@ -262,31 +263,37 @@ init -1 python:
         clothing_item(
             type        = "bra",
             name        = "bikini",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
         clothing_item(
             type        = "bra",
             name        = "fishnets",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
         clothing_item(
             type        = "bra",
             name        = "french_maid",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
         clothing_item(
             type        = "bra",
             name        = "latex",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
         clothing_item(
             type        = "bra",
             name        = "silk",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
         clothing_item(
             type        = "bra",
             name        = "tape",
+            breasts     = "breasts_normal",
             wear        = True,
         ),
 

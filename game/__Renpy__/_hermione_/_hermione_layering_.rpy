@@ -140,9 +140,11 @@ init python:
 
         #Breasts
 
-        if hasattr(clothing.top, 'breasts'):
+        if hasattr(clothing.top, 'breasts') and clothing.top.wear:
             layers.append( "body/breasts/" + str(clothing.top.breasts) + ".png" )
-        elif notNull( clothing.breasts ):
+        elif hasattr(clothing.bra, 'breasts') and clothing.bra.wear:
+            layers.append( "body/breasts/" + str(clothing.bra.breasts) + ".png" )
+        elif notNull( clothing.breasts ) and (clothing.bra.wear or clothing.top.wear):
             layers.append( "body/breasts/" + str(clothing.breasts) + ".png" )
         elif notNull( body.breasts ):
             layers.append( "body/breasts/" + str(body.breasts) + ".png" )

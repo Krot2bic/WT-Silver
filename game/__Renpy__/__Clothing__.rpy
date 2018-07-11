@@ -44,14 +44,14 @@ init -2 python:
 
 
     class clothing_item_container(dict):
-        
+
         def __init__(self, *args):
             for arg in args:
-                if hasattr(arg, 'name'):
-                    self[arg.name] = arg
+                if hasattr(arg, 'name') and hasattr(arg, 'type'):
+                    self[arg.type+"_"+arg.name] = arg
 
-        def get(self, item_name):
-            return deepcopy(self[item_name])
+        def get(self, item_type, item_name):
+            return deepcopy(self[item_type+"_"+item_name])
 
         def all_type(self, *types):
             li = []
@@ -107,8 +107,6 @@ init -2 python:
                             li.append( root + str(self.name) + "/" + str(color) + ".png" )
                         else:
                             li.append( root + str(self.name) + ".png" )
-
-
             elif len(self.versions) > 0:
                 for version in self.versions:
                     if notNull(version):

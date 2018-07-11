@@ -44,7 +44,7 @@ init -2 python:
 
 
     class clothing_item_container(dict):
-            
+
         def __init__(self, *args):
             for arg in args:
                 if hasattr(arg, 'name'):
@@ -52,6 +52,13 @@ init -2 python:
 
         def get(self, item_name):
             return deepcopy(self[item_name])
+
+        def all_type(self, type, root):
+            li = []
+            for item_name, value in self.items():
+                if str(type) in str(value.type):
+                    li.extend(value.get_possible(root))
+            return li
 
         def all(self):
             return self.values()
@@ -91,12 +98,23 @@ init -2 python:
             if len(self.versions) > 0 and len(self.colors) > 0:
                 for version in self.versions:
                     for color in self.colors:
-                        li.append( root + str(self.name) + "/" + str(color) + "_" + str(version) + ".png" )
+                        if notNull(version, color):
+                            li.append( root + str(self.name) + "/" + str(color) + "_" + str(version) + ".png" )
+                        elif notNull(version):
+                            li.append( root + str(self.name) + "/" + str(version) + ".png" )
+                        elif notNull(color):
+                            li.append( root + str(self.name) + "/" + str(color) + ".png" )
+                        else:
+                            li.append( root + str(self.name) + ".png" )
+
+
             elif len(self.versions) > 0:
                 for version in self.versions:
-                    li.append( root + str(self.name) + "/" + str(version) +".png" )
+                    if notNull(version):
+                        li.append( root + str(self.name) + "/" + str(version) +".png" )
             elif len(self.colors) > 0:
                 for color in self.colors:
+                    if notNull(color):
                         li.append( root + str(self.name) + "/" + str(color) +".png" )
             else:
                 li.append( root + str(self.name) + ".png" )

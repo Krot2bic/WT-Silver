@@ -4,6 +4,13 @@ label __init_variables:
         mock_list_of_items = range(1,14)
         wardrobe_grid_tab = 0
         wardrobe_grid_char = 'hermione'
+
+        hg_tops_tab = hg_clothing_items.all_type('top', 'characters/hermione/clothes/tops/')
+        hg_bots_tab = hg_clothing_items.all_type('bottom', 'characters/hermione/clothes/bottoms/')
+        hg_undr_tab = []
+        hg_undr_tab.extend( hg_clothing_items.all_type('bra', 'characters/hermione/clothes/underwear/bra/') )
+        hg_undr_tab.extend( hg_clothing_items.all_type('panties', 'characters/hermione/clothes/underwear/panties/') )
+
         wardrobe_grid_info = {
             'hermione': {
                 'tabs_txt': [
@@ -17,16 +24,15 @@ label __init_variables:
                     'Costumes & Outfits',
                     'Gifts & Quest Items',
                 ],
-                'cat_txt': [ [],
-                    [
-                    'Hair Color Palette',
-                    'Color Palette',
-                    'Hair-Style and Hair-Color',
-                    'Makeup',
-                    'Glasses',
-                    'Ears',
-                    'Hats',
-                    ]
+                'tabs_lst': [
+                    [],
+                    [],
+                    hg_tops_tab,
+                    hg_bots_tab,
+                    [],
+                    hg_undr_tab,
+                    [],
+                    []
                 ]
             },
             'astoria': {
@@ -40,6 +46,16 @@ label __init_variables:
                     'Underwear',
                     'Costumes & Outfits',
                     'Gifts & Quest Items',
+                ],
+                'tabs_lst': [
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    []
                 ]
             },
             'susan': {
@@ -53,6 +69,16 @@ label __init_variables:
                     'Underwear',
                     'Costumes & Outfits',
                     'Gifts & Quest Items',
+                ],
+                'tabs_lst': [
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    [],
+                    []
                 ]
             }
 
@@ -61,11 +87,17 @@ label __init_variables:
 return
 
 
+
+
+
 # framework for an eaiser to manage grid of items
 screen wardrobe_grid:
 
     $ war_grid_dic = wardrobe_grid_info[wardrobe_grid_char]
     $ war_grid_txt = war_grid_dic['tabs_txt']
+    $ war_grid_lst = war_grid_dic['tabs_lst']
+
+    $ mock_list_of_items = war_grid_lst[wardrobe_grid_tab]
 
     if daytime:
         $ root = "interface/wardrobe_grid/gold/"
@@ -89,13 +121,13 @@ screen wardrobe_grid:
 
             for item in mock_list_of_items:
 
-                $ item_image = im.Scale("interface/store_icons/dyes/dye_2.png", 83, 85)
+                $ item_image = im.Scale(item, 83, 85)
 
                 imagebutton:
                     xalign 0.5 yalign 0.5 xysize (83, 85)
-                    idle Composite(  (83,85), (0,0), root+"grid_background.png", (0,0), item_image )
-                    hover Composite( (83,85), (0,0), root+"grid_hover.png",      (0,0), item_image )
-                    clicked [ SetVariable("wardrobe_test_grid", item), Jump("wardrobe_grid_return") ]
+                    idle LiveComposite(  (83,85), (0,0), root+"grid_background.png", (0,0), item_image )
+                    hover LiveComposite( (83,85), (0,0), root+"grid_hover.png",      (0,0), item_image )
+                    clicked [ SetVariable("wardrobe_test_grid", "item"), Jump("wardrobe_grid_return") ]
 
 
     add root+"/scroll_grid.png"
@@ -104,7 +136,7 @@ screen wardrobe_grid:
     imagemap:
         cache False
 
-        ground Composite( 
+        ground LiveComposite( 
             (1080,600),
             (0,0), im.Scale(root+"tabs/"+str(wardrobe_grid_char)+"/"+str(wardrobe_grid_tab)+".png", 1080, 600),
             (0,0), root+"right_box.png" 

@@ -5,7 +5,7 @@ init python:
         else:
             if isinstance(args[0], clothing_item):
                 return args[0].__bool__()
-            if args[0] == None or args[0] == "" or args[0] == []:
+            if args[0] == None or args[0] == "" or args[0] == '' or args[0] == []:
                 return False
             else:
                 return True

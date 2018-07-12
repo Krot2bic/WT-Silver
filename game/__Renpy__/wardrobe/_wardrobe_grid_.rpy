@@ -146,13 +146,6 @@ screen wardrobe_grid:
     add root+"border.png"
     #add root+"/scroll_grid.png"
 
-
-    # #Pages
-    # for i in range(len(silver_grid.page_text[wardrobe_grid_tab])):
-    #     hotspot ((76+(90*i)), 140, 80, 80) clicked [SetVariable("wardrobe_grid_page",i), Jump("wardrobe_grid_update")]
-    #     add "interface/wardrobe_grid/pages/"+str(wardrobe_grid_char)+"/"+str(wardrobe_grid_tab)+"_"+str(i)+".png" xpos 76+(90*i) ypos 140
-    #     text silver_grid.page_text[ wardrobe_grid_tab ][i] xpos 76+(90*i) ypos 215 size 10
-
     #Pages
     for i in range(len(silver_grid.page_text[wardrobe_grid_tab])):
         $ page_image = "interface/wardrobe_grid/pages/"+str(wardrobe_grid_char)+"/"+str(wardrobe_grid_tab)+"_"+str(i)+".png"

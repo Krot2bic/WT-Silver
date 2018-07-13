@@ -6,13 +6,6 @@ return
 label debug_menu:
     
     menu:
-
-        "-find error-":
-            python:
-                value = globals().items()
-                for name, value in items:
-                    if "uni_top/True" in value:
-                        renpy.say(None, str(name) + ":" + str(value) )
         "-Test Wardrobe Grid-":
             call screen wardrobe_grid
         "-Set Herm Clothes-":

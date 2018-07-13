@@ -72,6 +72,7 @@ label __init_variables:
 
         wardrobe_grid_page = None
         wardrobe_page_selection = None
+        wardrobe_grid_selection = None
 
         wardrobe_grid_color = 'yellow'
         wardrobe_grid_char = 'hermione'
@@ -129,13 +130,14 @@ screen wardrobe_grid:
 
     $ silver_grid = war_grid_info[wardrobe_grid_char]
 
-    $ page_list = silver_grid.page_items()
 
     if wardrobe_grid_page == None:
         $ grid_list = silver_grid.tab_items(wardrobe_grid_tab)
     else:
         $ grid_list = wardrobe_grid_page[1]
 
+    $ page_list = silver_grid.page_items()
+    
     $ root = "interface/wardrobe_grid/"
 
     # add root+"background/"+str(wardrobe_grid_color)+"_full.png"
@@ -183,7 +185,7 @@ screen wardrobe_grid:
             xpos (76+(90*i)) ypos 140 xysize (80, 80)
             idle LiveComposite( (80,80), (0,0), im.Scale(root+"grid_background.png",80,80) )#page_image )
             hover LiveComposite( (80,80), (0,0), im.Scale(root+"grid_hover.png",80,80) )# ,      (0,0), page_image )
-            clicked [ SetVariable("wardrobe_page_selection", page[1] ), Jump("wardrobe_grid_return") ]
+            clicked [ SetVariable("wardrobe_page_selection", page[1] ), Jump("wardrobe_page_return") ]
         text page[0] xpos 76+(90*i) ypos 215 size 10
 
     # Exit and Tabs on Right
@@ -263,12 +265,8 @@ label wardrobe_grid_update:
     else:
         jump night_main_menu
 
-label wardrobe_grid_return:
-
+label wardrobe_page_return:
     python:
-
-        silver_grid = war_grid_info[wardrobe_grid_char]
-
         if wardrobe_page_selection != None:
             if wardrobe_grid_page != None and wardrobe_page_selection[0] == wardrobe_grid_page[0]:
                 wardrobe_grid_page = None
@@ -276,13 +274,34 @@ label wardrobe_grid_return:
                 wardrobe_grid_page = wardrobe_page_selection
                 wardrobe_page_selection = None
 
-        if wardrobe_grid_page != None:
-            attr = str(wardrobe_grid_page[0])
-            value = wardrobe_grid_selection
-            item = getattr(silver_grid.clothing, silver_grid.selection.type)
-            setattr(item, attr, value)
-        else:
-            silver_grid.selection = wardrobe_grid_selection
+    call screen wardrobe_grid
+
+
+label wardrobe_grid_return:
+
+    python:
+        silver_grid = war_grid_info[wardrobe_grid_char]
+
+        if wardrobe_grid_selection != None:
+            if wardrobe_grid_page == None:
+                if isinstance(wardrobe_grid_selection, clothing_item):
+                    silver_grid.selection = wardrobe_grid_selection
+                    wardrobe_grid_selection = None
+            else:
+                attr = str(wardrobe_grid_page[0])
+                value = wardrobe_grid_selection
+                item = deepcopy(silver_grid.selection)
+                setattr(item, attr, value)
+                setattr(silver_grid.clothing, silver_grid.selection.type, item)
+                wardrobe_grid_selection = None
+
+
+                # attr = str(wardrobe_grid_page[0])
+                # value = wardrobe_grid_selection
+                # item = getattr(silver_grid.clothing, silver_grid.selection.type)
+                # if hasattr(item, attr):
+                #     setattr(item, attr, value)
+                #     wardrobe_grid_selection = None
 
 
         # if isinstance( wardrobe_grid_selection, character_body_option ):

@@ -90,15 +90,31 @@ init -2 python:
         __nonzero__ = __bool__
 
 
+        def build_file_path(self, root, name, color, version):
+            if notNull( name, color, version ):
+                return ( root + str(name) + "/" + str(color) + "_" + str(version) + ".png" )
+            elif notNull( name, version ):
+                return ( root + str(name) + "/" + str(version) +".png" )
+            elif notNull( name, color ):
+                return ( root + str(name) + "/" + str(color) +".png" )
+            elif notNull( name ):
+                return ( root + str(name) + ".png" )
+
         def get_file(self, root):
-            if notNull( self.name, self.color, self.version ):
-                return ( root + str(self.name) + "/" + str(self.color) + "_" + str(self.version) + ".png" )
-            elif notNull( self.name, self.version ):
-                return ( root + str(self.name) + "/" + str(self.version) +".png" )
-            elif notNull( self.name, self.color ):
-                return ( root + str(self.name) + "/" + str(self.color) +".png" )
-            elif notNull( self.name ):
-                return ( root + str(self.name) + ".png" )
+            return self.build_file_path( root, self.name, self.color, self.version )
+
+        def get_versions(self, root):
+            li = []
+            for version in self.versions:
+                li.append( ( self.build_file_path( root, self.name, self.color, version ), version ) )
+            return li
+
+        def get_colors(self, root):
+            li = []
+            for color in self.colors:
+                li.append( (self.build_file_path( root, self.name, color, self.version ), color ) )
+            return li
+
 
         def notNull(self, *atts):
             li = []

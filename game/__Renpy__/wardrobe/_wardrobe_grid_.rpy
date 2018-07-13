@@ -180,7 +180,10 @@ screen wardrobe_grid:
             idle LiveComposite( (80,80), (0,0), im.Scale(root+"grid_background.png",80,80) )#page_image )
             hover LiveComposite( (80,80), (0,0), im.Scale(root+"grid_hover.png",80,80) )# ,      (0,0), page_image )
             clicked [ SetVariable("wardrobe_page_selection", page[1] ), Jump("wardrobe_page_return") ]
-        text page[0] xpos 76+(90*i) ypos 215 size 10
+        if wardrobe_grid_page != None and wardrobe_grid_page[0] == page[1][0]:
+            text page[0] xpos 76+(90*i) ypos 200 size 15
+        else:
+            text page[0] xpos 76+(90*i) ypos 215 size 10
 
     # Exit and Tabs on Right
     imagemap:

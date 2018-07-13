@@ -64,10 +64,6 @@ init python:
 
 label __init_variables:
     python:
-        wardrobe_test_grid = 0
-
-        mock_list_of_items = range(1,14)
-
         wardrobe_grid_tab = 0
 
         wardrobe_grid_page = None
@@ -126,8 +122,6 @@ return
 # framework for an eaiser to manage grid of items
 screen wardrobe_grid:
     
-    $ wardrobe_test_grid = 0
-
     $ silver_grid = war_grid_info[wardrobe_grid_char]
 
 
@@ -137,7 +131,7 @@ screen wardrobe_grid:
         $ grid_list = wardrobe_grid_page[1]
 
     $ page_list = silver_grid.page_items()
-    
+
     $ root = "interface/wardrobe_grid/"
 
     # add root+"background/"+str(wardrobe_grid_color)+"_full.png"
@@ -200,47 +194,47 @@ screen wardrobe_grid:
 
         hover root+"tabs/hover.png"
 
-        hotspot (1025,10,45,45) clicked [SetVariable("wardrobe_test_grid",None),Jump("wardrobe_grid_update")]
+        hotspot (1025,10,45,45) clicked [Jump("wardrobe_grid_exit")]
 
         if wardrobe_grid_tab == 1:
-            hotspot (561, 122, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")] #return to default
+            hotspot (561, 122, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")] #return to default
         else:
-            hotspot (609, 122, 38, 93) clicked [SetVariable("wardrobe_grid_tab",1), Jump("wardrobe_grid_update")] #default
+            hotspot (609, 122, 38, 93) clicked [SetVariable("wardrobe_grid_tab",1), Jump("wardrobe_tab_return")] #default
 
         if wardrobe_grid_tab == 2:
-            hotspot (561, 232, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (561, 232, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (609, 232, 38, 93) clicked [SetVariable("wardrobe_grid_tab",2), Jump("wardrobe_grid_update")]
+            hotspot (609, 232, 38, 93) clicked [SetVariable("wardrobe_grid_tab",2), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 3:
-            hotspot (561, 342, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (561, 342, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (609, 342, 38, 93) clicked [SetVariable("wardrobe_grid_tab",3), Jump("wardrobe_grid_update")]
+            hotspot (609, 342, 38, 93) clicked [SetVariable("wardrobe_grid_tab",3), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 4:
-            hotspot (561, 452, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (561, 452, 86, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (609, 452, 38, 93) clicked [SetVariable("wardrobe_grid_tab",4), Jump("wardrobe_grid_update")]
+            hotspot (609, 452, 38, 93) clicked [SetVariable("wardrobe_grid_tab",4), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 5:
-            hotspot (987, 122, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (987, 122, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (987, 122, 40, 93) clicked [SetVariable("wardrobe_grid_tab",5), Jump("wardrobe_grid_update")]
+            hotspot (987, 122, 40, 93) clicked [SetVariable("wardrobe_grid_tab",5), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 6:
-            hotspot (987, 232, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (987, 232, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (987, 232, 40, 93) clicked [SetVariable("wardrobe_grid_tab",6), Jump("wardrobe_grid_update")]
+            hotspot (987, 232, 40, 93) clicked [SetVariable("wardrobe_grid_tab",6), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 7:
-            hotspot (987, 342, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (987, 342, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (987, 342, 40, 93) clicked [SetVariable("wardrobe_grid_tab",7), Jump("wardrobe_grid_update")]
+            hotspot (987, 342, 40, 93) clicked [SetVariable("wardrobe_grid_tab",7), Jump("wardrobe_tab_return")]
 
         if wardrobe_grid_tab == 8:
-            hotspot (987, 452, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_grid_update")]
+            hotspot (987, 452, 84, 93) clicked [SetVariable("wardrobe_grid_tab",0), Jump("wardrobe_tab_return")]
         else:
-            hotspot (987, 452, 40, 93) clicked [SetVariable("wardrobe_grid_tab",8), Jump("wardrobe_grid_update")]
+            hotspot (987, 452, 40, 93) clicked [SetVariable("wardrobe_grid_tab",8), Jump("wardrobe_tab_return")]
 
         text silver_grid.tabs_text[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
 
@@ -253,17 +247,31 @@ screen wardrobe_grid:
 
     zorder 5
 
-label wardrobe_grid_update:
+label wardrobe_grid_exit:
+    hide screen wardrobe_grid
 
-    if wardrobe_test_grid == None:
-        hide screen wardrobe_grid
-    else:
-        call screen wardrobe_grid
+    $ wardrobe_grid_tab = 0
+
+    $ silver_grid.selection = None
+    $ wardrobe_grid_page = None
+    $ wardrobe_page_selection = None
+    $ wardrobe_grid_selection = None
 
     if daytime:
         jump day_main_menu
     else:
         jump night_main_menu
+
+label wardrobe_grid_update:
+    call screen wardrobe_grid
+
+label wardrobe_tab_return:
+    $ silver_grid.selection = None
+    $ wardrobe_grid_page = None
+    $ wardrobe_page_selection = None
+    $ wardrobe_grid_selection = None
+
+    call screen wardrobe_grid
 
 label wardrobe_page_return:
     python:
@@ -292,6 +300,7 @@ label wardrobe_grid_return:
                 value = wardrobe_grid_selection
                 item = deepcopy(silver_grid.selection)
                 setattr(item, attr, value)
+                silver_grid.selection = item
                 setattr(silver_grid.clothing, silver_grid.selection.type, item)
                 wardrobe_grid_selection = None
 

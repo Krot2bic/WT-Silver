@@ -11,6 +11,13 @@ init python:
             'stockings': "clothes/stockings/",
             'hair': "body/head/"
         }
+        type_crop = {
+            'high': (288,64,642.642),
+            'mid': (365,465,520,520),
+            'low': (340,735,465,465)
+        }
+        background_colors = ['yellow','blue','gray','green','red']
+        background_color = 'yellow'
 
         selection = None
         clothing = None
@@ -49,7 +56,7 @@ init python:
                     ))
                 li.append((
                     'Equip/Unequip',
-                    ('wear', [ ("interface/wardrobe_grid/pages/on.png", True), ("interface/wardrobe_grid/pages/off.png",False)])
+                    ('wear', [ ("interface/wardrobe_grid/pages/on.png", True), ("interface/wardrobe_grid/pages/off.png", False)])
                 ))
             return li
 
@@ -70,7 +77,6 @@ label __init_variables:
         wardrobe_page_selection = None
         wardrobe_grid_selection = None
 
-        wardrobe_grid_color = 'yellow'
         wardrobe_grid_char = 'hermione'
 
         war_grid_info = {
@@ -116,7 +122,12 @@ label __init_variables:
 return
 
 
+# adds character to wardrobe grid screen
+screen wd_grd_char_screen:
 
+    if wardrobe_grid_char == 'hermione':
+        $ hermione_xpos = 550
+        use hg_main_sc
 
 
 # framework for an eaiser to manage grid of items
@@ -134,10 +145,10 @@ screen wardrobe_grid:
 
     $ root = "interface/wardrobe_grid/"
 
-    # add root+"background/"+str(wardrobe_grid_color)+"_full.png"
+    # add root+"background/"+str(silver_grid.background_color)+"_full.png"
 
-    $ hermione_xpos = 550
-    use hg_main_sc
+    # 
+    use wd_grd_char_screen
 
     if daytime:
         $ root += "gold/"
@@ -145,6 +156,13 @@ screen wardrobe_grid:
         $ root += "gray/"
 
     # Grid of scrollable items
+    # grid_list is expected to be a list of tuples where the first tuple is a path to an image to be dissplayed on the tile of the grid
+    # the ssecond tuple iss extectedd to be the return value if the tile is clicked
+    #
+    # e.x.
+    # ( 'path/to/an/image.png', 'image_tile_clicked' ) 
+    # ( 'image/for/return/true.png', True ) 
+    #
     if len(grid_list) > 0:
         hbox:
             xpos 75 ypos 235 xysize (453, 355)
@@ -160,7 +178,7 @@ screen wardrobe_grid:
 
                 for file, item in grid_list:
 
-                    $ item_image = im.Scale(file, 83, 85)
+                    $ item_image = im.Scale( file, 83, 85 )
 
                     imagebutton:
                         xalign 0.5 yalign 0.5 xysize (83, 85)
@@ -170,7 +188,6 @@ screen wardrobe_grid:
 
 
     add root+"border.png"
-    #add root+"/scroll_grid.png"
 
     #Pages
     for i, page in enumerate(page_list):
@@ -185,7 +202,15 @@ screen wardrobe_grid:
         else:
             text page[0] xpos 76+(90*i) ypos 215 size 10
 
-    # Exit and Tabs on Right
+    #Background Colors:
+    for i, color in enumerate(silver_grid.background_colors):
+        imagebutton:
+            xpos (661+(21*i)) ypos 566 xysize (20,20)
+            idle "interface/wardrobe/icons/colors/"+color+".png"
+            clicked [SetField(silver_grid, "background_color", color), Jump("wardrobe_grid_update")]
+
+
+    #Exit and Tabs on Right
     imagemap:
         cache False
 
@@ -197,6 +222,10 @@ screen wardrobe_grid:
 
         hover root+"tabs/hover.png"
 
+        #Selected Tab Text
+        text silver_grid.tabs_text[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
+
+        #Exit
         hotspot (1025,10,45,45) clicked [Jump("wardrobe_grid_exit")]
 
         if wardrobe_grid_tab == 1:
@@ -239,19 +268,12 @@ screen wardrobe_grid:
         else:
             hotspot (987, 452, 40, 93) clicked [SetVariable("wardrobe_grid_tab",8), Jump("wardrobe_tab_return")]
 
-        text silver_grid.tabs_text[ wardrobe_grid_tab ] xalign 0.5 xpos 208 ypos 96 size 18
-
-        #Wardrobe background color
-        $ wardrobe_grid_colors = ['yellow','blue','gray','green','red']
-        for i in range(len(wardrobe_grid_colors)):
-            $ col = i % 5
-            hotspot (667+(20*col), 559, 20, 20) clicked [SetVariable("wardrobe_grid_color",wardrobe_grid_colors[i]), Jump("wardrobe_grid_update")]
-            add "interface/wardrobe/icons/colors/"+wardrobe_grid_colors[i]+".png" xpos 668+(20*col) ypos 560
-
     zorder 5
 
 label wardrobe_grid_exit:
     hide screen wardrobe_grid
+
+    $ silver_grid = war_grid_info[wardrobe_grid_char]
 
     $ wardrobe_grid_tab = 0
 
@@ -269,6 +291,7 @@ label wardrobe_grid_update:
     call screen wardrobe_grid
 
 label wardrobe_tab_return:
+    $ silver_grid = war_grid_info[wardrobe_grid_char]
     $ silver_grid.selection = None
     $ wardrobe_grid_page = None
     $ wardrobe_page_selection = None
@@ -330,8 +353,15 @@ label wardrobe_grid_return:
 
     call screen wardrobe_grid
 
+label wd_grd_test:
+    
+    $ renpy.say(None, "Click")
+
+    call screen wardrobe_grid
+
 
 if daytime:
     jump day_main_menu
 else:
     jump night_main_menu
+

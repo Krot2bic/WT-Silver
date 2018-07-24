@@ -39,6 +39,10 @@ init python:
             elif tab_number in [2,3,4,6]:
                 for item in self.grid_list[tab_number]:
                     li.append( (item.get_file( self.root + self.type_path[item.type] ), item ) )
+            elif tab_number in [7]:
+                for outfit in self.outfits:
+                    if outfit.purchased():
+                        li.append( ( self.root + "clothes/custom/" + outfit.id + "/_menu_.png", outfit ) )
             return li
 
         def page_items(self):
@@ -84,6 +88,8 @@ label __init_variables:
                 root = "characters/hermione/",
                 body = hg_body,
                 clothing = hg_clothing,
+                outfits = hg_outfits.all(),
+                outfit = "hg_outfit",
                 tabs_text = [
                     '',
                     'Hair-Style & Head Accs.',
@@ -317,18 +323,29 @@ label wardrobe_grid_return:
         silver_grid = war_grid_info[wardrobe_grid_char]
 
         if wardrobe_grid_selection != None:
-            if wardrobe_grid_page == None:
-                if isinstance(wardrobe_grid_selection, clothing_item):
-                    silver_grid.selection = wardrobe_grid_selection
+
+            if wardrobe_grid_tab in [1]: # hair
+                pass
+
+            elif wardrobe_grid_tab in [2,3,4,6]: #clothing items
+                if wardrobe_grid_page == None:
+                    if isinstance(wardrobe_grid_selection, clothing_item):
+                        silver_grid.selection = wardrobe_grid_selection
+                        wardrobe_grid_selection = None
+                else:
+                    attr = str(wardrobe_grid_page[0])
+                    value = wardrobe_grid_selection
+                    item = deepcopy(silver_grid.selection)
+                    setattr(item, attr, value)
+                    silver_grid.selection = item
+                    setattr(silver_grid.clothing, silver_grid.selection.type, item)
                     wardrobe_grid_selection = None
-            else:
-                attr = str(wardrobe_grid_page[0])
-                value = wardrobe_grid_selection
-                item = deepcopy(silver_grid.selection)
-                setattr(item, attr, value)
-                silver_grid.selection = item
-                setattr(silver_grid.clothing, silver_grid.selection.type, item)
-                wardrobe_grid_selection = None
+
+            elif wardrobe_grid_tab in [7]: # outfit
+                if issubclass( type(wardrobe_grid_selection), character_outfit):
+                    globals()[silver_grid.outfit] = wardrobe_grid_selection
+                else:
+                    globals()[silver_grid.outfit] = None
 
 
                 # attr = str(wardrobe_grid_page[0])

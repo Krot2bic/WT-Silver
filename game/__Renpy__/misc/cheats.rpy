@@ -36,7 +36,7 @@ label cheats:
 
                 "-Add all costumes-":
                     python:
-                        for outfit in hg_outfits.get_all():
+                        for outfit in hg_outfits.all():
                             outfit.purchase()
                     ">All of Hermione's costumes have been unlocked"
                     jump cheats

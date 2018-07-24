@@ -103,7 +103,8 @@ label __init_variables:
             store_image = 'power.png',
             outfit_layers = ['power_cape.png','power_top.png','power_gloves.png','power_belt.png'],
             breast_layer = 'breasts_normal',
-            hair_layer = 'power_hair'
+            hair_layer = 'power_hair',
+            top_layers = ['power_cape_top.png']
         ),
         hg_custom_outfit(
             id = 'hg_msMarvel',
@@ -140,8 +141,8 @@ label __init_variables:
             wait_time = 2,
             store_image = 'christmas.png',
             outfit_layers = ['christmas_pants.png','christmas_top.png','christmas_gloves.png','christmas_collar.png'],
-            top_layers = ['christmas_antlers.png'],
-            breast_layer = 'breasts_normal_pressed'
+            breast_layer = 'breasts_normal_pressed',
+            top_layers = ['christmas_antlers.png']
         ),
         hg_custom_outfit(
             id = 'hg_laraCroft',
@@ -186,8 +187,9 @@ label __init_variables:
             cost = 250,
             wait_time = 3,
             store_image = 'witch.png',
-            outfit_layers = ['witch_stockings.png','witch_top.png','witch_cloak.png','witch_hat.png'],
-            breast_layer = 'breasts_normal_pressed'
+            outfit_layers = ['witch_stockings.png','witch_top.png','witch_cloak.png'],
+            breast_layer = 'breasts_normal_pressed',
+            top_layers = ['witch_hat.png']
         ),
         hg_custom_outfit(
             id = 'hg_bio',

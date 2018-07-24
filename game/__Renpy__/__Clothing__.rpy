@@ -24,7 +24,7 @@ init -2 python:
         def purchased(self, to_check):
             global clothing_purchases
             if isinstance(to_check,str):
-                return clothing_purchases.get(self.to_check, False)
+                return clothing_purchases.get( to_check, False )
             if isinstance(to_check,list):
                 return all( [ clothing_purchases.get(item, False) for item in to_check ] )
         

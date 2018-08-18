@@ -1,5 +1,3 @@
-
-
 label summon_snape:
 
     call play_sound("door")
@@ -147,6 +145,9 @@ label summon_snape:
             else:
                 $ menu_x = 0.5 #Menu is moved to the left side. (Default menu_x = 0.5)
                 jump snape_dates
+        
+        "Push Snape about teaching you magic" if found_nettle_wine and not talked_snape_office:
+            jump snape_nettle_wine
 
         "-Never mind-":
             stop music fadeout 1.0
@@ -171,7 +172,7 @@ label summon_snape:
                 call play_music("manatees") #Night Theme
                 jump night_main_menu
 
-label snape_dates:  ### HANGING WITH SNAPE ###
+label setup_snape_date:                
     play bg_sounds "sounds/fire02.mp3" fadeout 1.0 fadein 1.0 #Quiet...
 
     show screen blkfade
@@ -190,7 +191,56 @@ label snape_dates:  ### HANGING WITH SNAPE ###
 
     hide screen blkfade
     with fade
+    return
+    
+label snape_nettle_wine:
+    call setup_snape_date
+    
+    call sna_main("I've had the worst day ever today... Don't even talk to me.", "snape_06")
+    m "..."
+    m "Then why visit my office?"
+    call sna_main("For the free drinks of course...", "snape_05")
+    call sna_main("The company is fine too I suppose.", "snape_24")
+    g9 "I can get behind that..."
+    m "Something stronger today perhaps."
+    call sna_main("Now you're speaking my language... where did you even find this?", "snape_23")
+    m "I have my sources... and a seemingly endless cupboard."
+    call sna_main("cheers.", "snape_23")
+    call sna_main("...", "snape_22")
+    m "So I'm assuming you're not teaching me any of your magic tonight."
+    call sna_main("In due time, I'm dead tired after todays display.", "snape_12")
+    m "..."
+    m "Go on then..."
+    call sna_main("It's that Longbottom kid.", "snape_18")
+    m "Long...bottom?"
+    call sna_main("His inabillity of grasping the most simple tasks is making a mockery of my subject.", "snape_18")
+    m "Does this school not have some sort of program for that?"
+    call sna_main("It's not like that... It's more his inability of memorizing the steps in brewing.", "snape_14")
+    m "Is this where you want me to nod and pretend that I know what you're on about?"
+    call sna_main("Potions are a very precise and noble profession you know.", "snape_12")
+    m "..."
+    call sna_main("But you'd probably only care about my more crude elixirs I've developed after hours.", "snape_13")
+    m "..."
+    m "\"Crude elixirs you say...\""
+    call sna_main("I'm sorry... I'd rather be a Defence against the dark arts teacher, that's all.", "snape_12")
+    m "No need to appologize, alcohol does that sometimes."
+    m "Why are you still doing potions in that case... I mean, now when I'm here."
+    call sna_main("You won't be here forever, I'm sure.", "snape_14")
+    m "And?"
+    call sna_main("And the man you're replacing would never put me in charge of that subject.", "snape_12")
+    m "I see, so when he returns he'd know you were aware of me."
+    call sna_main("Precisely...", "snape_12")
+    call sna_main("...", "snape_12")
+    call sna_main("Well, sorry for cutting it short. I'm going to retire for tonight.", "snape_01")
+    m "There's always a new day tomorrow."
+    call sna_main("That is true...", "snape_19")
+    m "\"Maybe it's worth investigating a way to get in that office...\""
 
+    $ talked_snape_office = True
+    jump day_start
+    
+label snape_dates:  ### HANGING WITH SNAPE ###
+    call setup_snape_date
 
     if snape_against_hermione: #Turns True after event_08 (Hermione shows up for the first time).
                                #Activates special event when hanging out with Snape next time.
@@ -214,10 +264,6 @@ label snape_dates:  ### HANGING WITH SNAPE ###
         call wine_not_first
     else:
         pass
-
-
-
-
 
     if snape_friendship >= 5 and snape_events == 0:
         call date_with_snape_01
@@ -265,7 +311,6 @@ label snape_dates:  ### HANGING WITH SNAPE ###
         call date_with_snape_15
 
     else:
-
         show screen bld1
         with d3
         $ renpy.play('sounds/win_04.mp3')   #Not loud.
@@ -274,9 +319,6 @@ label snape_dates:  ### HANGING WITH SNAPE ###
         ">You spend the evening hanging out with Professor Snape.\n>Your relationship with him has improved."
         hide screen bld1
         with d3
-
-
-
 
     $ snape_friendship +=1
 

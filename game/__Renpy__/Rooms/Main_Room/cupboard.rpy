@@ -335,6 +335,27 @@ label rummaging:
             else: 
                 jump day_start
     
+    if snape_events >= 2 and not found_nettle_wine:
+        $ renpy.play('sounds/win2.mp3')   #Not loud.
+        $ found_nettle_wine = True # Turns TRUE after you found the Dahr's oddities catalog in the cupboard.
+        $ the_gift = "images/store/27.png" # DAHR's oddities catalog. 
+        show screen gift
+        with d3
+        ">You found a bottle of strong nettle wine"
+        hide screen gift
+        with d3
+        show screen genie
+        hide screen rum_screen
+        
+        hide screen bld1
+        with d3
+        
+        if daytime:
+            jump night_start
+        else: 
+            jump day_start
+    
+    
     if rum_times >= 7 and not cataloug_found:
         $ renpy.play('sounds/win2.mp3')   #Not loud.
         $ cataloug_found = True # Turns TRUE after you found the Dahr's oddities catalog in the cupboard.

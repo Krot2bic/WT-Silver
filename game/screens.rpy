@@ -199,6 +199,7 @@ screen main_menu:
             textbutton _("New Game {size=+3}+{/size}") action Start()
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Credits") action ShowMenu("credits")
         textbutton _("Quit") action Quit(confirm=False)
 
 init -2:
@@ -242,10 +243,36 @@ init -2 python:
 
 
 
+screen credits:
+    tag menu
+    use navigation
+    
+    python:
+        credit_text = ""
+        f = open(renpy.loader.transfn("credits.txt"),"r")
+        for line in f:
+            credit_text += line
+        f.close()
+    
+    frame:
+        style_group "prefs"
+        xpos 20
+        ypos 20
+        ysize 560
+        xsize 800
+        
+        side "c r":
+            area (0, 0, 800, 560)
 
+            viewport id "vp":
+                draggable True
 
+                text credit_text
 
-
+            vbar value YScrollValue("vp")
+        
+        
+ 
 
 ##############################################################################
 # Navigation
@@ -272,6 +299,7 @@ screen navigation:
         textbutton _("Save Game") action ShowMenu("save")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Main Menu") action MainMenu()
+        textbutton _("Credits") action ShowMenu("credits")
         textbutton _("Help") action Help()
         textbutton _("Quit") action Quit()
 

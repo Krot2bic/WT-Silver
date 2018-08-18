@@ -28,12 +28,18 @@ screen map_screen:
         hotspot (302+140, 523, 112, 49) clicked Jump("map_lake") #lake
         hotspot (273+140, 459, 75, 8) clicked Jump("map_dorms") #dorms
         hotspot (453, 300, 75, 45) clicked Jump("floor_7th") #7th floor
-        #hotspot (656+140, 232, 106, 33) clicked Jump("inn_menu") #inn
-        #hotspot (376+140, 84, 111, 57) clicked Jump("map_pitch") #pitch
-        hotspot (307+140, 240, 59, 37) clicked Jump("shop_intro") #shop
+        hotspot (307+140, 240, 59, 37) clicked Jump("enter_shop") #shop
+        hotspot (583, 458, 60, 41) clicked Jump("snapes_office") #Snapes office
         hotspot (33+140, 535, 39, 39) clicked Jump("day_main_menu") #return
 
-
+        
+label snapes_office:    
+    if unlocked_snape_office == False:
+        m "I don't really need to go to Snapes office to talk to him."
+        jump return_office
+    else:
+        jump enter_snape_office
+    
 label floor_7th:
     if unlocked_7th == False:
         m"\"I don't have any reason to go to this floor...\""
@@ -42,7 +48,6 @@ label floor_7th:
         call blkfade 
         call leave_main_room
         show screen floor_7th_screen
-        
         
         if unlocked_7th and first_time_7th:
             call gen_chibi(xpos="door", ypos="base", flip=True)

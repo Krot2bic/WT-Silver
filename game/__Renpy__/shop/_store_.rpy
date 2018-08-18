@@ -46,10 +46,68 @@ label __init_variables:
     ]
 
     return
+
+label enter_shop:
+    if talked_snape_office and not unlocked_snape_office:
+        menu:
+            "Ask about Snapes office":
+                show screen shop_screen
+                m "Hello there boys."
+                twi "Good day professor Dumbledore sir."
+                fre "If it's a great deal you're looking for then you've come to the right place."
+                m "Not exactly..."
+                ger "Then what can we help you with?"
+                m "I've heard that you both are a very skilled bunch and I'd like your assistance in an investigation of mine."
+                fre "Of course sir, you've come to the right place."
+                m "I need a way to get in to Severus's Office."
+                fre "And you're asking us about this?"
+                ger "Shouldn't you have access to all the places of the school?"
+                m "Well..."
+                m " of course I do, but as you might know..."
+                m "unless accessed by a key, one of Severus's protection charms would let him know."
+                fre "Let's say we do know... why would you want to get in there without his knowledge?"
+                m "Oh, I'm sorry..."
+                m "I thought this was a professional establishment that value their customers privacy."
+                m "It would be a shame if it were to be shut down..."
+                ger "Okay okay, don't do anything hasty now."
+                ger "We have a key... the main issue is that giving it away would cut deep into our profits."
+                fre "We might as well let you shut us down if we'd have to part with it."
+                m "I see..."
+                m "Tell you what. If I were to lets say, open up a more discrete trade route for you both."
+                m "You'd be able to replenish your stock without having to rely on secrecy."
+                fre "Well, our profit margin might suffer but the variety of goods..."
+                ger "Yes, items which students couldn't normally get a hold of..."
+                m "Now boys, nothing too crazy. I will still monitor the deliveries if I have to."
+                m "I might even buy some ingredients off you for my own convenience."
+                twi "Deal!"
+                m "That's what I thought."
+                m "Pleasure doing business with you boys."
+                fre "The pleasure is entirely ours."
+                $ unlocked_snape_office = True
+                jump return_office
+            "Enter Shop":
+                jump shop_intro
+    else:
+        jump shop_intro
     
 label shop_intro:
     show screen shop_screen
-    if shop_found:
+    if unlocked_snape_office and not unlock_shop_ingredients:
+        fre "Welcome back professor. We've replenished our stock and brought in a bunch of new ingredients."
+        m "Looking good boys but it looks like there's a lot of common things missing."
+        ger "Supply and demand sir... not enough demand for what's readily available on school grounds."
+        m "I see, I was hoping that you'd have them available."
+        m "It's been a while since I last foraged for potion ingredients."
+        ger "Sorry sir, not sure what else to tell you..."
+        fre "If you need a refresher on where to find ingredients, I'm sure Snape has a book on what's available on school grounds."
+        twi "And that's a free tip from us."
+        m "Now now boys, establishing a good customer relationship is as important as profit."
+        g9 "And that's a free tip from me..."
+        ger "Thank you sir. Feel free to browse our selection any time."
+        $ unlock_shop_ingredients = True
+        $ shop_found = True
+        jump shop_menu
+    elif shop_found:
         twi "Hello Professor! What would you like to buy?"
         jump shop_menu
     else:
@@ -59,15 +117,15 @@ label shop_intro:
         ger "You're not here to shut us down are you?"
         m "Shut you down? What for?"
         fre "NOTHING!"
-        ger "We certainly aren't selling potions that we stole from Snape."
+        ger "We certainly aren't selling ingredients that we stole from Snape."
         fre "No sir! No prohibited goods being sold here."
         ger "None at all!"
         fre "But if we did sell them-"
         ger "Which we don't-"
         fre "They would be sold at the best prices in the school."
         ger "Unbeatable."
-        m "Hmmmm. What sort of potions are you \'not\' selling?"
-        fre "Well we aren't selling polyjuice potion."
+        m "Hmmmm. What sort of ingredients are you \'not\' selling?"
+        fre "Well we aren't selling ingredients he's gotten from Knockturn Alley."
         ger "Wouldn't dream of it."
         m "Well do you sell anything else?"
         ger "We have books, treats, and knick-knacks for sale."
@@ -83,6 +141,7 @@ label sscrolls:
     show screen shop_screen
     $ scrolls_range = range(1,16)
     jump store_scrolls
+    
 label sscrolls2:
     show screen shop_screen
     $ scrolls_range = range(16,31)
@@ -187,6 +246,10 @@ label purchase_book:
     
 label shop_potion_menu:
     show screen shop_screen
+    if unlock_shop_ingredients == False:
+        m "\"I don't have any need for potion ingredients at the moment.\""
+        call screen shop_screen
+        
     python:
         potion_menu = []
         potion_menu.append(("-Questions acquiring items-", "questions"))
@@ -197,6 +260,7 @@ label shop_potion_menu:
                 potion_menu.append(("-"+potion.name+"-",potion))
         potion_menu.append(("-Never mind-", "nvm"))
         PotionOBJ = renpy.display_menu(potion_menu)
+    
     if isinstance(PotionOBJ, silver_potion):
         python:
             potion_menu = []

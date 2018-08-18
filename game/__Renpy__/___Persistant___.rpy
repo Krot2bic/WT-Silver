@@ -319,6 +319,14 @@ label __init_variables:
     #Update max tutoring if there is add more events
     $ max_tutoring = 14
 
+    #Variables for snakes office
+    if not hasattr(renpy.store,'found_nettle_wine'):
+        $ found_nettle_wine = False
+        $ talked_snape_office = False
+        $ snapes_office_unlocked = False
+        $ unlocked_snape_office = False
+        $ unlock_shop_ingredients = False
+    
     #Sorter Values
     $ zorder_character = 7
 

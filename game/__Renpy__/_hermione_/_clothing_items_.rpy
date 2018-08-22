@@ -43,29 +43,41 @@ init -1 python:
 
     hg_body_options = {
         'hair': [
-            character_body_option(
+            character_hair_option(
                 type = "hair",
                 option = "A",
                 color = "1",
                 colors = range(1,12)
             ),
-            character_body_option(
+            character_hair_option(
                 type = "hair",
                 option = "B",
                 color = "1",
                 colors = range(1,11)
             ),
-            character_body_option(
+            character_hair_option(
                 type = "hair",
                 option = "C",
                 color = "1",
-                colors = range(1,7)
+                colors = range(1,4)
             ),
-            character_body_option(
+            character_hair_option(
                 type = "hair",
                 option = "E",
                 color = "1",
                 colors = range(1,11)
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "F",
+                color = "1",
+                colors = [1]
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "G",
+                color = "1",
+                colors = [1]
             )
         ]
     }

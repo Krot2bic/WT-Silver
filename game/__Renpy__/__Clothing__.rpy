@@ -5,10 +5,16 @@ init -2 python:
     if not hasattr(renpy.store,'clothing_purchases'):
         clothing_purchases = {}      
 
-    class character_body_option(object):
+    class character_hair_option(object):
 
         def __init__(self, **kwargs):
             self.__dict__.update(**kwargs)
+
+        def get_colors(self, root):
+            li = []
+            for color in self.colors:
+                li.append( ( root +"/"+ str(self.option) +"_"+ str(color) +".png", color ) )
+            return li
 
 
     class outfit_container(dict):

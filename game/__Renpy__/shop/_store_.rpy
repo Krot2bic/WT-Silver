@@ -134,7 +134,7 @@ label shop_intro:
     
 label shop_menu:
     show screen shop_screen
-    call screen shop_screen
+    call screen shop_screen_menu
     
     
 label sscrolls:
@@ -174,7 +174,7 @@ label store_scrolls:
                     hide screen gift
                     with d3
                     call thx_4_shoping2 #Massage that says "Thank you for shopping here!".
-                    call screen shop_screen
+                    call screen shop_screen_menu
                 else:
                     call no_gold #Massage: m "I don't have enough gold".
                     hide screen gift
@@ -186,49 +186,58 @@ label store_scrolls:
     
 label shop_books:
     show screen shop_screen
-    twi "What type of book would you like?"
-    label shop_book_menu:
-    menu:
-        "-Educational Books-":
-            label education_menu:
-            $ books_menu_list = []
-            $ books_menu_list.extend(Books_OBJ.read_books)
-            $ books_menu_list.extend(Books_OBJ.write_books)
-        "-Fiction books-":
-            if not fiction_books_intro:
-                twi "These books are mostly light erotica..." 
-                ger "Some of the girls insisted that I order them in."
-                $ fiction_books_intro = True
-            label fiction_menu:
-            $ books_menu_list = []
-            $ books_menu_list.extend(Books_OBJ.fiction_books)
-        "-Never mind-":
-            call screen shop_screen 
-    python:
-        books_menu = []
-        for book in books_menu_list:
-            if book.purchased:
-                books_menu.append((book.getMenuTextPurchased(),book))
-            else:
-                books_menu.append((book.getStoreMenuText(),book))
-        books_menu.append(("-Never mind-", "nvm"))
-        BookOBJ = renpy.display_menu(books_menu)
-    if BookOBJ == "nvm":
-        jump shop_book_menu
-    elif BookOBJ.purchased:
-        call do_have_book #Message that says that you already bought this book.
+    if not fiction_books_intro:
+        twi "These books are mostly light erotica..." 
+        ger "Some of the girls insisted that I order them in."
+        $ fiction_books_intro = True
     else:
+        twi "What type of book would you like?"
+    label shop_book_menu:
+    python:
+        books_menu_list = []
+        if toogle1_bool:
+            books_menu_list.extend(Books_OBJ.read_books)
+            books_menu_list.extend(Books_OBJ.write_books)
+        if toogle2_bool:
+            books_menu_list.extend(Books_OBJ.fiction_books)
+        
+        books_menu_list = list(filter(lambda x: x.purchased==False, books_menu_list))
+       
+    show screen shop_screen
+
+    show screen generic_scroll_menu(books_menu_list, "Book Stock", toogle1="Educational Books", toogle2="Fiction Books" )
+    
+    $ _return = ui.interact()
+    
+    hide screen generic_scroll_menu
+
+    if isinstance(_return, generic_menu_item):
+        $ BookOBJ = _return
         call purchase_book 
-    if BookOBJ in Books_OBJ.get_edu():
-        jump education_menu
-    if BookOBJ in Books_OBJ.get_fic():
-        jump fiction_menu
+        jump shop_book_menu
+        
+    elif _return == "Close":
+        call screen shop_screen_menu
+    elif _return == "toogle1":
+        $ toogle1_bool = not toogle1_bool
+        jump shop_book_menu
+        
+    elif _return == "toogle2":
+        $ toogle2_bool = not toogle2_bool
+        jump shop_book_menu
+        
+    elif _return == "inc":
+        $ currentpage += 1
+        jump shop_book_menu
+    elif _return == "dec":
+        $ currentpage += -1
+        jump shop_book_menu
     
 label purchase_book:
     $ the_gift = BookOBJ.picture
     show screen gift
     with d3
-    "[BookOBJ.book_description]"
+    "[BookOBJ.description]"
     menu:
         "-Buy the book for [BookOBJ.cost] gold -":
             if gold >= BookOBJ.cost:
@@ -246,78 +255,64 @@ label purchase_book:
     
 label shop_potion_menu:
     show screen shop_screen
-    if unlock_shop_ingredients == False:
-        m "\"I don't have any need for potion ingredients at the moment.\""
-        call screen shop_screen
-        
     python:
-        potion_menu = []
-        potion_menu.append(("-Questions acquiring items-", "questions"))
-        for potion in potion_lib.getBuyable():
-            if whoring < potion.whoring_rec:
-                potion_menu.append(("{color=#858585}-"+potion.name+"-{/color}","whoring"))
-            else:
-                potion_menu.append(("-"+potion.name+"-",potion))
-        potion_menu.append(("-Never mind-", "nvm"))
-        PotionOBJ = renpy.display_menu(potion_menu)
+        ingredients_shop = []
+        for item in ingredients_list:
+            if ingredients_list[item].shop_item:
+                ingredients_shop.append(ingredients_list[item])
+        ingredients_shop.sort(key=lambda x : x.title) 
+    show screen generic_scroll_menu(ingredients_shop, "Ingredients Stock")
+    $ _return = ui.interact()
     
-    if isinstance(PotionOBJ, silver_potion):
-        python:
-            potion_menu = []
-            potion_menu.append(("-Buy the potion for "+str(PotionOBJ.cost)+" Gold-", PotionOBJ))
-            potion_menu.append(("-Never mind-", "nvm"))
-            choice = renpy.display_menu(potion_menu)
-        if isinstance(choice, silver_potion):
-            if gold > PotionOBJ.cost:
-                $ gold -= PotionOBJ.cost
-                $ potion_inv.add(PotionOBJ.id)
-                $ renpy.say(m, PotionOBJ.name+" aquired, although it's missing a key ingredient...")
-            else:
-                $ renpy.say(m, "I don't have enough gold.")
-        call screen shop_screen
-    if PotionOBJ == "questions":
-        menu:
-            "-Knotgrass-":
-                m "Do you know where I can find \"Knotgrass\"?"
-                fre "You can sometimes find Knotgrass by the forbidden forest."
-            "-Root of Aconite-":
-                m "Do you know where I can find \"Root of Aconite\"?"
-                ger "Root of Aconite can be found down by the lake."
-            "-Wormwood-":
-                m "Do you know where I can find \"Wormwood\"?"
-                ger "Wormwood is sometimes found in the forbidden forest."
-            "-Niffler's Fancy-":
-                m "Do you know where I can find \"Niffler's Fancy\"?"
-                fre "Hmm... I think I heard that it's found by the lake."
+    hide screen generic_scroll_menu
+    
+    if isinstance(_return, generic_menu_item):
+        $ currentpage = 0
+        if _return.cost < gold:
+            $ _return.quantity += 1
+            $ gold -= _return.cost
+        else:
+            m "dont have the gold for this"
+            
         jump shop_potion_menu
-    if PotionOBJ == "whoring":
-        call cust_excuse("Hermione mus be \"Trained\" more before you can purchase this.") 
-    if PotionOBJ == "nvm":
-        pass    
-    call screen shop_screen
     
-    
+    elif _return == "Close":
+        call screen shop_screen_menu
+
+    elif _return == "inc":
+        $ currentpage += 1
+        jump shop_potion_menu
+    elif _return == "dec":
+        $ currentpage += -1
+        jump shop_potion_menu
+
+      
 label gifts_menu:
-    python:
-        choices = []
-        for i in gift_list:
-            if whoring < i.whoringNeeded:
-                choices.append( ("{color=#858585}-Item is out of stock-{/color}", "oos") )
-            else:
-                choices.append( ( ("-"+str(i.name)+"- ("+str(i.cost)+" g.)"), i) )
-        choices.append(("-Never mind-", "nvm"))
-        result = renpy.display_menu(choices)
+    show screen shop_screen
+
+    show screen generic_scroll_menu(gift_list, "Gift Stock")
+    
+    $ _return = ui.interact()
+    
+    hide screen generic_scroll_menu
+
+    if isinstance(_return, generic_menu_item):
+        call object_gift_block(_return) 
+        jump shop_menu
         
-    if result == "nvm":
-        jump shop_menu
-    elif result == "oos":
-        jump out
-    else:
-        call object_gift_block(result) 
-        jump shop_menu
+    elif _return == "Close":
+        call screen shop_screen_menu
+
+    elif _return == "inc":
+        $ currentpage += 1
+        jump gifts_menu
+    elif _return == "dec":
+        $ currentpage += -1
+        jump gifts_menu
+        
     
 label object_gift_block(item):
-    $ the_gift = item.image
+    $ the_gift = item.imagepath
     show screen gift
     with d3
     #$ tmp = item.description
@@ -348,15 +343,14 @@ label object_purchase_item(item, quantity):
             "-add next day delivery (15 galleons)-" if gold >= order_cost + 15:
                 $ gold -= 15
                 $ transit_time = 1
-                # $ next_day = True
+
             "{color=#858585}-add next day delivery (15 galleons)-{/color}" if gold < order_cost + 15:
                 pass
             "-no thanks-":
                 pass
         $ gold -= order_cost
         $ deliveryQ.send(item,transit_time,quantity,'Gift')
-        # $ gift_order = item
-        # $ order_placed = True
+
         if transit_time ==  1:
             dahr "Thank your for shopping at \"Dahr's oddities\". Your order shall be delivered tomorrow."
         else:
@@ -388,7 +382,7 @@ label app:
                             $ order_placed = True
                             $ bought_badge_01 = True #Affects 15_mail.rpy
                             call thx_4_shoping #Massage that says "Thank you for shopping here!".
-                            call screen shop_screen
+                            call screen shop_screen_menu
                         else:
                             call no_gold #Massage: m "I don't have enough gold".
                             hide screen gift
@@ -410,7 +404,7 @@ label app:
                         $ order_placed = True
                         $ bought_glasses = True #Affects 15_mail.rpy
                         call thx_4_shoping #Massage that says "Thank you for shopping here!".
-                        call screen shop_screen
+                        call screen shop_screen_menu
                     else:
                         call no_gold #Massage: m "I don't have enough gold".
                         jump app
@@ -433,7 +427,7 @@ label app:
                             $ order_placed = True
                             $ bought_nets = True #Affects 15_mail.rpy
                             call thx_4_shoping #Massage that says "Thank you for shopping here!".
-                            call screen shop_screen
+                            call screen shop_screen_menu
                         else:
                             call no_gold #Massage: m "I don't have enough gold".
                             hide screen gift
@@ -455,7 +449,7 @@ label app:
                         $ order_placed = True
                         $ bought_miniskirt = True #Affects 15_mail.rpy
                         call thx_4_shoping #Massage that says "Thank you for shopping here!".
-                        call screen shop_screen
+                        call screen shop_screen_menu
                     else:
                         dahr "This item is only redeemable with a \"DAHR's voucher\"."
                         hide screen gift
@@ -482,7 +476,7 @@ label app:
                         $ order_placed = True
                         $ bought_ball_dress = True #Affects 15_mail.rpy
                         call thx_4_shoping #Massage that says "Thank you for shopping here!".
-                        call screen shop_screen
+                        call screen shop_screen_menu
                     else:
                         call no_gold #Massage: m "I don't have enough gold".
                         hide screen gift

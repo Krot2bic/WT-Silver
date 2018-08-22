@@ -155,14 +155,13 @@ label cupboard:
                     jump start_slide_puzzle
                 "-Never mind-":
                     jump cupboard
-        
-        "-Potion crafting-" if shop_found:
-            jump potion_menu
-        
+             
         "-Options-":
             menu:
                 "-Save and Load-":
+                    call leave_main_room
                     call screen save()
+                    call return_office
             
                 "-Change Save Name-":
                     jump custom_save

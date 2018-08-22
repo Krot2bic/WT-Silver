@@ -326,7 +326,7 @@ init python:
         def getImage(self):
             return self.image
         def getStoreImage(self):
-            return "interface/icons/outfits/"+self.image
+            return "interface/icons/outfit/"+self.image
         def getStoreCost(self):
             return "Cost: "+str(self.cost)+" gold"
         def getStoreWaitTime(self):

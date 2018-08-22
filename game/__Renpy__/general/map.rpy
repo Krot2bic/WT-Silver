@@ -6,6 +6,7 @@ label leave_main_room:
     hide screen fireplace_fire
     hide screen candlefire
     hide screen desk
+    hide screen genie
     hide screen phoenix_food
     hide screen owl
     hide screen owl_02
@@ -38,6 +39,7 @@ label snapes_office:
         m "I don't really need to go to Snapes office to talk to him."
         jump return_office
     else:
+        call leave_main_room
         jump enter_snape_office
     
 label floor_7th:
@@ -118,7 +120,7 @@ label map_forest: #Label controlling what happens when you go to the forest
                 menu:
                     "-Take the wormwood-":
                         ">You gain 1 wormwood."
-                        $ potion_inv.add("ing_wormwood")
+                        $ ingredients_list["wormwood"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."
@@ -129,7 +131,7 @@ label map_forest: #Label controlling what happens when you go to the forest
                 menu:
                     "-Take the Knotgrass-":
                         ">You gain 1 Knotgrass."
-                        $ potion_inv.add("ing_knotgrass")
+                        $ ingredients_list["knotgrass"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."
@@ -157,18 +159,18 @@ label map_lake: #Label controlling what happens when you go to the lake
                 menu:
                     "-Take the Niffler's fancy-":
                         ">You gain 1 Niffler's fancy."
-                        $ potion_inv.add("ing_niffler_fancy")
+                        $ ingredients_list["niffler_fancy"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."
                 jump return_office
             elif ran < 0.6:
                 ">You search around the lake and manage to find an exposed root that looks similar to ginger."
-                m "This must be Root of Aconite."
+                m "This must be Dried Nettles."
                 menu:
-                    "-Take the Root of Aconite-":
-                        ">You gain 1 Root of Aconite."
-                        $ potion_inv.add("ing_aconite_root")
+                    "-Take the Dried Nettles-":
+                        ">You gain 1 Dried Nettles."
+                        $ ingredients_list["nettles"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."
@@ -187,7 +189,7 @@ label map_dorms: #Label controlling what happens when you go to the dorms
                 menu:
                     "-Take the Fur-":
                         ">You gain 1 Cat Fur."
-                        $ potion_inv.add("ing_cat_hair")
+                        $ ingredients_list["cat_hair_fur"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."
@@ -198,7 +200,7 @@ label map_dorms: #Label controlling what happens when you go to the dorms
                 menu:
                     "-Take the hair-":
                         ">You gain 1 Luna's Hair."
-                        $ potion_inv.add("ing_luna_hair")
+                        $ ingredients_list["luna_hair"].quantity += 1
                     "-Leave it-":
                         pass
                 ">Finding nothing else of interest you return to your office."

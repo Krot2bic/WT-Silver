@@ -6,7 +6,7 @@ screen room_back:
         add "interface/map/room_bg2.png"
     zorder 0
 
-screen shop_screen:
+screen shop_screen_menu:
     tag room_screen
 
     zorder hermione_main_zorder-1
@@ -27,6 +27,18 @@ screen shop_screen:
         hotspot (0, 455, 230, 128) clicked Jump("tentacle_shop_scene") #Tentacle Scroll
         hotspot (606+280, 0, 197, 538) clicked Jump("shop_potion_menu") #Potions
         hotspot (750+280, 550, 40, 40) clicked [Show("main_room_menu"),Jump("day_main_menu")] #Return Button
+        
+screen shop_screen:
+    tag room_screen
+
+    zorder hermione_main_zorder-1
+
+    if daytime:
+        add "interface/map/room_bg1.png" at Position(xpos=140)
+    else:
+        add "interface/map/room_bg2.png" at Position(xpos=140)
+    
+    add "interface/map/shop_ground.png"
 
 screen cg:
     add cg_image

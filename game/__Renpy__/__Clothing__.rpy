@@ -11,6 +11,7 @@ label __init_variables:
     # with which we can unlock all outfits again in the next update if needed, so people don't have to buy and wait for outfits againself.
 
     python:
+
         #Outfits
         for i in hermione_outfits_list:
             if i.unlocked and i not in unlocked_clothing_list:

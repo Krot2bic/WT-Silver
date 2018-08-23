@@ -131,12 +131,12 @@ label shop_intro:
         ger "We have books, treats, and knick-knacks for sale."
         fre "Take a look."
         jump shop_menu
-    
+
 label shop_menu:
     show screen shop_screen
-    call screen shop_screen_menu
-    
-    
+    call screen shop_screen
+
+
 label sscrolls:
     show screen shop_screen
     $ scrolls_range = range(1,16)
@@ -182,8 +182,8 @@ label store_scrolls:
             "-Never mind-":
                 hide screen gift
         jump store_scrolls
-    
-    
+
+
 label shop_books:
     show screen shop_screen
     if not fiction_books_intro:
@@ -251,8 +251,8 @@ label purchase_book:
         "-Never mind-":
             hide screen gift
     return
-    
-    
+
+
 label shop_potion_menu:
     show screen shop_screen
     python:
@@ -322,19 +322,19 @@ label object_gift_block(item):
     $ cost4 = item.cost * 8
     menu:
         "-Buy 1 for ([item.cost] galleons)-":
-            call object_purchase_item(item, 1) 
+            call object_purchase_item(item, 1)
         "-Buy 2 for ([cost2] galleons)-":
-            call object_purchase_item(item, 2) 
+            call object_purchase_item(item, 2)
         "-Buy 4 for ([cost3] galleons)-":
-            call object_purchase_item(item, 4) 
+            call object_purchase_item(item, 4)
         "-Buy 8 for ([cost4] galleons)-":
-            call object_purchase_item(item, 8) 
+            call object_purchase_item(item, 8)
         "-Never mind-":
             hide screen gift
             pass
-            
+
     return
-            
+
 label object_purchase_item(item, quantity):
     $ transit_time = renpy.random.randint(1, 5)
     $ order_cost = item.cost*quantity
@@ -357,10 +357,10 @@ label object_purchase_item(item, quantity):
             dahr "Thank your for shopping at \"Dahr's oddities\". Your order shall be delivered in 1 to [transit_time] days."
         hide screen gift
         with d3
-        
+
     else:
         call no_gold #Massage: m "I don't have enough gold".
-    
+
     return
     
     
@@ -499,11 +499,11 @@ label do_have_book:
     hide screen gift
     with d3
     return
-    
+
 ### THANK YOU FOR shopping here.
 label thx_4_shoping:
     # $ days_in_delivery2 = one_of_five  #Generating one number out of three for various porpoises.
-    
+
     if one_of_five ==  1:
         dahr "Thank your for shopping at \"Dahr's oddities\". Your order shall be delivered tomorrow."
         hide screen gift
@@ -514,21 +514,21 @@ label thx_4_shoping:
         hide screen gift
         with d3
         return
-    
+
 ### THANK YOU FOR shopping here. IMMEDIATE DELIVERY.
 label thx_4_shoping2:
     dahr "Thank your for shopping at \"Dahr's oddities\"."
     hide screen gift
     with d3
     return
-    
+
 ### NOT ENOUGH GOLD ###
 label no_gold:
     m "I don't have enough gold... This is depressing..."
     hide screen gift
     with d3
     return
-    
+
 ### ITEM IS OUT OF STOCK ###
 label out:
     show screen bld1
@@ -537,4 +537,3 @@ label out:
     hide screen bld1
     with d3
     jump gifts_menu
-    

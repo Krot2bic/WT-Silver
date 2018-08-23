@@ -41,48 +41,6 @@ init -1 python:
     ]
 
 
-    hg_body_options = {
-        'hair': [
-            character_hair_option(
-                type = "hair",
-                option = "A",
-                color = "1",
-                colors = range(1,12)
-            ),
-            character_hair_option(
-                type = "hair",
-                option = "B",
-                color = "1",
-                colors = range(1,11)
-            ),
-            character_hair_option(
-                type = "hair",
-                option = "C",
-                color = "1",
-                colors = range(1,4)
-            ),
-            character_hair_option(
-                type = "hair",
-                option = "E",
-                color = "1",
-                colors = range(1,11)
-            ),
-            character_hair_option(
-                type = "hair",
-                option = "F",
-                color = "1",
-                colors = [1]
-            ),
-            character_hair_option(
-                type = "hair",
-                option = "G",
-                color = "1",
-                colors = [1]
-            )
-        ]
-    }
-
-
     hg_clothing_items = clothing_item_container(
         
         #####################
@@ -149,7 +107,6 @@ init -1 python:
             wear        = True
         ),
 
-
         ########################
         ### HERMIONE BOTTOMS ###
         ########################
@@ -213,7 +170,6 @@ init -1 python:
             colors      = ['g','h','r','s']
         ),
 
-
         ##########################
         ### HERMIONE STOCKINGS ###
         ##########################
@@ -267,14 +223,11 @@ init -1 python:
             wear        = True
         ),
 
-
-
         ################################
         ###                          ###
         ###    HERMIONE UNDERWEAR    ###
         ###                          ###
         ################################
-
 
         #####################
         ### HERMIONE BRAS ###
@@ -340,7 +293,6 @@ init -1 python:
             wear        = True,
         ),
 
-
         ########################
         ### HERMIONE PANTIES ###
         ########################
@@ -404,6 +356,46 @@ init -1 python:
             name        = "silk_low",
             wear        = True,
         )
-
-
     )
+
+    hg_options = {
+        'hair': [
+            character_hair_option(
+                type = "hair",
+                option = "A",
+                color = "1",
+                colors = range(1,12)
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "B",
+                color = "1",
+                colors = range(1,11)
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "C",
+                color = "1",
+                colors = range(1,4)
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "E",
+                color = "1",
+                colors = range(1,11)
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "F",
+                color = "1",
+                colors = [1]
+            ),
+            character_hair_option(
+                type = "hair",
+                option = "G",
+                color = "1",
+                colors = [1]
+            )
+        ],
+        'clothing': hg_clothing_items
+    }

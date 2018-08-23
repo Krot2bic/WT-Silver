@@ -101,7 +101,6 @@ init python:
 
         return layers
 
-
     def hg_build_clothing_sc(body, face, clothing):
         root = "characters/hermione/" # the root folder for the character
 

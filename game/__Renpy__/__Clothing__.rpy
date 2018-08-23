@@ -1,6 +1,15 @@
 
 init -2 python:
     
+    clothing_type_paths = {
+        'top':       "clothes/tops/",
+        'bottom':    "clothes/bottoms/",
+        'bra':       "clothes/underwear/bra/",
+        'panties':   "clothes/underwear/panties/",
+        'stockings': "clothes/stockings/",
+        'hair':      "body/head/"
+    }
+
     # outfit purchases are the only dynamic value we care about so they have been separated into their own dict
     if not hasattr(renpy.store,'clothing_purchases'):
         clothing_purchases = {}      
@@ -97,6 +106,11 @@ init -2 python:
 
 
         def build_file_path(self, root, name, color, version):
+
+            global clothing_type_paths
+            if self.type in clothing_type_paths and clothing_type_paths[self.type] not in root:
+                root += clothing_type_paths[self.type]
+
             if notNull( name, color, version ):
                 return ( root + str(name) + "/" + str(color) + "_" + str(version) + ".png" )
             elif notNull( name, version ):

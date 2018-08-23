@@ -1,8 +1,8 @@
 label __init_variables:
-	
+
     $ hg_outfit = None
 
-	# Clothing Sets
+    # Clothing Sets
     # 99% of the data in theese objects is static so the dynamic data has been moved and these will serve as static refrences only
     $ hg_outfits = outfit_container(
         # hg_custom_outfit(

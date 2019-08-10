@@ -23,15 +23,12 @@ label lun_main(text="", mouth=None, eye=None, brows=None, pupils=None, cheeks=No
 
     #Positioning
     if xpos != None:
-        if xpos in ["base","default"]: #All the way to the right.
+        if xpos in ["base","default"]:     # All the way to the right.
             $ luna_xpos = 640
-            $ menu_x = 0.1 #Don't add ypos!
-        elif xpos == "mid":                     #Centered.
+        elif xpos == "mid":                # Centered.
             $ luna_xpos = 300
-            $ menu_x = 0.5 #Don't add ypos!
-        elif xpos == "right":                   #Bit more to the right.
+        elif xpos == "right":              # Bit more to the right.
             $ luna_xpos = 400
-            $ menu_x = 0.5 #Don't add ypos!
         elif xpos in ["wardrobe","close"]:
             $ luna_xpos = 540
         else:
@@ -43,9 +40,12 @@ label lun_main(text="", mouth=None, eye=None, brows=None, pupils=None, cheeks=No
             $ luna_scaleratio = 2
             $ luna_zorder = 5
             $ use_luna_head = False
-        elif ypos in ["head"]: #Use ypos="head" to activate her head position. Use ypos="base" to disable it. Use ypos="200" or any other number to move her head up or down.
+        elif ypos in ["head"]:
+            # Use ypos="head" to activate her head position.
+            # Use ypos="base" to disable it.
+            # Use ypos="200" or any other number to move her head up or down.
             $ use_luna_head = True
-            $ luna_scaleratio = 2 #Reset
+            $ luna_scaleratio = 2
 
             if luna_flip == -1: #Flipped
                 $ luna_xpos = 620
@@ -73,8 +73,7 @@ label lun_main(text="", mouth=None, eye=None, brows=None, pupils=None, cheeks=No
     show screen luna_main
     show screen bld1
 
-    #Transitions
-    call transition(trans)
+    call transition(trans, True)
 
     if text != "":
         $ renpy.say(lun, text)
@@ -110,16 +109,22 @@ label luna_away:
     jump main_room
 
 
-label update_luna:
-    $ luna_flip = 1
-    $ use_luna_head = False
-    $ luna_l_arm             = 1
-    $ luna_r_arm             = 1
 
-    call update_lun_uniform
-    call update_luna_chibi_uniform
+label end_luna_event:
 
-    return
+    call hide_characters
+    call lun_chibi("hide")
+    call gen_chibi("sit_behind_desk")
+    hide screen blkfade
+    hide screen blktone
+    hide screen bld1
+    with d3
+
+    call reset_luna
+
+    $ luna_busy = True
+
+    jump main_room
 
 
 label reset_luna:
@@ -132,6 +137,21 @@ label reset_luna:
     call update_luna
 
     return
+
+
+label update_luna:
+    $ luna_flip = 1
+    $ use_luna_head = False
+    $ luna_l_arm             = 1
+    $ luna_r_arm             = 1
+
+    call update_lun_uniform
+    call update_luna_chibi_uniform
+
+    return
+
+
+
 
 
 label luna_no_money:

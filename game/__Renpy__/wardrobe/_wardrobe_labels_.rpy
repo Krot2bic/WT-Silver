@@ -10,8 +10,6 @@ label wardrobe: #NOT IN USE
         call her_main(xpos="wardrobe")
     #if active_girl == "luna":
     #    call lun_main("",xpos="wardrobe")
-    if active_girl == "astoria":
-        call ast_main(xpos="wardrobe")
     if active_girl == "susan":
         call sus_main(xpos="wardrobe")
 
@@ -33,33 +31,52 @@ label reset_wardrobe_vars:
     $ wardrobe_gifts_category = 0         #default page
     $ wardrobe_load_custom_outfit = True  #False = save custom outfit.
 
+    $ wr_action_list = []
+
     if active_girl == "hermione":
+        $ wr_action_list = ["no pose"]
+        if her_whoring >= 9:
+            $ wr_action_list.append("lift top")
+        if her_whoring >= 6:
+            $ wr_action_list.append("lift bottom")
+        if her_whoring >= 11:
+            $ wr_action_list.append("covering")
+        if her_whoring >= 14:
+            $ wr_action_list.append("presenting")
+            $ wr_action_list.append("behind")
+        if her_whoring >= 17:
+            $ wr_action_list.append("fingering")
+            $ wr_action_list.append("pinching")
+        if her_whoring >= 20:
+            $ wr_action_list.append("cuffed")
+        if her_whoring >= 14:
+            $ wr_action_list.append("strip")
+
         $ wr_base_hair_style = "curly" #Throwaway variable. Doesn't get updated.
         $ wr_base_hair_color = "brown" #Throwaway variable. Doesn't get updated.
+
     elif active_girl == "luna":
         $ wr_base_hair_style = "curly"
-        $ wr_base_hair_color = "blonde"
-    elif active_girl == "astoria":
-        $ wr_base_hair_style = "straight"
         $ wr_base_hair_color = "blonde"
     elif active_girl == "susan":
         $ wr_base_hair_style = "braided"
         $ wr_base_hair_color = "red"
-    elif active_girl == "cho":
-        $ wr_base_hair_style = "ponytail"
-        $ wr_base_hair_color = "blue"
-    elif active_girl == "tonks":
-        $ wr_base_hair_style = "short"
-        $ wr_base_hair_color = "pink"
 
     $ wardrobe_head_color             = "base"
     $ wardrobe_uniform_color          = "base"
     $ wardrobe_tops_color             = "base"
     $ wardrobe_bottoms_color          = "base"
+    $ wardrobe_stockings_color        = "base"
     $ wardrobe_other_clothings_color  = "base"
     $ wardrobe_accessories_color      = "base"
     $ wardrobe_underwear_color        = "base"
     $ wardrobe_outfits_color          = "base"
+
+    #Music
+    if play_wardrobe_music:
+        if not wardrobe_music_active:
+            $ wardrobe_music_active = True
+            call play_music("my_immortal")
 
     return
 
@@ -68,15 +85,9 @@ label return_to_wardrobe:
         if active_girl == "hermione":
             call her_main(face="happy",xpos="wardrobe",ypos="base",trans="fade")
         if active_girl == "luna":
-            call lun_main(face="happy",xpos="wardrobe",ypos="base",trans="fade")
-        if active_girl == "astoria":
-            call ast_main(face="neutral",xpos="wardrobe",ypos="base",trans="fade")
+            call lun_main(eye="base", mouth='base',xpos="wardrobe",ypos="base",trans="fade")
         if active_girl == "susan":
             call sus_main(face="happy",xpos="wardrobe",ypos="base",trans="fade")
-        if active_girl == "cho":
-            call cho_main(face="happy",xpos="wardrobe",ypos="base",trans="fade")
-        if active_girl == "tonks":
-            call ton_main(face="horny",xpos="wardrobe",ypos="base",trans="fade")
 
         $ hide_transitions = True
         call screen wardrobe
@@ -87,15 +98,9 @@ label return_to_wardrobe:
         if active_girl == "hermione":
             call her_main(face="happy",xpos="wardrobe",ypos="base")
         if active_girl == "luna":
-            call lun_main(face="happy",xpos="wardrobe",ypos="base")
-        if active_girl == "astoria":
-            call ast_main(face="neutral",xpos="wardrobe",ypos="base")
+            call lun_main(eye="base", mouth='base',xpos="wardrobe",ypos="base")
         if active_girl == "susan":
             call sus_main(face="happy",xpos="wardrobe",ypos="base")
-        if active_girl == "cho":
-            call cho_main(face="happy",xpos="wardrobe",ypos="base")
-        if active_girl == "tonks":
-            call ton_main(face="horny",xpos="wardrobe",ypos="base")
 
         call screen wardrobe
 
@@ -108,14 +113,8 @@ label update_wardrobe_color:
         call her_main(xpos="wardrobe",ypos="base")
     if active_girl == "luna":
         call lun_main(xpos="wardrobe",ypos="base")
-    if active_girl == "astoria":
-        call ast_main(xpos="wardrobe",ypos="base")
     if active_girl == "susan":
         call sus_main(xpos="wardrobe",ypos="base")
-    if active_girl == "cho":
-        call cho_main(xpos="wardrobe",ypos="base")
-    if active_girl == "tonks":
-        call ton_main(xpos="wardrobe",ypos="base")
 
     hide screen main_room_menu
     call screen wardrobe
@@ -150,6 +149,16 @@ label wardrobe_update:
     if wardrobe_page != 8 and wardrobe_page_choice == 8: #gifts
         $ wardrobe_page = 8
 
+    #Music
+    if play_wardrobe_music:
+        if not wardrobe_music_active:
+            $ wardrobe_music_active = True
+            call play_music("my_immortal")
+    else:
+        if wardrobe_music_active:
+            $ wardrobe_music_active = False
+            call music_block
+
     #Sound Effects
     if add_wardrobe_sound: #False by default. Only happens on a "wardrobe_page" change.
         if wardrobe_page == 0:
@@ -164,18 +173,9 @@ label wardrobe_update:
     if active_girl == "luna":
         call wr_lun_clothing_reset
         call lun_main(xpos="wardrobe",ypos="base")
-    if active_girl == "astoria":
-        call wr_ast_clothing_reset
-        call ast_main(xpos="wardrobe",ypos="base")
     if active_girl == "susan":
         call wr_sus_clothing_reset
         call sus_main(xpos="wardrobe",ypos="base")
-    if active_girl == "cho":
-        call wr_cho_clothing_reset
-        call cho_main(xpos="wardrobe",ypos="base")
-    if active_girl == "tonks":
-        call wr_ton_clothing_reset
-        call ton_main(xpos="wardrobe",ypos="base")
 
     hide screen main_room_menu
     call screen wardrobe
@@ -217,29 +217,6 @@ label wr_lun_clothing_reset:
 
     return
 
-label wr_ast_clothing_reset:
-    #Reload Clothing
-    call load_astoria_clothing_saves
-
-    #Qol stuff
-    if wardrobe_page != 6:
-        pass
-    #    if astoria_action != "none":
-    #        $ astoria_use_action = True
-    else: #Underwear page Qol
-        $ astoria_wear_robe = False
-        $ astoria_wear_top = False
-        $ astoria_wear_bottom = False
-
-    call update_ast_uniform
-
-    if not astoria_wear_top or not astoria_wear_bottom:
-        call ast_main("","pout","angry","angry","R")
-    else:
-        call ast_main("","smile","base","base","mid")
-
-    return
-
 label wr_sus_clothing_reset:
     #Reload Clothing
     call load_susan_clothing_saves
@@ -258,44 +235,6 @@ label wr_sus_clothing_reset:
 
     return
 
-label wr_cho_clothing_reset:
-    #Reload Clothing
-    call load_cho_clothing_saves
-
-    #Qol stuff
-    if wardrobe_page != 6:
-        pass
-    #    if cho_action != "none":
-    #        $ cho_use_action = True
-    else: #Underwear page Qol
-        $ cho_wear_robe = False
-        $ cho_wear_top = False
-        $ cho_wear_bottom = False
-
-    call update_cho_uniform
-
-    return
-
-label wr_ton_clothing_reset:
-    #Reload Clothing
-    call load_tonks_clothing_saves
-
-    #Qol stuff
-    if wardrobe_page != 6:
-        pass
-    #    if cho_action != "none":
-    #        $ cho_use_action = True
-    else: #Underwear page Qol
-        $ tonks_wear_robe = False
-        $ tonks_wear_top = False
-        $ tonks_wear_bottom = False
-
-    call update_ton_uniform
-
-    return
-
-
-
 ### CLOSE WARDROBE LABELS ###
 
 label hide_wardrobe:
@@ -304,6 +243,10 @@ label hide_wardrobe:
 
 label close_wardrobe:
     $ renpy.play('sounds/door2.mp3') #closing wardrobe page
+    #Music
+    if wardrobe_music_active:
+        $ wardrobe_music_active = False
+        call music_block
 
     if active_girl == "hermione":
         call set_her_face(change="all")
@@ -315,18 +258,9 @@ label close_wardrobe:
         pause.2
         call lun_chibi("stand","mid","base")
         jump luna_requests
-    if active_girl == "astoria":
-        call ast_main(xpos="base",ypos="base")
-        jump astoria_requests
     if active_girl == "susan":
         call sus_main(xpos="base",ypos="base")
         jump susan_requests
-    if active_girl == "cho":
-        call cho_main(xpos="base",ypos="base")
-        jump cho_requests
-    if active_girl == "tonks":
-        call ton_main(xpos="base",ypos="base")
-        jump tonks_requests
 
 ### Pose/Action ###
 
@@ -334,31 +268,25 @@ label close_wardrobe:
 label wardrobe_change_her_action:
     hide screen hermione_main
 
-    if wr_her_action == "none":
+    if wr_her_action == "no pose":
         call set_her_action("none","update")
-    if wr_her_action == "lift_top":
+    if wr_her_action == "lift top":
         call set_her_action("lift_top")
-    if wr_her_action == "lift_skirt":
+    if wr_her_action == "lift bottom":
         call set_her_action("lift_skirt")
-    if wr_her_action == "hold_book":
-        call set_her_action("hold_book")
-    if wr_her_action == "milk_breasts":
-        $ milking = 1
-        call set_her_action("milk_breasts")
-
-    if wr_her_action == "lift_breasts":
+    if wr_her_action == "presenting":
         call set_her_action("lift_breasts")
-    if wr_her_action == "hands_behind":
+    if wr_her_action == "behind":
         call set_her_action("hands_behind")
     if wr_her_action == "covering":
         call set_her_action("covering")
     if wr_her_action == "fingering":
         call set_her_action("fingering")
-    if wr_her_action == "pinch":
+    if wr_her_action == "pinching":
         call set_her_action("pinch")
-    if wr_her_action == "hands_cuffed":
+    if wr_her_action == "cuffed":
         call set_her_action("hands_cuffed")
-    if wr_her_action == "naked":
+    if wr_her_action == "strip":
         call set_her_action("naked")
 
     call her_main(xpos="wardrobe")
@@ -582,15 +510,12 @@ label her_stockings_toggle:
         ">No item equipped."
         call screen wardrobe
     hide screen hermione_main
-    if her_whoring < 11 and h_bottom in ["skirt_belted_mini","skirt_belted_micro"]:
-        call nar(">You can't remove her pantyhose while wearing that skirt!")
+    if h_request_wear_stockings:
+        $ h_request_wear_stockings = False
+        $ hermione_wear_stockings = False
     else:
-        if h_request_wear_stockings:
-            $ h_request_wear_stockings = False
-            $ hermione_wear_stockings = False
-        else:
-            $ h_request_wear_stockings = True
-            $ hermione_wear_stockings = True
+        $ h_request_wear_stockings = True
+        $ hermione_wear_stockings = True
     call update_her_uniform
     show screen hermione_main
     call screen wardrobe
@@ -694,7 +619,7 @@ label her_makeup_toggle:
 
 # Piercings Toggle #
 label her_piercings_toggle:
-    if h_ear_piercing == "blank" and h_nipple_piercing == "blank" and h_belly_piercing == "blank" and h_intimate_piercing == "blank":
+    if h_ear_piercing == "blank" and h_nipple_piercing == "blank" and h_belly_piercing == "blank" and h_genital_piercing == "blank":
         ">No item equipped."
         call screen wardrobe
     hide screen hermione_main
@@ -750,12 +675,7 @@ label her_tattoos_toggle:
 ## Piercings ##
 label equip_piercing:
     if active_girl == "hermione":
-        call set_her_piercing(piercing_choice, piercing_color_choice)
-    if active_girl == "tonks":
-        call set_ton_piercing(piercing_choice, piercing_color_choice)
-        call ton_main(mouth="open_wide_tongue", face="horny",xpos="wardrobe",ypos="base")
-        call ctc
-
+        call set_her_piercing(piercing_choice)
     jump return_to_wardrobe
 
 

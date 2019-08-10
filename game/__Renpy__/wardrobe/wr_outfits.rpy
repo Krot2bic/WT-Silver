@@ -9,19 +9,9 @@ label equip_outfit:
     #Luna
     if active_girl == "luna":
         jump equip_lun_outfit
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_outfit
     #Susan
     if active_girl == "susan":
         jump equip_sus_outfit
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_outfit
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_cho_outfit
-
 
 ### Equip Hermione's Outfit ###
 label equip_her_outfit:
@@ -191,6 +181,33 @@ label equip_her_outfit:
                         ">Try again at Whoring level 20."
                     jump return_to_wardrobe
 
+            if outfit_choice == hg_gamble_slut_ITEM:
+                m "You know that card game that we've been playing?"
+                call her_main("Wizard Cards?","open","base")
+                call her_main("Yes... What about it?","normal","narrow")
+                g9 "So, apparently since I've been so successful at it... I've received this outfit from trading in those tokens."
+                if her_whoring >= 11: #Success
+                    call her_main("Hmm, a bit tight it seems. The hat is cute though.","open","wink")
+                    g9 "So you'll wear it?"
+                    call her_main("...","normal","down")
+                    call her_main("Fine...","open","baseL")
+                    call her_main("You did beat me fair and square...","open","wink")
+                    m "Great, perhaps you'll win next rematch..."
+                    call her_main("Perhaps...","smile","base")
+                else: #Fail
+                    call her_main("And what? [genie_name] You're expecting me to just wear this thing because you've won it?","open","base")
+                    call her_main("(Does he think he can play me like he plays cards?)","annoyed","angryL")
+                    call her_main("Now, if you excuse me I have more important things to do...","open","closed")
+                    call her_main("Unless you needed anything else?","soft","baseL")
+                    m "..."
+                    g9 "But, I won... fair and square."
+                    call her_main("You may be a winner, [genie_name] but you have yet to learn how to play your cards right with me.","open","closed")
+                    call her_main("Card master...","crooked_smile","wink")
+                    m "(Damn it...)"
+                    if cheats_active or game_difficulty <= 2:
+                        ">Try again at Whoring level 11."
+                    jump return_to_wardrobe
+
             # Costumes
             if outfit_choice in [hg_costume_power_girl_ITEM,hg_costume_ms_marvel_ITEM]:
                 m "Are there any heroines you know of?"
@@ -298,7 +315,7 @@ label equip_her_outfit:
                         ">Try again at Whoring level 17."
                     jump return_to_wardrobe
 
-            if outfit_choice == hg_outfit_witch_ITEM:
+            if outfit_choice in [hg_witch_ITEM,hg_witch_skimpy_ITEM]:
                 m "[hermione_name], have you ever heard about witches?"
                 call her_main("[genie_name]? I am a witch?","soft","narrow")
                 m "Oh right,..."
@@ -310,14 +327,18 @@ label equip_her_outfit:
                     m "Here it is."
                     call nar(">You hand her the outfit.")
                     call her_main("It looks really old-fashioned...","disgust","down")
-                    call her_main("And why is there a hole down there?","disgust","narrow")
-                    g9 "It's great, isn't it!"
-                    call her_main("No it isn't! Do you really expect me to show of my pussy like that, to everyone?","angry","angry")
-                    m "Well, only to me..."
-                    m "I believe you can cover it up with a spell or something..."
-                    call her_main("Oh...","annoyed","down")
-                    call her_main("You should have told me that first!","annoyed","annoyed")
-                    g9 "Yeah yeah... Now put on the dress, my little witch!"
+                    if outfit_choice == hg_witch_skimpy_ITEM:
+                        call her_main("And why is there a hole down there?","disgust","narrow")
+                        g9 "It's great, isn't it!"
+                        call her_main("No it isn't! Do you really expect me to show of my pussy like that, to everyone?","angry","angry")
+                        m "Well, only to me..."
+                        m "I believe you can cover it up with a spell or something..."
+                        call her_main("Oh...","annoyed","down")
+                        call her_main("You should have told me that first!","annoyed","annoyed")
+                    else:
+                        g9 "It's great, isn't it!"
+                        call her_main("Not really...","annoyed","down")
+                    g9 "Just put it on, my little witch."
                     call her_main("Fine... Give me a minute...","smile","baseL")
                 else: #Fail
                     call her_main("Capes are silly, [genie_name].","open","closed")
@@ -396,7 +417,7 @@ label equip_her_outfit:
                     hide screen wardrobe
                     with d3
                     pause.5
-                    jump giving_the_dress
+                    jump ball_quest_E5
                 else:
                     m "Remember that dress I gave you?"
                     call her_main("Of course! How could I ever forget!","open","wide")
@@ -475,22 +496,6 @@ label equip_lun_outfit:
 
         jump return_to_wardrobe
 
-
-### Equip Astoria's Outfit ###
-label equip_ast_outfit:
-    if (outfit_choice != astoria_outfit_GLBL) or (outfit_choice == astoria_outfit_GLBL and not astoria_wear_outfit):
-
-        call set_ast_outfit(outfit_choice)
-
-        jump return_to_wardrobe
-
-    else: # Unequip
-
-        call set_ast_outfit(None)
-
-        jump return_to_wardrobe
-
-
 ### Equip Susan's Outfit ###
 label equip_sus_outfit:
     if (outfit_choice != susan_outfit_GLBL) or (outfit_choice == susan_outfit_GLBL and not susan_wear_outfit):
@@ -505,36 +510,3 @@ label equip_sus_outfit:
         call set_sus_outfit(None)
 
         jump return_to_wardrobe
-
-
-### Equip Cho's Outfit ###
-label equip_cho_outfit:
-    if (outfit_choice != cho_outfit_GLBL) or (outfit_choice == cho_outfit_GLBL and not cho_wear_outfit):
-
-        call set_cho_outfit(outfit_choice)
-
-        call cho_main(xpos="wardrobe")
-        call screen wardrobe
-
-    else: # Unequip
-
-        call set_cho_outfit(None)
-
-        jump return_to_wardrobe
-
-
-### Equip Tonks's Outfit ###
-label equip_ton_outfit:
-    if (outfit_choice != tonks_outfit_GLBL) or (outfit_choice == tonks_outfit_GLBL and not tonks_wear_outfit):
-
-        call set_ton_outfit(outfit_choice)
-
-        call ton_main(xpos="wardrobe")
-        call screen wardrobe
-
-    else: # Unequip
-
-        call set_ton_outfit(None)
-
-        call ton_main(xpos="wardrobe")
-        call screen wardrobe

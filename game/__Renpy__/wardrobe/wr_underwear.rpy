@@ -9,23 +9,14 @@ label equip_bra:
     #Luna
     if active_girl == "luna":
         jump equip_lun_bra
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_bra
     #Susan
     if active_girl == "susan":
         jump equip_sus_bra
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_bra
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_bra
 
 
 ### Equip Hermione's Bra ###
 label equip_her_bra:
-    if underwear_choice == h_bra and underwear_color_choice == h_bra_color:
+    if underwear_choice == h_bra:
         $ hide_transitions = True
         #">She's already wearing that!" #Remove line. Just for testing.
         jump return_to_wardrobe
@@ -225,7 +216,7 @@ label equip_her_bra:
                         ">Try again at Whoring level 20."
                     jump return_to_wardrobe
 
-            elif underwear_choice in ["top_fishnets"]:
+            elif underwear_choice in ["top_fishnets_1"]:
                 g9 "I've got something for you! Try it out!"
                 if her_whoring >= 20: #Success
                     call her_main("Wow. Fishnets?","smile","down")
@@ -259,7 +250,7 @@ label equip_her_bra:
 
 
 
-            call set_her_bra(underwear_choice, underwear_color_choice)
+            call set_her_bra(underwear_choice)
 
             call her_main(xpos="wardrobe")
             $ hide_transitions = 1
@@ -287,14 +278,14 @@ label equip_her_bra:
                     ">Try again at Whoring level 17."
                 jump return_to_wardrobe
 
-            if her_whoring < 20 and underwear_choice in ["bra_french_maid","bra_tape","top_fishnets"]:
+            if her_whoring < 20 and underwear_choice in ["bra_french_maid","bra_tape","top_fishnets_1"]:
                 "She won't wear this item just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 20."
                 jump return_to_wardrobe
 
             #Success!
-            call set_her_bra(underwear_choice, underwear_color_choice)
+            call set_her_bra(underwear_choice)
 
             call her_main(xpos="wardrobe")
             hide screen wardrobe
@@ -309,31 +300,11 @@ label equip_lun_bra:
 
     jump return_to_wardrobe
 
-### Equip Astoria's Bra ###
-label equip_ast_bra:
-    call set_ast_bra(underwear_choice)
-
-    jump return_to_wardrobe
-
 ### Equip Susan's Bra ###
 label equip_sus_bra:
     call set_sus_bra(underwear_choice)
 
     jump return_to_wardrobe
-
-### Equip Cho's Bra ###
-label equip_cho_bra:
-    call set_cho_bra(underwear_choice, underwear_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's Bra ###
-label equip_ton_bra:
-    call set_ton_bra(underwear_choice)
-
-    jump return_to_wardrobe
-
-
 
 ### Equip Onepiece ###
 label equip_onepiece:
@@ -344,18 +315,9 @@ label equip_onepiece:
     #Luna
     if active_girl == "luna":
         jump equip_lun_onepiece
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_onepiece
     #Susan
     if active_girl == "susan":
         jump equip_sus_onepiece
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_onepiece
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_onepiece
 
 ### Equip Hermione's OnePiece/Nighty ###
 label equip_her_onepiece:
@@ -369,31 +331,11 @@ label equip_lun_onepiece:
 
     jump return_to_wardrobe
 
-### Equip Astoria's OnePiece/Nighty ###
-label equip_ast_onepiece:
-    call set_ast_onepiece(underwear_choice)
-
-    jump return_to_wardrobe
-
 ### Equip Susan's OnePiece/Nighty ###
 label equip_sus_onepiece:
     call set_sus_onepiece(underwear_choice)
 
     jump return_to_wardrobe
-
-### Equip Cho's OnePiece/Nighty ###
-label equip_cho_onepiece:
-    call set_cho_onepiece(underwear_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's OnePiece/Nighty ###
-label equip_ton_onepiece:
-    call set_ton_onepiece(underwear_choice)
-
-    jump return_to_wardrobe
-
-
 
 ### Equip Panties ###
 label equip_panties:
@@ -404,22 +346,13 @@ label equip_panties:
     #Luna
     if active_girl == "luna":
         jump equip_lun_panties
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_panties
     #Susan
     if active_girl == "susan":
         jump equip_sus_panties
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_panties
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_panties
 
 ### Equip Hermione's Panties ###
 label equip_her_panties:
-    if underwear_choice == h_panties and underwear_color_choice == h_panties_color:
+    if underwear_choice == h_panties:
         $ hide_transitions = True
         #">She's already wearing that!" #Remove line. Just for testing.
         jump return_to_wardrobe
@@ -619,7 +552,7 @@ label equip_her_panties:
 
 
 
-            call set_her_panties(underwear_choice, underwear_color_choice)
+            call set_her_panties(underwear_choice)
 
             call her_main(xpos="wardrobe")
             $ hide_transitions = 1
@@ -654,7 +587,7 @@ label equip_her_panties:
                 jump return_to_wardrobe
 
             #Success!
-            call set_her_panties(underwear_choice, underwear_color_choice)
+            call set_her_panties(underwear_choice)
 
             call her_main(xpos="wardrobe")
             hide screen wardrobe
@@ -667,31 +600,11 @@ label equip_lun_panties:
 
     jump return_to_wardrobe
 
-### Equip Astoria's Panties ###
-label equip_ast_panties:
-    call set_ast_panties(underwear_choice)
-
-    jump return_to_wardrobe
-
 ### Equip Susan's Panties ###
 label equip_sus_panties:
     call set_sus_panties(underwear_choice)
 
     jump return_to_wardrobe
-
-### Equip Cho's Panties ###
-label equip_cho_panties:
-    call set_cho_panties(underwear_choice, underwear_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's Panties ###
-label equip_ton_panties:
-    call set_ton_panties(underwear_choice)
-
-    jump return_to_wardrobe
-
-
 
 ### Equip Garterbelt ###
 label equip_garterbelt:
@@ -702,51 +615,24 @@ label equip_garterbelt:
     #Luna
     if active_girl == "luna":
         jump equip_lun_garterbelt
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_garterbelt
     #Susan
     if active_girl == "susan":
         jump equip_sus_garterbelt
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_garterbelt
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_garterbelt
 
 ### Equip Hermione's Garterbelt ###
 label equip_her_garterbelt:
-    call set_her_garterbelt(underwear_choice, underwear_color_choice)
+    call set_her_garterbelt(underwear_choice)
 
     jump return_to_wardrobe
 
 ### Equip Luna's Garterbelt ###
 label equip_lun_garterbelt:
-    call set_lun_garterbelt(underwear_choice, underwear_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Astoria's Garterbelt ###
-label equip_ast_garterbelt:
-    call set_ast_garterbelt(underwear_choice, underwear_color_choice)
+    call set_lun_garterbelt(underwear_choice)
 
     jump return_to_wardrobe
 
 ### Equip Susan's Garterbelt ###
 label equip_sus_garterbelt:
-    call set_sus_garterbelt(underwear_choice, underwear_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Cho's Garterbelt ###
-label equip_cho_garterbelt:
-    call set_cho_garterbelt(underwear_choice, underwear_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's Garterbelt ###
-label equip_ton_garterbelt:
-    call set_ton_garterbelt(underwear_choice, underwear_color_choice)
+    call set_sus_garterbelt(underwear_choice)
 
     jump return_to_wardrobe

@@ -21,18 +21,14 @@ label her_main(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=Non
 
     #Positioning
     if xpos != None:
-        if xpos in ["base","default"]: #All the way to the right.
+        if xpos in ["base","default"]:      # All the way to the right.
             $ hermione_xpos = 640
-            $ menu_x = 0.1 #Don't add ypos!
         elif xpos == "left":
             $ hermione_xpos = 200
-            $ menu_x = 0.5
-        elif xpos == "mid":                     #Centered.
+        elif xpos == "mid":                 # Centered.
             $ hermione_xpos = 300
-            $ menu_x = 0.5 #Don't add ypos!
-        elif xpos == "right":                   #Bit more to the right.
+        elif xpos == "right":               # Bit more to the right.
             $ hermione_xpos = 400
-            $ menu_x = 0.5 #Don't add ypos!
         elif xpos in ["wardrobe","close"]:
             $ hermione_xpos = 540
         else:
@@ -45,9 +41,12 @@ label her_main(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=Non
             $ hermione_zorder = 5
             $ use_hermione_head = False
 
-        elif ypos in ["head"]: #Use ypos="head" to activate her head position. Use ypos="base" to disable it. Use ypos="200" or any other number to move her head up or down.
+        elif ypos in ["head"]:
+            # Use ypos="head" to activate her head position.
+            # Use ypos="base" to disable it.
+            # Use ypos="200" or any other number to move her head up or down.
             $ use_hermione_head = True
-            $ hermione_scaleratio = 2 #Reset
+            $ hermione_scaleratio = 2
 
             if face_on_cg: #Only her face is visible. Face gets placed on top of the CG screen.
                 if ccg_folder == "herm_sex":
@@ -61,9 +60,16 @@ label her_main(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=Non
                 if hermione_flip == -1: #Flipped
                     $ hermione_xpos = -70 #Left side of screen!
                 else:
-                    $ hermione_xpos = 590
+                    $ hermione_xpos = 640
                 $ hermione_ypos = 230
                 $ hermione_zorder = 8
+
+        elif ypos in ["suck"]:
+            $ use_hermione_head = True
+            $ hermione_scaleratio = 1.4
+            $ hermione_xpos = 500
+            $ hermione_ypos = 100
+            $ hermione_zorder = 8
 
         else:
             $ hermione_ypos = int(ypos)
@@ -83,12 +89,10 @@ label her_main(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=Non
 
     show screen bld1 #Should be active anyways.
 
-    #Transitions
-    call transition(trans)
+    call transition(trans, True)
 
-    #Text
     if text != "":
-        $ renpy.say(her,text)
+        $ renpy.say(her, text)
 
     if use_hermione_head and not face_on_cg:
         hide screen hermione_main
@@ -113,8 +117,7 @@ label her_kneel(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=No
 
     show screen bld1 #Should be active anyways.
 
-    #Transitions
-    call transition(trans)
+    call transition(trans, True)
 
     #Text
     if text != "":
@@ -128,6 +131,7 @@ label her_kneel(text="", mouth=None, eye=None, cheeks=None, tears=None, extra=No
 label update_hermione:
 
     $ hermione_flip = 1
+    $ her_chibi_flip = 1
     $ use_hermione_head = False
 
     call update_her_uniform
@@ -140,6 +144,9 @@ label reset_hermione:
     #Hermione clothing save state
     call load_hermione_clothing_saves
 
+    $ hermione_expand_breasts = False
+    $ hermione_expand_ass = False
+    $ no_blinking      = False #When True - blinking animation is not displayed.
     $ hermione_dribble = False
     $ hermione_squirt  = False
     $ aftersperm       = False #Show cum stains on Hermione's uniform.
@@ -154,112 +161,7 @@ label reset_hermione:
     return
 
 
-label load_hermione_clothing_saves:
 
-    #Uniform & Underwear
-    if h_request_wear_top:
-        $ hermione_wear_top          = True
-    else:
-        $ hermione_wear_top          = False
-
-    if h_request_wear_onepiece:
-        $ hermione_wear_onepiece     = True
-    else:
-        $ hermione_wear_onepiece     = False
-
-    if h_request_wear_bra:
-        $ hermione_wear_bra          = True
-    else:
-        $ hermione_wear_bra          = False
-
-    if h_request_wear_bottom:
-        $ hermione_wear_bottom       = True
-    else:
-        $ hermione_wear_bottom       = False
-
-    if h_request_wear_panties:
-        $ hermione_wear_panties      = True
-    else:
-        $ hermione_wear_panties      = False
-
-    if h_request_wear_garterbelt:
-        $ hermione_wear_garterbelt   = True
-    else:
-        $ hermione_wear_garterbelt   = False
-
-    #Other Clothing
-    if h_request_wear_neckwear:
-        $ hermione_wear_neckwear     = True
-    else:
-        $ hermione_wear_neckwear     = False
-
-    if h_request_wear_body_accs:
-        $ hermione_wear_body_accs    = True
-    else:
-        $ hermione_wear_body_accs    = False
-
-    if h_request_wear_gloves:
-        $ hermione_wear_gloves       = True
-    else:
-        $ hermione_wear_gloves       = False
-
-    if h_request_wear_stockings:
-        $ hermione_wear_stockings    = True
-    else:
-        $ hermione_wear_stockings    = False
-
-    if h_request_wear_robe:
-        $ hermione_wear_robe         = True
-    else:
-        $ hermione_wear_robe         = False
-
-    #Head Accessories
-    if h_request_wear_hat:
-        $ hermione_wear_hat          = True
-    else:
-        $ hermione_wear_hat          = False
-
-    if h_request_wear_glasses:
-        $ hermione_wear_glasses      = True
-    else:
-        $ hermione_wear_glasses      = False
-
-    if h_request_wear_ears:
-        $ hermione_wear_ears         = True
-    else:
-        $ hermione_wear_ears         = False
-
-    if h_request_wear_makeup:
-        $ hermione_wear_makeup       = True
-    else:
-        $ hermione_wear_makeup       = False
-
-    if h_request_wear_piercings:
-        $ hermione_wear_piercings    = True
-    else:
-        $ hermione_wear_piercings    = False
-
-    if h_request_wear_tattoos:
-        $ hermione_wear_tattoos      = True
-    else:
-        $ hermione_wear_tattoos      = False
-
-    if h_request_wear_mask:
-        $ hermione_wear_mask = True
-    else:
-        $ hermione_wear_mask = False
-
-    if h_request_wear_gag:
-        $ hermione_wear_gag = True
-    else:
-        $ hermione_wear_gag = False
-
-    if h_request_wear_outfit:
-        $ hermione_wear_outfit = True
-    else:
-        $ hermione_wear_outfit = False
-
-    return
 
 
 init python:

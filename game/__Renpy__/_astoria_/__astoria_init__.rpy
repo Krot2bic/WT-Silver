@@ -1,179 +1,37 @@
 
 
 label astoria_init:
-
-    if not hasattr(renpy.store,'astoria_wear_outfit') or reset_persistants:
-        label reset_astoria_clothing:
-
-        #Body
-        $ astoria_base                = "characters/astoria/body/base/base_01.png"
-        $ astoria_l_arm               = "characters/astoria/body/arms/hip_l.png"
-        $ astoria_r_arm               = "characters/astoria/body/arms/hip_r.png"
-        $ astoria_l_hand              = "characters/astoria/body/arms/hip_l_top.png"
-        $ astoria_r_hand              = "characters/astoria/body/arms/hip_r_top.png"
+    if not hasattr(renpy.store,'astoria_chibi_animation') or reset_persistants:
         $ astoria_xpos                = 300
         $ astoria_ypos                = 0
         $ astoria_zorder              = 5
         $ astoria_flip                = 1
-        $ use_astoria_head            = False
+        $ astoria_animation           = None
 
-        #Face
-        $ astoria_mouth               = "characters/astoria/face/mouth/smile.png"
-        $ ast_mouth                   = "base"
-        $ ast_lipstick                = "nude"
+        #Chibi
+        $ astoria_chibi_xpos          = 500
+        $ astoria_chibi_ypos          = 250
+        $ astoria_chibi_flip          = 1
+        $ astoria_chibi_zorder        = 3
+        $ astoria_chibi_animation     = None
+        $ astoria_chibi_status        = ""
 
-        $ astoria_eye                 = "characters/astoria/face/eyes/eye_base.png"
-        $ astoria_eye_bg              = "characters/astoria/face/eyes/eye_base_bg.png"
-        $ astoria_pupil               = "characters/astoria/face/eyes/pupil_mid.png"
-        $ ast_eye_color               = "blue"
+        $ astoria_chibi_stand         = "ch_cho blink"
+        $ astoria_chibi_shoes         = "characters/cho/chibis/cc_walk_01_shoes.png"
 
-        $ astoria_eyebrow             = "characters/astoria/face/brow/base.png"
+        $ astoria_chibi_walk          = "ch_cho walk"
+        $ astoria_chibi_walk_shoes    = "ch_cho walk_shoes"
 
-        $ astoria_cheeks              = "characters/astoria/face/extras/cheeks_blank.png"
-        $ astoria_tears               = "characters/astoria/face/extras/cheeks_blank.png"
-        $ astoria_extra               = "characters/astoria/face/extras/blank.png"
-        $ astoria_emote               = "characters/emotes/blank.png"
+        $ astoria_chibi_top           = "characters/cho/chibis/cc_cloth_shirt_r.png"
+        $ astoria_chibi_bottom        = "characters/cho/chibis/cc_cloth_skirt.png"
+        $ astoria_chibi_robe          = "blank"
+        $ astoria_chibi_gloves        = "blank" #blank is the new defined image, makes our lives easier
+        $ astoria_chibi_fix           = "blank"
 
-        #Hair
-        $ astoria_hair                = "characters/astoria/body/hair/straight_blonde_base.png"
-        $ astoria_hair_shadow         = "characters/astoria/body/hair/straight_blonde_top.png"
-        $ ast_hair_style              = "straight"
-        $ ast_hair_color              = "blonde"
-
-        $ changeAstoria("smile","base","base","mid","blank","blank","blank","blank")
-
-
-
-        #Clothes
-
-        #Save State
-        $ ast_request_wear_top              = True
-        $ ast_request_wear_bra              = True
-        $ ast_request_wear_bottom           = True
-        $ ast_request_wear_panties          = True
-
-        $ ast_request_wear_onepiece         = False
-        $ ast_request_wear_garterbelt       = False
-
-        $ ast_request_wear_neckwear         = False
-        $ ast_request_wear_gloves           = False
-        $ ast_request_wear_stockings        = False
-        $ ast_request_wear_robe             = False
-
-        $ ast_request_wear_hat              = False
-        $ ast_request_wear_glasses          = False
-        $ ast_request_wear_ears             = False
-        $ ast_request_wear_makeup           = False
-        $ ast_request_wear_accs             = False
-
-        $ ast_request_wear_buttplug         = False
-        $ ast_request_wear_piercings        = False
-        $ ast_request_wear_tattoos          = False
-
-        $ ast_request_wear_outfit           = False
-
-        #Toggle
-        $ astoria_wear_top               = True
-        $ astoria_wear_bra               = True
-        $ astoria_wear_bottom            = True
-        $ astoria_wear_panties           = True
-
-        $ astoria_wear_onepiece          = False
-        $ astoria_wear_garterbelt        = False
-
-        $ astoria_wear_neckwear          = False
-        $ astoria_wear_gloves            = False
-        $ astoria_wear_stockings         = False
-        $ astoria_wear_robe              = False
-
-        $ astoria_wear_hat               = False
-        $ astoria_wear_glasses           = False
-        $ astoria_wear_ears              = False
-        $ astoria_wear_makeup            = False
-        $ astoria_wear_accs              = False
-        $ astoria_badges                 = False
-        $ astoria_wear_piercings         = False
-        $ astoria_wear_tattoos           = False
-
-        $ astoria_wear_outfit            = False
-
-
-
-        #Top
-        $ astoria_top                 = "characters/astoria/clothes/tops/base/top_1.png"
-        $ ast_top                     = "top_1"
-        $ ast_top_color               = "base"
-
-        #Bottom
-        $ astoria_bottom               = "characters/astoria/clothes/bottoms/base/skirt_1.png"
-        $ ast_bottom                   = "skirt_1"
-        $ ast_bottom_color             = "base"
-
-        #Underwear
-        $ astoria_bra                 = "characters/astoria/clothes/underwear/base/lace_bra.png"
-        $ ast_bra                     = "lace_bra"
-        $ ast_bra_color               = "base"
-
-        $ astoria_panties             = "characters/astoria/clothes/underwear/base/lace_panties.png"
-        $ ast_panties                 = "lace_panties"
-        $ ast_panties_color           = "base"
-
-        $ astoria_onepiece            = "characters/astoria/clothes/onepieces/blank.png"
-        $ ast_onepiece                = "blank"
-        $ ast_onepiece_color          = "base"
-
-        $ astoria_garterbelt          = "characters/astoria/clothes/underwear/base/blank.png"
-        $ ast_garterbelt              = "blank"
-        $ ast_garterbelt_color        = "base"
-
-
-        #Other Clothing
-        $ astoria_neckwear            = "characters/astoria/clothes/neckwear/blank.png"
-        $ ast_neckwear                = "blank"
-        $ ast_neckwear_color          = "base"
-
-        $ astoria_accs_list           = []
-        $ astoria_accs                = "characters/astoria/accessories/blank.png"
-
-        $ astoria_gloves              = "characters/astoria/clothes/gloves/blank.png"
-        $ ast_gloves                  = "blank"
-        $ ast_gloves_color            = "base"
-
-        $ astoria_stockings           = "characters/astoria/clothes/stockings/blank.png"
-        $ ast_stockings               = "blank"
-        $ ast_stockings_color         = "base"
-
-        $ astoria_robe                = "characters/astoria/clothes/robe/robe_1_s.png"
-        $ ast_robe                    = "robe_1_s"
-        $ ast_robe_color              = "base"
-
-
-        #Accessories
-        $ astoria_makeup_list         = []
-
-        $ astoria_hat                 = "characters/astoria/accessories/hats/hair_straight/blank.png"
-        $ ast_hat                     = "blank"
-        $ ast_hat_color               = "base"
-
-        $ astoria_glasses             = "characters/astoria/accessories/glasses/blank.png"
-        $ ast_glasses                 = "blank"
-        $ ast_glasses_color           = "base"
-
-        $ astoria_ears                = "characters/astoria/accessories/ears/blank.png"
-        $ ast_ears                    = "blank"
-
-
-        $ astoria_extra_1             = "characters/astoria/extras/blank.png"
-        $ astoria_extra_2             = "characters/astoria/extras/blank.png"
-        $ astoria_extra_3             = "characters/astoria/extras/blank.png"
-
-        #Outfits
-        $ astoria_outfit_GLBL = None
-        $ astoria_temp_outfit = None
-
-
-    call astoria_face_layers
-
+    if not hasattr(renpy.store,'astoria_cloth_pile') or reset_persistants:
+        $ astoria_cloth_pile = False
+        $ astoria_pile_xpos = 440 # Right side of desk.
+        $ astoria_pile_ypos = 425 # Bit below feet level.
     return
 
 
@@ -186,10 +44,6 @@ label astoria_progress_init:
         $ astoria_unlocked = False
         $ astoria_wardrobe_unlocked = False
         $ chitchated_with_astoria = False
-
-        $ days_since_astoria = 0
-        $ astoria_arrival_day = 30
-        $ astoria_arrvial_whoring = 9
 
         #Names
         $ astoria_name = "Miss Greengrass"
@@ -227,30 +81,33 @@ label astoria_progress_init:
         #Stat Screen
         $ ast_training_counter = 0
 
+    if not hasattr(renpy.store,'gave_astoria_gift') or reset_persistants:
+        $ gave_astoria_gift = False
+
     #Curses on Susan
-    if not hasattr(renpy.store,'ag_imperio_susan_OBJ'):
-        $ ag_imperio_susan_OBJ = personal_favor()
-    $ ag_imperio_susan_OBJ.menu_text   = "Imperio on Susan"
-    $ ag_imperio_susan_OBJ.start_label = "ag_imperio_susan"
+    if not hasattr(renpy.store,'ag_cs_imperio_sb'):
+        $ ag_cs_imperio_sb = favor_class()
+    $ ag_cs_imperio_sb.title   = "Imperio on Susan"
+    $ ag_cs_imperio_sb.start_label = "ag_cs_imperio_sb"
 
     $ ag_susan_spells_list = [
-        ag_imperio_susan_OBJ
+        ag_cs_imperio_sb
         ]
 
     #Curses on Hermione
-    if not hasattr(renpy.store,'ag_imperio_hermione_OBJ'):
-        $ ag_imperio_hermione_OBJ = personal_favor()
-    $ ag_imperio_hermione_OBJ.menu_text   = "Imperio on Hermione"
-    $ ag_imperio_hermione_OBJ.start_label = "ag_imperio_hermione"
+    if not hasattr(renpy.store,'ag_cs_imperio_hg'):
+        $ ag_cs_imperio_hg = favor_class()
+    $ ag_cs_imperio_hg.title   = "Imperio on Hermione"
+    $ ag_cs_imperio_hg.start_label = "ag_cs_imperio_hg"
 
     $ ag_hermione_spells_list = [
         ]
 
     #Curses on Tonks
-    if not hasattr(renpy.store,'ag_crucio_tonks_OBJ'):
-        $ ag_crucio_tonks_OBJ = personal_favor()
-    $ ag_crucio_tonks_OBJ.menu_text   = "Crucio on Tonks"
-    $ ag_crucio_tonks_OBJ.start_label = "ag_crucio_tonks"
+    if not hasattr(renpy.store,'ag_cs_crucio_nt'):
+        $ ag_cs_crucio_nt = favor_class()
+    $ ag_cs_crucio_nt.title   = "Crucio on Tonks"
+    $ ag_cs_crucio_nt.start_label = "ag_cs_crucio_nt"
 
     $ ag_tonks_spells_list = [
         ]

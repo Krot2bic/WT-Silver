@@ -6,6 +6,16 @@ label snape_chitchat:
  
 #    $ one_of_ten = renpy.random.randint(1, 10) #Generating one number out of three for various porpoises.
 
+    # Prior to hermione introductions
+    if not hermione_unlocked:
+        if one_of_ten <= 5:
+            call sna_main("I am starting to get worried about Albus..","snape_06")
+            call sna_main("I simply hope he's alright.","snape_09") 
+        else:
+            call sna_main("Do you know how much longer will that spell of yours last?","snape_05")
+            call sna_main("I have important matters to discuss with Albus very soon...","snape_09")
+        return
+
     ### WHORING LEVEL 01 ###
     if her_whoring >= 0 and her_whoring <= 2:
         if one_of_ten == 1:
@@ -13,8 +23,12 @@ label snape_chitchat:
             call sna_main("Do You think you can break the girl?","snape_25") 
         
         elif one_of_ten == 2:
-            call sna_main("Don't you just hate this wretched sunny weather?","snape_01") 
-            call sna_main("I wish it would rain every day.","snape_06") 
+            if raining or blizzard:
+                call sna_main("Isn't the weather lovely today?","snape_02") 
+                call sna_main("I wish it would stay like that forever.","snape_06") 
+            else:
+                call sna_main("Don't you just hate this wretched sunny weather?","snape_01") 
+                call sna_main("I wish it would rain every day.","snape_06") 
             
         elif one_of_ten == 3:
             call sna_main("I am feeling rather doubtful about our whole plan again...","snape_06") 

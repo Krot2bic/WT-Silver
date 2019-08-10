@@ -8,44 +8,19 @@ label equip_top:
     #Luna
     if active_girl == "luna":
         jump equip_lun_top
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_top
     #Susan
     if active_girl == "susan":
         jump equip_sus_top
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_top
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_top
 
 
 ### Equip Hermione's Top ###
 
 label equip_her_top:
 
-    if top_choice == h_top and top_color_choice == h_top_color:
+    if top_choice == h_top:
         $ hide_transitions = True
         #">She's already wearing that!" #Remove line. Just for testing.
         jump return_to_wardrobe
-
-    if hermione_action == "hands_behind" or hermione_action == "covering" or hermione_action == "fingering" or hermione_action == "covering_top" or hermione_action == "pinch" or hermione_action == "hands_cuffed" or hermione_action == "milk_breasts":
-
-        $ hide_transitions = True
-        hide screen hermione_main
-        with d3
-        ">Hermione is currently posing,... naked.\nWould you like her to get dressed?"
-        menu:
-            "-Make her get dressed-":
-                call set_her_action(None)
-                hide screen hermione_main
-
-            "-nvm-":
-                show screen hermione_main
-                with d3
-                jump return_to_wardrobe
 
     if her_mood >= 1:
         jump equipping_failed
@@ -491,7 +466,7 @@ label equip_her_top:
             ### Muggle ###
 
             #Muggle Pullover #Done
-            elif top_choice == "normal_pullover":
+            elif top_choice == "top_pullover_1":
                 m "Could you wear your pullover again?"
                 if her_whoring >= 0:
                     if her_whoring < 5:
@@ -509,7 +484,7 @@ label equip_her_top:
                     pass
 
             #Muggle Pullover #Done
-            elif top_choice == "normal_pullover_sexy":
+            elif top_choice == "top_pullover_2":
                 m "Could you wear your pullover again?"
                 if her_whoring >= 5:
                     call her_main("The one with the heart, [genie_name]?","open","baseL")
@@ -527,10 +502,10 @@ label equip_her_top:
                     m "Sure."
                     m "(No cleavage for me today...)"
                     call her_main("Here you go.","base","base")
-                    $ top_choice == "normal_pullover"
+                    $ top_choice == "top_pullover_1"
 
             #Muggle Sweater #Done
-            elif top_choice == "normal_sweater":
+            elif top_choice == "top_sweater_1":
                 m "Could you wear that sweater again?"
                 if her_whoring >= 0:
                     if her_whoring < 5:
@@ -552,7 +527,7 @@ label equip_her_top:
                     pass
 
             #Muggle Waitress Top #Kinda done
-            elif top_choice == "normal_waitress_top":
+            elif top_choice == "top_frilled_1":
                 m "Would you wear this top again. The one with the massive cleavage?"
                 if her_whoring >= 5:
                     if her_whoring < 11:
@@ -574,7 +549,7 @@ label equip_her_top:
             ### Wicked ###
 
             #Leather Jacket #Done
-            elif top_choice in ["leather_jacket_short_sleeves","leather_jacket_sleeveless","leather_jacket_sleeves"]:
+            elif top_choice in ["top_jacket_2","top_jacket_3","top_jacket_1"]:
                 m "Could you wear this leather Jacket for me?"
 
                 if her_whoring >= 17:
@@ -618,7 +593,7 @@ label equip_her_top:
                     jump return_to_wardrobe
 
             #Leather Jacket Open #Done
-            elif top_choice in ["leather_jacket_short_sleeves_open","leather_jacket_sleeveless_open","leather_jacket_sleeves_open"]:
+            elif top_choice in ["top_jacket_open_2","top_jacket_open_3","top_jacket_open_1"]:
                 m "Could you wear this leather Jacket for me?"
                 g9 "But leave the front open!"
                 if her_whoring >= 11:
@@ -725,7 +700,7 @@ label equip_her_top:
                     jump return_to_wardrobe
 
 
-            elif top_choice in ["top_fishnets"]:
+            elif top_choice in ["top_fishnets_1"]:
                 g9 "I have something for you! Try it out!"
                 if her_whoring >= 20: #Success
                     call her_main("Wow. Fishnets?","smile","down")
@@ -761,7 +736,7 @@ label equip_her_top:
 
             pause.5
 
-            call set_her_top(top_choice,top_color_choice)
+            call set_her_top(top_choice)
 
             call her_main(xpos="wardrobe")
             $ hide_transitions = True
@@ -835,12 +810,12 @@ label equip_her_top:
                         ">Try again at Whoring level 11."
                     jump return_to_wardrobe
 
-            if top_choice in ["leather_jacket_short_sleeves","leather_jacket_sleeveless","leather_jacket_sleeves"] and her_whoring < 17:
+            if top_choice in ["top_jacket_2","top_jacket_3","top_jacket_1"] and her_whoring < 17:
                 ">She won't wear that top just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 17."
                 jump return_to_wardrobe
-            if top_choice in ["leather_jacket_short_sleeves_open","leather_jacket_sleeveless_open","leather_jacket_sleeves_open"] and her_whoring < 17:
+            if top_choice in ["top_jacket_open_2","top_jacket_open_3","top_jacket_open_1"] and her_whoring < 17:
                 ">She won't wear that top just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 17."
@@ -850,7 +825,7 @@ label equip_her_top:
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 20."
                 jump return_to_wardrobe
-            if top_choice == "top_fishnets" and her_whoring < 20:
+            if top_choice == "top_fishnets_1" and her_whoring < 20:
                 ">She won't wear that top just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 20."
@@ -858,7 +833,7 @@ label equip_her_top:
 
             #Success!
             $ hide_transitions = True
-            call set_her_top(top_choice,top_color_choice)
+            call set_her_top(top_choice)
             call her_main(xpos="wardrobe")
             call screen wardrobe
 
@@ -869,27 +844,9 @@ label equip_lun_top:
     call set_lun_top(top_choice)
 
     jump return_to_wardrobe
-
-### Equip Astoria's Top ###
-label equip_ast_top:
-    call set_ast_top(top_choice)
-
-    jump return_to_wardrobe
-
+    
 ### Equip Susan's Top ###
 label equip_sus_top:
     call set_sus_top(top_choice)
-
-    jump return_to_wardrobe
-
-### Equip Cho's Top ###
-label equip_cho_top:
-    call set_cho_top(top_choice, top_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's Top ###
-label equip_ton_top:
-    call set_ton_top(top_choice)
 
     jump return_to_wardrobe

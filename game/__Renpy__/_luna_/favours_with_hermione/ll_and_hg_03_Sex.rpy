@@ -23,7 +23,7 @@ label luna_favour_7: #Luna and Hermione Sex #DONE
     call her_main("So what's he want from us today?","smile","glance")
     call her_main("Another blowjob?","grin","baseL")
     call lun_main("He hasn't even asked yet.","base","seductive","sad","R")
-    call lun_main("I wanted you to be here for it.","base","suspicious","sad","stareL")
+    call lun_main("I wanted you to be here for it.","base","suspicious","sad","mid")
     call her_main("you mean...","shock","happy")
     call her_main("Awww that's so sweet Luna.","grin","soft")
     call her_main("You better ask her nicely sir!","mad","narrow")
@@ -209,7 +209,7 @@ label luna_favour_7: #Luna and Hermione Sex #DONE
     ">You move away from Hermione's sweaty body, over to Luna's milky white form."
     $ ccg1 = "luna_10"
     ">You grab a hold of her legs, lining your cock up with her dripping cunt."
-    m "Are you ready [luna_name]?"
+    m "Are you ready [lun_name]?"
     $ ccg1 = "luna_11"
     lun "I... I think so..."
     $ ccg1 = "luna_12"
@@ -548,7 +548,7 @@ label luna_favour_7: #Luna and Hermione Sex #DONE
     call lun_chibi("hide")
     call update_luna_chibi_uniform
 
-    call her_walk("mid","leave",2)
+    call her_walk(action="leave", speed=2)
 
     $ hermione_busy = True
     $ luna_busy = True

@@ -4,275 +4,284 @@
 
 
 ###  GENIE CHIBI UNIVERSAL SCREEN ###
-screen g_c_u:
+screen g_c_u():
     tag genie
-    add g_c_u_pic at Position(xpos=genie_chibi_xpos, ypos=genie_chibi_ypos)
+    add g_c_u_pic xpos gen_chibi_xpos ypos gen_chibi_ypos xzoom gen_chibi_flip
     zorder 3
 
 
 ###  GENIE'S CUM UNIVERSAL SCREEN ###
-screen g_c_c_u:
-    add g_c_c_u_pic at Position(xpos=genie_cum_chibi_xpos, ypos=genie_cum_chibi_ypos) #xpos=-45,ypos=5
+screen g_c_c_u():
+    add g_c_c_u_pic at Position(xpos=genie_cum_chibi_xpos, ypos=genie_cum_chibi_ypos) #xpos=-65,ypos=5
     zorder 4
 
 
-
-### SUSAN CHIBI SCREENS ###
-
-screen genie_stand:
-    tag genie_chibi
-
-    add genie_chibi_stand xpos genie_chibi_xpos ypos genie_chibi_ypos xzoom genie_chibi_flip #zoom (1.0/scaleratio)
-
-    zorder genie_chibi_zorder
-
-screen genie_walk:
-    tag genie_chibi
-
-    add genie_chibi_walk at genie_walk(walk_xpos, walk_xpos2) xzoom genie_chibi_flip #zoom (1.0/scaleratio)
-
-    zorder genie_chibi_zorder
-
-label update_gen_chibi:
-    $ genie_chibi_stand = "characters/genie/chibis/walk_01.png"
-    $ genie_chibi_walk = "genie_walk_ani"
-
-    return
-
-
-
-screen genie: #Sitting behind desk.
+screen genie(): #Sitting behind desk.
     tag genie_chibi
     add "images/rooms/main_room/11_genie_00.png" at Position(xpos=370, ypos=336, xanchor="center", yanchor="center")
     zorder 1
 
 
-screen rum_screen: #Rummaging through the cumpboard.
+screen rum_screen(): #Rummaging through the cumpboard.
     tag genie_chibi
-    add "images/rooms/main_room/cupboard_open.png" at Position(xpos=260, ypos=280, xanchor="center", yanchor="center")
-    add "images/rooms/main_room/cupboard_open" +str(cupboard_deco)+ ".png" at Position(xpos=260, ypos=280, xanchor="center", yanchor="center") #Pinup Girl
+    add "images/rooms/_objects_/cupboard/cupboard_open.png" at Position(xpos=cupboard_OBJ.xpos, ypos=cupboard_OBJ.ypos, xanchor="center", yanchor="center")
+    add "images/rooms/_objects_/cupboard/cupboard_open" +str(cupboard_deco)+ ".png" at Position(xpos=cupboard_OBJ.xpos, ypos=cupboard_OBJ.ypos, xanchor="center", yanchor="center") #Pinup Girl
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=332, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=371, ypos=331, xanchor="center", yanchor="center")
     add "genie_rum_ani" xpos 160 ypos 110
     zorder 1
 
-screen feeding: #FEEDING THE PHOENIX.
+screen feeding(): #FEEDING THE PHOENIX.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=320, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=360, ypos=330, xanchor="center", yanchor="center")
-    add "feeding" xpos 410 ypos 75
+    add "grab_high" xpos phoenix_OBJ.xpos ypos phoenix_OBJ.ypos xanchor 0.5 yanchor 0.5 #xpos 410 ypos 75
     zorder 1
 
-screen petting: #PETTING THE PHOENIX.
+screen petting(): #PETTING THE PHOENIX.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=320, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=360, ypos=330, xanchor="center", yanchor="center")
-    add "petting" xpos 390 ypos 65
+    add "petting" xpos phoenix_OBJ.xpos ypos phoenix_OBJ.ypos xanchor 0.5 yanchor 0.5 #xpos 390 ypos 65
     zorder 1
 
-screen sad_phoenix: #SAD SMILEY THAT SHOWS WHEN YOU PET THE BIRD.
+screen sad_phoenix(): #SAD SMILEY THAT SHOWS WHEN YOU PET THE BIRD.
     tag genie_chibi
     add "sad_01" xpos 423+140 ypos 130
     zorder 1
 
 
-screen paperwork: #GENIE DOING PAPERWORK BEHIND HIS DESK.
+screen paperwork(): #GENIE DOING PAPERWORK BEHIND HIS DESK.
     tag genie_chibi
     add "paperwork_02" xpos 84+140 ypos 205
 
 
-screen reading_near_fire: #GENIE READING A BOOK BY THE FIRE.
+screen reading_near_fire(): #GENIE READING A BOOK BY THE FIRE.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=180+140, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=220+140, ypos=330, xanchor="center", yanchor="center")
     add "reading_near_fire" xpos 290+140 ypos 205
     zorder 4 #Because otherwise the bird food would be on top.
 
-screen reading: #GENIE READING A BOOK.
+screen reading(): #GENIE READING A BOOK.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=180+140, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=220+140, ypos=330, xanchor="center", yanchor="center")
     add "reading" xpos 290+140 ypos 205
     zorder 4 #Because otherwise the bird food would be on top.
 
-screen done_reading: #DONE READING THE BOOK.
+screen done_reading(): #DONE READING THE BOOK.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=180+140, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=220+140, ypos=330, xanchor="center", yanchor="center")
-    add im.Flip("images/animation/reading_07.png", horizontal=True) xpos 290+140 ypos 205
+    add im.Flip("characters/genie/chibis/reading/07.png", horizontal=True) xpos 290+140 ypos 205
     zorder 4 #Because otherwise the bird food would be on top.
 
-screen done_reading_near_fire: #DONE READING THE BOOK BY THE FIRE.
+screen done_reading_near_fire(): #DONE READING THE BOOK BY THE FIRE.
     tag genie_chibi
     add "images/rooms/main_room/chair_left_with_shadow.png" at Position(xpos=180+140, ypos=300, xanchor="center", yanchor="center")
     add "images/rooms/main_room/desk_with_shadow.png" at Position(xpos=220+140, ypos=330, xanchor="center", yanchor="center")
-    add "images/animation/reading_07.png" xpos 290+140 ypos 205
+    add "characters/genie/chibis/reading/07.png" xpos 290+140 ypos 205
 
     zorder 4 #Because otherwise the bird food would be on top.
 
 ### JERKING OFF BEHIND DESK ###
 
-screen genie_jerking_off: #Genie sitting behind his desk and jerking off...
+screen genie_jerking_off(): #Genie sitting behind his desk and jerking off...
     tag genie_chibi
     add "genie_jerking_off" xpos 218 ypos 205
     zorder 2
 
-screen genie_jerking_sperm: #Genie's behind desk cum animation, CUM ONLY!
+screen genie_jerking_sperm(): #Genie's behind desk cum animation, CUM ONLY!
     add "genie_jerking_sperm_ani" xpos 218 ypos 205
     zorder 2
 
-screen genie_jerking_sperm_02: #Genie's behind desk cum still image, CUM ONLY!
-    add "images/animation/jerking_sperm_11.png" xpos 218 ypos 205
+screen genie_jerking_sperm_02(): #Genie's behind desk cum still image, CUM ONLY!
+    add "characters/genie/chibis/masturbating/desk_sperm_11.png" xpos 218 ypos 205
     zorder 2
 
 
 ### JERKING OFF STANDING ###
 
-screen genie_jerking_off_standing:
+screen genie_jerking_off_standing():
     tag genie_chibi
-    add "jerking_off_02_ani" at Position(xpos=genie_chibi_xpos-270, ypos=genie_chibi_ypos-185)
+    add "jerking_off_02_ani" at Position(xpos=gen_chibi_xpos-270, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_jerking_off_standing_cum:
-    add "genie_cum_03" at Position(xpos=genie_chibi_xpos-270, ypos=genie_chibi_ypos-185)
-    zorder 2
+screen genie_jerking_off_standing_cum():
+    add "genie_cum_03" at Position(xpos=gen_chibi_xpos-290, ypos=gen_chibi_ypos-190) #x270, y185 #290
+    zorder 4
 
-screen genie_stands_holds_dick:
+screen genie_stands_holds_dick():
     tag genie_chibi
-    add "images/animation/06_jerking_01.png" at Position(xpos=genie_chibi_xpos-270, ypos=genie_chibi_ypos-185)
+    add "characters/genie/chibis/masturbating/01.png" at Position(xpos=gen_chibi_xpos-270, ypos=gen_chibi_ypos-185)
     zorder 2
 
 
 ### HANDJOB, Genie and Hermione ###
 
-screen genie_handjob:
+screen genie_handjob():
     tag genie_chibi
-    add "handjob_ani" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+    add "handjob_ani" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_handjob_pause:
+screen genie_handjob_pause():
     tag genie_chibi
-    add "images/animation/12_handjob_01.png" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+    add "characters/hermione/chibis/handjob/01.png" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_handjob_kiss:
+screen genie_handjob_kiss():
     tag genie_chibi
-    add "kiss_ani" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+    add "kiss_ani" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_handjob_cum_on_shirt:
-    add "on_shirt_cum_ani" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+screen genie_handjob_cum_on_shirt():
+    add "on_shirt_cum_ani" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_handjob_cum_on_shirt_pause:
-    add "images/animation/15_cum_21.png" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+screen genie_handjob_cum_on_shirt_pause():
+    add "characters/hermione/chibis/handjob/sperm_on_21.png" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
-screen genie_handjob_cum_under_shirt:
-    add "undershirt_cum_ani" at Position(xpos=genie_chibi_xpos-230, ypos=genie_chibi_ypos-185)
+screen genie_handjob_cum_under_shirt():
+    add "undershirt_cum_ani" at Position(xpos=gen_chibi_xpos-230, ypos=gen_chibi_ypos-185)
     zorder 2
 
 
 ### TITJOB HERMIONE ###
-screen genie_titjob:
+screen genie_titjob():
     tag genie_chibi
-    add "titjob_ani" at Position(xpos=genie_chibi_xpos-30, ypos=genie_chibi_ypos)
+    add "titjob_ani" at Position(xpos=gen_chibi_xpos-30, ypos=gen_chibi_ypos)
 
-screen genie_titjob_pause:
+screen genie_titjob_pause():
     tag genie_chibi
-    add "characters/hermione/chibis/titjob/tj_cum_chest_01.png" at Position(xpos=genie_chibi_xpos-30, ypos=genie_chibi_ypos)
+    add "characters/hermione/chibis/titjob/tj_cum_chest_01.png" at Position(xpos=gen_chibi_xpos-30, ypos=gen_chibi_ypos)
 
-screen genie_titjob_cum_on_tits:
+screen genie_titjob_cum_on_tits():
     tag genie_chibi
-    add "titjob_chest_ani" at Position(xpos=genie_chibi_xpos-30, ypos=genie_chibi_ypos+10)
+    add "titjob_chest_ani" at Position(xpos=gen_chibi_xpos-30, ypos=gen_chibi_ypos+10)
 
-screen genie_titjob_cum_in_mouth:
+screen genie_titjob_cum_in_mouth():
     tag genie_chibi
-    add "titjob_mouth_ani" at Position(xpos=genie_chibi_xpos-30, ypos=genie_chibi_ypos+10)
+    add "titjob_mouth_ani" at Position(xpos=gen_chibi_xpos-30, ypos=gen_chibi_ypos+10)
 
 
-screen genie_groping:
+screen genie_groping():
     tag genie_chibi
-    add "groping_ass_ani" at Position(xpos=genie_chibi_xpos-285, ypos=genie_chibi_ypos-185)
+    add "groping_ass_ani" at Position(xpos=gen_chibi_xpos-285, ypos=gen_chibi_ypos-185)
 
 
 
+### SUSAN CHIBI SCREENS ###
 
-label gen_chibi(action = "", xpos=genie_chibi_xpos, ypos=genie_chibi_ypos, pic = "", flip=False):
+screen genie_stand():
+    tag genie_chibi
+
+    add gen_chibi_stand xpos gen_chibi_xpos ypos gen_chibi_ypos xzoom gen_chibi_flip #zoom (1.0/scaleratio)
+
+    zorder gen_chibi_zorder
+
+screen genie_walk():
+    tag genie_chibi
+    add gen_chibi_walk         at gen_walk_trans(walk_xpos, walk_xpos2, walk_ypos, walk_ypos2) xzoom gen_chibi_flip #zoom (1.0/scaleratio)
+
+    zorder gen_chibi_zorder
+
+label update_gen_chibi:
+    $ gen_chibi_stand = "characters/genie/chibis/walk_01.png"
+    $ gen_chibi_walk = "genie_walk_ani"
+
+    return
+
+
+
+label gen_chibi(action = "", xpos=gen_chibi_xpos, ypos=gen_chibi_ypos, pic = "", flip=False):
     hide screen genie_stand
 
     hide screen g_c_u
     hide screen genie
 
-    $ secretly_jerking_off = False
+    hide screen jerking_off_01                   #Hermione topless. Genie jerking off.
     hide screen genie_jerking_off                #Jerking off sitting behind desk.
     hide screen genie_jerking_sperm_02           #Sperm on desk and floor.
     hide screen genie_jerking_sperm
     hide screen genie_jerking_off_standing
     hide screen genie_jerking_off_standing_cum
 
-    hide screen genie_handjob
-    hide screen genie_handjob_pause
-    hide screen genie_handjob_kiss
-    hide screen genie_handjob_cum_on_shirt
-    hide screen genie_handjob_cum_on_shirt_pause
-    hide screen genie_handjob_cum_under_shirt
+    # Favors
+    hide screen hermione_chibi_ass
+    hide screen hermione_chibi_hj
+    hide screen hermione_chibi_bj
+    hide screen hermione_chibi_sex
 
     hide screen genie_titjob
     hide screen genie_titjob_pause
     hide screen genie_titjob_cum_in_mouth
     hide screen genie_titjob_cum_on_tits
 
-    hide screen groping_01
-    hide screen groping_02
-    hide screen no_groping_01
-    hide screen no_groping_02
-    hide screen groping_03
-    hide screen groping_naked_tits
+    hide screen groping_01    # Grope Ass fully clothed - Flip = True (facing door)
+    hide screen groping_02    # Grope Ass fully clothed - Flip = False
+    hide screen no_groping_01 # Hermione stands with you behind desk - Flip = True (facing door)
+    hide screen no_groping_02 # Hermione stands with you behind desk - Flip = False
 
+    hide screen groping_03         # Grope breasts fully clothed
+    hide screen genie_and_tits_01
+    hide screen groping_naked_tits
     hide screen genie_groping
+
+    hide screen rum_screen
+
     hide screen blktone
     hide screen bld1
 
-    if xpos != genie_chibi_xpos:
+    if xpos != gen_chibi_xpos:
         if xpos == "mid":
-            $ genie_chibi_xpos = 500
+            $ gen_chibi_xpos = 500
         elif xpos == "desk":
-            $ genie_chibi_xpos = 420
+            $ gen_chibi_xpos = 420
         elif xpos == "on_girl": #Girl has to stand at mid.
-            $ genie_chibi_xpos = 470
+            $ gen_chibi_xpos = 470
         elif xpos == "door":
-            $ genie_chibi_xpos = 750
+            $ gen_chibi_xpos = 750
         elif xpos == "left":
-            $ genie_chibi_xpos = 100
+            $ gen_chibi_xpos = 100
         elif xpos == "behind_desk":
-            $ genie_chibi_xpos = 230
+            $ gen_chibi_xpos = 210
+        elif xpos == "cupboard":
+            $ gen_chibi_xpos = 260
         else:
-            $ genie_chibi_xpos = int(xpos)
+            $ gen_chibi_xpos = int(xpos)
 
-    if ypos != genie_chibi_ypos:
-        if ypos == "base" or ypos == "default":
-            $ genie_chibi_ypos = 190
+    if ypos != gen_chibi_ypos:
+        if ypos in ["base","default"]:
+            $ gen_chibi_ypos = 190
         elif ypos == "behind_desk":
-            $ genie_chibi_ypos = 200
+            $ gen_chibi_ypos = 190
         else:
-            $ genie_chibi_ypos = int(ypos)
+            $ gen_chibi_ypos = int(ypos)
 
 
     #Genie Chibi Actions.
 
     #Special Images. These need custom xpos/ypos positions!
-    if action == "image":
-
-        #Add specific xpos and ypos number when calling.
+    if action in ["image","animation"]:
+        if flip:
+            $ gen_chibi_flip = -1
+        else:
+            $ gen_chibi_flip = 1
 
         if pic != "":
-            $ s_c_u_pic = "characters/genie/chibis/"+str(pic)+".png"
+
+            #Add specific xpos and ypos number when calling.
+            if action == "animation":
+                $ g_c_u_pic = pic
+            else:
+                $ g_c_u_pic = "characters/genie/chibis/"+str(pic)+".png"
 
         show screen g_c_u
 
     #Jerking off solo.
-    elif action in ["jerking","jerking_off","cumming","hold_dick"]:
+    elif action in ["jerk_off","jerking","jerking_off","cumming","hold_dick"]:
 
         if action == "cumming":
             show screen genie_jerking_off_standing
@@ -291,7 +300,7 @@ label gen_chibi(action = "", xpos=genie_chibi_xpos, ypos=genie_chibi_ypos, pic =
     #Jerking off behind desk.
     elif action in ["jerking_behind_desk","jerking_off_behind_desk","cumming_behind_desk","cum_on_desk","came_on_desk"]:
 
-        $ secretly_jerking_off = True
+        $ masturbating = True
 
         if action == "cumming_behind_desk":
             show screen genie_jerking_off
@@ -302,22 +311,6 @@ label gen_chibi(action = "", xpos=genie_chibi_xpos, ypos=genie_chibi_ypos, pic =
             show screen genie_jerking_sperm_02
         else:
             show screen genie_jerking_off
-
-    #Handjob with Hermione.
-    elif action in ["handjob","handjob_pause","handjob_kiss","cumming_under_shirt","cumming_on_shirt","cumming_on_shirt_pause"]:
-
-        if action == "handjob":
-            show screen genie_handjob
-        if action == "handjob_pause":
-            show screen genie_handjob_pause
-        if action == "handjob_kiss":
-            show screen genie_handjob_kiss
-        if action == "cumming_on_shirt":
-            show screen genie_handjob_cum_on_shirt
-        if action == "cumming_on_shirt_pause":
-            show screen genie_handjob_cum_on_shirt_pause
-        if action == "cumming_under_shirt":
-            show screen genie_handjob_cum_under_shirt
 
     #Titjob
     elif action in ["titjob","titjob_pause","titjob_cum_in_mouth","titjob_cum_on_tits"]:
@@ -347,68 +340,91 @@ label gen_chibi(action = "", xpos=genie_chibi_xpos, ypos=genie_chibi_ypos, pic =
         pause.5
 
     else:
-        if flip or genie_flip != 1: #Same variable that the main sprite is using. #1 == Default
-            $ genie_chibi_flip = -1
+        if flip:
+            $ gen_chibi_flip = -1
             show screen genie_stand
         else:
-            $ genie_chibi_flip = 1
+            $ gen_chibi_flip = 1
             show screen genie_stand
 
     return
 
 
-label gen_walk(pos1 = walk_xpos, pos2 = walk_xpos2, speed = genie_speed, loiter = True, redux_pause = 0):
+### Genie Chibi Walk ###
+
+# xpos + ypos = position the chibi walks to.
+# action = "enter", sets the starting position of the chibi at the entrance (door).
+# action = "leave", automatically hide the chibi with a door sound and pause.
+# speed = time it will take for the chibi to move A to B in seconds. Lower value = faster walk.
+# loiter = flag that shows the standing chibi after the walk, default is True
+# redux_pause = value to decrease the time to pause before hideing the animation early
+
+label gen_walk(xpos=walk_xpos, ypos=walk_ypos, speed=gen_speed, action="", loiter=True, redux_pause=0):
+    call hide_characters
+    call hide_chibi_effects
     hide screen bld1
     hide screen blktone
     with d3
 
     hide screen genie_walk
-
     hide screen genie_stand
 
-    if pos1 == "mid":
-        $ walk_xpos = 500
-    elif pos1 == "desk":
-        $ walk_xpos = 440
-    elif pos1 == "door":
-        $ walk_xpos = 750
-    else:
-        $ walk_xpos = int(pos1)
-
-    if pos2 == "mid":
-        $ walk_xpos2 = 500
-    elif pos2 == "desk":
-        $ walk_xpos2 = 440
-    elif pos2 == "left":
-        $ walk_xpos2 = 100
-    elif pos2 == "door":
-        $ walk_xpos2 = 750
-    elif pos2 == "leave":
-        $ walk_xpos2 = 750
+    # Action command.
+    if action == "enter":
+        call play_sound("door")
+        $ gen_chibi_xpos = 750
+        $ gen_chibi_ypos = 250
+    if action == "leave":
+        $ xpos = "door"
+        $ ypos = "base"
         $ loiter = False
+
+    # Start position.
+    $ walk_xpos = gen_chibi_xpos
+    $ walk_ypos = gen_chibi_ypos
+
+    # Target location.
+    if xpos == "mid":
+        $ walk_xpos2 = 500
+    elif xpos == "desk":
+        $ walk_xpos2 = 440
+    elif xpos == "left":
+        $ walk_xpos2 = 100
+    elif xpos == "door":
+        $ walk_xpos2 = 750
     else:
-        $ walk_xpos2 = int(pos2)
+        $ walk_xpos2 = int(xpos)
 
-    $ genie_chibi_ypos = 190
-    $ genie_speed = speed #Speed of walking animation. (lower = faster)
+    if ypos in ["base","default"]:
+        $ walk_ypos2 = 190
+    else:
+        $ walk_ypos2 = int(ypos)
 
-    if walk_xpos > walk_xpos2: #right to left (genie_walk)
-        $ genie_chibi_flip = -1 #ToDo - Flip Genie's images so this can be the same as every other chibi ( 1 )
+    $ gen_speed = speed #Speed of walking animation. (lower = faster)
+
+
+    # Walk right to left
+    if walk_xpos > walk_xpos2:
+        $ gen_chibi_flip = -1 #ToDo - Flip Genie's images so this can be the same as every other chibi ( 1 )
         show screen genie_walk
-        $ tmp = genie_speed - redux_pause
-        pause tmp
-        $ genie_chibi_xpos = walk_xpos2
+        $ tmp = gen_speed - redux_pause
+        $ renpy.pause(tmp)
+        $ gen_chibi_xpos = walk_xpos2
+        $ gen_chibi_ypos = walk_ypos2
         hide screen genie_walk
         if loiter:
             show screen genie_stand
-    else: #left to right (genie_walk)
-        $ genie_chibi_flip = 1 #ToDo - Flip Genie's images so this can be the same as every other chibi ( -1 )
+
+    # Walk left to right
+    else:
+        $ gen_chibi_flip = 1 #ToDo - Flip Genie's images so this can be the same as every other chibi ( -1 )
         show screen genie_walk
-        $ tmp = genie_speed - redux_pause
-        pause tmp
-        $ genie_chibi_xpos = walk_xpos2
+        $ tmp = gen_speed - redux_pause
+        $ renpy.pause(tmp)
+        $ gen_chibi_xpos = walk_xpos2
+        $ gen_chibi_ypos = walk_ypos2
         hide screen genie_walk
-        if pos2 == "leave":
+        if action == "leave":
             call play_sound("door")
             with d3
             pause.5

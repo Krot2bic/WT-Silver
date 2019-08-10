@@ -41,9 +41,7 @@ label her_init:
         $ hermione_perm_expand_ass       = False
 
         $ hermione_expand_breasts           = False #Temporary Expand
-        $ hermione_expand_breasts_counter   = 0
         $ hermione_expand_ass               = False #Temporary Expand
-        $ hermione_expand_ass_counter       = 0
 
 
         #Arms
@@ -82,28 +80,18 @@ label her_init:
 
 
         # Chibi.
-        $ hermione_chibi_xpos_name        = "base" #Stored xpos name
-        $ hermione_chibi_ypos_name        = "base" #Stored ypos name
-        $ hermione_chibi_stand       = "characters/hermione/chibis/walk/h_walk_a_01.png"
-        $ hermione_chibi_stand_f     = "characters/hermione/chibis/walk/h_walk_a_01.png"
-        $ hermione_chibi_stand_nude  = "characters/hermione/chibis/walk/h_walk_n_01.png" #NOT IN USE
-        $ hermione_chibi_blink       = "ch_hem blink_a"
-        $ hermione_chibi_blink_f     = "ch_hem blink_a_flip"
-        $ hermione_chibi_walk        = "ch_hem walk_a"
-        $ hermione_chibi_walk_f      = "ch_hem walk_a_flip"
-        $ hermione_chibi_run         = "ch_hem run_a"
-        $ hermione_chibi_run_f       = "ch_hem run_a_flip"
-        $ hermione_chibi_fly         = "ch_hem fly_a"
-        $ hermione_chibi_fly_f       = "ch_hem fly_a_flip"
+        $ her_chibi_stand       = "ch_hem blink_a"
+        $ her_chibi_walk        = "ch_hem walk_a"
 
         $ u_h_animation              = ""
         $ u_h_animation_paused       = ""
         $ u_h_ani_xpos               = 0
         $ u_h_ani_ypos               = 0
 
-        $ hermione_chibi_xpos        = 540
-        $ hermione_chibi_ypos        = 250
-        $ hermione_chibi_zorder      = 3
+        $ her_chibi_xpos        = 540
+        $ her_chibi_ypos        = 250
+        $ her_chibi_zorder      = 3
+        $ her_chibi_flip        = 1
 
 
 
@@ -172,23 +160,23 @@ label her_init:
 
 
         #Top
-        $ hermione_top              = "characters/hermione/clothes/tops/base/top_1_g.png"
+        $ hermione_top              = "characters/hermione/clothes/tops/top_1_g.png"
         $ h_top                     = "top_1_g"
         $ h_top_color               = "base"
 
 
         #Bottom
-        $ hermione_bottom            = "characters/hermione/clothes/bottoms/base/skirt_1.png"
+        $ hermione_bottom            = "characters/hermione/clothes/bottoms/skirt_1.png"
         $ h_bottom                   = "skirt_1"
         $ h_bottom_color             = "base"
 
 
         #Underwear
-        $ hermione_bra              = "characters/hermione/clothes/underwear/base/bra_base.png"
+        $ hermione_bra              = "characters/hermione/clothes/bras/bra_base.png"
         $ h_bra                     = "bra_base"
         $ h_bra_color               = "base"
 
-        $ hermione_panties          = "characters/hermione/clothes/underwear/base/panties_base.png"
+        $ hermione_panties          = "characters/hermione/clothes/panties/panties_base.png"
         $ h_panties                 = "panties_base"
         $ h_panties_color           = "base"
 
@@ -224,20 +212,20 @@ label her_init:
         #Accessories
         $ hermione_makeup_list      = []
 
-        $ hermione_hat              = "characters/hermione/accessories/hats/hair_curly/blank.png"
+        $ hermione_hat              = "characters/hermione/clothes/hats/hair_curly/blank.png"
         $ h_hat                     = "blank"
         $ h_hat_color               = "base"
 
-        $ hermione_glasses          = "characters/hermione/accessories/glasses/blank.png"
+        $ hermione_glasses          = "characters/hermione/clothes/glasses/blank.png"
         $ h_glasses                 = "blank"
         $ h_glasses_color           = "base"
 
-        $ hermione_ears             = "characters/hermione/accessories/ears/blank.png"
+        $ hermione_ears             = "characters/hermione/clothes/ears/blank.png"
         $ h_ears                    = "blank"
 
 
         #Miscellaneous
-        $ hermione_buttplug          = "characters/hermione/accessories/plugs/blank.png"
+        $ hermione_buttplug          = "characters/hermione/clothes/plugs/blank.png"
         $ h_buttplug                 = "blank"
 
         $ hermione_pubic_hair        = "characters/hermione/body/pubic_hair/blank.png"
@@ -253,27 +241,27 @@ label her_init:
 
 
         #Piercings
-        $ hermione_ear_piercing      = "characters/hermione/accessories/piercings/base/blank.png"
+        $ hermione_ear_piercing      = "characters/hermione/clothes/piercings/blank.png"
         $ h_ear_piercing             = "blank"
         $ h_ear_piercing_color       = "base"
 
-        $ hermione_nipple_piercing   = "characters/hermione/accessories/piercings/base/blank.png"
+        $ hermione_nipple_piercing   = "characters/hermione/clothes/piercings/blank.png"
         $ h_nipple_piercing          = "blank"
         $ h_nipple_piercing_color    = "base"
 
-        $ hermione_belly_piercing    = "characters/hermione/accessories/piercings/base/blank.png"
+        $ hermione_belly_piercing    = "characters/hermione/clothes/piercings/blank.png"
         $ h_belly_piercing           = "blank"
         $ h_belly_piercing_color     = "base"
 
-        $ hermione_intimate_piercing = "characters/hermione/accessories/piercings/base/blank.png"
-        $ h_intimate_piercing        = "blank"
-        $ h_intimate_piercing_color  = "base"
+        $ hermione_genital_piercing  = "characters/hermione/clothes/piercings/blank.png"
+        $ h_genital_piercing         = "blank"
+        $ h_genital_piercing_color   = "base"
 
         #Tattoos
         $ hermione_tattoos_list      = []
         $ h_tattoos_color            = "base"
 
-        $ hermione_mask              = "characters/hermione/accessories/masks/blank.png"
+        $ hermione_mask              = "characters/hermione/clothes/hats/blank.png"
         $ h_mask                     = "blank"
         $ hermione_gag               = "characters/hermione/face/mouth/nude/gag.png"
         $ h_gag                      = "gag"
@@ -315,17 +303,17 @@ label her_clothing_lists_init: #Lists update at every game start!
 
     #Tops
     $ h_top_nipfix_list             = ["onepiece_microdress",
-                                       "top_fishnets",
+                                       "top_fishnets_1",
                                        ]
 
-    $ h_top_has_no_recolor_list     = ["leather_jacket_short_sleeves",
-                                       "leather_jacket_short_sleeves_open",
-                                       "leather_jacket_sleeveless",
-                                       "leather_jacket_sleeveless_open",
-                                       "leather_jacket_sleeves",
-                                       "leather_jacket_sleeves_open",
+    $ h_top_has_no_recolor_list     = ["top_jacket_2",
+                                       "top_jacket_open_2",
+                                       "top_jacket_3",
+                                       "top_jacket_open_3",
+                                       "top_jacket_1",
+                                       "top_jacket_open_1",
                                        "top_rocker",
-                                       "top_fishnets",
+                                       "top_fishnets_1",
                                        ]
 
     $ h_top_remove_bra_list         = ["top_1_g", "top_1_s",
@@ -341,18 +329,18 @@ label her_clothing_lists_init: #Lists update at every game start!
                                        "top_cheer_s",
                                        "top_cheer_r",
                                        "top_cheer_h",
-                                       "normal_pullover",
-                                       "normal_sweater",
+                                       "top_pullover_1",
+                                       "top_sweater_1",
                                        ]
 
     $ h_lift_top_list               = ["top_1_g", "top_1_s",
                                        "top_2_g", "top_2_s",
                                        "top_3_g", "top_3_s",
                                        "top_4_g", "top_4_s",
-                                       "top_6_g", "top_6_s"
-                                       "normal_pullover",
-                                       "normal_pullover_sexy",
-                                       "top_fishnets",
+                                       "top_6_g", "top_6_s",
+                                       "top_pullover_1",
+                                       "top_pullover_2",
+                                       "top_fishnets_1",
                                        "top_rocker",
                                        ]
 
@@ -375,8 +363,6 @@ label her_clothing_lists_init: #Lists update at every game start!
                                        "skirt_cheer_sexy_s",
                                        "skirt_cheer_sexy_r",
                                        "skirt_cheer_sexy_h",
-                                       "skirt_belted_mini",
-                                       "skirt_belted_micro",
                                        ]
 
     $ h_pants_list                  = ["pants_jeans_long",
@@ -390,7 +376,7 @@ label her_clothing_lists_init: #Lists update at every game start!
                                        "onepiece_bunny",
                                        "swimsuit_neckband",
                                        "swimsuit_halterless",
-                                       "onepiece_bikini_string",
+                                       "onepiece_bikini_1",
                                        "swimsuit_sport_1",
                                        "swimsuit_sport_2",
                                        "swimsuit_sport_3",
@@ -409,7 +395,7 @@ label her_clothing_lists_init: #Lists update at every game start!
                                       ]
 
                                        #Bras that need the pressed breast variant
-    $ h_bra_pressed_list            = ["top_fishnets"
+    $ h_bra_pressed_list            = ["top_fishnets_1"
                                       ]
 
     #Piercings
@@ -418,14 +404,17 @@ label her_clothing_lists_init: #Lists update at every game start!
                                        "ears_pearls",
                                        "ears_straight",
                                        "ears_rings",
+                                       "ears_gambler",
+                                       "ears_feather",
                                       ]
     $ tongue_piercings_list         = ["tongue_pearls",
                                       ]
     $ nipple_piercings_list         = ["nipples_pearls",
                                       ]
     $ belly_piercings_list          = ["belly_pearls",
+                                       "belly_gambler",
                                       ]
-    $ intimate_piercings_list       = [
+    $ genital_piercings_list        = [
                                       ]
 
     $ gryffindor_robe_list          = ["robe_1_g",
@@ -457,20 +446,21 @@ label her_progress_init:
     if not hasattr(renpy.store,'her_whoring') or reset_persistants:
 
         #Stats
-        $ her_whoring = 0
+        $ her_tier       = 1
+        $ her_whoring    = 0
         $ her_reputation = 0
-        $ her_tutoring = 0
+        $ her_tutoring   = 0
 
-        $ her_mood = 0
+        $ her_mood       = 0
         $ forest_BJ_progress = 1
 
         #Flags
-        $ hermione_busy = False
-        $ hermione_unlocked = False
-        $ hermione_favors = False
-        $ hermione_tutoring = False
-
-        $ hermione_desperate_done = False
+        $ hermione_busy           = False
+        $ hermione_unlocked       = False
+        $ hermione_favors         = False
+        $ hermione_tutoring       = False
+        $ her_panties_soaked      = False
+        $ hermione_favors_convinced = 0
 
         #Names
         $ genie_name = "Sir"
@@ -491,25 +481,20 @@ label her_progress_init:
         $ hg_hidden_bj_seen_list = []
 
         #Public Request Vars.
-        $ hg_pr_SexWithClassmate_AltFlag = False
-
-        $ lazy_aka_not_yet = True #In public events. Kiss a girl. Event level 03. Event # 3. "Lazy Akabur bug". Turns FALSE after that.
-        $ sucked_off_ron = False #In public events. Give a handjob to classmate. Event level 03. Event # 1. "Jerked of and suked of Ron Weasley". Turns True after that.
-        $ suked_off_ron_and_har = False #In public events. Give blowjob to a classmate. Event level 03. Event # 3. "Sukerd off Harrt and Ron". Turns True after that.
-        $ fucked_ron_and_har = False #In public events. Have sex with a classmate. Event # 1. "Returns next morning". Turns True after that.
+        $ hg_pr_sex_skip = False
 
         #Public Shaming Flags
-        $ hg_ps_PantyThief_SoakedPantiesFlag = False
+        $ her_panties_soaked = False
         $ current_job = 0
         $ transparent_quest = False
 
 
         ### HERMIONE EVENT VARS ###
-        $ jerk_off_session = False #Turns True when you choose to jerk off while Hermione talks (Event_08)
+        $ jerked_off_during_hermione_intro = False #Turns True when you choose to jerk off while Hermione talks (Event_08)
 
-        $ tutoring_offer_made = False #If you offered her to tutor her (In event_12). Affects conversation in the next event.
+        $ tutoring_offer_made = False #If you offered her to tutor her (In hermione_intro_E4). Affects conversation in the next event.
 
-        $ hermione_is_waiting_01 = False #Turns True at the end of first special event with Snape. Triggers next visit from Hermione (event_09)
+        $ hermione_is_waiting_01 = False #Turns True at the end of first special event with Snape. Triggers next visit from Hermione (hermione_intro_E2)
         $ hermione_is_waiting_02 = False #Turns True at the end of second special event with Snape. Triggers next visit from Hermione
 
         $ collar = 0
@@ -526,241 +511,504 @@ label her_progress_init:
     #Clothing Events
         $ hermione_door_event_happened = False
 
+    # Cardgame promotion job
+        $ her_shop_help = False
+        $ her_shop_help_first = True
+
     #Rewards
         $ autograph = False #Professor Lockhart's tattoo.
 
         $ cat_ears_potion_return = False
         $ her_dress_wearable = False
 
+    if not hasattr(renpy.store,'hermione_wardrobe_unlocked') or reset_persistants:
+        $ gave_hermione_gift = False
+        $ hermione_wardrobe_unlocked = False
+        call reset_hermione_clothing # Makes sure she's wearing her default clothing before doing the first tutoring events unlocking the wardrobe.
+
+
 
     ### Hermione Favours ###
 
-    if not hasattr(renpy.store,'hg_pf_TalkToMe_OBJ'): #important!
-        $ hg_pf_TalkToMe_OBJ = personal_favor(
-            imagination_level = 1,
-            menu_text = "Talk to me",
-            start_label = "hg_pf_TalkToMe",
+    if not hasattr(renpy.store,'hg_pf_blowjob'): #important!
+        $ hg_pf_blowjob = favor_class(
+            tier = 4,
+            title = "Suck it!",
+            max_level = 4,
+            start_label = "hg_pf_blowjob",
         )
 
-    if not hasattr(renpy.store,'hg_pf_NicePanties_OBJ'): #important!
-        $ hg_pf_NicePanties_OBJ = personal_favor(
-            imagination_level = 1,
-            menu_text = "Nice panties",
-            start_label = "hg_pf_NicePanties",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_BreastMolester_OBJ'): #important!
-        $ hg_pf_BreastMolester_OBJ = personal_favor(
-            imagination_level = 1,
-            menu_text = "Breast molester",
-            start_label = "hg_pf_BreastMolester",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_ButtMolester_OBJ'): #important!
-        $ hg_pf_ButtMolester_OBJ = personal_favor(
-            imagination_level = 1,
-            menu_text = "Butt molester",
-            start_label = "hg_pf_ButtMolester",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_ShowThemToMe_OBJ'): #important!
-        $ hg_pf_ShowThemToMe_OBJ = personal_favor(
-            imagination_level = 2,
-            menu_text = "Show them to me!",
-            start_label = "hg_pf_ShowThemToMe",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_DanceForMe_OBJ'): #important!
-        $ hg_pf_DanceForMe_OBJ = personal_favor(
-            imagination_level = 2,
-            menu_text = "Dance for me!",
-            start_label = "hg_pf_DanceForMe",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_ShowMeYourAss_OBJ'): #important!
-        $ hg_pf_ShowMeYourAss_OBJ = personal_favor(
-            imagination_level = 3,
-            menu_text = "Show me that ass!",
-            start_label = "hg_pf_ShowMeYourAss",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_TouchYourself_OBJ'): #important!
-        $ hg_pf_TouchYourself_OBJ = personal_favor(
-            imagination_level = 3,
-            menu_text = "Touch Yourself!",
-            start_label = "hg_pf_TouchYourself",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_TouchMe_OBJ'): #important!
-        $ hg_pf_TouchMe_OBJ = personal_favor(
-            imagination_level = 3,
-            menu_text = "Touch me!",
-            start_label = "hg_pf_TouchMe",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_SuckIt_OBJ'): #important!
-        $ hg_pf_SuckIt_OBJ = personal_favor(
-            imagination_level = 4,
-            menu_text = "Suck it!",
-            start_label = "hg_pf_SuckIt",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_TitJob_OBJ'): #important!
-        $ hg_pf_TitJob_OBJ = personal_favor(
-            imagination_level = 4,
-            menu_text = "Let me fuck them!",
-            start_label = "hg_pf_TitJob",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_LetsHaveSex_OBJ'): #important!
-        $ hg_pf_LetsHaveSex_OBJ = personal_favor(
-            imagination_level = 5,
-            menu_text = "Let's have sex!",
-            start_label = "hg_pf_LetsHaveSex",
-        )
-
-    if not hasattr(renpy.store,'hg_pf_TimeForAnal_OBJ'): #important!
-        $ hg_pf_TimeForAnal_OBJ = personal_favor(
-            imagination_level = 5,
-            menu_text = "Time for anal!",
-            start_label = "hg_pf_TimeForAnal",
+    if not hasattr(renpy.store,'hg_pf_titjob'): #important!
+        $ hg_pf_titjob = favor_class(
+            tier = 4,
+            title = "Let me fuck them!",
+            start_label = "hg_pf_titjob",
         )
 
     if game_difficulty >= 3: #Hardcore
-        $ hg_pf_BreastMolester_OBJ.imagination_level = 2
-        $ hg_pf_ButtMolester_OBJ.imagination_level = 2
-        $ hg_pf_ShowThemToMe_OBJ.imagination_level = 3
-        $ hg_pf_DanceForMe_OBJ.imagination_level = 3
-        $ hg_pf_ShowMeYourAss_OBJ.imagination_level = 4
-        $ hg_pf_TouchYourself_OBJ.imagination_level = 4
-        $ hg_pf_TouchMe_OBJ.imagination_level = 5
-        $ hg_pf_SuckIt_OBJ.imagination_level = 6
-        $ hg_pf_TitJob_OBJ.imagination_level = 6
-        $ hg_pf_LetsHaveSex_OBJ.imagination_level = 7
-        $ hg_pf_TimeForAnal_OBJ.imagination_level = 8
+        $ hg_pf_blowjob.tier = 6
+        $ hg_pf_titjob.tier = 6
 
-    $ hg_pf_list = []
-    $ hg_pf_list.append(hg_pf_TalkToMe_OBJ)
-    $ hg_pf_list.append(hg_pf_NicePanties_OBJ)
-    $ hg_pf_list.append(hg_pf_BreastMolester_OBJ)
-
-    $ hg_pf_list.append(hg_pf_ButtMolester_OBJ)
-    $ hg_pf_list.append(hg_pf_ShowThemToMe_OBJ)
-    $ hg_pf_list.append(hg_pf_DanceForMe_OBJ)
-
-    $ hg_pf_list.append(hg_pf_ShowMeYourAss_OBJ)
-    $ hg_pf_list.append(hg_pf_TouchYourself_OBJ)
-    $ hg_pf_list.append(hg_pf_TouchMe_OBJ)
-
-    $ hg_pf_list.append(hg_pf_SuckIt_OBJ)
-    $ hg_pf_list.append(hg_pf_TitJob_OBJ)
-    $ hg_pf_list.append(hg_pf_LetsHaveSex_OBJ)
-    $ hg_pf_list.append(hg_pf_TimeForAnal_OBJ)
+    $ hg_pf_list = [
+                    hg_pf_blowjob,
+                    hg_pf_titjob
+        ]
 
 
+    if not hasattr(renpy.store,'hg_ps_get_panties'):
+        $ hg_ps_get_panties = shaming_class()
+    $ hg_ps_get_panties.tier = 1
+    $ hg_ps_get_panties.title = "Panty Thief"
+    $ hg_ps_get_panties.start_label = "hg_ps_get_panties"
+    $ hg_ps_get_panties.complete_label = "hg_ps_get_panties_complete"
 
-    if not hasattr(renpy.store,'hg_pr_FlirtClassmate_OBJ'): #important!
-        $ hg_pr_FlirtClassmate_OBJ = public_request()
-    $ hg_pr_FlirtClassmate_OBJ.imagination_level = 1
-    $ hg_pr_FlirtClassmate_OBJ.menu_text = "She's a flirt"
-    $ hg_pr_FlirtClassmate_OBJ.start_label = "hg_pr_FlirtClassmate"
-    $ hg_pr_FlirtClassmate_OBJ.complete_label = "hg_pr_FlirtClassmate_complete"
+    if not hasattr(renpy.store,'hg_ps_buttplug'):
+        $ hg_ps_buttplug = shaming_class()
+    $ hg_ps_buttplug.tier = 1
+    $ hg_ps_buttplug.title = "Wear A Buttplug"
+    $ hg_ps_buttplug.start_label = "hg_ps_buttplug"
+    $ hg_ps_buttplug.complete_label = "hg_ps_buttplug_complete"
 
-    if not hasattr(renpy.store,'hg_pr_FlirtTeacher_OBJ'): #important!
-        $ hg_pr_FlirtTeacher_OBJ = public_request()
-    $ hg_pr_FlirtTeacher_OBJ.imagination_level = 1
-    $ hg_pr_FlirtTeacher_OBJ.menu_text = "She's bait"
-    $ hg_pr_FlirtTeacher_OBJ.start_label = "hg_pr_FlirtTeacher"
-    $ hg_pr_FlirtTeacher_OBJ.complete_label = "hg_pr_FlirtTeacher_complete"
+    if not hasattr(renpy.store,'hg_ps_cumslut'):
+        $ hg_ps_cumslut = shaming_class()
+    $ hg_ps_cumslut.tier = 2
+    $ hg_ps_cumslut.title = "Wear My Cum"
+    $ hg_ps_cumslut.start_label = "hg_ps_cumslut"
+    $ hg_ps_cumslut.complete_label = "hg_ps_cumslut_complete"
 
-    if not hasattr(renpy.store,'hg_pr_ClassmateTouchYou_OBJ'): #important!
-        $ hg_pr_ClassmateTouchYou_OBJ = public_request()
-    $ hg_pr_ClassmateTouchYou_OBJ.imagination_level = 1
-    $ hg_pr_ClassmateTouchYou_OBJ.menu_text = "Let a classmate molest you"
-    $ hg_pr_ClassmateTouchYou_OBJ.start_label = "hg_pr_ClassmateTouchYou"
-    $ hg_pr_ClassmateTouchYou_OBJ.complete_label = "hg_pr_ClassmateTouchYou_complete"
+    if not hasattr(renpy.store,'hg_ps_walk'):
+        $ hg_ps_walk = shaming_class()
+    $ hg_ps_walk.tier = 2
+    $ hg_ps_walk.title = "Walk Of Shame"
+    $ hg_ps_walk.start_label = "hg_ps_walk"
+    $ hg_ps_walk.complete_label = "hg_ps_walk_complete"
 
-    if not hasattr(renpy.store,'hg_pr_FlashClassmate_OBJ'): #important!
-        $ hg_pr_FlashClassmate_OBJ = public_request()
-    $ hg_pr_FlashClassmate_OBJ.imagination_level = 1
-    $ hg_pr_FlashClassmate_OBJ.menu_text = "Flash your tits to a classmate"
-    $ hg_pr_FlashClassmate_OBJ.start_label = "hg_pr_FlashClassmate"
-    $ hg_pr_FlashClassmate_OBJ.complete_label = "hg_pr_FlashClassmate_complete"
-
-    if not hasattr(renpy.store,'hg_pr_KissAGirl_OBJ'): #important!
-        $ hg_pr_KissAGirl_OBJ = public_request()
-    $ hg_pr_KissAGirl_OBJ.imagination_level = 2
-    $ hg_pr_KissAGirl_OBJ.menu_text = "Kiss a girl."
-    $ hg_pr_KissAGirl_OBJ.start_label = "hg_pr_KissAGirl"
-    $ hg_pr_KissAGirl_OBJ.complete_label = "hg_pr_KissAGirl_complete"
-
-    if not hasattr(renpy.store,'hg_pr_HandjobClassmate_OBJ'): #important!
-        $ hg_pr_HandjobClassmate_OBJ = public_request()
-    $ hg_pr_HandjobClassmate_OBJ.imagination_level = 2
-    $ hg_pr_HandjobClassmate_OBJ.menu_text = "Give a handjob to a classmate"
-    $ hg_pr_HandjobClassmate_OBJ.start_label = "hg_pr_HandjobClassmate"
-    $ hg_pr_HandjobClassmate_OBJ.complete_label = "hg_pr_HandjobClassmate_complete"
-
-    if not hasattr(renpy.store,'hg_pr_BlowjobClassmate_OBJ'): #important!
-        $ hg_pr_BlowjobClassmate_OBJ = public_request()
-    $ hg_pr_BlowjobClassmate_OBJ.imagination_level = 2
-    $ hg_pr_BlowjobClassmate_OBJ.menu_text = "Give a blowjob to a classmate"
-    $ hg_pr_BlowjobClassmate_OBJ.start_label = "hg_pr_BlowjobClassmate"
-    $ hg_pr_BlowjobClassmate_OBJ.complete_label = "hg_pr_BlowjobClassmate_complete"
-
-    if not hasattr(renpy.store,'hg_pr_SexWithClassmate_OBJ'): #important!
-        $ hg_pr_SexWithClassmate_OBJ = public_request()
-    $ hg_pr_SexWithClassmate_OBJ.imagination_level = 2
-    $ hg_pr_SexWithClassmate_OBJ.menu_text = "Have sex with a classmate"
-    $ hg_pr_SexWithClassmate_OBJ.start_label = "hg_pr_SexWithClassmate"
-    $ hg_pr_SexWithClassmate_OBJ.complete_label = "hg_pr_SexWithClassmate_complete"
-
-
-    $ hg_pr_list = []
-    $ hg_pr_list.append(hg_pr_FlirtClassmate_OBJ)
-    $ hg_pr_list.append(hg_pr_FlirtTeacher_OBJ)
-    $ hg_pr_list.append(hg_pr_ClassmateTouchYou_OBJ)
-    $ hg_pr_list.append(hg_pr_FlashClassmate_OBJ)
-    $ hg_pr_list.append(hg_pr_KissAGirl_OBJ)
-    $ hg_pr_list.append(hg_pr_HandjobClassmate_OBJ)
-    $ hg_pr_list.append(hg_pr_BlowjobClassmate_OBJ)
-    $ hg_pr_list.append(hg_pr_SexWithClassmate_OBJ)
+    $ hg_ps_list = [hg_ps_get_panties,
+                    hg_ps_buttplug,
+                    hg_ps_cumslut]
 
 
 
-    if not hasattr(renpy.store,'hg_ps_PantyThief_OBJ'): #important!
-        $ hg_ps_PantyThief_OBJ = public_shaming()
-    $ hg_ps_PantyThief_OBJ.imagination_level = 1
-    $ hg_ps_PantyThief_OBJ.menu_text = "Panty Thief"
-    $ hg_ps_PantyThief_OBJ.start_label = "hg_ps_PantyThief"
-    $ hg_ps_PantyThief_OBJ.complete_label = "hg_ps_PantyThief_complete"
+label updated_hermione_favors: # For 1.37
 
-    if not hasattr(renpy.store,'hg_ps_Buttplug_OBJ'): #important!
-        $ hg_ps_Buttplug_OBJ = public_shaming()
-    $ hg_ps_Buttplug_OBJ.imagination_level = 1
-    $ hg_ps_Buttplug_OBJ.menu_text = "Wear A Buttplug"
-    $ hg_ps_Buttplug_OBJ.start_label = "hg_ps_Buttplug"
-    $ hg_ps_Buttplug_OBJ.complete_label = "hg_ps_Buttplug_complete"
+    if not hasattr(renpy.store,'hg_T1_trigger'):
+        $ her_tier = 1
+        $ hg_T1_trigger          = True # Temporary
+        $ hg_T2_jerk_off_trigger = False
 
-    if not hasattr(renpy.store,'hg_ps_WearMyCum_OBJ'): #important!
-        $ hg_ps_WearMyCum_OBJ = public_shaming()
-    $ hg_ps_WearMyCum_OBJ.imagination_level = 2
-    $ hg_ps_WearMyCum_OBJ.menu_text = "Wear My Cum"
-    $ hg_ps_WearMyCum_OBJ.start_label = "hg_ps_WearMyCum"
-    $ hg_ps_WearMyCum_OBJ.complete_label = "hg_ps_WearMyCum_complete"
+        # Strip Favor
+        $ hg_T3_strip_trigger    = False
+        $ hg_fingering_trigger   = False
+        $ hg_strip_snape_trigger = False
+        $ hg_tonks_snape_trigger = False
+        $ hg_cho_snape_trigger   = False
 
-    if not hasattr(renpy.store,'hg_ps_WalkOfShame_OBJ'): #important!
-        $ hg_ps_WalkOfShame_OBJ = public_shaming()
-    $ hg_ps_WalkOfShame_OBJ.imagination_level = 2
-    $ hg_ps_WalkOfShame_OBJ.menu_text = "Walk Of Shame"
-    $ hg_ps_WalkOfShame_OBJ.start_label = "hg_ps_WalkOfShame"
-    $ hg_ps_WalkOfShame_OBJ.complete_label = "hg_ps_WalkOfShame_complete"
+        # Handjob Favor
+        $ hg_T4_handjob_trigger  = False
+
+        # Blowjob Favor
+        $ hg_T5_blowjob_trigger  = False
+
+        # Sex Favor
+        $ hg_T6_sex_trigger      = False
+
+        $ hg_pf_talk   = event_class(title = "Talk to me!", start_label = "hg_pf_talk", start_tier = 1, events = [
+            [
+            ["hg_pf_talk_T1_intro_E1"],
+            ["hg_pf_talk_T1_E1"]
+            ],
+
+            [
+            ["hg_pf_talk_T2_intro_E1"],
+            ["hg_pf_talk_T2_E1"]
+            ],
+
+            [
+            ["hg_pf_talk_T3_intro_E1"],
+            ["hg_pf_talk_T3_E1"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_red"],["heart_empty", "heart_yellow"],["heart_empty", "heart_red"]]
+            )
+
+    if not hasattr(renpy.store,'hg_pf_admire_panties'):
+        $ hg_pf_admire_panties   = event_class(title = "Show me your Panties!", start_label = "hg_pf_admire_panties", start_tier = 1, events = [
+            [
+            ["hg_pf_admire_panties_T1_intro_E1"],
+            ["hg_pf_admire_panties_T1_E1"]
+            ],
+
+            [
+            ["hg_pf_admire_panties_T2_intro_E1"],
+            ["hg_pf_admire_panties_T2_E1"]
+            ],
+
+            [
+            ["hg_pf_admire_panties_T3_intro_E1"],
+            ["hg_pf_admire_panties_T3_E1"],
+            ["hg_pf_admire_panties_T3_E2"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_red"],["heart_empty", "heart_red"],["heart_empty", "heart_red"]]
+            )
+
+    if not hasattr(renpy.store,'hg_pf_admire_breasts'):
+        $ hg_pf_admire_breasts   = event_class(title = "Show me your tits!", start_label = "hg_pf_admire_breasts", start_tier = 1, events = [
+            [
+            ["hg_pf_admire_breasts_T1_intro_E1"],
+            ["hg_pf_admire_breasts_T1_intro_E2"],
+            ["hg_pf_admire_breasts_T1_E2"]
+            ],
+
+            [
+            ["hg_pf_admire_breasts_T2_intro_E1"],
+            ["hg_pf_admire_breasts_T2_intro_E2"],
+            ["hg_pf_admire_breasts_T2_E2"]
+            ],
+
+            [
+            ["hg_pf_admire_breasts_T3_intro_E1"],
+            ["hg_pf_admire_breasts_T3_E1"]
+            ],
+
+            [
+            ["hg_pf_admire_breasts_T4_intro_E1"],
+            ["hg_pf_admire_breasts_T4_E1"],
+            ["hg_pf_admire_breasts_T4_E2"]
+            ]
+
+            ],
+            icons = [None, None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_red"],["heart_empty", "heart_red"],["heart_empty", "heart_red"],["heart_empty", "heart_red"]]
+            )
+
+    if not hasattr(renpy.store,'hg_pf_grope'):
+        $ hg_pf_grope   = event_class(title = "Grope her!", start_label = "hg_pf_grope", start_tier = 1, events = [
+            [
+            ["hg_pf_grope_T0_fail_intro"],
+            ["hg_pf_grope_T0_fail_repeat"],
+            ],
+
+            [
+            ["hg_pf_grope_T1_intro_E1"],
+            ["hg_pf_grope_T1_E1"]
+            ],
+
+            [
+            ["hg_pf_grope_T2_intro_E1"],
+            ["hg_pf_grope_T2_E1"]
+            ],
+
+            [
+            ["hg_pf_grope_T3_intro_E1"],
+            ["hg_pf_grope_T3_intro_E2"],
+            ["hg_pf_grope_T3_E2"]
+            ]
+
+            ],
+            icons = [None, None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_black"],["heart_empty", "heart_red"],["heart_empty", "heart_red"],["heart_empty", "heart_red"]]
+            )
+
+    if not hasattr(renpy.store,'hg_pf_strip'):
+        $ hg_pf_strip   = event_class(title = "Dance for Me!", start_label = "hg_pf_strip", start_tier = 1, events = [
+            [["hg_pf_strip_fail"]], # Tier 1
+
+            [
+            ["hg_pf_strip_T0_fail_intro"],
+            ["hg_pf_strip_T0_fail_repeat"],
+            ],
+
+            [
+            ["hg_pf_strip_T1_intro_E1"], # First Strip event.
+            ["hg_pf_strip_T1_intro_E2"], # Strip event where Snape enters.
+            ["hg_pf_strip_T1_E2"]        # Clumsy Strip. Has branches.
+            ],
+
+            [
+            ["hg_pf_strip_T2_intro_E1"], # Hermione has improved.
+            ["hg_pf_strip_T2_intro_E2"], # Hermione doesn't mind stripping.
+            ["hg_pf_strip_T2_E2"]        # She's happy to strip.
+            ]
+
+            ],
+            icons = [None, None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_yellow"],["heart_empty", "heart_red"]]
+            )
 
 
-    $ hg_ps_list = []
-    $ hg_ps_list.append(hg_ps_PantyThief_OBJ)
-    $ hg_ps_list.append(hg_ps_Buttplug_OBJ)
-    $ hg_ps_list.append(hg_ps_WearMyCum_OBJ)
-    #$ hg_ps_list.append(hg_ps_WalkOfShame_OBJ)
+    if not hasattr(renpy.store,'hg_pf_handjob'):
+        $ hg_pf_handjob   = event_class(title = "Touch me!", start_label = "hg_pf_handjob", start_tier = 1, events = [
+            [["hg_pf_handjob_fail"]], # Tier 1
+            [["hg_pf_handjob_fail"]], # Tier 2
+            [["hg_pf_handjob_fail"]], # Tier 3
+
+            [
+            ["hg_pf_handjob_T1_intro_E1"], # First time handjob
+            ["hg_pf_handjob_T1_intro_E2"], # Second time handjob
+            ["hg_pf_handjob_T1_repeat"]   # Repeated handjob
+            ],
+
+            [
+            ["hg_pf_handjob_T2_intro_E1"], # New interaction
+            ["hg_pf_handjob_T2_intro_E2"], # More reply options
+            ["hg_pf_handjob_T2_repeat"]    # Repeated handjob
+            ]
+
+            ],
+            icons = [None, None, None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_yellow"],["heart_empty", "heart_red"]]
+            )
+
+    if not hasattr(renpy.store,'hg_pf_sex'):
+        $ hg_pf_sex   = event_class(title = "Let's have sex!", start_label = "hg_pf_sex", start_tier = 1, events = [
+            [["hg_pf_sex_fail"]], # Tier 1
+            [["hg_pf_sex_fail"]], # Tier 2
+            [["hg_pf_sex_fail"]], # Tier 3
+            [["hg_pf_sex_fail"]], # Tier 4
+
+            [
+            ["hg_pf_sex_fail"] # Tier 5 (Add tier 0 events that fail.)
+            ],
+
+            [
+            ["hg_pf_sex_T1_intro_E1"], # First time sex
+            ["hg_pf_sex_T1_intro_E2"], # Second time sex
+            ["hg_pf_sex_T1_intro_E3"], # Choice to do anal
+            ["hg_pf_sex_T1_E3"]        # Regular or anal sex
+            ]
+
+            ],
+            icons = [None, None, None, None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_black"],["heart_empty", "heart_yellow"]]
+            )
+
+    $ hg_favor_list = [
+        hg_pf_talk,
+        hg_pf_admire_breasts,
+        hg_pf_admire_panties,
+        hg_pf_grope,
+        hg_pf_strip,
+        hg_pf_handjob,
+        hg_pf_sex,
+        ]
+
+    if not hasattr(renpy.store,'her_cg_path') or reset_persistants or reset_luna_content:
+        $ her_cg_path       = "images/CG/herm_deep/"
+        $ her_cg_overlay    = her_cg_path+"blank.png"
+        $ her_cg_base       = her_cg_path+"base.png"
+        $ her_cg_body       = her_cg_path+"luna_base.png"
+        $ her_cg_cheeks     = her_cg_path+"c_base.png"
+        $ her_cg_mouth      = her_cg_path+"m_base.png"
+        $ her_cg_eyewhite   = her_cg_path+"eye_white.png"
+        $ her_cg_pupil      = her_cg_path+"pup_base.png"
+        $ her_cg_eye        = her_cg_path+"eye_base.png"
+        $ her_cg_eyebrow    = her_cg_path+"eb_base.png"
+        $ her_cg_eyewear    = her_cg_path+"glasses.png"
+        $ her_cg_tears      = her_cg_path+"blank.png"
+        $ her_cg_extra_1    = her_cg_path+"blank.png"
+        $ her_cg_extra_2    = her_cg_path+"blank.png"
+        $ her_cg_extra_3    = her_cg_path+"blank.png"
+        $ her_cg_genie      = her_cg_path+"genie.png"
+        $ her_cg_xpos       = 0
+        $ her_cg_ypos       = 0
+        $ her_cg_xpos_abs   = 0
+        $ her_cg_ypos_abs   = 0
+        $ her_cg_zoom       = 1
+
+    ### Public Requests ###
+
+    if not hasattr(renpy.store,'her_level_up'):
+        $ her_level_up = None
+
+        $ hg_pr_flirt   = event_class(title = "She's a flirt", start_label = "hg_pr_flirt", start_tier = 1, events = [
+            [
+            ["hg_pr_flirt_T1_E1"],
+            ["hg_pr_flirt_T1_E2"],
+            ["hg_pr_flirt_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_flirt_T2_E1"],
+            ["hg_pr_flirt_T2_E2"],
+            ["hg_pr_flirt_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_flirt_T3_E1"],
+            ["hg_pr_flirt_T3_E2"],
+            ["hg_pr_flirt_T3_E3"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_flirt_teacher   = event_class(title = "She's bait", start_label = "hg_pr_flirt_teacher", start_tier = 1, events = [
+            [
+            ["hg_pr_flirt_teacher_T1_E1"],
+            ["hg_pr_flirt_teacher_T1_E2"],
+            ["hg_pr_flirt_teacher_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_flirt_teacher_T2_E1"],
+            ["hg_pr_flirt_teacher_T2_E2"],
+            ["hg_pr_flirt_teacher_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_flirt_teacher_T3_E1"],
+            ["hg_pr_flirt_teacher_T3_E2"],
+            ["hg_pr_flirt_teacher_T3_E3"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_grope   = event_class(title = "Let a classmate molest you", start_label = "hg_pr_grope", start_tier = 1, events = [
+            [
+            ["hg_pr_grope_T1_E1"],
+            ["hg_pr_grope_T1_E2"],
+            ["hg_pr_grope_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_grope_T2_E1"],
+            ["hg_pr_grope_T2_E2"],
+            ["hg_pr_grope_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_grope_T3_E1"],
+            ["hg_pr_grope_T3_E2"],
+            ["hg_pr_grope_T3_E3"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_flash   = event_class(title = "Flash your tits to a classmate", start_label = "hg_pr_flash", start_tier = 1, events = [
+            [
+            ["hg_pr_flash_T1_E1"],
+            ["hg_pr_flash_T1_E2"],
+            ["hg_pr_flash_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_flash_T2_E1"],
+            ["hg_pr_flash_T2_E2"],
+            ["hg_pr_flash_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_flash_T3_E1"],
+            ["hg_pr_flash_T3_E2"],
+            ["hg_pr_flash_T3_E3"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_kiss   = event_class(title = "Kiss a girl", start_label = "hg_pr_kiss", start_tier = 1, events = [
+            [
+            ["hg_pr_kiss_T1_E1"],
+            ["hg_pr_kiss_T1_E2"],
+            ["hg_pr_kiss_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_kiss_T2_E1"],
+            ["hg_pr_kiss_T2_E2"],
+            ["hg_pr_kiss_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_kiss_T3_E1"],
+            ["hg_pr_kiss_T3_E2"]
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_handjob   = event_class(title = "Give a handjob to a classmate", start_label = "hg_pr_handjob", start_tier = 1, events = [
+            [
+            ["hg_pr_handjob_T1_E1"],
+            ["hg_pr_handjob_T1_E2"],
+            ["hg_pr_handjob_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_handjob_T2_E1"],
+            ["hg_pr_handjob_T2_E2"],
+            ["hg_pr_handjob_T2_E3"]
+            ],
+
+            [
+            ["hg_pr_handjob_T3_intro_E1"], # Ron
+            ["hg_pr_handjob_T3_E2"],
+            ["hg_pr_handjob_T3_E3"] # Ron & Harry
+            ]
+
+            ],
+            icons = [None, None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+        $ hg_pr_blowjob   = event_class(title = "Give a blowjob to a classmate", start_label = "hg_pr_blowjob", start_tier = 1, events = [
+            [
+            ["hg_pr_blowjob_T1_E1"],
+            ["hg_pr_blowjob_T1_E2"],
+            ["hg_pr_blowjob_T1_E3"]
+            ],
+
+            [
+            ["hg_pr_blowjob_T2_intro_E1"], # Ron & Harry
+            ["hg_pr_blowjob_T2_E2"], # Slytherin
+            ["hg_pr_blowjob_T2_E3"] # Restroom bukkake :O
+            ]
+
+            ],
+            icons = [None, None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"],["star_empty", "star_yellow"]]
+            )
+
+
+        $ hg_pr_sex   = event_class(title = "Have sex with a classmate", start_label = "hg_pr_sex", start_tier = 1, events = [
+            [
+            ["hg_pr_sex_T1_intro_E1"],
+            ["hg_pr_sex_T1_intro_E2"],
+            ["hg_pr_sex_T1_E3"],
+            ["hg_pr_sex_T1_E4"]
+            ]
+
+            ],
+            icons = [None], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"]]
+            )
+
+    $ hg_requests_list = [
+        hg_pr_flirt,
+        hg_pr_flirt_teacher,
+        hg_pr_grope,
+        hg_pr_flash,
+        hg_pr_kiss,
+        hg_pr_handjob,
+        hg_pr_blowjob,
+        hg_pr_sex
+        ]
 
     return

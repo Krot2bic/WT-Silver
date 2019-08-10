@@ -2,7 +2,7 @@
 
 # Susan Screens.
 
-screen susan_main:
+screen susan_main():
     tag susan_main
 
     ### BASE IMAGE
@@ -10,7 +10,7 @@ screen susan_main:
     add susan_l_arm xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the arms
     add susan_r_arm xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the arms
     add susan_base xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the base body
-    add susan_boobs xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the base body
+    add susan_breasts xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the base body
 
     ### FACE
     add susan_eye_bg xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio) #Add the eye white
@@ -62,7 +62,7 @@ screen susan_main:
     zorder susan_zorder
 
 
-screen susan_uniform:
+screen susan_uniform():
     tag susan_main
 
     ### CLOTHES
@@ -89,11 +89,11 @@ screen susan_uniform:
     zorder susan_zorder
 
 
-screen susan_outfit:
+screen susan_outfit():
     tag susan_main
 
     for i in susan_outfit_GLBL.getOutfitLayers():
-        add "characters/susan/clothes/custom/"+i xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio)
+        add "characters/susan/clothes/"+i+".png" xpos susan_xpos ypos susan_ypos xzoom susan_flip zoom (1.0/susan_scaleratio)
 
     ### ZORDER
     zorder susan_zorder

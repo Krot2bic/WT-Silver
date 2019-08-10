@@ -7,7 +7,7 @@ label susan_init:
 
         #Body
         $ susan_base                = "characters/susan/body/base/base_01.png"
-        $ susan_boobs               = "characters/susan/body/base/boobs_nipfix.png"
+        $ susan_breasts               = "characters/susan/body/base/boobs_nipfix.png"
         $ susan_l_arm               = "characters/susan/body/arms/l_arm_back.png"
         $ susan_r_arm               = "characters/susan/body/arms/r_arm_thigh.png"
         $ susan_xpos                = 300
@@ -33,15 +33,14 @@ label susan_init:
         $ susan_extra               = "characters/susan/face/extras/blank.png"
         $ susan_emote               = "characters/emotes/blank.png"
 
-        $ changeCho("base","base","base","mid","blank","blank","blank","blank")
+        #$ changeCho("base","base","base","mid","blank","blank","blank","blank")
 
         #Chibi
-        $ susan_chibi_xpos          = 500
-        $ susan_chibi_ypos          = 250
-        $ susan_chibi_xpos_name     = "base" #Memory of chibi position.
-        $ susan_chibi_ypos_name     = "base" #Memory of chibi position.
-        $ susan_chibi_flip          = 1
-        $ susan_chibi_zorder        = 3
+        $ sus_chibi_xpos          = 500
+        $ sus_chibi_ypos          = 250
+        $ sus_chibi_flip          = 1
+        $ sus_speed               = 2.0
+        $ sus_chibi_zorder        = 3
 
         $ susan_chibi_stand         = "ch_sus blink"
         $ susan_chibi_shoes         = "characters/susan/chibis/sb_walk_01_shoes.png"
@@ -113,21 +112,21 @@ label susan_init:
         $ susan_wear_outfit            = False
 
         #Top
-        $ susan_top                 = "characters/susan/clothes/tops/base/top_1.png"
+        $ susan_top                 = "characters/susan/clothes/tops/top_1.png"
         $ sus_top                     = "top_1"
         $ sus_top_color               = "base"
 
         #Bottom
-        $ susan_bottom              = "characters/susan/clothes/bottoms/base/skirt_1.png"
+        $ susan_bottom              = "characters/susan/clothes/bottoms/skirt_1.png"
         $ sus_bottom                  = "skirt_1"
         $ sus_bottom_color            = "base"
 
         #Underwear
-        $ susan_bra                 = "characters/susan/clothes/underwear/base/bra_base.png"
+        $ susan_bra                 = "characters/susan/clothes/bras/bra_base.png"
         $ sus_bra                     = "bra_base"
         $ sus_bra_color               = "base"
 
-        $ susan_panties             = "characters/susan/clothes/underwear/base/panties_base.png"
+        $ susan_panties             = "characters/susan/clothes/panties/panties_base.png"
         $ sus_panties                 = "panties_base"
         $ sus_panties_color           = "base"
 
@@ -135,7 +134,7 @@ label susan_init:
         $ sus_onepiece                = "blank"
         $ sus_onepiece_color          = "base"
 
-        $ susan_garterbelt          = "characters/susan/clothes/underwear/base/blank.png"
+        $ susan_garterbelt          = "characters/susan/clothes/garterbelts/blank.png"
         $ sus_garterbelt              = "blank"
         $ sus_garterbelt_color        = "base"
 
@@ -146,7 +145,6 @@ label susan_init:
         $ sus_neckwear_color          = "base"
 
         $ susan_accs_list           = []
-        $ susan_accs                = "characters/susan/accessories/blank.png"
 
         $ susan_gloves              = "characters/susan/clothes/gloves/blank.png"
         $ sus_gloves                  = "blank"
@@ -164,15 +162,15 @@ label susan_init:
         #Accessories
         $ susan_makeup_list         = []
 
-        $ susan_hat                 = "characters/susan/accessories/hats/blank.png"
+        $ susan_hat                 = "characters/susan/clothes/hats/blank.png"
         $ sus_hat                     = "blank"
         $ sus_hat_color               = "base"
 
-        $ susan_glasses             = "characters/susan/accessories/glasses/blank.png"
+        $ susan_glasses             = "characters/susan/clothes/glasses/blank.png"
         $ sus_glasses                 = "blank"
         $ sus_glasses_color           = "base"
 
-        $ susan_ears                = "characters/susan/accessories/ears/blank.png"
+        $ susan_ears                = "characters/susan/clothes/ears/blank.png"
         $ sus_ears                    = "blank"
 
         #Outfits
@@ -222,5 +220,7 @@ label susan_progress_init:
         #Stats Screen
         $ sus_curse_counter = 2 #She got cursed twice beforeyou unlock her. Poor girl...
 
+    if not hasattr(renpy.store,'gave_susan_gift') or reset_persistants:
+        $ gave_susan_gift    = False
 
     return

@@ -7,7 +7,7 @@ init python:
         # (rain)                w_g > 4
         # (lighting)            w_g > 5 or (w_g = 4 and chance success)
         # (snowy)               w_g > 3 (and chance success) (Cant be raining)
-        # (blizzard)            w_g > 6 
+        # (blizzard)            w_g > 6
 
         ## Night ##
         # (clear sky)           w_g = 1
@@ -24,9 +24,11 @@ init python:
         global raining
         global snowing
         global blizzard
+        global storm
         raining = False
         snowing = False
         blizzard = False
+        storm = False
         weather_animations = []
         lightning_gen = renpy.random.randint(1, 2)
         if weather_gen == 6:
@@ -34,6 +36,7 @@ init python:
             weather_animations.append("blizzard")
             renpy.music.play("sounds/blizzard.ogg", "weather", fadeout=1.0, fadein=1.0)
         if weather_gen == 5 or (weather_gen == 4 and lightning_gen == 1): # (Heavy clouds with chance of lightning)
+            storm = True
             weather_animations.append("lightning")
         if weather_gen > 4 and not blizzard:
             raining = True
@@ -42,10 +45,11 @@ init python:
         if weather_gen > 3 and lightning_gen == 2 and not (raining or blizzard):
             snowing = True
             weather_animations.append("snow")
-            
+
 
 init -2:
     transform cloud_move: #http://www.renpy.org/wiki/atl
+        subpixel True
         xpos 520
         choice:
             ypos 150
@@ -58,11 +62,12 @@ init -2:
         choice:
             ypos 200
 
-        linear 15.0 xpos 280 # linear
+        linear 15.0 xpos 237 # linear
         pause 7
         repeat
 
     transform cloud_night_move_01: #CLOUD NIGHT 01. http://www.renpy.org/wiki/atl
+        subpixel True
         xpos 520
         choice:
             ypos 130
@@ -75,6 +80,7 @@ init -2:
         repeat
 
     transform cloud_night_move_02: #CLOUD NIGHT 01. http://www.renpy.org/wiki/atl
+        subpixel True
         xpos 520
         choice:
             ypos 150
@@ -85,6 +91,7 @@ init -2:
         repeat
 
     transform cloud_night_move_03: #CLOUD NIGHT 01. http://www.renpy.org/wiki/atl
+        subpixel True
         xpos 520
         ypos 160
         linear 50.0 xpos 280 # linear
@@ -92,104 +99,104 @@ init -2:
         repeat
 
 image rain: #Rain.
-    "images/rooms/main_room/weather/rain_01.png"
+    "images/rooms/_weather_/rain_01.png"
     pause.1
-    "images/rooms/main_room/weather/rain_02.png"
+    "images/rooms/_weather_/rain_02.png"
     pause.1
-    "images/rooms/main_room/weather/rain_03.png"
+    "images/rooms/_weather_/rain_03.png"
     pause.1
     repeat
-    
+
 image snow: #Snow.
-    "images/rooms/main_room/weather/snow_01.png"
+    "images/rooms/_weather_/snow_01.png"
     pause.07
-    "images/rooms/main_room/weather/snow_02.png"
+    "images/rooms/_weather_/snow_02.png"
     pause.07
-    "images/rooms/main_room/weather/snow_03.png"
+    "images/rooms/_weather_/snow_03.png"
     pause.07
-    "images/rooms/main_room/weather/snow_04.png"
+    "images/rooms/_weather_/snow_04.png"
     pause.07
-    "images/rooms/main_room/weather/snow_05.png"
+    "images/rooms/_weather_/snow_05.png"
     pause.07
-    "images/rooms/main_room/weather/snow_06.png"
+    "images/rooms/_weather_/snow_06.png"
     pause.07
-    "images/rooms/main_room/weather/snow_07.png"
+    "images/rooms/_weather_/snow_07.png"
     pause.07
-    "images/rooms/main_room/weather/snow_08.png"
+    "images/rooms/_weather_/snow_08.png"
     pause.07
-    "images/rooms/main_room/weather/snow_09.png"
+    "images/rooms/_weather_/snow_09.png"
     pause.07
-    "images/rooms/main_room/weather/snow_10.png"
+    "images/rooms/_weather_/snow_10.png"
     pause.07
     repeat
-    
+
 image blizzard: #Blizzard.
-    "images/rooms/main_room/weather/blizzard_01.png"
+    "images/rooms/_weather_/blizzard_01.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_02.png"
+    "images/rooms/_weather_/blizzard_02.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_03.png"
+    "images/rooms/_weather_/blizzard_03.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_04.png"
+    "images/rooms/_weather_/blizzard_04.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_05.png"
+    "images/rooms/_weather_/blizzard_05.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_06.png"
+    "images/rooms/_weather_/blizzard_06.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_07.png"
+    "images/rooms/_weather_/blizzard_07.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_08.png"
+    "images/rooms/_weather_/blizzard_08.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_09.png"
+    "images/rooms/_weather_/blizzard_09.png"
     pause.05
-    "images/rooms/main_room/weather/blizzard_10.png"
+    "images/rooms/_weather_/blizzard_10.png"
     pause.05
     repeat
 
 
 image lightning: #Lightening during rain behind the window.
     pause 20
-    "images/rooms/main_room/weather/lightining_01.png"
+    "images/rooms/_weather_/lightining_01.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_02.png"
+    "images/rooms/_weather_/lightining_02.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_03.png"
+    "images/rooms/_weather_/lightining_03.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_04.png"
+    "images/rooms/_weather_/lightining_04.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_05.png"
+    "images/rooms/_weather_/lightining_05.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_06.png"
+    "images/rooms/_weather_/lightining_06.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_05.png"
+    "images/rooms/_weather_/lightining_05.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_06.png"
+    "images/rooms/_weather_/lightining_06.png"
     pause.1
-    "images/rooms/main_room/weather/lightining_05.png"
+    "images/rooms/_weather_/lightining_05.png"
     pause 20
     repeat
 
-screen weather:
+screen weather():
     zorder -1
     if daytime:
         if weather_gen < 4:# (cloud across sky)
-            add "images/rooms/main_room/weather/sky.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
-            add "images/rooms/main_room/weather/cloud_small.png" at cloud_move
+            add "images/rooms/_weather_/sky.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/cloud_small.png" at cloud_move
         if weather_gen >= 4:# (heavy clouds)
-            add "images/rooms/main_room/weather/cloudy.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/cloudy.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
     else:
         ## Weather Types
         if weather_gen == 1:# (clear sky)
-            add "images/rooms/main_room/weather/night_sky.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/night_sky.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
         if weather_gen == 2:# (Clear sky with moon)
-            add "images/rooms/main_room/weather/night_sky_02.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/night_sky_02.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
         if weather_gen == 3:# (clouds across moon)
-            add "images/rooms/main_room/weather/night_sky_02.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
-            add "images/rooms/main_room/weather/night_cloud_02.png" at cloud_night_move_01
-            add "images/rooms/main_room/weather/night_cloud_01.png" at cloud_night_move_02
-            add "images/rooms/main_room/weather/night_cloud_03.png" at cloud_night_move_03
+            add "images/rooms/_weather_/night_sky_02.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/night_cloud_02.png" at cloud_night_move_01
+            add "images/rooms/_weather_/night_cloud_01.png" at cloud_night_move_02
+            add "images/rooms/_weather_/night_cloud_03.png" at cloud_night_move_03
         if weather_gen >= 4:# (heavy clouds)
-            add "images/rooms/main_room/weather/night_sky_04.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
+            add "images/rooms/_weather_/night_sky_04.png" at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")
 
     for img in weather_animations:
         add img at Position(xpos=430, ypos=218, xanchor="center", yanchor="center")

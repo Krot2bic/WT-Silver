@@ -1,14 +1,25 @@
+init python:
+    def unlock_clothing_compat(item):
+        """Unlock a clothing item. Compatible with new outfit system."""
+        if isinstance(item, item_class):
+            item.unlocked = True
+        elif isinstance(item, outfit_class) or isinstance(item, cloth_class):
+            item.unlock(True)
 
+        if item.id in outfit_linking:
+            outfit_linking[item.id].unlock(True)
 
 ### CLOTHING STORE ###
 
-screen clothing_store_room:
+screen clothing_store_room():
     tag room_screen
 
     if daytime:
-        add "images/backgrounds/corridor.png" #Need day image.
+        add "images/rooms/_bg_/corridor.png" #Need day image.
     else:
-        add "images/backgrounds/corridor.png"
+        add "images/rooms/_bg_/corridor.png"
+
+    use ui_top_bar
 
     zorder 0
 
@@ -20,9 +31,13 @@ label open_clothing_store:
 
     call room("clothing_store")
 
+    call play_music("clothing_store")
+
     hide screen blkfade
     with d3
     pause.2
+
+    $ renpy.block_rollback()
 
     call clothing_store_chitchat
 
@@ -83,7 +98,7 @@ label close_clothing_store:
 
 
 
-screen clothing_store_menu:
+screen clothing_store_menu():
     tag store_menu
     if store_category == 0:
         $ UI_xpos_offset = 0
@@ -93,12 +108,7 @@ screen clothing_store_menu:
     zorder 4
 
     # Close Button
-    imagebutton:
-        xpos 1028
-        ypos 11
-        idle "interface/general/"+interface_color+"/button_close.png"
-        hover "interface/general/"+interface_color+"/button_close_hover.png"
-        action Jump("close_clothing_store")
+    use top_bar_close_button
 
     # Outfits Button
     imagebutton:
@@ -305,7 +315,7 @@ label purchase_outfit(item):
     if item == hg_cheer_s_ITEM:
         m "I'd like to order another cheerleader outfit."
         maf "Another cheerleader outfit? I thought you said that it was only a one person trial?"
-        m "It was at first but due to the success of the Gryffindor cheerleader Slytherin demanded one aswell."
+        m "It was at first but due to the success of the Gryffindor cheerleader Slytherin demanded one as well."
         maf "Those Slytherins never could stand being second."
         maf "So do you just want the same basic design modified to suit?"
         m "Maybe make this one a little more sporty if you know what I mean."

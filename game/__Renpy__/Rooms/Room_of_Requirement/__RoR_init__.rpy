@@ -30,6 +30,18 @@ label __init_variables:
                 content_characters = []
             )
 
+    if not hasattr(renpy.store,'mr_ev_AOC'):
+        $ mr_ev_AOC = mirror_stories(
+                name = "An odd circumstance",
+                unlockable = True,
+                story_description = "You find yourself being confronted by a mysterious girl that seemingly seems to know you.",
+                start_label = "an_odd_circumstance",
+                authors = ["TeamSilver"],
+                categories= ["Parody", "lewd"],
+                ach_desc = "Completed Hermiones Suck It personal favours",
+                content_characters = ["hermione"]
+            )
+
     if not hasattr(renpy.store,'mr_ev_ABTTD'):
         $ mr_ev_ABTTD = mirror_stories(
                 name = "A bad time to disrobe",
@@ -68,8 +80,8 @@ label __init_variables:
 
     if not hasattr(renpy.store,'mr_ev_ADR'):
         $ mr_ev_ADR = mirror_stories(
-                name = "A Dark Room",
-                story_description = "A minigame inspired by the textbased game \"A Dark Room\".",
+                name = "A Dark Room (Incomplete)",
+                story_description = "A minigame inspired by the textbased game \"A Dark Room\".\n>WIP! It is currently incomplete but in a playable state.",
                 start_label = "start_dark_room_game",
                 authors = ["TeamSilver"],
                 categories= ["minigame"],
@@ -88,14 +100,53 @@ label __init_variables:
                 content_characters = []
             )
 
+    if not hasattr(renpy.store,'mr_ev_PaH'):
+        #Story Unlock requirements: Finish the first 3 Wizard Cards challenges.
+        $ mr_ev_PaH = mirror_stories(
+                name = "Previously at Hogwarts",
+                story_description = "Snape tries to find a solution to stifle his anger and finds himself yet again in the Headmasters office.",
+                start_label = "prev_at_hogwarts",
+                authors = ["TeamSilver"],
+                categories= [],
+                ach_desc = "",
+                content_characters = []
+            )
+    if not hasattr(renpy.store,'mr_ev_PR'):
+        $ mr_ev_PR = mirror_stories(
+                name = "Panty Raid",
+                story_description = "Genie asks Hermione to go out and collect other girls panties.",
+                start_label = "panty_raid_event",
+                authors = ["WaxerRed"],
+                categories= ["Panties fetish", "Lesbian", "Corruption"],
+                ach_desc = "",
+                content_characters = ["hermione"]
+            )
+
+    # WIP
+    #if not hasattr(renpy.store,'mr_ev_CM'):
+    #    $ mr_ev_CM = mirror_stories(
+    #            name = "Class Masturbation",
+    #            story_description = "Genie asks Hermione to go out and masturbate in her classes",
+    #            start_label = "class_masturbation_event",
+    #            authors = ["WaxerRed"],
+    #            categories= [],
+    #            ach_desc = "",
+    #            content_characters = ["hermione"]
+    #        )
+
     $ mr_evs_list = []
+    $ mr_evs_list.append(mr_ev_PaH)
     $ mr_evs_list.append(mr_ev_AXmasTale)
-    $ mr_evs_list.append(mr_ev_ADR)
     $ mr_evs_list.append(mr_ev_WPIIA)
     $ mr_evs_list.append(mr_ev_GHE)
     $ mr_evs_list.append(mr_ev_ABTTD)
     $ mr_evs_list.append(mr_ev_ASOC)
     $ mr_evs_list.append(mr_ev_ABAS)
+    $ mr_evs_list.append(mr_ev_ADR)
+    $ mr_evs_list.append(mr_ev_PR)
+    $ mr_evs_list.append(mr_ev_AOC)
+
+    #$ mr_evs_list.append(mr_ev_CM)
 
     $current_page = 0
 
@@ -185,10 +236,12 @@ init python:
         #And if you dont make any then it will all ways be true
         def unlock_check(self):
             if self.name == "A bad time to disrobe":
-                return hg_pf_ShowThemToMe_OBJ.points > 0
+                return hg_pf_admire_breasts.points > 0
             elif self.name == "A spaced out conversation":
                 return sna_friendship > 60
             elif self.name == "A Booty at sea":
-                return hg_pf_TimeForAnal_OBJ.points > 2
+                return hg_pf_anal_sex.points > 2
+            elif self.name == "An odd circumstance":
+                return hg_pf_blowjob.points > 2
             else:
                 return True

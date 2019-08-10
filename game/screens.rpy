@@ -1,4 +1,4 @@
-﻿# This file is in the public domain. Feel free to modify it as a basis
+# This file is in the public domain. Feel free to modify it as a basis
 # for your own screens.
 
 ##############################################################################
@@ -6,58 +6,58 @@
 #
 # Screen that's used to display adv-mode dialogue.
 # http://www.renpy.org/doc/html/screen_special.html#say
-screen say:
+    
+screen say(who, what, side_image=None):
     zorder 6 #Otherwise the character sprite would be obscuring it.
-
-    # Defaults for side_image and two_window
-    default side_image = None
-    default two_window = False
-
-    # Decide if we want to use the one-window or two-window variant.
-    if not two_window:
-
-        # The one window variant.
-        window:
-            id "window"
-
-            has vbox:
-                style "say_vbox"
-
-            if who:
-                text who id "who"
-
-            text what id "what"
-
-    else:
-
-        # The two window variant.
-        vbox:
-            style "say_two_window_vbox"
-
-            if who:
-                window:
-                    style "say_who_window"
-
-                    text who:
-                        id "who"
-
-            window:
-                id "window"
-
-                has vbox:
-                    style "say_vbox"
-
-                text what id "what"
-
-    # If there's a side image, display it above the text.
+    
     if side_image:
-        add side_image
+        add side_image yalign 1.0 yanchor 1.0
     else:
-        add SideImage() xalign 0.0 yalign 1.0
+        add SideImage() xalign 0.0 yalign 1.0 yanchor 1.0
+
+    #Hotkeys
+    use hotkeys_say
+    
+    #Add "hidden" window
+    if hkey_chat_hidden:
+        window:
+            xalign 0.5
+            yalign 0.99
+            if daytime and not persistent.nightmode:
+                style "say_who_window_day"
+                text "Hidden" color persistent.text_color_day outlines [ (1, persistent.text_outline, 1, 0) ] bold False text_align 0.5 xalign 0.5 yalign 0.5
+            else:
+                style "say_who_window_night"
+                text "Hidden" color persistent.text_color_night outlines [ (1, persistent.text_outline, 1, 0) ] bold False text_align 0.5 xalign 0.5 yalign 0.5
+            if who:
+                text who id "who" ypos 1000
+            text what id "what" ypos 1000
+            
+        #Add fullscreen CTC button
+        button:
+            action SetVariable("hkey_chat_hidden", False)
+            style "empty"
+    else:
+        if who:
+            window:
+                ypos 470
+                if daytime and not persistent.nightmode:
+                    style "say_who_window_day"
+                    text who id "who" color persistent.text_color_day outlines [ (1, persistent.text_outline, 1, 0) ] bold False text_align 0.5 xalign 0.5 yalign 0.5
+                else:
+                    style "say_who_window_night"
+                    text who id "who" color persistent.text_color_night outlines [ (1, persistent.text_outline, 1, 0) ] bold False text_align 0.5 xalign 0.5 yalign 0.5
+        window id "window":
+            has vbox#:
+                #style "say_vbox"            
+            if daytime and not persistent.nightmode:
+                text what id "what" color persistent.text_color_day outlines [ (1, persistent.text_outline, 1, 0) ]
+            else:
+                text what id "what" color persistent.text_color_night outlines [ (1, persistent.text_outline, 1, 0) ]
 
     # Use the quick menu.
-    use quick_menu
-
+    if not hkey_chat_hidden and not who == None:
+        use quick_menu
 
 ##############################################################################
 # Choice
@@ -65,7 +65,7 @@ screen say:
 # Screen that's used to display in-game menus.
 # http://www.renpy.org/doc/html/screen_special.html#choice
 
-screen choice:
+screen choice(items):
     add "interface/bld.png"
     window:
         style "menu_window"
@@ -108,16 +108,27 @@ init -2:
 #
 # Screen that's used to display renpy.input()
 # http://www.renpy.org/doc/html/screen_special.html#input
-
-screen input:
-
-    window style "input_window":
-        has vbox
-
-        text prompt style "input_prompt"
-        input id "input" style "input_text"
-
-    use quick_menu
+    
+screen input(prompt):
+    tag input
+    zorder 15 #Always on top
+    
+    button:
+        xsize 1080
+        ysize 600
+        action NullAction()
+        style "empty"
+        
+    window:
+        id "window"
+        
+        has vbox:
+            style "say_vbox"
+        
+        text prompt
+        input id "input"
+        
+    #use quick_menu
 
 ##############################################################################
 # Nvl
@@ -125,7 +136,7 @@ screen input:
 # Screen used for nvl-mode dialogue and menus.
 # http://www.renpy.org/doc/html/screen_special.html#nvl
 
-screen nvl:
+screen nvl(dialogue, items=None):
     zorder 7
     window:
         style "nvl_window"
@@ -177,25 +188,42 @@ screen nvl:
 
 
 # Main Menu
-screen main_menu:
+screen main_menu():
     tag menu
     zorder 5
 
     # The background of the main menu.
     window:
         style "mm_root"
+    
+    # Version display
+    $ ver = config.version[:4]+"."+config.version[4:6] if len(config.version) >=5 else config.version
+    text "{color=#fff}{size=-2}[ver]{/size}{/color}" xpos 1024 ypos 228 outlines [ (1, "#000", 0, 0) ]
+    text "{color=#c70000}EXPERIMENTAL VERSION{/color}" xpos 10 yalign 0.01 size 24 outlines [(2, "#000", 0, 0)]
+    text "Expect bugs, crashes and other weird stuff.\nProceed at your own risk, you have been warned!" xpos 10 yalign 0.05 color "#fff" size 12 outlines [(2, "#000", 0, 0)]
+    text "You can find most recent stable build on our {a=https://pastebin.com/6zbuZ5gS}pastebin{/a}." xpos 10 yalign 0.15 color "#fff" size 12 outlines [(2, "#000", 0, 0)]
+    
+    if update_available:        
+        frame:
+            style_group "mm"
+            xalign .96
+            yalign .575
+
+            has vbox
+
+            textbutton _("{size=-6}{color=#7a0000}UPDATE AVAILABLE{/color}{/size}") action OpenURL("https://pastebin.com/6zbuZ5gS")
 
     # The main menu buttons.
     frame:
         style_group "mm"
         xalign .96
-        yalign .77
+        yalign .75
 
         has vbox
 
         if not persistent.game_complete:
             textbutton _("New Game") action Start()
-        if persistent.game_complete:
+        else:
             textbutton _("New Game {size=+3}+{/size}") action Start()
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Preferences") action ShowMenu("preferences")
@@ -204,21 +232,45 @@ screen main_menu:
     frame:
         style_group "mm"
         xalign .96
-        yalign .96
+        yalign .86
 
         has vbox
 
-        textbutton _("Support Akabur") action OpenURL("https://www.patreon.com/akabur")
-        textbutton _("Support Team Silver") action OpenURL("https://www.patreon.com/MoCoder")
-
+        textbutton _("Credits") action Jump("credits")
+        
     imagebutton:
-        xpos 689
-        ypos 546
+        xpos 910
+        ypos 560
         xalign 0.5
         yalign 0.5
         idle "logo/patreon.png"
         hover "logo/patreon_hover.png"
-        action OpenURL("https://www.patreon.com/MoCoder")
+        action OpenURL("https://www.patreon.com/SilverStudioGames")
+        
+    imagebutton:
+        xpos 660
+        ypos 562
+        xalign 0.5
+        yalign 0.5
+        idle "logo/discord.png"
+        hover "logo/discord_hover.png"
+        action OpenURL("https://discord.gg/7PD57yt")
+    
+    #New info
+    #add "logo/arrow.png" xpos 760 ypos 500
+    #text "{color=#b20000}{size=+10}NEW\nPATREON!{/size}{/color}" xpos 700 ypos 445 outlines [ (3, "#000", 0, 0) ]
+    
+    if check_for_old_files():
+        frame:
+            style "empty"
+            background "#000"
+            xsize 1080
+            ysize 600
+            button style "empty" action NullAction()
+            add "images/misc/old.png" yanchor 1.0 yalign 0.99 xpos 10
+            text "{size=+40}WARNING!{/size}" xalign 0.5 xanchor 0.5 ypos 150 color "#7a0000"
+            text "We have detected old unusable files in your game folder,\nplease close the game and perform a clean installation." xalign 0.5 xanchor 0.5 ypos 250 color "#FFF"
+            textbutton "{size=+30}Quit{/size}" action Quit(confirm=False) xalign 0.5 xanchor 0.5 yalign 0.9
 
 
 init -2:
@@ -230,7 +282,7 @@ init -2:
 
 
 # Extras
-screen extras:
+screen extras():
     tag menu
     zorder 5
 
@@ -243,9 +295,6 @@ screen extras:
 
         has vbox
 
-
-
-
         textbutton _("About...") action Start("abouttrainer")
         textbutton _("F.A.Q.") action Start("faq")
         if not persistent.game_complete:
@@ -257,24 +306,13 @@ screen extras:
 init -2 python:
     style.gm_nav_button.size_group = "gm_nav"
 
-
-
-
-
-
-
-
-
-
-
-
 ##############################################################################
 # Navigation
 #
 # Screen that's included in other screens to display the game menu
 # navigation and background.
 # http://www.renpy.org/doc/html/screen_special.html#navigation
-screen navigation:
+screen navigation():
 
     # The background of the game menu.
     window:
@@ -293,7 +331,7 @@ screen navigation:
         textbutton _("Save Game") action ShowMenu("save")
         textbutton _("Load Game") action ShowMenu("load")
         textbutton _("Main Menu") action MainMenu()
-        textbutton _("Help") action Help()
+        #textbutton _("Help") action Help()
         textbutton _("Quit") action Quit()
 
 init -2:
@@ -301,7 +339,6 @@ init -2:
     # Make all game menu navigation buttons the same size.
     style gm_nav_button:
         size_group "gm_nav"
-
 
 ##############################################################################
 # Save, Load
@@ -314,8 +351,7 @@ init -2:
 # a single screen, file_picker. We then use the file_picker screen
 # from simple load and save screens.
 
-screen file_picker:
-
+screen file_picker():
     frame:
         style "file_picker_frame"
 
@@ -335,7 +371,7 @@ screen file_picker:
             textbutton _("Quick"):
                 action FilePage("quick")
 
-            for i in range(1, 9):
+            for i in range(1, 11):
                 textbutton str(i):
                     action FilePage(i)
 
@@ -353,27 +389,66 @@ screen file_picker:
 
             # Display ten file slots, numbered 1 - 10.
             for i in range(1, columns * rows + 1):
+                $ is_compatible = check_save_compatibility(FileCurrentPage(), str(i))
+                
+                if renpy.get_screen("load"):
+                    $ current_action = Confirm("{color=#7a0000}Warning!{/color}\nThe save file you're trying to load is incompatible with the current version of the game and may result in broken gameplay and multiple errors.\nDo you still wish to proceed?", yes=FileAction(i), no=NullAction())
+                else:
+                    $ current_action = FileAction(i)
+                
+                if is_compatible == True or is_compatible == None:
+                    button:
+                        xfill True
+                        action FileAction(i)
+                        has hbox
 
-                # Each file slot is a button.
-                button:
-                    action FileAction(i)
-                    xfill True
+                        # Add the screenshot.
+                        add FileScreenshot(i)
 
-                    has hbox
+                        $ file_name = FileSlotName(i, columns * rows)
+                        $ file_time = FileTime(i, empty=_("Empty Slot."))
+                        $ save_name = FileSaveName(i)
+                        
+                        if save_name != "":
+                            textbutton _("X"):
+                                yalign 0.5
+                                xpos 235
+                                yfill True
+                                ymaximum 50
+                                action FileDelete(i, persistent.delwarning)
+                            text "[file_name]. [file_time!t]\n[save_name!t]" xpos -40 yalign 0.5
+                        else:
+                            text "[file_name]. [file_time!t]" xoffset 1
+                            
+                        key "save_delete" action FileDelete(i, persistent.delwarning)
+                else:
+                    button:
+                        xfill True
+                        action current_action
+                            
+                        has hbox
 
-                    # Add the screenshot.
-                    add FileScreenshot(i)
+                        # Add the screenshot.
+                        add grayTint(FileScreenshot(i))
 
-                    $ file_name = FileSlotName(i, columns * rows)
-                    $ file_time = FileTime(i, empty=_("Empty Slot."))
-                    $ save_name = FileSaveName(i)
+                        $ file_name = FileSlotName(i, columns * rows)
+                        $ file_time = FileTime(i, empty=_("Empty Slot."))
+                        $ save_name = FileSaveName(i)
+                        
+                        if save_name != "":
+                            textbutton _("X"):
+                                yalign 0.5
+                                xpos 235
+                                yfill True
+                                ymaximum 50
+                                action FileDelete(i, persistent.delwarning)
+                            text "[file_name]. [file_time!t]\n\n{color=#7a0000}NOT COMPATIBLE{/color}" xpos -40 yalign 0.5
+                        else:
+                            text "[file_name]. [file_time!t]" xoffset 1
+                            
+                        key "save_delete" action FileDelete(i, persistent.delwarning)
 
-                    text "[file_name]. [file_time!t]\n[save_name!t]"
-
-                    key "save_delete" action FileDelete(i)
-
-
-screen save:
+screen save():
     tag menu
 
     use navigation
@@ -381,7 +456,7 @@ screen save:
 
     zorder 5
 
-screen load:
+screen load():
     tag menu
 
     use navigation
@@ -396,34 +471,40 @@ init -2:
     style file_picker_button is large_button
     style file_picker_text is large_button_text
 
-
 ##############################################################################
 # Preferences
 #
 # Screen that allows the user to change the preferences.
 # http://www.renpy.org/doc/html/screen_special.html#prefereces
 
-screen preferences:
+screen preferences():
     tag menu
 
     # Include the navigation.
     use navigation
 
-    # Put the navigation columns in a three-wide grid.
-    grid 3 1:
+    # Put the navigation columns in a four-wide grid.
+    if not renpy.variant('android'):
+        $ columns = 4
+        $ rows = 1
+    else:
+        $ columns = 3
+        $ rows = 1
+    grid columns rows:
         style_group "prefs"
         xfill True
 
         # The left column.
         vbox:
-            frame:
-                style_group "pref"
-                has vbox
+            if not renpy.variant('android'):
+                frame:
+                    style_group "pref"
+                    has vbox
 
-                label _("Display")
-                textbutton _("Window") action Preference("display", "window")
-                textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
+                    label _("Display")
+                    textbutton _("Window") action Preference("display", "window")
+                    textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                    
             frame:
                 style_group "pref"
                 has vbox
@@ -438,13 +519,46 @@ screen preferences:
 
                 label _("Text Speed")
                 bar value Preference("text speed")
-
+            ####
+            frame:
+                style_group "pref"
+                has vbox
+                
+                label _("Interface")
+                if not renpy.variant('android'):
+                    textbutton "Tooltips" action ToggleVariable("persistent.tooltip", True, False)
+                    textbutton _("Custom Cursor") action [ToggleVariable("persistent.customcursor", True, False), ToggleVariable("config.mouse", { 'default' : [ ('interface/cursor.png', 0, 0)] }, None) ]
+                textbutton _("Nightmode") action ToggleVariable("persistent.nightmode", True, False)
             frame:
                 style_group "pref"
                 has vbox
 
-                textbutton _("Joystick...") action Preference("joystick")
+                label _("Saybox")
+                if not persistent.nightmode:
+                    textbutton _("Day {color=[persistent.text_color_day]}text{/color}") action Call("saybox_color")
+                textbutton _("Night {color=[persistent.text_color_night]}text{/color}") action Call("saybox_color", False)
+                textbutton _("Shadow") action ToggleVariable("persistent.text_outline", "#00000080", "#00000000")
+                textbutton _("Default") action [SetVariable("persistent.text_color_day", "#402313"), SetVariable("persistent.text_color_night", "#341c0f"), SetVariable("persistent.text_outline", "#00000000")]
+                
+            if not main_menu:
+                frame:
+                    style_group "pref"
+                    has vbox
+                    
+                    label _("Difficulty")
+                    hbox:
+                        xalign 0.5
+                        textbutton _("Easy") text_size 14 text_color "#93b04c66" text_selected_color "#93b04c" xsize 80 action [SetVariable("game_difficulty", 1), SetVariable("cheat_reading", True)]
+                        textbutton _("Normal") text_size 14 xsize 80 action [SetVariable("game_difficulty", 2), SetVariable("cheat_reading", False), SelectedIf(game_difficulty==2)]
+                        if persistent.game_complete:
+                            textbutton _("Hard") text_size 14 text_color "#7a000066" text_selected_color "#7a0000" xsize 80 action [SetVariable("game_difficulty", 3), SetVariable("cheat_reading", False), SelectedIf(game_difficulty==3)]
 
+            # Joystick settings aren't needed, I dont think anyone plays WT with it.
+            #frame:
+                #style_group "pref"
+                #has vbox
+
+                #textbutton _("Joystick...") action Preference("joystick")
 
         vbox:
             frame:
@@ -454,12 +568,13 @@ screen preferences:
                 label _("Skip")
                 textbutton _("Seen Messages") action Preference("skip", "seen")
                 textbutton _("All Messages") action Preference("skip", "all")
+            
+            # Obsolete, you can click skip button on the saybox instead
+            #frame:
+            #    style_group "pref"
+            #    has vbox
 
-            frame:
-                style_group "pref"
-                has vbox
-
-                textbutton _("Begin Skipping") action Skip()
+            #   textbutton _("Begin Skipping") action Skip()
 
             frame:
                 style_group "pref"
@@ -478,6 +593,14 @@ screen preferences:
 
                 if config.has_voice:
                     textbutton _("Wait for Voice") action Preference("wait for voice", "toggle")
+                    
+            frame:
+                style_group "pref"
+                has vbox
+                
+                label _("{size=-4}Animation preference{/size}")
+                textbutton _("Chibis") action SetVariable("use_cgs", False)
+                textbutton _("Sprites") action SetVariable("use_cgs", True)
 
         vbox:
             frame:
@@ -512,7 +635,27 @@ screen preferences:
                         textbutton _("Test"):
                             action Play("voice", config.sample_voice)
                             style "soundtest_button"
+            frame:
+                style_group "pref"
+                has vbox
+                
+                label _("Saving&Loading")
+                textbutton _("Autosave") action [ToggleVariable("persistent.autosave", True, False), ToggleVariable("config.has_autosave", True, False), ToggleVariable("config.autosave_on_choice", True, False)]
+                textbutton _("Save Del. Warning") action ToggleVariable("persistent.delwarning", True, False)
+        if not renpy.variant('android'):
+            vbox:#Hotkeys
+                frame:
+                    style_group "pref"
+                    has vbox
 
+                    label _("Hotkeys")
+                    textbutton _("Map - [hkey_map]") action None
+                    textbutton _("Work - [hkey_work]") action None
+                    textbutton _("Books - [hkey_book]") action None
+                    textbutton _("Stats - [hkey_stats]") action None
+                    textbutton _("Inventory - [hkey_inventory]") action None
+                    textbutton _("Sleep - [hkey_sleep]") action None
+                    textbutton _("Jerk off - [hkey_fap]") action None
     zorder 5
 
 init -2:
@@ -535,14 +678,13 @@ init -2:
     style soundtest_button:
         xalign 1.0
 
-
 ##############################################################################
 # Yes/No Prompt
 #
 # Screen that asks the user a yes or no question.
 # http://www.renpy.org/doc/html/screen_special.html#yesno-prompt
-
-screen yesno_prompt:
+    
+screen confirm(message, yes_action, no_action):
 
     modal True
 
@@ -550,32 +692,28 @@ screen yesno_prompt:
         style "gm_root"
 
     frame:
-        style_group "yesno"
+        style_prefix "confirm"
 
         xfill True
-        xmargin .05
-        ypos .1
-        yanchor 0
-        ypadding .05
+        xmargin 50
+        ypadding 25
+        yalign .25
 
-        has vbox:
-            xalign .5
-            yalign .5
-            spacing 30
+        vbox:
+            xfill True
+            spacing 25
 
-        label _(message):
-            xalign 0.5
+            text _(message):
+                text_align 0.5
+                xalign 0.5
 
-        hbox:
-            xalign 0.5
-            spacing 100
-
-            textbutton _("Yes") action yes_action
-            textbutton _("No") action no_action
-
+            hbox:
+                spacing 100
+                xalign .5
+                textbutton _("Yes") action yes_action
+                textbutton _("No") action no_action
     # Right-click and escape answer "no".
     key "game_menu" action no_action
-
     zorder 6
 
 init -2:
@@ -592,41 +730,53 @@ init -2:
 #
 # A screen that's included by the default say screen, and adds quick access to
 # several useful functions.
-screen quick_menu:
+screen quick_menu():
 
     # Add an in-game quick menu.
-    hbox:
-        style_group "quick"
+    if renpy.variant('android'):
+        hbox:
+            style_group "quick"
 
-        xalign 1.0
-        yalign 0.0
+            xpos 845
+            ypos 489
+            xanchor 1.0
 
-        #textbutton _("Back") action Rollback()
-        #textbutton _("Save") action ShowMenu('save')
-        #textbutton _("Q.Save") action QuickSave()
-        #textbutton _("Q.Load") action QuickLoad()
-        textbutton _("Skip") action Skip()
-        #textbutton _("F.Skip") action Skip(fast=True, confirm=True)
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
-        textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Save") action ShowMenu('save') activate_sound "sounds/click3.mp3"
+            textbutton _("Auto") action Preference("auto-forward", "toggle") activate_sound "sounds/click3.mp3"
+        hbox:
+            ypos 600
+            if renpy.can_rollback():
+                imagebutton idle "interface/frames/"+interface_color+"/arrow.png" action Rollback() activate_sound "sounds/click3.mp3" yanchor 1.0 xanchor 0.5 xpos 180
+            imagebutton idle im.Flip("interface/frames/"+interface_color+"/arrow.png", horizontal=True) action Skip(fast=True, confirm=True) activate_sound "sounds/click3.mp3" yanchor 1.0 xanchor 0.5 xpos 800
+    else:
+        hbox:
+            style_group "quick"
+
+            xpos 845
+            ypos 489
+            xanchor 1.0
+
+            #textbutton _("Back") action Rollback()
+            #textbutton _("Save") action ShowMenu('save')
+            textbutton _("Q.Save") action QuickSave() activate_sound "sounds/click3.mp3"
+            textbutton _("Q.Load") action QuickLoad() activate_sound "sounds/click3.mp3"
+            textbutton _("Skip") action Skip() activate_sound "sounds/click3.mp3"
+            #textbutton _("F.Skip") action Skip(fast=True, confirm=True)
+            textbutton _("Auto") action Preference("auto-forward", "toggle") activate_sound "sounds/click3.mp3"
+            textbutton _("Prefs") action ShowMenu('preferences') activate_sound "sounds/click3.mp3"
 
 init -2:
     style quick_button:
         is default
         background None
-        xpadding 4
+        xpadding 8
+        ypadding 8
 
     style quick_button_text:
         is default
-        size 12
+        size 10
         idle_color "#8888"
         hover_color "#ccc"
         selected_idle_color "#cc08"
         selected_hover_color "#cc0"
         insensitive_color "#4448"
-
-
-# Set a default value for the auto-forward time, and note that AFM is
-    # turned off by default.
-    #config.default_afm_time = 10
-    #config.default_afm_enable = False

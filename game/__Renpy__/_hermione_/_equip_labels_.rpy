@@ -21,17 +21,17 @@ label set_her_hair(style="", color=""): #Not in use
     #Ears
     if h_ears == "cat_ears":
         if h_hair_style in ["curly","updo","bobcut"]:
-            $ hermione_ears = "characters/hermione/accessories/ears/hair_"+str(h_hair_style)+"/"+str(h_ears)+"_"+str(h_hair_color)+".png"
+            $ hermione_ears = "characters/hermione/clothes/ears/hair_"+str(h_hair_style)+"/"+str(h_ears)+"_"+str(h_hair_color)+".png"
         else:
-            $ hermione_ears = "characters/hermione/accessories/ears/hair_curly/"+str(h_ears)+"_"+str(h_hair_color)+".png"
+            $ hermione_ears = "characters/hermione/clothes/ears/hair_curly/"+str(h_ears)+"_"+str(h_hair_color)+".png"
     else:
-        $ hermione_ears = "characters/hermione/accessories/ears/"+str(h_ears)+".png"
+        $ hermione_ears = "characters/hermione/clothes/ears/"+str(h_ears)+".png"
 
     #Hat
     if h_hair_style in ["curly","updo","bobcut"]:
-        $ hermione_hat = "characters/hermione/accessories/hats/hair_"+str(h_hair_style)+"/"+str(h_hat)+".png"
+        $ hermione_hat = "characters/hermione/clothes/hats/hair_"+str(h_hair_style)+"/"+str(h_hat)+".png"
     else:
-        $ hermione_hat = "characters/hermione/accessories/hats/hair_curly/"+str(h_hat)+".png"
+        $ hermione_hat = "characters/hermione/clothes/hats/hair_curly/"+str(h_hat)+".png"
 
     return
 
@@ -54,16 +54,15 @@ label set_her_makeup(makeup = ""):
     return
 
 #Glasses equip.
-label set_her_glasses(glasses="", color=""):
+label set_her_glasses(glasses=""):
     hide screen hermione_main
-    if h_request_wear_glasses and (h_glasses == glasses and h_glasses_color == color):
+    if h_request_wear_glasses and h_glasses == glasses:
         $ h_request_wear_glasses = False
         $ hermione_wear_glasses = False
     else:
         $ h_request_wear_glasses = True
         $ hermione_wear_glasses = True
         $ h_glasses = glasses
-        $ h_glasses_color = color
     call update_her_uniform
 
     return
@@ -298,30 +297,30 @@ label set_her_gag(gag=""):
     return
 
 #Piercings equip.
-label set_her_piercing(piercing="", color=""):
+label set_her_piercing(piercing=""):
     hide screen hermione_main
     if piercing in ear_piercings_list:
-        if h_ear_piercing == piercing and h_ear_piercing_color == color:
+        if h_ear_piercing == piercing:
             $ h_ear_piercing = "blank"
         else:
             $ h_ear_piercing = piercing_choice
     if piercing in nipple_piercings_list:
-        if h_nipple_piercing == piercing and h_nipple_piercing_color == color:
+        if h_nipple_piercing == piercing:
             $ h_nipple_piercing = "blank"
         else:
             $ h_nipple_piercing = piercing
     if piercing in belly_piercings_list:
-        if h_belly_piercing == piercing and h_belly_piercing_color == color:
+        if h_belly_piercing == piercing:
             $ h_belly_piercing = "blank"
         else:
             $ h_belly_piercing = piercing
-    if piercing in intimate_piercings_list:
-        if h_belly_piercing == piercing and h_intimate_piercing_color == color:
+    if piercing in genital_piercings_list:
+        if h_belly_piercing == piercing:
             $ h_belly_piercing = "blank"
         else:
             $ h_belly_piercing = piercing
 
-    if h_ear_piercing == "blank" and h_nipple_piercing == "blank" and h_belly_piercing == "blank" and h_intimate_piercing == "blank": #No piercings equipped.
+    if h_ear_piercing == "blank" and h_nipple_piercing == "blank" and h_belly_piercing == "blank" and h_genital_piercing == "blank": #No piercings equipped.
         $ h_request_wear_piercings = False
         $ hermione_wear_piercings = False
     else:
@@ -362,6 +361,8 @@ label set_her_outfit(outfit):
         if hermoine_outfit_GLBL.top_layers != []:
             $ h_request_wear_hat = True
             $ h_hat = hermoine_outfit_GLBL.getTopLayers()
+        else:
+            $ h_request_wear_hat = False
         if hermoine_outfit_GLBL.hair_layer != "":
             call set_her_hair(style=hermoine_outfit_GLBL.getHairLayers() )
 
@@ -379,6 +380,7 @@ label h_equip_temp_outfit(outfit):
     return
 
 label h_unequip_temp_outfit():
+    hide screen hermione_main
     $ hermoine_outfit_GLBL = temp_outfit_GLBL
     $ h_request_wear_outfit = temp_wear_outfit
     $ h_request_wear_top = temp_wear_top
@@ -548,16 +550,12 @@ label set_her_action(action =  "", update=""):
 
             #Temporarily expand Hermione #Resets after 5 days.
             if action == "expand_breasts":
-                $ hermione_expand_breasts_counter = 5
                 $ hermione_expand_breasts = True
 
             if action == "expand_ass":
-                $ hermione_expand_ass_counter = 5
                 $ hermione_expand_ass = True
 
             if action == "expand_all":
-                $ hermione_expand_breasts_counter = 5
-                $ hermione_expand_ass_counter = 5
                 $ hermione_expand_breasts = True
                 $ hermione_expand_ass = True
 
@@ -576,5 +574,114 @@ label set_her_action(action =  "", update=""):
 
 
     call update_her_uniform #calls update_her_action, update_chibi_uniform, and update_her_body;
+
+    return
+
+
+
+label load_hermione_clothing_saves:
+
+    #Uniform & Underwear
+    if h_request_wear_top:
+        $ hermione_wear_top          = True
+    else:
+        $ hermione_wear_top          = False
+
+    if h_request_wear_onepiece:
+        $ hermione_wear_onepiece     = True
+    else:
+        $ hermione_wear_onepiece     = False
+
+    if h_request_wear_bra:
+        $ hermione_wear_bra          = True
+    else:
+        $ hermione_wear_bra          = False
+
+    if h_request_wear_bottom:
+        $ hermione_wear_bottom       = True
+    else:
+        $ hermione_wear_bottom       = False
+
+    if h_request_wear_panties:
+        $ hermione_wear_panties      = True
+    else:
+        $ hermione_wear_panties      = False
+
+    if h_request_wear_garterbelt:
+        $ hermione_wear_garterbelt   = True
+    else:
+        $ hermione_wear_garterbelt   = False
+
+    #Other Clothing
+    if h_request_wear_neckwear:
+        $ hermione_wear_neckwear     = True
+    else:
+        $ hermione_wear_neckwear     = False
+
+    if h_request_wear_body_accs:
+        $ hermione_wear_body_accs    = True
+    else:
+        $ hermione_wear_body_accs    = False
+
+    if h_request_wear_gloves:
+        $ hermione_wear_gloves       = True
+    else:
+        $ hermione_wear_gloves       = False
+
+    if h_request_wear_stockings:
+        $ hermione_wear_stockings    = True
+    else:
+        $ hermione_wear_stockings    = False
+
+    if h_request_wear_robe:
+        $ hermione_wear_robe         = True
+    else:
+        $ hermione_wear_robe         = False
+
+    #Head Accessories
+    if h_request_wear_hat:
+        $ hermione_wear_hat          = True
+    else:
+        $ hermione_wear_hat          = False
+
+    if h_request_wear_glasses:
+        $ hermione_wear_glasses      = True
+    else:
+        $ hermione_wear_glasses      = False
+
+    if h_request_wear_ears:
+        $ hermione_wear_ears         = True
+    else:
+        $ hermione_wear_ears         = False
+
+    if h_request_wear_makeup:
+        $ hermione_wear_makeup       = True
+    else:
+        $ hermione_wear_makeup       = False
+
+    if h_request_wear_piercings:
+        $ hermione_wear_piercings    = True
+    else:
+        $ hermione_wear_piercings    = False
+
+    if h_request_wear_tattoos:
+        $ hermione_wear_tattoos      = True
+    else:
+        $ hermione_wear_tattoos      = False
+
+    if h_request_wear_mask:
+        $ hermione_wear_mask = True
+    else:
+        $ hermione_wear_mask = False
+
+    if h_request_wear_gag:
+        $ hermione_wear_gag = True
+    else:
+        $ hermione_wear_gag = False
+
+    if h_request_wear_outfit:
+        $ hermione_wear_outfit = True
+    else:
+        $ hermione_wear_outfit = False
 
     return

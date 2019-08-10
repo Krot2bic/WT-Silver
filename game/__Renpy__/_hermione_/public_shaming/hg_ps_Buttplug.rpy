@@ -2,22 +2,19 @@
 
 ### Wear A Buttplug ###
 
-label hg_ps_Buttplug:
-    hide screen hermione_main
-    with d3
+label hg_ps_buttplug:
 
-    $ menu_x = 0.5 #Menu is moved to the middle.
-    $ menu_y = 0.5 #Menu is moved to the middle.
+    call reset_menu_position
 
     $ current_payout = 55 #Used when haggling about price of the favour.
 
-    if hg_ps_Buttplug_OBJ.points < 1:
+    if hg_ps_buttplug.points < 1:
         m "{size=-4}(Tell her to wear a buttplug around the school?){/size}"
         menu:
             "\"(Yes, let's do it!)\"":
                 pass
             "\"(Not right now.)\"":
-                jump hermione_requests_menu
+                jump hermione_favor_menu
     else:
         m "{size=-4}(I feel like making her walk around with a buttplug again!){/size}"
 
@@ -25,13 +22,13 @@ label hg_ps_Buttplug:
     menu:
         "-Small, regular-":
             $ buttplug_size = 1
-        "-Medium, magical-" if hg_ps_Buttplug_OBJ.points >= 1:
+        "-Medium, magical-" if hg_ps_buttplug.points >= 1:
             $ buttplug_size = 2
         "-Large, magical-" if buttplug_2_worn == True and her_whoring > 23:
             $ buttplug_size = 3
 
     #First event.
-    if hg_ps_Buttplug_OBJ.points == 0 and buttplug_size == 1:
+    if hg_ps_buttplug.points == 0 and buttplug_size == 1:
         m "[hermione_name], I want you to do something different today..."
         call her_main("...........","soft","base",xpos="right",ypos="base")
         call nar(">You pull a large size buttplug out from under your desk and place it in front of her.")
@@ -414,20 +411,21 @@ label hg_ps_Buttplug:
             call her_main("Thank you, [genie_name]!","base","glance")
             call her_main("{size=-5}({image=textheart}it feels so good... I might have to buy my own...{image=textheart}){/size}","soft","ahegao")
 
-    $ hg_ps_Buttplug_OBJ.inProgress = True
+    call her_walk(action="leave", speed=2.5)
 
-    jump hg_pr_transition_block
+    $ hg_ps_buttplug.inProgress = True
+
+    jump end_hermione_event
 
 
 
 
 
-label hg_ps_Buttplug_complete:
+label hg_ps_buttplug_complete:
 
-    call play_sound("door")
-    call her_walk("door","mid",2)
-    pause.5
+    call her_walk(action="enter", xpos="mid", ypos="base", speed=2)
 
+    call bld
     if her_whoring <= 15 and buttplug_size == 1: # LEVEL 06
         if one_out_of_three == 1: ### EVENT (A)
             m "[hermione_name], how did it go?"
@@ -807,7 +805,8 @@ label hg_ps_Buttplug_complete:
             call her_main("And she just played with it so aggressively...","grin","dead")
             her "I was a mess afterwards..."
             g9 "And did you return the favour?"
-            if touched_by_boy == True:
+
+            if hg_pr_kiss.counter >= 1:
                 call her_main("Err... maybe...","open","squint",cheeks="blush")
                 m "What did you do?"
                 call her_main("well I don't want to say too much [genie_name].","base","baseL",cheeks="blush") # :)
@@ -1022,10 +1021,15 @@ label hg_ps_Buttplug_complete:
     m "The \"Gryffindor\" house gets [current_payout] points!"
     her "Thank you, [genie_name]."
 
-    $ hg_ps_Buttplug_OBJ.points += 1
-    $ hg_ps_Buttplug_OBJ.complete = True
-    $ hg_ps_Buttplug_OBJ.inProgress = False
+    call her_walk(action="leave", speed=2.5)
+
+    $ hg_ps_buttplug.points += 1
+    $ hg_ps_buttplug.complete = True
+    $ hg_ps_buttplug.inProgress = False
 
     call set_her_buttplug("remove")
 
-    jump hg_pr_transition_block
+    # Stats
+    $ hg_ps_buttplug.counter += 1
+
+    jump end_hermione_event

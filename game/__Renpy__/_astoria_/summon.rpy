@@ -4,8 +4,6 @@ label summon_astoria:
 
     call play_sound("door")
 
-    call load_astoria_clothing_saves
-
     #Events
     if spells_unlocked and not susan_unlocked:
         $ susan_unlocked = True
@@ -16,7 +14,6 @@ label summon_astoria:
     ### RANDOM CLOTHING EVENTS ###
     call astoria_door_event
 
-    call update_ast_uniform
     call update_sus_uniform #For events.
 
     #call ast_chibi("stand","mid","base")
@@ -30,13 +27,13 @@ label summon_astoria:
 
     label astoria_requests:
 
-    $ menu_x = 0.1
-    $ menu_y = 0.5
-
     $ hide_transitions = False
+    $ active_girl = "astoria"
     $ astoria_busy = True
 
     menu:
+
+        # Talk
         "-Talk-":
             if not chitchated_with_astoria:
                 call astoria_chit_chat
@@ -44,6 +41,8 @@ label summon_astoria:
             else:
                 jump astoria_talk
 
+
+        # Spell Training
         "-Spell Training-" if snape_gave_spellbook:
             if not astoria_book_intro_happened:
                 menu:
@@ -55,39 +54,50 @@ label summon_astoria:
                         jump astoria_requests
             else:
                 jump astoria_spell_training
+
         "{color=#858585}-Spell Training-{/color}" if spells_unlocked and not snape_gave_spellbook:
             call nar(">You will need to find a book for that.")
             jump astoria_requests
+
         "{color=#858585}-Hidden-{/color}" if not spells_unlocked:
             call nar(">You haven't unlocked this feature yet.")
             jump astoria_requests
 
+
+        # Spell Events
         "-Use a Spell-" if spells_unlocked and not spells_locked:
             jump astoria_curse_menu
 
         "{color=#858585}-Use a Spell-{/color}" if tonks_unlocked and spells_locked:
             call nar(">You have recently used an unforgivable curse!\n>Tonks will want to have a word with you before you can use another.")
             jump astoria_requests
+
         "{color=#858585}-Use a Spell-{/color}" if not tonks_unlocked:
             call nar(">You'll need to find a way to deal with the Ministry first before casting any more curses!")
             jump astoria_requests
 
 
+        # Wardrobe
+        "-Wardrobe-" if astoria_wardrobe_unlocked:
+            call ast_main(xpos="wardrobe",ypos="base", face="neutral")
+            call expression 't_wardrobe' pass (return_label="astoria_requests", char_label="ast_main")
+
         "{color=#858585}-Hidden-{/color}" if not astoria_wardrobe_unlocked:
             call nar(">You haven't unlocked this feature yet.")
             jump astoria_requests
-        "-Wardrobe-" if astoria_wardrobe_unlocked:
-            $ active_girl = "astoria"
 
-            call load_astoria_clothing_saves
 
-            call reset_wardrobe_vars
-            call update_wr_color_list
+        # Gifts
+        "-Gifts-" if not gave_astoria_gift:
+            $ current_category = None
+            jump astoria_gift_menu
 
-            $ hide_transitions = True
-            call ast_main(xpos="wardrobe",ypos="base")
-            call screen wardrobe
+        "{color=#858585}-Gifts-{/color}" if gave_astoria_gift:
+            m "I already gave her a gift today. Don't want to spoil her too much..."
+            jump astoria_requests
 
+
+        # Dismiss
         "-Dismiss her-":
             if daytime:
                 call ast_main("I will go back to classes then, [ast_genie_name].","smile","base","base","mid")
@@ -135,7 +145,7 @@ label astoria_curse_menu:
 
         spell_menu.append( ("-Never mind-", "nvm") )
 
-        result = renpy.display_menu(spell_menu)
+        result = custom_menu(spell_menu)
 
     if result == "nvm":
         jump astoria_requests

@@ -2,11 +2,12 @@
 
 label luna_init:
 
-    if not hasattr(renpy.store,'luna_base') or reset_persistants or reset_luna_content:
+    if not hasattr(renpy.store,'luna_breasts') or reset_persistants or reset_luna_content:
         label reset_luna_base:
 
         #Body
         $ luna_base              = "characters/luna/body/base/base_01.png"
+        $ luna_breasts           = "characters/luna/body/breasts/breasts_normal.png"
         $ luna_l_arm             = 1
         $ luna_r_arm             = 1
         $ luna_xpos              = 640
@@ -33,7 +34,7 @@ label luna_init:
         $ luna_extra             = "characters/luna/face/extras/blank.png"
         $ luna_emote             = "characters/emotes/blank.png"
 
-        $ changeCho("base","base","base","mid","blank","blank","blank","blank")
+        #$ changeCho("base","base","base","mid","blank","blank","blank","blank")
 
         #Cum
         $ luna_cum               = 1
@@ -116,21 +117,21 @@ label luna_init:
 
 
         #Top
-        $ luna_top                 = "characters/luna/clothes/tops/base/top_1_r.png"
+        $ luna_top                 = "characters/luna/clothes/tops/top_1_r.png"
         $ lun_top                     = "top_1_r"
         $ lun_top_color               = "base"
 
         #Bottom
-        $ luna_bottom              = "characters/luna/clothes/bottoms/base/skirt_1.png"
+        $ luna_bottom              = "characters/luna/clothes/bottoms/skirt_1.png"
         $ lun_bottom                  = "skirt_1"
         $ lun_bottom_color            = "base"
 
         #Underwear
-        $ luna_bra                 = "characters/luna/clothes/underwear/base/bra_basic.png"
+        $ luna_bra                 = "characters/luna/clothes/bras/bra_basic.png"
         $ lun_bra                     = "bra_basic"
         $ lun_bra_color               = "base"
 
-        $ luna_panties             = "characters/luna/clothes/underwear/base/panties_basic.png"
+        $ luna_panties             = "characters/luna/clothes/panties/panties_basic.png"
         $ lun_panties                 = "panties_basic"
         $ lun_panties_color           = "base"
 
@@ -138,7 +139,7 @@ label luna_init:
         $ lun_onepiece                = "blank"
         $ lun_onepiece_color          = "base"
 
-        $ luna_garterbelt          = "characters/luna/clothes/underwear/base/blank.png"
+        $ luna_garterbelt          = "characters/luna/clothes/garterbelts/blank.png"
         $ lun_garterbelt              = "blank"
         $ lun_garterbelt_color        = "base"
 
@@ -149,7 +150,6 @@ label luna_init:
         $ lun_neckwear_color          = "base"
 
         $ luna_accs_list           = []
-        $ luna_accs                = "characters/luna/accessories/blank.png"
 
         $ luna_gloves              = "characters/luna/clothes/gloves/blank.png"
         $ lun_gloves                  = "blank"
@@ -167,15 +167,15 @@ label luna_init:
         #Accessories
         $ luna_makeup_list         = []
 
-        $ luna_hat                 = "characters/luna/accessories/hats/hair_base/blank.png"
+        $ luna_hat                 = "characters/luna/clothes/hats/hair_playful/blank.png"
         $ lun_hat                     = "blank"
         $ lun_hat_color               = "base"
 
-        $ luna_glasses             = "characters/luna/accessories/glasses/base/blank.png"
+        $ luna_glasses             = "characters/luna/clothes/glasses/blank.png"
         $ lun_glasses                 = "blank"
         $ lun_glasses_color           = "base"
 
-        $ luna_ears                = "characters/luna/accessories/ears/blank.png"
+        $ luna_ears                = "characters/luna/clothes/ears/blank.png"
         $ lun_ears                    = "blank"
 
         #Outfits
@@ -183,6 +183,87 @@ label luna_init:
         $ luna_temp_outfit = None
 
         call reset_lun_transparency
+
+    if not hasattr(renpy.store,'lun_cg_path') or reset_persistants or reset_luna_content:
+        $ lun_cg_path       = "images/CG/luna_desk2/"
+        $ lun_cg_overlay    = lun_cg_path+"blank.png"
+        $ lun_cg_base       = lun_cg_path+"base.png"
+        $ lun_cg_border     = lun_cg_path+"border.png"
+        $ lun_cg_body       = lun_cg_path+"luna_base.png"
+        $ lun_cg_hair       = lun_cg_path+str(lun_hair_style)+"_hair.png"
+        $ lun_cg_cheeks     = lun_cg_path+"c_base.png"
+        $ lun_cg_mouth      = lun_cg_path+"m_base.png"
+        $ lun_cg_eyewhite   = lun_cg_path+"eye_white.png"
+        $ lun_cg_pupil      = lun_cg_path+"pup_base.png"
+        $ lun_cg_eye        = lun_cg_path+"eye_base.png"
+        $ lun_cg_eyebrow    = lun_cg_path+"eb_base.png"
+        $ lun_cg_eyewear    = lun_cg_path+"glasses.png"
+        $ lun_cg_tears      = lun_cg_path+"blank.png"
+        $ lun_cg_hairtop    = lun_cg_path+str(lun_hair_style)+"_hair_top.png"
+        $ lun_cg_extra_1    = lun_cg_path+"blank.png"
+        $ lun_cg_extra_2    = lun_cg_path+"blank.png"
+        $ lun_cg_extra_3    = lun_cg_path+"blank.png"
+        $ lun_cg_dick       = lun_cg_path+"dick_1.png"
+        $ lun_cg_genie      = lun_cg_path+"genie.png"
+        $ lun_cg_xpos       = 0
+        $ lun_cg_ypos       = 0
+        $ lun_cg_xpos_abs   = 0
+        $ lun_cg_ypos_abs   = 0
+        $ lun_loop_xpos     = [-150, 0, 55, 66, 74, 80, 88, 99, 103, 114, 121, 129, 134, 141, 148, 152, 155]
+        $ lun_loop_ypos     = [0, 0, 12, 20, 31, 40, 48, 59, 71, 76, 83, 90, 97, 103, 107, 111, 112]
+        $ lun_cg_zoom       = 1
+
+    if not hasattr(renpy.store,'seen_luna_sex_list') or reset_persistants or reset_luna_content:
+        $ seen_luna_sex_list       = []
+
+    if not hasattr(renpy.store,'ll_pf_masturbate') or reset_persistants or reset_luna_content:
+        $ ll_pf_masturbate = event_class(title = "Masturbate for me!", start_label = "ll_pf_masturbate", start_tier = 2, events = [
+            [
+            ["ll_pf_masturbate_T1_intro"],
+            ["ll_pf_masturbate_T1_intro_E1"],
+            ["ll_pf_masturbate_T1_intro_E2"],
+            ["ll_pf_masturbate_T1_E3"]
+            ]
+
+            ],
+            iconset = [["heart_empty", "heart_blue"]]
+            )
+
+    if not hasattr(renpy.store,'ll_pf_blowjob') or reset_persistants or reset_luna_content:
+        $ ll_pf_blowjob = event_class(title = "Suck it!", start_label = "ll_pf_blowjob", start_tier = 3, events = [
+            [
+            ["ll_pf_blowjob_T1_intro"],
+            ["ll_pf_blowjob_T1_intro_E1"],
+            ["ll_pf_blowjob_T1_intro_E2"],
+            ["ll_pf_blowjob_T1_E3"]
+            ]
+
+            ],
+            iconset = [["heart_empty", "heart_blue"]]
+            )
+
+    if not hasattr(renpy.store,'ll_pf_sex') or reset_persistants or reset_luna_content:
+        $ ll_pf_sex = event_class(title = "Let's have sex!", start_label = "ll_pf_sex", start_tier = 4, events = [
+            [
+            ["ll_pf_sex_T1_intro"],
+            ["ll_pf_sex_T1_E1"],
+            ["ll_pf_sex_T1_E2"],
+            ["ll_pf_sex_T1_E3"]
+            ]
+
+            ],
+            iconset = [["heart_empty", "heart_blue"]]
+            )
+
+    # $ ll_pf_talk       = favor_class(title = "Talk to me!", tier = 0, start_label = "ll_pf_talk")
+    # $ ll_pf_strip      = favor_class(title = "Inspect her body!", tier = 1, start_label = "ll_pf_strip")
+
+    # Favors get added to the list after their intro events.
+    # Do not add them manually to this list!
+
+    if not hasattr(renpy.store,'ll_favor_list') or reset_persistants or reset_luna_content:
+        $ ll_favor_list = [
+            ]
 
 
 
@@ -223,6 +304,7 @@ label luna_progress_init:
 
         #Stats
         $ lun_whoring = 0
+        $ lun_tier = 1
         $ lun_mood = 0
 
         $ luna_gold = 0
@@ -231,8 +313,6 @@ label luna_progress_init:
 
         $ lun_dom = 0
         $ lun_sub = 0
-        $ lun_corruption = 0
-        $ lun_arousal = 0
 
         #Flags
         $ hat_known = False
@@ -245,10 +325,11 @@ label luna_progress_init:
         $ luna_reverted = False
         $ luna_addicted = False
 
-        $ days_to_luna = 0
-
         #Names
-        $ lun_genie_name = "Old man"
-        $ luna_name = "Miss Lovegood"
+        $ lun_genie_name = "Professor"
+        $ lun_name = "Miss Lovegood"
+
+    if not hasattr(renpy.store,'gave_luna_gift') or reset_persistants:
+        $ gave_luna_gift     = False
 
     return

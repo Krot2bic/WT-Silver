@@ -2,7 +2,7 @@
 
 label snape_init:
 
-    if not hasattr(renpy.store,'snape_chibi_flip') or reset_persistants:
+    if not hasattr(renpy.store,'sna_chibi_flip') or reset_persistants:
         $ snape_xpos = 525
         $ snape_ypos = 0
         $ snape_zorder = 5
@@ -11,18 +11,14 @@ label snape_init:
 
         $ s_sprite = "characters/snape/main/snape_01.png"
 
-        $ snape_head_xpos = 540
-        $ snape_head_ypos = 380
-        $ snape_head_zorder = 8
+        $ sna_chibi_xpos    = 610
+        $ sna_chibi_ypos    = 190
+        $ sna_speed         = 2.0
+        $ sna_chibi_flip    = 1
+        $ sna_chibi_zorder  = 2
 
-        $ snape_chibi_xpos=610
-        $ snape_chibi_ypos=210
-        $ snape_speed = 2.0
-        $ snape_chibi_flip = 1
-        $ snape_chibi_zorder = 2
-
-        $ snape_chibi_stand = "characters/snape/chibis/snape_stand.png"
-        $ snape_chibi_walk = "snape_walk"
+        $ sna_chibi_stand   = "characters/snape/chibis/snape_stand.png"
+        $ sna_chibi_walk    = "snape_walk"
 
     return
 
@@ -41,36 +37,54 @@ label snape_progress_init:
         $ sna_friendship = 0 #Get's +1 after every evening spent is Snape's company.
         $ sna_friendship_maxed = False
 
-        $ wine_intro_done = False
-        $ sna_wine_counter = 0
-
-
-
 
         ### SNAPE EVENTS ###
-        $ snape_against_hermione = False #Turns True after event_01. Activates event_11 when hanging out with Snape next time.
-        $ snape_against_hermione_02 = False #Turns True after event_09. Activates second event when hanging out with Snape.
-
+        $ snape_invited_to_watch = False #Turns TRUE when Hermione is stripping and Snape walks in on you. Allows to invite him to watch her strip next time.
 
         ### CHITCHATS WITH SNAPE ###
         $ chitchated_with_snape = False #Prevents you from chitchating more then once a day. Turns back to False every night.
 
-        $ chitchat_event_01_happened = False
-        $ chitchat_event_02_happened = False
-        $ chitchat_event_03_happened = False
-        $ chitchat_event_04_happened = False
-        $ chitchat_event_05_happened = False
-        $ chitchat_event_06_happened = False
-        $ chitchat_event_07_happened = False
 
 
         ### SPECIAL DATES WITH SNAPE ###
         $ snape_unlocked = False
         $ hanging_with_snape = False #Removed! Not in use anymore!
 
-        $ date_with_snape_02_happened = False #Second date with Snape. They decide to de-throne Hermione.
-                                      #Turns true after event_09
+    if not hasattr(renpy.store,'ss_he_counter'):
+        $ ss_he_counter = 0
+        $ ss_he_drink   = event_class(title = "Snape Wine", start_label = "snape_hangout", events = [
+            [
+            ["ss_he_wine_intro"],
+            ["ss_he_wine_repeat"],
+            ["ss_he_wine_intro_E2"]
+            ]
 
-    #if not hasattr(renpy.store,'ADD') or reset_persistants:
+            ],
+            iconset = [["star_empty", "star_yellow"]] # You have to add icons at least for first tier, the rest will be copied over automatically.
+            )
+
+    if not hasattr(renpy.store,'ss_he_story'):
+        $ ss_he_story   = event_class(title = "Snape Stories", start_label = "snape_hangout", events = [
+            [
+            ["ss_he_story_E1"], # Teach me wand magic
+            ["ss_he_story_intro_E2"], # More points for Slytherin
+            ["ss_he_story_intro_E3"], # M.R.M. nonsense
+            ["ss_he_story_intro_E4"], # Parallel worlds
+            ["ss_he_story_intro_E5"], # Progress with Hermione?
+            ["ss_he_story_E6"],       # Those nasty Slytherin Sluts!
+            ["ss_he_story_intro_E7"], # Jasmine is a muggle
+            ["ss_he_story_intro_E8"], # Flogging
+            ["ss_he_story_intro_E9"], # Russian dream (replace this one)
+            ["ss_he_story_intro_E10"],# The meaning of life
+            ["ss_he_story_intro_E11"],# The great catastrophe
+            ["ss_he_story_intro_E12"],# Albus might be dead?
+            ["ss_he_story_intro_E13"],# Snape is happy
+            ["ss_he_story_E14"],      # Choking Slytherin girls...
+            ["ss_he_story_intro_E15"] # Busy days
+            ]
+
+            ],
+            iconset = [["star_empty", "star_yellow"]] # You have to add icons at least for first tier, the rest will be copied over automatically.
+            )
 
     return

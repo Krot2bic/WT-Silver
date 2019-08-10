@@ -10,16 +10,16 @@ label update_sus_uniform:
     $ susan_hair_shadow  = "characters/susan/body/hair/"+str(sus_hair_style)+"_"+str(sus_hair_color)+"_top.png"
 
     #Top
-    $ susan_top            = "characters/susan/clothes/tops/base/"+str(sus_top)+".png"
+    $ susan_top            = "characters/susan/clothes/tops/"+str(sus_top)+".png"
 
     #Bottom
-    $ susan_bottom          = "characters/susan/clothes/bottoms/base/"+str(sus_bottom)+".png"
+    $ susan_bottom          = "characters/susan/clothes/bottoms/"+str(sus_bottom)+".png"
 
     #Underwear
-    $ susan_bra            = "characters/susan/clothes/underwear/base/"+str(sus_bra)+".png"
+    $ susan_bra            = "characters/susan/clothes/bras/"+str(sus_bra)+".png"
     $ susan_onepiece       = "characters/susan/clothes/onepieces/"+str(sus_onepiece)+".png"
-    $ susan_panties        = "characters/susan/clothes/underwear/base/"+str(sus_panties)+".png"
-    $ susan_garterbelt     = "characters/susan/clothes/underwear/base/"+str(sus_garterbelt)+".png"
+    $ susan_panties        = "characters/susan/clothes/panties/"+str(sus_panties)+".png"
+    $ susan_garterbelt     = "characters/susan/clothes/garterbelts/"+str(sus_garterbelt)+".png"
 
     $ susan_neckwear       = "characters/susan/clothes/neckwear/"+str(sus_neckwear)+".png"
     $ susan_gloves         = "characters/susan/clothes/gloves/"+str(sus_gloves)+".png"
@@ -27,30 +27,32 @@ label update_sus_uniform:
     $ susan_robe           = "characters/susan/clothes/robe/"+str(sus_robe)+".png"
 
     #Accessories
-    $ susan_hat            = "characters/susan/accessories/hats/"+str(sus_hat)+".png"
+    $ susan_hat            = "characters/susan/clothes/hats/"+str(sus_hat)+".png"
 
     call update_susan_chibi_uniform
-    call update_sus_body
+    call update_susan_body
 
     return
 
-label update_sus_body:
+
+label update_susan_body:
     hide screen susan_main
 
     if susan_wear_top:
         if sus_top in ["top_1","top_2"]:
-            $ susan_boobs               = "characters/susan/body/base/boobs_nipfix.png"
+            $ susan_breasts               = "characters/susan/body/base/boobs_nipfix.png"
         else:
-            $ susan_boobs               = "characters/susan/body/base/boobs_pressed.png"
+            $ susan_breasts               = "characters/susan/body/base/boobs_pressed.png"
     elif susan_wear_bra:
         if sus_bra in ["bra_chain"]:
-            $ susan_boobs               = "characters/susan/body/base/boobs_base.png"
+            $ susan_breasts               = "characters/susan/body/base/boobs_base.png"
         else:
-                $ susan_boobs           = "characters/susan/body/base/boobs_pressed.png"
+            $ susan_breasts               = "characters/susan/body/base/boobs_pressed.png"
     else:
-        $ susan_boobs                   = "characters/susan/body/base/boobs_base.png"
+        $ susan_breasts                   = "characters/susan/body/base/boobs_base.png"
 
     return
+
 
 #Hair equip.
 label set_sus_hair(hair=None,color=None):

@@ -26,13 +26,13 @@ label summon_susan:
 
     label susan_requests:
 
-    $ menu_x = 0.1
-    $ menu_y = 0.5
-
     $ hide_transitions = False
     $ susan_busy = True
+    $ gave_susan_gift = True #Remove when adding gift texts!
 
     menu:
+
+        # Talk
         "-Talk-":
             if not chitchated_with_susan:
                 call susan_chit_chat
@@ -40,6 +40,7 @@ label summon_susan:
             else:
                 jump susan_talk
 
+        # Wardrobe
         "-Wardrobe-" if susan_wardrobe_unlocked:
             $ active_girl = "susan"
 
@@ -51,13 +52,28 @@ label summon_susan:
             $ hide_transitions = True
             call sus_main(xpos="wardrobe",ypos="base")
             call screen wardrobe
+
         #"{color=#858585}-Wardrobe-{/color}" if susan_wardrobe_unlocked and not susan_imperio_influence:
         #    call nar(">Susan isn't willing to let you change her appearance!")
         #    jump susan_requests
+
         "{color=#858585}-Hidden-{/color}" if not susan_wardrobe_unlocked:
             call nar(">You haven't unlocked this feature yet.")
             jump susan_requests
 
+
+        # Gifts
+        "-Gifts-" if not gave_susan_gift:
+            $ current_category = None
+            jump susan_gift_menu
+
+        "{color=#858585}-Gifts-{/color}" if gave_susan_gift:
+            "Not yet added. WIP!"
+            #m "I already gave her a gift today. Don't want to spoil her too much..."
+            jump susan_requests
+
+
+        # Dismiss
         "-Dismiss her-":
             if daytime:
                 call sus_main("I will go back to classes then, [sus_genie_name].","base","base","base","down")

@@ -1,213 +1,173 @@
-
+default use_cho_head = False # This has to be left outside of any label, default doesn't overwrite the save variables but if the variable doesn't exist it sets it to = Value, in this case its False
 
 label cho_init:
 
-    if not hasattr(renpy.store,'cho_base') or reset_persistants:
-        label reset_cho_clothing:
-
-        #Body
-        $ cho_base                = "characters/cho/body/base/base_01.png"
-        $ cho_l_arm               = "characters/cho/body/arms/arm_down_l.png"
-        $ cho_r_arm               = "characters/cho/body/arms/arm_down_r.png"
-        $ cho_l_hand              = "characters/cho/body/arms/arm_down_l_overlay.png"
-        $ cho_breasts             = "characters/cho/body/breasts/breasts_bikini_tan.png"
-        $ cho_breasts_tan         = "characters/cho/body/breasts/breasts_sport_bra_tan.png"
-        $ cho_hips_tan            = "characters/cho/body/hips/hips_sport_bra_tan.png"
+    if not hasattr(renpy.store,'cho_chibi_animation') or reset_persistants:
 
         $ cho_xpos                = 300
         $ cho_ypos                = 0
         $ cho_zorder              = 5
         $ cho_flip                = 1
-        $ use_cho_head            = False
+        $ cho_animation           = None
 
-        #Face
-        $ cho_mouth               = "characters/cho/face/mouth/base.png"
-        $ cho_eye                 = "characters/cho/face/eyes/base.png"
-        $ cho_eye_bg              = "characters/cho/face/eyes/_white_.png"
-        $ cho_eyebrow             = "characters/cho/face/brow/base.png"
-        $ cho_pupil               = "characters/cho/face/pupil/mid.png"
+        #Chibi
+        $ cho_chibi_xpos          = 500
+        $ cho_chibi_ypos          = 250
+        $ cho_chibi_flip          = 1
+        $ cho_chibi_zorder        = 3
+        $ cho_chibi_animation     = None
+        $ cho_chibi_status        = ""
 
-        $ cho_cheeks              = "characters/cho/face/extra/cheeks_blank.png"
-        $ cho_tears               = "characters/cho/face/extra/tears_blank.png"
-        $ cho_extra               = "characters/cho/face/extra/blank.png"
-        $ cho_emote               = "characters/emotes/blank.png"
+        $ cho_chibi_stand         = "ch_cho blink"
+        $ cho_chibi_shoes         = "characters/cho/chibis/cc_walk_01_shoes.png"
 
-        $ changeCho("base","base","base","mid","blank","blank","blank","blank")
+        $ cho_chibi_walk          = "ch_cho walk"
+        $ cho_chibi_walk_shoes    = "ch_cho walk_shoes"
 
-        #Hair
-        $ cho_hair                = "characters/cho/body/hair/ponytail_blue_base.png"
-        $ cho_hair_shadow         = "characters/cho/body/hair/ponytail_blue_top.png"
-        $ c_hair_style            = "ponytail"
-        $ c_hair_color            = "blue"
+        $ cho_chibi_top           = "characters/cho/chibis/cc_cloth_shirt_r.png"
+        $ cho_chibi_bottom        = "characters/cho/chibis/cc_cloth_skirt.png"
+        $ cho_chibi_robe          = "blank"
+        $ cho_chibi_gloves        = "blank" #blank is the new defined image, makes our lives easier
+        $ cho_chibi_fix           = "blank"
 
-
-
-        #Save State
-        $ cho_request_wear_top              = True
-        $ cho_request_wear_bra              = True
-        $ cho_request_wear_bottom           = True
-        $ cho_request_wear_panties          = True
-
-        $ cho_request_wear_onepiece         = False
-        $ cho_request_wear_garterbelt       = False
-
-        $ cho_request_wear_neckwear         = False
-        $ cho_request_wear_gloves           = False
-        $ cho_request_wear_stockings        = False
-        $ cho_request_wear_robe             = False
-
-        $ cho_request_wear_hat              = False
-        $ cho_request_wear_glasses          = False
-        $ cho_request_wear_ears             = False
-        $ cho_request_wear_makeup           = False
-        $ cho_request_wear_accs             = False
-
-        $ cho_request_wear_buttplug         = False
-        $ cho_request_wear_piercings        = False
-        $ cho_request_wear_tattoos          = False
-
-        $ cho_request_wear_outfit           = False
-
-        #Toggle
-        $ cho_wear_top               = True
-        $ cho_wear_bra               = True
-        $ cho_wear_bottom            = True
-        $ cho_wear_panties           = True
-
-        $ cho_wear_onepiece          = False
-        $ cho_wear_garterbelt        = False
-
-        $ cho_wear_neckwear          = False
-        $ cho_wear_gloves            = False
-        $ cho_wear_stockings         = False
-        $ cho_wear_robe              = False
-
-        $ cho_wear_hat               = False
-        $ cho_wear_glasses           = False
-        $ cho_wear_ears              = False
-        $ cho_wear_makeup            = False
-        $ cho_wear_accs              = False
-        $ cho_wear_piercings         = False
-        $ cho_wear_tattoos           = False
-
-        $ cho_wear_outfit            = False
-
-
-
-        #Clothes
-        $ cho_top                 = "characters/cho/clothes/tops/base/top_1.png"
-        $ c_top                   = "top_1"
-        $ c_top_color             = "base"
-
-        $ cho_bra                 = "characters/cho/clothes/underwear/base/bra_sport.png"
-        $ c_bra                   = "bra_sport"
-        $ c_bra_color             = "base"
-
-        $ cho_bottom              = "characters/cho/clothes/bottoms/base/skirt_2.png"
-        $ c_bottom                = "skirt_2"
-        $ c_bottom_color          = "base"
-
-        $ cho_panties             = "characters/cho/clothes/underwear/base/panties_sport_1.png"
-        $ c_panties               = "panties_sport_1"
-        $ c_panties_color         = "base"
-
-        $ cho_onepiece            = "characters/cho/clothes/onepiece/blank.png"
-        $ c_onepiece              = "blank"
-        $ c_onepiece_color        = "base"
-
-        $ cho_garterbelt          = "characters/cho/clothes/underwear/blank.png"
-        $ c_garterbelt            = "blank"
-        $ c_garterbelt_color      = "base"
-
-        $ cho_neckwear            = "characters/cho/clothes/neckwear/blank.png"
-        $ c_neckwear              = "blank"
-        $ c_neckwear_color        = "base"
-
-        $ cho_gloves              = "characters/cho/clothes/gloves/blank.png"
-        $ c_gloves                = "blank"
-        $ c_gloves_color          = "base"
-
-        $ cho_stockings           = "characters/cho/clothes/stockings/stockings.png"
-        $ c_stockings             = "blank"
-        $ c_stockings_color       = "base"
-
-        $ cho_robe                = "characters/cho/clothes/robe/quidditch.png"
-        $ c_robe                  = "blank"
-        $ c_robe_color            = "base"
-
-        #Accessories
-        $ cho_hat                 = "characters/cho/accessories/hats/blank.png"
-        $ c_hat                   = "blank"
-        $ c_hat_color             = "base"
-
-        $ cho_glasses             = "characters/cho/accessories/glasses/blank.png"
-        $ c_glasses               = "blank"
-        $ c_glasses_color         = "base"
-
-        $ cho_ears                = "characters/cho/accessories/ears/blank.png"
-        $ c_ears                  = "blank"
-
-        $ cho_accs                = "characters/cho/accessories/blank.png"
-
-        call reset_cho_transparency
-
-        #Outfits
-        $ cho_outfit_GLBL = None
-        $ cho_temp_outfit = None
-
-
-    call cho_face_layers
+    if not hasattr(renpy.store,'cho_cloth_pile') or reset_persistants:
+        $ cho_cloth_pile = False
+        $ cho_pile_xpos = 440 # Right side of desk.
+        $ cho_pile_ypos = 425 # Bit below feet level.
 
     return
-
-label reset_cho_transparency:
-    $ cho_top_transp       = 1
-    $ cho_bottom_transp    = 1
-
-    $ cho_bra_transp       = 1
-    $ cho_onepiece_transp  = 1
-    $ cho_panties_transp   = 1
-    $ cho_garter_transp    = 1
-
-    $ cho_gloves_transp    = 1
-    $ cho_stockings_transp = 1
-    $ cho_robe_transp      = 1
-
-    $ cho_outfit_transp    = 1
-
-    return
-
 
 label cho_progress_init:
-
     if not hasattr(renpy.store,'cho_whoring') or reset_persistants or reset_cho_content:
 
-        #Stats
-        $ cho_whoring = 0
-        $ cho_mood = 0
+        # Stats
+        $ cho_tier                = 1
+        $ cho_whoring             = 0
+        $ cho_reputation          = 0
+        $ cho_mood                = 0
+        $ cho_jerk_off_counter    = 0
 
-        #Flags
-        $ cho_busy = False
-        $ days_since_cho = 0
-        $ cho_known = False
-        $ cho_unlocked = False
-        $ cho_wardrobe_unlocked = False
+        # Flags
+        $ cho_known               = False
+        $ cho_unlocked            = False
+        $ cho_training_unlocked   = False
+        $ cho_favors_unlocked     = False
+        $ cho_requests_unlocked   = False
+        $ cho_shaming_unlocked    = False
+        $ cho_strip_complete      = False
+        $ cho_wardrobe_unlocked   = False
+        $ cho_busy                = False
+        $ cho_chatted             = False
+        $ has_cho_panties         = False
+        $ cho_panties_soaked      = False
 
-        $ chof2_first = True
 
-        #Names
-        $ cho_genie_name = "Professor"
+        # Intro
+        $ cho_intro_state         = "event_1"
+        $ jerked_off_during_cho_intro = False
+        $ cho_plan                = [] # Talk with Snape about Cho.
+
+        # Quidditch Training
+        $ cho_training_state      = "quiz_start"
+        $ quid_hint_icon          = "" # Icon: "{image=interface/check_True.png} "
+        $ cho_quiz_complete       = False
+        $ snape_quid_help         = False # True after Failing the Quiz.
+        $ lock_cho_training       = False
+        $ lock_cho_practice       = False
+        $ quidditch_commentator   = "none"
+        $ quidditch_position      = "front"
+
+        # Quidditch Outfit
+        $ quid_outfit_intro       = []
+        $ cho_quidditch_top       = "sweater" # For testing.
+        $ cho_quidditch_bottom    = "pants_long" # For testing.
+        $ cho_quidditch_coat      = True # For testing.
+        $ cho_quidditch_gloves    = True # For testing.
+
+        # Quidditch Matches
+        $ quidditch_match_in_progress = False
+        $ huffl_match_counter   = 0
+        $ gryff_match_counter   = 0
+        $ slyth_match_counter   = 0
+
+        $ huffl_matches_won     = 0 # Goes up to 2
+        $ gryff_matches_won     = 0 # Goes up to 2
+        $ slyth_matches_won     = 0 # Goes up to 2
+
+        $ start_match           = 0 # No match will trigger at 0
+        $ main_match_1_stage    = "none"
+        $ main_match_2_stage    = "none"
+        $ main_match_3_seen     = "none"
+
+        $ cho_content_complete  = False
+
+        # Names
+        $ cho_genie_name = "Sir"
         $ cho_name = "Cho"
 
-        #Quidditch
-        $ cho_quidd = False
-        $ days_since_quidd = 0
-        $ cho_quidd_points = 0
-
-        $ first_cho_favor_done = False
+        $ gave_cho_gift      = False
 
 
+    ### Cho Favors ###
 
+    # cc = Cho Chang.
+    # pf = Personal Favor.
+    # pr = Public Requests.
 
+    if not hasattr(renpy.store,'cc_pf_talk'):
+        $ cc_pf_talk   = event_class(title = "Talk to me!", start_label = "cc_pf_talk", start_tier = 1, events = [
+            [
+            ["cc_pf_talk_T1_intro_E1"],
+            ["cc_pf_talk_T1_intro_E2"],
+            ["cc_pf_talk_T1_E3"]
+            ],
+
+            [
+            ["cc_pf_talk_T2_intro_E1"],
+            ["cc_pf_talk_T2_intro_E2"],
+            ["cc_pf_talk_T2_E3"]
+            ]
+
+            ],
+            iconset = [["heart_empty", "heart_yellow"], ["heart_empty", "heart_green"]]
+            )
+
+    if not hasattr(renpy.store,'cc_pf_strip'):
+        $ cc_pf_strip   = event_class(title = "Inspect her body!", start_label = "cc_pf_strip", start_tier = 2, events = [
+            [
+            ["cc_pf_strip_T1_intro_E1"],
+            ["cc_pf_strip_T1_intro_E2"],
+            ["cc_pf_strip_T1_intro_E3"], ["cc_pf_strip_T1_E3"]
+            ]
+
+            ],
+            iconset = [["heart_empty", "heart_green"]]
+            )
+            
+        $ cc_favor_list = [cc_pf_talk, cc_pf_strip]
+        
+    ###################
+    # Public requests #
+    ###################
+    if not hasattr(renpy.store,'cc_pr_manipulate'):
+        $ cc_pr_manipulate   = event_class(title = "Manipulate the enemy!", start_label = "cc_pr_manipulate_start", events = [
+            [
+            ["cc_pr_manipulate_T1_intro_E1"], ["cc_pr_manipulate_T1_E1"],
+            ["cc_pr_manipulate_T1_E2"],
+            ["cc_pr_manipulate_T1_E3"]
+            ],
+
+            [
+            ["cc_pr_manipulate_T2_intro_E1"], ["cc_pr_manipulate_T2_E1"],
+            ["cc_pr_manipulate_T2_intro_E2"],
+            ["cc_pr_manipulate_T2_intro_E3"], ["cc_pr_manipulate_T2_E3"]
+            ]
+
+            ],
+            icons = ["huff", "slyt"], #if a tier doesn't need an icon replace with None
+            iconset = [["star_empty", "star_yellow"]] # You have to add icons at least for first tier, the rest will be copied over automatically.
+            )
+            
+        $ cc_requests_list = [cc_pr_manipulate]
 
     return

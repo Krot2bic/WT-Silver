@@ -8,24 +8,15 @@ label equip_bottom:
     #Luna
     if active_girl == "luna":
         jump equip_lun_bottom
-    #Astoria
-    if active_girl == "astoria":
-        jump equip_ast_bottom
     #Susan
     if active_girl == "susan":
         jump equip_sus_bottom
-    #Cho
-    if active_girl == "cho":
-        jump equip_cho_bottom
-    #Tonks
-    if active_girl == "tonks":
-        jump equip_ton_bottom
 
 ### Equip Bottom ###
 
 label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/b} \"text\"
 
-    if skirt_choice == h_bottom and bottom_color_choice == h_bottom_color:
+    if skirt_choice == h_bottom:
         $ hide_transitions = True
         #">She's already wearing that!" #Remove line. Just for testing.
         jump return_to_wardrobe
@@ -438,85 +429,11 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                         jump return_to_wardrobe
 
 
-            ### Skirts ###
-
-            #Belted Mini Skirt #Done
-            elif skirt_choice == "skirt_belted_mini":
-                m "Could you wear this skirt again?"
-                if her_whoring >= 0:
-                    if her_whoring < 11:
-                        call her_main("But it's so short!","open","down")
-                        call her_main("Can I at least wear my pantyhose beaneath it?","disgust","base")
-                        m "Sure, I guess."
-                        call her_main("Ok then.","base","base")
-
-                        hide screen hermione_main
-                        with d3
-                        $ h_request_wear_stockings = True
-                        $ h_stockings = "stockings_pantyhose"
-
-                    elif her_whoring < 17:
-                        call her_main("(It's so short!)","disgust","down_raised")
-                        call her_main("(...)","annoyed","angryL")
-                        call her_main("Ok, [genie_name]... I will wear it.","open","closed")
-                        m "Really?"
-                        call her_main("Give me the skirt before I change my mind!","annoyed","annoyed")
-                    elif her_whoring < 23:
-                        call her_main("Alright, [genie_name].","soft","baseL")
-                        call her_main("Let me just put it on.","base","glance")
-                    else: #23+
-                        call her_main("Alright, [genie_name].","smile","happyCl")
-                        call her_main("Give it to me!","open_tongue","ahegao_raised",cheeks="blush")
-                        g4 "(!!!)"
-                        call her_main("The skirt I mean.","base","glance")
-                else:
-                    pass
-
-            #Belted Micro Skirt #Done
-            elif skirt_choice == "skirt_belted_micro":
-                m "Could you wear this skirt again?"
-                if her_whoring >= 5:
-                    if her_whoring < 11:
-                        call her_main("But this skirt is so short!","open","down")
-                        call her_main("Can I at least wear my pantyhose beaneath it?","disgust","base")
-                        m "Sure, I guess."
-                        call her_main("Ok then.","base","base")
-
-                        hide screen hermione_main
-                        with d3
-                        $ h_request_wear_stockings = True
-                        $ h_stockings = "stockings_pantyhose"
-
-                    elif her_whoring < 20:
-                        call her_main("(Oh wow, it's so short!)","disgust","down_raised")
-                        call her_main("(Everyone will be able to see my ass in this...)","soft","ahegao")
-                        call her_main("(...)","annoyed","angryL")
-                        call her_main("I will wear it!.","open","closed")
-                        m "Really?"
-                        call her_main("Sure... It's short enough","soft","baseL")
-                        call her_main("Or would you say this is too inappropriate to wear in this school?","base","glance")
-                        g4 "Grrrrr--... You have my approval!"
-                        call her_main("Thank you, [genie_name].","soft","baseL")
-                    else: #23+
-                        call her_main("Alright, [genie_name].","smile","happyCl")
-                        call her_main("Give it to me!","open_tongue","ahegao_raised",cheeks="blush")
-                        g4 "(!!!)"
-                        call her_main("The skirt I mean.","base","glance")
-                else:
-                    call her_main("Absolutely not, [genie_name]!","scream","worriedCl")
-                    call her_main("I'm not going to wear a skirt that short!","angry","angry")
-                    call her_main("(What is he thinking?...)","angry","worried")
-                    call her_main("I refuse","annoyed","annoyed")
-                    if cheats_active or game_difficulty <= 2:
-                        ">Try again at Whoring level 5."
-                    jump return_to_wardrobe
-
-
-            ### Pants ###
+            ### trousers ###
 
             #Pants Jeans Long #Done
             elif skirt_choice == "pants_jeans_long":
-                m "Could you wear these pants for me?"
+                m "Could you wear these trousers for me?"
                 if her_whoring >= 0:
                     if her_whoring < 5:
                         call her_main("[genie_name], I don't really like wearing jeans in school!","disgust","down")
@@ -544,7 +461,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 
             #Pants Jeans Short #Done
             elif skirt_choice == "pants_jeans_short":
-                m "Could you wear those pants for me?"
+                m "Could you wear those trousers for me?"
                 if her_whoring >= 5:
                     if her_whoring < 11:
                         call her_main("Sure, [genie_name].","soft","baseL")
@@ -555,7 +472,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                         call her_main("Let me put them on for you.","base","glance")
                 else:
                     call her_main("I'm sorry, [genie_name].","soft","baseL")
-                    call her_main("But I don't think I should wear pants like those on school grounds...","open","closed")
+                    call her_main("But I don't think I should wear trousers like those on school grounds...","open","closed")
                     call her_main("(They look really nice though...)","base","down")
                     call her_main("(Maybe next time...)","base","baseL")
                     call her_main("I have to refuse.","soft","base")
@@ -565,10 +482,10 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 
             #Pants Retro Shorts #Done
             elif skirt_choice == "pants_retro_shorts":
-                m "I want you to wear these pants for me."
+                m "I want you to wear these trousers for me."
                 if her_whoring >= 17:
                     if her_whoring < 20:
-                        call her_main("(These pants look so short...)","disgust","down_raised")
+                        call her_main("(These trousers look so short...)","disgust","down_raised")
                         call her_main("(My ass is gonna be on display the whole time in those...)","open_tongue","ahegao_raised",cheeks="blush")
                         call her_main("Alright, [genie_name].","smile","happyCl")
                         call her_main("Let me just change it.","base","glance")
@@ -580,11 +497,11 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                 else:
                     if her_whoring < 5:
                         call her_main("No, [genie_name].","open","worriedCl")
-                        call her_main("I will not wear pants that short here in school!","angry","worried")
+                        call her_main("I will not wear trousers that short here in school!","angry","worried")
                         call her_main("(What is he thinking?!...)","annoyed","angryL")
                     else:
                         call her_main("I'm sorry, [genie_name].","soft","baseL")
-                        call her_main("But I don't think I should wear pants like those on school grounds...","open","closed")
+                        call her_main("But I don't think I should wear trousers like those on school grounds...","open","closed")
                         call her_main("(They look really nice though...)","base","down")
                         call her_main("(Maybe next time...)","base","baseL")
                         call her_main("I have to refuse.","soft","base")
@@ -594,10 +511,10 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 
             #Pants Rocker Shorts #Done
             elif skirt_choice == "pants_rocker":
-                m "I want you to wear these pants for me."
+                m "I want you to wear these trousers for me."
                 if her_whoring >= 17:
                     if her_whoring < 23:
-                        call her_main("(These pants are so short...)","disgust","down_raised")
+                        call her_main("(These trousers are so short...)","disgust","down_raised")
                         call her_main("(I'm such a pervert!)","open_tongue","ahegao_raised",cheeks="blush")
                         call her_main("Alright, [genie_name].","smile","happyCl")
                         call her_main("Let me just change it.","base","glance")
@@ -622,11 +539,11 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                         call her_main("(Not in a million years...)","angry","angry")
                     elif her_whoring < 11:
                         call her_main("I'm sorry, [genie_name].","open","worriedCl")
-                        call her_main("But I will not wear pants that short on school grounds!","angry","worried")
+                        call her_main("But I will not wear trousers that short on school grounds!","angry","worried")
                         call her_main("(What is he thinking?!...)","annoyed","angryL")
                     else:
                         call her_main("I'm sorry, [genie_name].","soft","baseL")
-                        call her_main("But I don't think I should wear pants like those on school grounds...","open","closed")
+                        call her_main("But I don't think I should wear trousers like those on school grounds...","open","closed")
                         call her_main("(They look really nice though...)","base","down")
                         call her_main("(Maybe next time...)","base","baseL")
                         call her_main("I have to refuse.","soft","base")
@@ -641,7 +558,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 
             pause.5
 
-            call set_her_bottom(skirt_choice,bottom_color_choice)
+            call set_her_bottom(skirt_choice)
 
             call her_main(xpos="wardrobe")
             $ hide_transitions = True
@@ -678,7 +595,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                 jump return_to_wardrobe
 
             if skirt_choice == "uni_top_cheer" and her_whoring < 5:
-                if (bottom_color_choice == "green" or bottom_color_choice == "dark_green" or bottom_color_choice == "blue" or bottom_color_choice == "dark_blue" or bottom_color_choice == "yellow"):
+                if (h_bottom_color == "green" or h_bottom_color == "dark_green" or h_bottom_color == "blue" or h_bottom_color == "dark_blue" or h_bottom_color == "yellow"):
                     if her_whoring < 11:
                         ">She won't wear that skirt just yet."
                         if cheats_active or game_difficulty <= 2:
@@ -691,7 +608,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                     jump return_to_wardrobe
 
             if skirt_choice == "uni_top_cheer_skimpy" and her_whoring < 8:
-                if (bottom_color_choice == "green" or bottom_color_choice == "dark_green" or bottom_color_choice == "blue" or bottom_color_choice == "dark_blue" or bottom_color_choice == "yellow"):
+                if (h_bottom_color == "green" or h_bottom_color == "dark_green" or h_bottom_color == "blue" or h_bottom_color == "dark_blue" or h_bottom_color == "yellow"):
                     if her_whoring < 11:
                         ">She won't wear that skirt just yet."
                         if cheats_active or game_difficulty <= 2:
@@ -726,38 +643,20 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                     ">Try again at Whoring level 20."
                 jump return_to_wardrobe
 
-            #Skirts
-            if skirt_choice == "skirt_belted_mini":
-                if her_whoring < 11:
-                    hide screen hermione_main
-                    $ h_request_wear_stockings = True
-                    $ h_stockings = "stockings_pantyhose"
-
-            #Skirts
-            if skirt_choice == "skirt_belted_micro":
-                if her_whoring < 5:
-                    ">She won't wear that skirt just yet."
-                    if cheats_active or game_difficulty <= 2:
-                        ">Try again at Whoring level 5."
-                    jump return_to_wardrobe
-                elif her_whoring >= 5 and her_whoring < 11:
-                    hide screen hermione_main
-                    $ h_request_wear_stockings = True
-                    $ h_stockings = "stockings_pantyhose"
 
             #Pants
             if skirt_choice == "pants_jeans_short" and her_whoring < 5:
-                ">She won't wear those pants just yet."
+                ">She won't wear those trousers just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 5."
                 jump return_to_wardrobe
             if skirt_choice == "pants_retro_shorts" and her_whoring < 17:
-                ">She won't wear those pants just yet."
+                ">She won't wear those trousers just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 17."
                 jump return_to_wardrobe
             if skirt_choice == "pants_rocker" and her_whoring < 17:
-                ">She won't wear those pants just yet."
+                ">She won't wear those trousers just yet."
                 if cheats_active or game_difficulty <= 2:
                     ">Try again at Whoring level 17."
                 jump return_to_wardrobe
@@ -768,7 +667,7 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
                 pass
 
             $ hide_transitions = True
-            call set_her_bottom(skirt_choice,bottom_color_choice)
+            call set_her_bottom(skirt_choice)
             call her_main(xpos="wardrobe")
             call screen wardrobe
 
@@ -777,30 +676,12 @@ label equip_her_bottom:    #useful stuff: {w=0.9} {size=-2}text{/size} {b}text{/
 ### Equip Luna's Bottom ###
 label equip_lun_bottom:
 
-    call set_lun_bottom(skirt_choice, bottom_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Astoria's Bottom ###
-label equip_ast_bottom:
-    call set_ast_bottom(skirt_choice)
+    call set_lun_bottom(skirt_choice)
 
     jump return_to_wardrobe
 
 ### Equip Susan's Bottom ###
 label equip_sus_bottom:
     call set_sus_bottom(skirt_choice)
-
-    jump return_to_wardrobe
-
-### Equip Cho's Bottom ###
-label equip_cho_bottom:
-    call set_cho_bottom(skirt_choice, bottom_color_choice)
-
-    jump return_to_wardrobe
-
-### Equip Tonks's Bottom ###
-label equip_ton_bottom:
-    call set_ton_bottom(skirt_choice, bottom_color_choice)
 
     jump return_to_wardrobe

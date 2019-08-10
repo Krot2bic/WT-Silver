@@ -1,51 +1,101 @@
 
 
-label happy(sub_mad = 0):
-    hide screen hermione_main
-    with d3
-    $ her_mood -= sub_mad
-    if her_mood <= 0:
-        $ her_mood = 0
-    if her_mood == 0:
-        ">Hermione's mood has improved...\n>Hermione is {size=+5}not upset{/size} with you..."
-    else:
-        ">Hermione's mood has improved...\n>Hermione is {size=+5}still upset{/size} with you..."
-    return
+# Hermione Gift Menu
 
-label no_change:
-    hide screen hermione_main
-    with d3
-    ">Hermione's mood didn't change much..."
-    return
+label hermione_gift_menu:
+    call update_quest_items
 
-label upset(add_mad):
-    hide screen hermione_main
-    with d3
-    $ her_mood += add_mad
-    ">Hermione's mood worsened...\n>Hermione is {size=+5}upset{/size} with you..."
-    return
-
-label her_gift_menu: # Not in use anymore.
     python:
-        choices = []
-        for i in gift_list:
-            if gift_item_inv[i.id] > 0:
-                choices.append( ( ("-"+str(i.name)+"- ("+str(gift_item_inv[i.id])+")"), i) )
 
-        choices.append(("-Never mind-", "nvm"))
-        result = renpy.display_menu(choices)
+        category_list = []
+        category_list.append("ui_gifts")
+        category_list.append("ui_quest_items")
 
-    if result == "nvm":
-        jump day_time_requests
-    else:
-        call give_her_gift(result)
+        if current_category == None:
+            current_category = category_list[0]
+            category_choice = category_list[0]
+
+        item_list = []
+        if current_category == "ui_gifts":
+            menu_title = "Gift Items"
+            item_list.extend(candy_gift_list)
+            item_list.extend(mag_gift_list)
+            item_list.extend(drink_gift_list)
+            item_list.extend(toy_gift_list)
+        if current_category == "ui_quest_items":
+            menu_title = "Quest Items"
+            item_list.extend(her_quest_items_list)
+
+        #item_list = list(filter(lambda x: x.unlocked==False, item_list))
+    show screen bottom_menu(item_list, category_list, menu_title, xpos=0, ypos=475)
+
+    $ _return = ui.interact()
+
+    hide screen bottom_menu
+    if category_choice != current_category:
+        $ current_category = _return
+
+    elif isinstance(_return, item_class):
+        if _return in her_quest_items_list:
+            menu:
+                "Would you like to use this quest item?"
+                "\"(Yes, let's do it!)\"":
+                    $ quest_item = _return
+                    jump give_her_quest_item
+                "\"(Not right now.)\"":
+                    jump hermione_gift_menu
+        elif _return.number > 0:
+            call give_her_gift(_return)
+        else:
+            ">You don't own this item."
+            jump hermione_gift_menu
+
+        if her_mood != 0:
+            jump hermione_gift_menu
+        else:
+            jump hermione_requests
+
+    elif _return == "Close":
+        $ current_page = 0
+        $ category_choice = None
+        hide screen bottom_menu
+        with d3
+
+        jump hermione_requests
+
+    elif _return == "inc":
+        $ current_page += 1
+    elif _return == "dec":
+        $ current_page += -1
+
+    jump hermione_gift_menu
+
+
+
+# Hermione Gift Responses
+
+label give_her_quest_item: #(quest_item)
+
+    $ gave_hermione_gift = True
+
+    if quest_item == sealed_scroll_ITEM:
+        jump tentacle_scene_intro
+
+    if quest_item == collar_quest_ITEM:
+        ">This Quest is now active!\nIt will start the next morning."
+        $ collar = 5
+        call update_quest_items
+        jump hermione_gift_menu
+
 
 
 
 label give_her_gift(gift_item):
     hide screen hermione_main
     with d5
-    $ h_xpos=140 #Defines position of the Hermione's full length sprite. (Default 370). (Center: 140)
+    call her_main(xpos="mid",ypos="base",trans="d5")
+
+    $ gave_hermione_gift = True
 
     if gift_item == lollipop_ITEM:#candy
         if her_whoring >= 0 and her_whoring <= 5: # Lv 1-2.
@@ -547,10 +597,13 @@ label give_her_gift(gift_item):
             call her_main("Thank you, [genie_name].","base","baseL",cheeks="blush")
             call happy(30)
 
-    $ h_xpos=370 #Defines position of the Hermione's full length sprite. (Default 370). (Center: 140)
-    show screen hermione_main
-    with d3
+    hide screen hermione_main
+    with d5
+    call her_main(xpos="base",ypos="base",trans="d5")
+
     return
+
+
 
 label give_gift(text = "", gift = ""):
     hide screen hermione_main
@@ -563,4 +616,31 @@ label give_gift(text = "", gift = ""):
     with d3
     $ gift.number -= 1
 
+    return
+
+
+
+label happy(sub_mad = 0):
+    hide screen hermione_main
+    with d3
+    $ her_mood -= sub_mad
+    if her_mood < 0:
+        $ her_mood = 0
+    if her_mood == 0:
+        ">Hermione's mood has improved...\n>Hermione is {size=+5}not upset{/size} with you..."
+    else:
+        ">Hermione's mood has improved...\n>Hermione is {size=+5}still upset{/size} with you..."
+    return
+
+label no_change:
+    hide screen hermione_main
+    with d3
+    ">Hermione's mood didn't change much..."
+    return
+
+label upset(add_mad):
+    hide screen hermione_main
+    with d3
+    $ her_mood += add_mad
+    ">Hermione's mood worsened...\n>Hermione is {size=+5}upset{/size} with you..."
     return

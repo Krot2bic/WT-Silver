@@ -3,16 +3,18 @@
 # Declare images below this line, using the image statement.
 # eg. image eileen happy = "eileen_happy.png"
 
-# Declare characters used by this game.
-define e = Character('Eileen', color="#c8ffc8")
-
-
+init python:
+    config.after_load_callbacks.append(start_image_crop)
 
 # The game starts here.
 label start:
     $ init_variables()
-    scene black
-    jump select_start
+    
+    $ save_internal_version = config.version
+    
+    $ start_image_crop()
+    #scene black
+    jump start_wt
 
 label after_load:
     $ init_variables()
@@ -22,7 +24,7 @@ label after_load:
 init:
 
     $ commentaries = False # In the GALLERY turns commentaries ON and OFF.
-
+    
     ### Disposable flags ###
     $ d_flag_01 = False
     $ d_flag_02 = False
@@ -39,11 +41,6 @@ init:
     ### MENU PLACEMENT ###
     $ menu_x = 0.5
     $ menu_y = 0.5
-    $ who = Character('Female voice', color="#402313", show_two_window=True, ctc="ctc3", ctc_position="fixed")
-    $ whom = Character('Male voice', color="#402313", show_two_window=True, ctc="ctc3", ctc_position="fixed")
-    $ who2 = Character('???', color="#402313", show_two_window=True, ctc="ctc3", ctc_position="fixed")
-
-    $ aa = Character('AKABUR', color="#402313", show_two_window=True, ctc="ctc3", ctc_position="fixed")
 
     $ teleport = ImageDissolve("id_teleport.png", 1.0, 0)
 
@@ -58,7 +55,6 @@ init:
     $ kissiris = Fade(0.2, 0.0, 0.8, color='#fb8dc8')
 
     #NVLE STUFF
-    $ nvle = Character(color="#000", what_color="#ffffff", kind=nvl)
     $ config.adv_nvl_transition = dissolve
     $ config.nvl_adv_transition = dissolve
 
@@ -165,308 +161,129 @@ define sd_win2 = "sounds/win2.mp3"
 ## ANIMATIONS
         ### INTRO MOVIE ANIMATIONS ###
 image title_ani: #Main title animation.
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/13.png"
-    pause.1
-    "title/14.png"
-    pause.1
-    "title/13.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-### second cercle.
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/02.png"
-    pause.1
-    "title/03.png"
-    pause.1
-    "title/04.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    "title/01.png"
-    pause.1
-    "title/13.png"
-    pause.1
-    "title/14.png"
-    pause.1
-    "title/13b.png"
-    pause.1
-    "title/05b.png"
-    pause.1
-    "title/06b.png"
-    pause.1
-    "title/07b.png"
-    pause.1
-    "title/08b.png"
-    pause.1
-    "title/09b.png"
-    pause.1
-    "title/10b.png"
-    pause.1
-    "title/11b.png"
-    pause.1
-    "title/12b.png"
-    pause.1
-
-    "title/01b.png"
-    pause.1
-    "title/02b.png"
-    pause.1
-    "title/03b.png"
-    pause.1
-    "title/04b.png"
-    pause.1
-    "title/05b.png"
-    pause.1
-    "title/06b.png"
-    pause.1
-    "title/07b.png"
-    pause.1
-    "title/08b.png"
-    pause.1
-    "title/09b.png"
-    pause.1
-    "title/10b.png"
-    pause.1
-    "title/11b.png"
-    pause.1
-    "title/12b.png"
-    pause.1
-
-    "title/01b.png"
-    pause.1
-    "title/13b.png"
-    pause.1
-    "title/14.png"
-    pause.1
-    "title/13.png"
-    pause.1
-    "title/05.png"
-    pause.1
-    "title/06.png"
-    pause.1
-    "title/07.png"
-    pause.1
-    "title/08.png"
-    pause.1
-    "title/09.png"
-    pause.1
-    "title/10.png"
-    pause.1
-    "title/11.png"
-    pause.1
-    "title/12.png"
-    pause.1
-
-    repeat
+    contains:
+        "title/00.png"
+        pause 3
+        "title/01.png"
+        pause.1
+        "title/02.png"
+        pause.1
+        "title/01.png"
+        pause.1
+        "title/00.png"
+        pause 6
+        "title/01.png"
+        pause.1
+        "title/02b.png"
+        pause.1
+        "title/01b.png"
+        pause.1
+        "title/00b.png"
+        pause 3
+        "title/01b.png"
+        pause.1
+        "title/02b.png"
+        pause.1
+        "title/01b.png"
+        pause.1
+        "title/00b.png"
+        pause 6
+        "title/01b.png"
+        pause.1
+        "title/02b.png"
+        pause.1
+        "title/02.png"
+        pause.1
+        "title/01.png"
+        pause.1
+        repeat
+        
+    contains:
+        xpos -17
+        ypos -151
+        zoom 2.0
+        "candle_fire_01"
+        
+    contains:
+        xpos -255
+        ypos 100
+        zoom 0.8
+        "title/fire00.png"
+        pause.1
+        "title/fire01.png"
+        pause.1
+        "title/fire02.png"
+        pause.1
+        "title/fire03.png"
+        pause.1
+        "title/fire04.png"
+        pause.1
+        "title/fire05.png"
+        pause.1
+        "title/fire06.png"
+        pause.1
+        "title/fire07.png"
+        pause.1
+        repeat
+        
+    #sparkle
+    contains:
+        subpixel True
+        xpos 798
+        ypos 200
+        xanchor 0.5
+        yanchor 0.5
+        zoom 0.0
+        "title/sparkle.png"
+        linear 0.8 zoom 1.0
+        linear 0.5 zoom 0.0
+        pause 5
+        repeat
+        
+    #shine silver (synchronized)
+    contains:
+        subpixel True
+        xpos 848
+        ypos 230
+        xanchor 0.5
+        yanchor 0.5
+        zoom 0.0
+        "title/sparkle.png"
+        pause 1.3
+        linear 0.5 zoom 1.0
+        linear 0.5 zoom 0.0
+        
+        xpos 870
+        ypos 205
+        linear 0.5 zoom 1.0
+        linear 0.5 zoom 0.0
+        
+        xpos 914
+        ypos 227
+        linear 0.5 zoom 1.0
+        linear 0.5 zoom 0.0
+        
+        xpos 948
+        ypos 233
+        linear 0.5 zoom 1.0
+        linear 0.5 zoom 0.0
+        
+        xpos 999
+        ypos 226
+        linear 0.5 zoom 1.0
+        linear 0.5 zoom 0.0
+        pause 12.6
+        repeat
+        
+        
+        
+image menu_ani:
+    contains:
+        "title/00b.png"
+        
+    contains:
+        alpha 0.8
+        "images/rooms/_bg_/color/black.png"
 
 #############################################
 
@@ -507,6 +324,21 @@ image heal:
     pause.06
     "magic/heal18.png"
     pause.06
+    
+image love_heart:
+    "magic/love09.png"
+    pause.06
+    "magic/love10.png"
+    pause.06
+    "magic/love11.png"
+    pause.06
+    "magic/love12.png"
+    pause.06
+    "magic/love13.png"
+    pause.06
+    "magic/love14.png"
+    pause.06
+    "magic/love15.png"
 
 ############################################
 #######EMOTIONS #^_^# ########################
@@ -514,46 +346,81 @@ image heal:
 
 image emo01:
     "characters/emotes/animated/ex01.png"
-    pause.1
+    pause.5
     "characters/emotes/animated/ex02.png"
-    pause.1
+    pause.5
     "characters/emotes/animated/ex03.png"
-    pause.1
+    pause.5
     "characters/emotes/animated/ex04.png"
-    pause 2
+    pause 1
     "characters/emotes/animated/ex01.png"
-    pause.1
+    pause.5
     "characters/emotes/animated/ex00.png"
+    repeat
 
 image emo02:
     "characters/emotes/animated/exl01.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/exl02.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/exl03.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/exl04.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/exl05.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/exl06.png"
+    repeat
+    
+image emo03:
+    "characters/emotes/animated/sad_01.png"
+    pause.4
+    "characters/emotes/animated/sad_02.png"
+    pause.4
+    "characters/emotes/animated/sad_03.png"
+    pause.4
+    "characters/emotes/animated/sad_04.png"
+    pause.4
+    "characters/emotes/animated/sad_03.png"
+    pause.4
+    "characters/emotes/animated/sad_02.png"
+    pause.4
+    repeat
+    
+image emo04:
+    "characters/emotes/animated/hoot_01.png"
+    pause.4
+    "characters/emotes/animated/hoot_02.png"
+    pause.4
+    "characters/emotes/animated/hoot_03.png"
+    pause.4
+    "characters/emotes/animated/hoot_04.png"
+    pause.4
+    "characters/emotes/animated/hoot_05.png"
+    pause.4
+    "characters/emotes/animated/hoot_06.png"
+    pause.4
+    "characters/emotes/animated/hoot_07.png"
+    pause.4
+    repeat
 
 image emoq:
     "characters/emotes/animated/q1.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q2.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q3.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q4.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q1.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q2.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q3.png"
-    pause.05
+    pause.5
     "characters/emotes/animated/q4.png"
+    repeat
 
 image emom:
     "characters/emotes/animated/emo00.png"
@@ -562,26 +429,27 @@ image emom:
 
 image excl:
     "characters/emotes/animated/excl01.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/excl02.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/excl03.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/excl04.png"
-    pause.08
-
+    pause.5
+    repeat
 image qu:
     "characters/emotes/animated/que1.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/que2.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/que3.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/que4.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/que5.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/que6.png"
+    repeat
 
 image an:
     "characters/emotes/animated/an1.png"
@@ -624,63 +492,48 @@ image th:
 
 image emo7:
     "characters/emotes/animated/emotion00.png"
-    pause.2
+    pause.5
     "characters/emotes/animated/emotion01.png"
-    pause.2
+    pause.5
     "characters/emotes/animated/emotion00.png"
-    pause.08
+    pause.7
     "characters/emotes/animated/emotion01.png"
-    pause.08
+    pause.7
     "characters/emotes/animated/emotion00.png"
-    pause.08
+    pause.6
     "characters/emotes/animated/emotion01.png"
-    pause.08
+    pause.6
+    repeat
 
 image emo8:
     "characters/emotes/animated/emotion00.png"
-    pause.2
+    pause.7
     "characters/emotes/animated/emotion03.png"
-    pause.2
+    pause.7
     "characters/emotes/animated/emotion00.png"
-    pause.08
+    pause.6
     "characters/emotes/animated/emotion03.png"
-    pause.08
+    pause.6
     "characters/emotes/animated/emotion00.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/emotion03.png"
-    pause.08
+    pause.5
+    repeat
 
 image sur:
     "characters/emotes/animated/sur1.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/sur2.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/sur3.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/sur4.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/sur5.png"
-    pause.08
+    pause.5
     "characters/emotes/animated/sur6.png"
-    pause.08
-
-#Akabur
-image side akaJew1 = "characters/misc/akabur/aka.png"
-image side akaJew2 = "characters/misc/akabur/aka2.png"
-image side akaJew3 = "characters/misc/akabur/aka3.png"
-image side akaJew4 = "characters/misc/akabur/aka4.png"
-image side akaJew5 = "characters/misc/akabur/aka5.png"
-image side akaJew6 = "characters/misc/akabur/aka6.png"
-image side akaJew7 = "characters/misc/akabur/aka7.png"
-
-define a1 = Character(None, window_left_padding=250, image="akaJew1", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a2 = Character(None, window_left_padding=250, image="akaJew2", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a3 = Character(None, window_left_padding=250, image="akaJew3", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a4 = Character(None, window_left_padding=290, image="akaJew4", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a5 = Character(None, window_left_padding=250, image="akaJew5", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a6 = Character(None, window_left_padding=250, image="akaJew6", color="#402313", ctc="ctc3", ctc_position="fixed")
-define a7 = Character(None, window_left_padding=250, image="akaJew7", color="#402313", ctc="ctc3", ctc_position="fixed")
-
+    pause.5
+    repeat
 
 ######
 image magic = "magic/magic1.png"
@@ -706,6 +559,19 @@ image ctc4 = Animation("interface/ctc00.png", 0.2, "interface/ctc01.png", 0.2, "
 image ctc7 = Animation("interface/ctc00.png", 0.2, "interface/ctc01.png", 0.2, "interface/ctc02.png", 0.2, "interface/ctc03.png", 0.2, "interface/ctc04.png", 0.5, "interface/ctc03.png", 0.2, "interface/ctc02.png", 0.2, "interface/ctc01.png", 0.2)
 
 ## TRANSFORMATION
+
+transform moveFade:
+    subpixel True
+    
+    on show, appear, start:
+        alpha 0.0
+        xoffset 200
+        easein_back 1.0 alpha 1.0 xoffset absolute(0)
+    
+    on hide:
+        alpha 1.0
+        xoffset 0
+        easeout_back 1.0 alpha 0.0 xoffset absolute(200)
 
 transform basicfade:
         on show:
@@ -734,82 +600,35 @@ transform basicfade4:
             linear 0.2 alpha 1.0
         on hide:
             linear 1.2 alpha 0.0
-
-
-
-
-label masterstart:
-    stop music fadeout 1
-    $ renpy.music.set_volume(1.0, .5, channel=7)
-
-    scene bg meadow
-    show sylvie smile
-    $ renpy.play('sounds/magic4.ogg')
-    scene white
-    pause.02
-    scene bg meadow
-    show magic5
-    pause.05
-    scene white
-    pause.05
-    scene bg meadow
-    show sylvie smile
-    pause.05
-    scene white
-    pause.05
-    scene bg meadow
-    show sylvie smile
-    show whitefade at basicfade, center
-    show magic at basicfade, center
-    show magic2 at basicfade2, center
-    show magic3 at basicfade3, center
-    show magic4 at basicfade4, center
-    hide magic
-    hide magic2
-    hide magic3
-    hide magic4
-    hide whitefade
-    show heal
-
-label masterstart2:
-    stop music fadeout 1
-
-    show con1 at right
-    show ctc7 at right
-    pause
-    hide con1
-    hide ctc7
-
-
-label splashscreen:
-    $ renpy.pause(0)
-    scene black
-    with Pause(0.9)
-    #$ renpy.play('sounds/arcade.wav')
-    show image "images/misc/intro/logo.jpg"
-    pause 2
-    with dissolve
-    with Pause(2.0)
-
-    scene black
-    with dissolve
-    with Pause(1.0)
-
-    return
-
-
-
-
-
-define eslow = Character(None, color="#402313", what_slow_cps=20)
-define centertext = Character(None,
-    what_size=20, #Font size
-    what_xalign=0.5, #Centers text within the window
-    window_xalign=0.5, #Centers the window horizontally
-    window_yalign=0.5, #Centers the window vertically
-    what_text_align=0.5, #Centers text within the window, just in case
-    window_background=None,#Removes the window, so only the text shows
-    what_outlines=[(3, "#000000", 2, 2), (3, "#ffffff", 0, 0)],
-    #Gives an outline
-    what_slow_cps=20 #Speed at which the text appears (slow)
-    )
+            
+transform fadeInOut:
+    alpha 0.0
+    linear 0.15 alpha 1.0
+    on hide:
+        linear 0.15 alpha 0.0
+        
+transform fadeOutOnly:
+    on hide:
+        linear 0.15 alpha 0.0
+        
+transform blink:
+    on show:
+        alpha 1.0
+        pause 0.5
+        alpha 0.0
+        pause 0.5
+        repeat
+        
+transform pulse:
+    on show:
+        xzoom 1.0
+        yzoom 1.0
+        linear 0.8 xzoom 1.2 yzoom 1.2
+        linear 0.8 xzoom 1.0 yzoom 1.0
+        repeat
+        
+transform moveto(start_x=0, start_y=0, target_x, target_y, duration=1.0):
+    on show:
+        xpos start_x
+        ypos start_y
+        linear duration xpos target_x ypos target_y

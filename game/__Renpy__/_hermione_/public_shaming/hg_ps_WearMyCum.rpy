@@ -2,7 +2,7 @@
 
 ### Wear My Cum ###
 
-label hg_ps_WearMyCum: #Walk around school covered in genies cum
+label hg_ps_cumslut: #Walk around school covered in genies cum
     hide screen hermione_main
     with d3
 
@@ -12,7 +12,7 @@ label hg_ps_WearMyCum: #Walk around school covered in genies cum
         "\"(Yes, let's do it!)\"":
             pass
         "\"(Not right now.)\"":
-            jump hermione_requests_menu
+            jump hermione_favor_menu
 
     m "[hermione_name]?"
     call her_main("Yes, [genie_name].",xpos="right",ypos="base")
@@ -28,11 +28,11 @@ label hg_ps_WearMyCum: #Walk around school covered in genies cum
         jump too_much
 
     elif her_whoring < 15:
-        jump hg_ps_WearMyCum_Scene_1
+        jump hg_ps_cumslut_Scene_1
     elif her_whoring < 21:
-        jump hg_ps_WearMyCum_Scene_2 #This is 1 until I write 2
+        jump hg_ps_cumslut_Scene_2 #This is 1 until I write 2
     else:
-        jump hg_ps_WearMyCum_Scene_2 #This is 1 until I write 3
+        jump hg_ps_cumslut_Scene_2 #This is 1 until I write 3
 
 
 
@@ -40,8 +40,8 @@ label hg_ps_WearMyCum: #Walk around school covered in genies cum
 
 
 
-label hg_ps_WearMyCum_Scene_1:
-    $ hg_ps_WearMyCum_OBJ.inProgress = True
+label hg_ps_cumslut_Scene_1:
+    $ hg_ps_cumslut.inProgress = True
     call her_main("What?!?","shock","wide")
     call her_main("You can't be serious!","angry","angry")
     call her_main("It's bad enough that I let you cum on me in private!","annoyed","annoyed")
@@ -221,17 +221,15 @@ label hg_ps_WearMyCum_Scene_1:
 
     ">You tuck your cock back into your robe."
 
-    call gen_chibi("hide")
-    hide screen chair_left
-    hide screen desk
-    show screen genie
+    call gen_chibi("sit_behind_desk")
     call her_chibi("stand","desk","base")
 
     hide screen blktone
     hide screen bld1
     call hide_blkfade
+    pause.2
 
-
+    call bld
     m "Oh and one last thing before you head to class."
     call her_main("Yes...","annoyed","annoyed",xpos="right",ypos="base")
     m "If you return to this office after classes without any cum on you, Slytherin will get 200 points."
@@ -239,13 +237,15 @@ label hg_ps_WearMyCum_Scene_1:
     m "It's Only unfair if you clean it off."
     call her_main("...","angry","angry")
 
-    jump end_hg_pf
+    call her_walk(action="leave", speed=2.5)
+
+    jump end_hermione_event
 
 
 
 
-label hg_ps_WearMyCum_Scene_2:
-    $ hg_ps_WearMyCum_OBJ.inProgress = True
+label hg_ps_cumslut_Scene_2:
+    $ hg_ps_cumslut.inProgress = True
     call her_main("Again?","shock","wide")
     call her_main("You can not be serious!","angry","angry")
     call her_main("I already let you do this to me once, isn't that enough?","annoyed","annoyed")
@@ -444,16 +444,15 @@ label hg_ps_WearMyCum_Scene_2:
 
     ">You tuck your cock back into your robe."
 
-    call gen_chibi("hide")
-    hide screen chair_left
-    hide screen desk
-    show screen genie
+    call gen_chibi("sit_behind_desk")
     call her_chibi("stand","desk","base")
 
     hide screen blktone
     hide screen bld1
     call hide_blkfade
+    pause.2
 
+    call bld
     m "Oh and one last thing before you head to class."
     call her_main("Yes...","soft","ahegao",xpos="right",ypos="base")
     m "If you return to this office after classes without any cum on you, I'll be very upset."
@@ -461,11 +460,13 @@ label hg_ps_WearMyCum_Scene_2:
     m "Have fun. Say hi to your friends for me."
     call her_main("...","base","closed")
 
-    jump end_hg_pf
+    call her_walk(action="leave", speed=2.5)
+
+    jump end_hermione_event
 
 
-label hg_ps_WearMyCum_Scene_3:
-    $ hg_ps_WearMyCum_OBJ.inProgress = True
+label hg_ps_cumslut_Scene_3:
+    $ hg_ps_cumslut.inProgress = True
     call her_main("Are you serious?","shock","wide")
     call her_main("Can I?","grin","ahegao")
     m "well-"
@@ -483,12 +484,12 @@ label hg_ps_WearMyCum_Scene_3:
     pause.3
 
     hide screen genie
-    $ genie_chibi_xpos = 60 #-185 behind the desk.
-    $ genie_chibi_ypos = 10
+    $ gen_chibi_xpos = 60 #-185 behind the desk.
+    $ gen_chibi_ypos = 10
     $ g_c_u_pic = "handjob_ani"
     show screen chair_left
     show screen g_c_u
-    show screen desk_02
+    #show screen desk_02 <- screen does not exist
     hide screen blktone
     hide screen blkfade
     with d3
@@ -508,7 +509,7 @@ label hg_ps_WearMyCum_Scene_3:
     m "it would help..."
     call her_main("well... do you know how much I've been thinking about this? How much I wanted to ask you to cover me again?","base","down")
     call her_main("I've become such a slut [genie_name], it's all I've been able to think about... going to class covered in your {image=textheart}cum{image=textheart}","grin","ahegao")
-    call her_main("I Imagine it staining my uniform, so much that I can never wash it out. I imagine being covered in your cum constantly. So everyone knows who and what I am.”","grin","dead")
+    call her_main("I Imagine it staining my uniform, so much that I can never wash it out. I imagine being covered in your cum constantly. So everyone knows who and what I am.","grin","dead")
     call her_main("not just A slut... a cumslut...","soft","ahegao")
     call her_main("Your {image=textheart}cum{image=textheart}slut...","silly","ahegao")
     g9 "That did it slut!"
@@ -531,8 +532,8 @@ label hg_ps_WearMyCum_Scene_3:
             $ uni_sperm = True
 
             call her_main("{image=textheart}{image=textheart}{image=textheart}","base","down",xpos="right",ypos="base")
-            $ genie_chibi_xpos = 60 #-185 behind the desk.
-            $ genie_chibi_ypos = 10
+            $ gen_chibi_xpos = 60 #-185 behind the desk.
+            $ gen_chibi_ypos = 10
             $ g_c_u_pic = "on_shirt_cum_ani"
             hide screen blkfade
             hide screen bld1
@@ -562,8 +563,8 @@ label hg_ps_WearMyCum_Scene_3:
             play music "music/Chipper Doodle v2.mp3" fadein 1 fadeout 1 # HERMIONE'S THEME.
             $ u_sperm = "characters/hermione/face//auto_07.png"
             $ uni_sperm = True
-            $ genie_chibi_xpos = 60 #-185 behind the desk.
-            $ genie_chibi_ypos = 10
+            $ gen_chibi_xpos = 60 #-185 behind the desk.
+            $ gen_chibi_ypos = 10
             $ g_c_u_pic = "on_shirt_cum_ani"
             hide screen blkfade
             hide screen bld1
@@ -577,40 +578,38 @@ label hg_ps_WearMyCum_Scene_3:
     show screen blkfade
     with d3
 
+    ">You tuck your cock back into your robe."
+
+    call her_chibi("stand","desk"."base")
     call gen_chibi("sit_behind_desk")
     hide screen blkfade
-    with d5
+    hide screen bld1
+    with d3
+    pause.2
 
-    ">You tuck your cock back into your robe."
+    call bld
     m "I’ll see you after classes. And as before, if you come back without any cum on you, I’ll be very disappointed."
     call her_main("of course [genie_name]...","soft","ahegao",xpos="right",ypos="base")
     call her_main("(I can't wait to see the look on peoples faces...)","grin","dead")
 
-    hide screen h_c_u
-    hide screen g_c_u
-    hide screen g_c_c_u # Genie's sperm. Universal.
-    call her_chibi("stand","desk","base")
-    hide screen blkfade
-    hide screen bld1
-    with d3
+    call her_walk(action="leave", speed=2.5)
 
-    jump end_hg_pf
+    jump end_hermione_event
 
 
 
-label hg_ps_WearMyCum_complete: #Hermione returns from her day of wearing your cum
-    $ hg_ps_WearMyCum_OBJ.inProgress = False
-    $ hg_ps_WearMyCum_OBJ.complete = True
+label hg_ps_cumslut_complete: #Hermione returns from her day of wearing your cum
+    $ hg_ps_cumslut.inProgress = False
+    $ hg_ps_cumslut.complete = True
     if cum_location <= 3:
-        jump hg_ps_WearMyCum_complete_1
+        jump hg_ps_cumslut_complete_1
     else:
-        jump hg_ps_WearMyCum_complete_2
+        jump hg_ps_cumslut_complete_2
 
 
-label hg_ps_WearMyCum_complete_1:
+label hg_ps_cumslut_complete_1:
 
-    call play_sound("door")
-    call her_walk("door","mid",2)
+    call her_walk(action="enter", xpos="mid", ypos="base", speed=2)
 
     if cum_location == 1: #Cum under shirt
         $ aftersperm = True
@@ -696,13 +695,12 @@ label hg_ps_WearMyCum_complete_1:
     hide screen sccg
     show screen blkfade
     with fade
-    jump end_hg_pf
+    jump end_hermione_event
 
 
-label hg_ps_WearMyCum_complete_2:
+label hg_ps_cumslut_complete_2:
 
-    call play_sound("door")
-    call her_walk("door","mid",2)
+    call her_walk(action="enter", xpos="mid", ypos="base", speed=2)
 
     if cum_location == 4: #Cum on legs
         $ u_sperm = "characters/hermione/face/auto_13.png"
@@ -794,10 +792,10 @@ label hg_ps_WearMyCum_complete_2:
     hide screen sccg
     show screen blkfade
     with fade
-    jump end_hg_pf
+    jump end_hermione_event
 
 
-label hg_ps_WearMyCum_complete_3:
+label hg_ps_cumslut_complete_3:
     if cum_location == 7: #Cleavage
         $ u_sperm = "characters/hermione/face/auto_06.png"
         $ uni_sperm = True
@@ -847,6 +845,4 @@ label hg_ps_WearMyCum_complete_3:
                 m "goodnight [hermione_name]."
     hide screen sccg
     with fade
-    jump end_hg_pf
-
-    return
+    jump end_hermione_event
